@@ -27,7 +27,7 @@ Our web app provides a online tech shop for users around the world to be able to
 | Purchase history | Users will be able to check their purchase history, with the timestamp of the purchase date, hour and payment method, along with the shipping address and price details. Users will be able to generate PDFs from each purchase so they can have access to their invoice. The administrator will be able to access the whole purchase history of the webpage, including details like who made the purchase.| 
 | Reviews | Products will have reviews, and these reviews will be added by the users that previously bought the product. Each review will contain a five star rating, along with a comment, and the possibility of adding images. Only users who have bought the product will be able to add a review. The review will be published inmeadiately after sending it, but the administrator will be able to take it down if it contains harmful or inappropiate content.| 
 | Support messages | Each user will be able to send support messages, these messages will be stored on our database, and any support personnel will be able to answer the query, this messages will be kept for as long as the query is active and will be removed after a qeury is marked as resolved by either a user or a support agent. | 
----
+
 </details>
 
 <details><summary>Users and their permissions</summary>
@@ -38,7 +38,6 @@ Our web app provides a online tech shop for users around the world to be able to
 | **Support** | These users will see and answers all complaints from the registered customers. These users won't be able to make purchases, use the cart or the wishing list, they will be able to browse the web as usual but their actions will be limited to replying to customer queries. They own the support messages entity, and they can manage their own profile | 
 | **Registered customer** | These users will be able to make purchases, add products to a wishlist, use the shopping cart, add reviews (they will also be able to delete their own reviews), view their purchase history, generate invoices and contact support. They own their own entity and can modify their user as much as they want, they can also modify the support message entity, marking a query as solved, or creating one, adding a new table to the database.  | 
 | **Guest** | These users will be able to browse the whole website, but their reach will be limited and they won't be able to make purchases, contact support, or have any wishlist. They will be able to have a shopping cart which they will preserve if they register later. They won't own any entity and won't be able to modify any entity. They are only allowed to create a new user entity, registering on our website. | 
----
 
 </details>
 
@@ -50,7 +49,6 @@ Our web app provides a online tech shop for users around the world to be able to
 | Products | The products will contain one or more pictures of the product we are selling, these pictures can only be uploaded by the administrator.| 
 | Purchase history | The purchase history will contain a thumbnail of the product the user bought, this will be the same image as the product's main image| 
 | Reviews | Users adding reviews will be able to upload up to 3 photos of the product, no one will be able to change these photos once the review is submitted.| 
----
 
 </details>
 
@@ -64,11 +62,21 @@ The other chart will be a bar chart showing the quantities sold each day for the
 </details>
 
 <details><summary>Complementary technologies</summary>
+<p>
 - Invoice generator: Each user will be able to download a PDF invoice of their purchases.
+</p>
+<p>
 - Automatic emails: Users will receive notification emails when they register and when they make purchases on our website.
+</p>
+<p>
 - Stock notifications: Users will be able to receive a notification on the website when they toogle the let me know when there's stock button on our out of stock products.
+</p>
+<p>
 - Support notifications: If a support agent replies to a customer, this customer will have a notification on his dashboard.
+</p>
+<p>
 - Use of Google Maps for the user to be able pin point his location, avoiding the trouble of inputting all the address details.
+</p>
 
 </details>
 
