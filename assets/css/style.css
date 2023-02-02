@@ -1,0 +1,35 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #181A1B;
+    /*background-color: white; */
+    margin: 0;
+    padding: 0;
+    height: 75%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    padding-top: 15px;
+    align-items: flex-start;
+}
+
+.searchbar {
+    align-items: flex-start;
+    padding-top: 30px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.icon {
+    align-items: flex-start;
+    padding-top: 25px;
+}
