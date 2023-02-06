@@ -4,6 +4,7 @@ html, body {
     scroll-behavior: smooth;
     text-align: center;
     overflow-x: hidden;
+    background-color: #181A1B;
 }
 
 body {
@@ -22,14 +23,27 @@ h1 {
     align-items: flex-start;
 }
 
+.header {
+    background-color: #181A1B;
+}
+
 .searchbar {
     align-items: flex-start;
     padding-top: 30px;
     padding-left: 25px;
     padding-right: 25px;
+    margin-top: 30px;
 }
 
 .icon {
     align-items: flex-start;
     padding-top: 25px;
+}
+.navigation{
+    align-items: flex-start;
+    margin-top: 70px;
+    color: whitesmoke;
+    padding-left: 45px;
+    padding-right: 0%;
+    font-size: 18px;
 }
