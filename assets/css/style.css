@@ -16,6 +16,7 @@ body {
     height: 75%;
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 
 h1 {
@@ -46,4 +47,11 @@ h1 {
     padding-left: 45px;
     padding-right: 0%;
     font-size: 18px;
+}
+
+.carousel-control-next-icon{
+   background-color: black;
+}
+.carousel-control-prev-icon{
+    background-color: black;
 }
