@@ -4,19 +4,16 @@ html, body {
     scroll-behavior: smooth;
     text-align: center;
     overflow-x: hidden;
-    background-color: #181A1B;
 }
 
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #181A1B;
     /*background-color: white; */
+    background-color: #181A1B;
     margin: 0;
     padding: 0;
     height: 75%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
+    background-repeat: no-repeat;  
 }
 
 h1 {
@@ -24,13 +21,14 @@ h1 {
     align-items: flex-start;
 }
 
-.header {
-    background-color: #181A1B;
+footer {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
 }
+
 
 .searchbar {
     align-items: flex-start;
-    padding-top: 30px;
     padding-left: 25px;
     padding-right: 25px;
     margin-top: 30px;
@@ -54,4 +52,8 @@ h1 {
 }
 .carousel-control-prev-icon{
     background-color: black;
+}
+
+.carousel {
+    padding-top: 75px;
 }
