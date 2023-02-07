@@ -1,0 +1,16 @@
+html{
+    background-color: #181A1B;
+}
+.errorimg{
+    
+    margin: auto;
+  display: block;
+  width: 500px;
+  height: 500px;
+}
+.error404{
+    color: #7aca3d;
+    text-align: center;
+    font-size: 30px;
+    
+}

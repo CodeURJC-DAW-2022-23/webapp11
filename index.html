@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/confirmation.css">
+    <script src="https://kit.fontawesome.com/73f6d44bbd.js" crossorigin="anonymous"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/8878b8cfc2.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="assets/js/app.js"></script>
@@ -16,46 +17,58 @@
   <div class="container-fluid">
       <div class="row header">
           <div class="col-md-2">
-              <h1><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></h1>
+              <h1><a href="index.html"><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
           </div>
           <div class="col-md-7">
-              <form class="d-flex searchbar" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>   
-          </div> 
-          <div class="col-md-3 navbaricons">
+            <div class="input-group mb-4 searchbar">
+              <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+              <div class="input-group-append">
+                <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!--Iconos del header-->
+          <div class="col-md-3 ">
               <div class="row">
-                  <div class="col-md-2">
-                      <p>
-                          <a href="#">
-                          <span class="glyphicon glyphicon-user navigation"></span>
-                          </a>
-                      </p>
+                  <div class="col-md-2 navigation">
+
+                    <div class="dropdown">
+                      <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      </a>
+                    
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="profile.html">Edit profile</a></li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                      </ul>
+                    </div>
+                      
                   </div>
-                  <div class="col-md-2">
-                      <p>
-                          <a href="#">
-                            <span class="glyphicon glyphicon-shopping-cart navigation"></span>
-                          </a>
-                      </p>
+
+                  <div class="col-md-2 navigation ">
+                      
+                    <a href="#">
+                      <i class="fa-solid fa-star"></i>
+                    </a>
+            
                   </div>
                   
-                  <div class="col-md-2 ">
-                      <p>
-                          <a href="#">
-                            <span class="glyphicon glyphicon-star navigation"></span>
-                          </a>
-                        </p>
+                  <div class="col-md-2 navigation">
+                      
+                        <a href="#">
+                          <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                      
                   </div>
-                  <div class="col-md-2 ">
-                      <p>
+                  
+                  <div class="col-md-2 navigation ">
+                      
                           <a href="#">
-                            <span class="glyphicon glyphicon-bell  navigation"></span>
+                            <i class="fa-solid fa-bell"></i>
                           </a>
-                      </p>
-                
+                        
                   </div>
+                  
               </div>
           </div>
       </div>
@@ -76,19 +89,39 @@
         
       </div>
 
-      <div class="row"> <!--Fila de productos de abajo-->
-        <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
-        <div class="col-md-2"></div>
+      <h2>Featured offers</h2>
+
+      <div class="row destacados"> <!--Fila de productos de abajo-->
+        <div class="col-md-3">
+          <a href="#">
+            <img src="/assets/images/pc15.jpg" alt="destacado" width="100" height="100">
+            <p class="destacados">Product name  <span class="badge text-bg-success">500$</span></p>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="#">
+            <img src="/assets/images/pc17.jpg" alt="destacado" width="100" height="100">
+            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="#">
+            <img src="/assets/images/pc19.jpg" alt="destacado" width="100" height="100">
+            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="#">
+            <img src="/assets/images/pc2.jpg" alt="destacado" width="100" height="100">
+            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
+          </a>
+        </div>
       </div>
   </div>
     
 
     <footer>
-        <p> &copy Apache-2.0 license <br>
+        <p> &copy 3TechMarket Apache-2.0 license <br>
             Inés Alonso Izquierdo - i.alonso.2020@alumnos.urjc.es - Github: tsukii14 <br>
             Santiago Arias Paniagua - s.arias.2020@alumnos.urjc.es - Github: 4rius <br>
             Ignacio Canículo Domínguez - i.caniculo.2020@alumnos.urjc.es - Github: nachocaniculo <br>

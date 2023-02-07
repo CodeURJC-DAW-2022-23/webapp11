@@ -19,6 +19,9 @@ body {
 h1 {
     padding-top: 15px;
     align-items: flex-start;
+    color: whitesmoke;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
 footer {
@@ -38,9 +41,10 @@ footer {
     align-items: flex-start;
     padding-top: 25px;
 }
+
 .navigation{
-    align-items: flex-start;
-    margin-top: 70px;
+    align-items: flex-end;
+    margin-top: 35px;
     color: whitesmoke;
     padding-left: 45px;
     padding-right: 0%;
@@ -54,6 +58,137 @@ footer {
     background-color: black;
 }
 
-.carousel {
-    padding-top: 75px;
+  .logoCentered{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .loginBox{
+    margin-top: 20px;
+    width: 350px;
+    height: 40px;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(0, 0, 0);
+  }
+
+  .loginText{
+    margin-top: 20px;
+    font-size: 28px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+  }
+
+  .loginButton{
+    width: 105px;
+    height: 30px;
+    line-height: 20px;
+    margin-top: 20px;
+    vertical-align: middle;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color:#7aca3d;
+  }
+
+  .noAccountText{
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #7aca3d;
+  } 
+
+  a:link {
+    color: #7aca3d;       
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: #7aca3d;       
+    text-decoration: none;
+  }
+
+  .labels {
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+  .btn-success {
+    background-color:#7aca3d !important;
+}
+  .border-success {
+    color:#7aca3d !important;
+}
+
+.destacados {
+    padding-top: 20px;
+    color: whitesmoke;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: whitesmoke;
+    padding-top: 20px;
+}
+
+h2:hover {
+    -moz-transition: color 2s;
+    transition: color 1s;
+    color: #7aca3d ;
+    animation: blinker 2.3s infinite;
+}
+
+.destacados p:hover {
+    -moz-transition: color 2s;
+    transition: color 1s;
+    color: #7aca3d ;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+  }
+
