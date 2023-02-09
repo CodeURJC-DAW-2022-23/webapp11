@@ -5,84 +5,118 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://kit.fontawesome.com/73f6d44bbd.js" crossorigin="anonymous"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/8878b8cfc2.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="assets/css/cesta.css"></script>
     <title>3TechMarket - The best technology shop online</title>
 </head>
 <body>
-  <!--Parte común con la pagina principal-->
   <div class="container-fluid">
       <div class="row header">
           <div class="col-md-2">
-              <h1><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></h1>
+              <h1><a href="index.html"><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
           </div>
           <div class="col-md-7">
-            <!--Search bar-->
-          </div> 
+            <div class="input-group mb-4 searchbar">
+              <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+              <div class="input-group-append">
+                <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
 
           <!--Iconos del header-->
-          <div class="col-md-3 navbaricons">
+          <div class="col-md-3 ">
               <div class="row">
-                  <div class="col-md-2">
-                      <p>
-                          <a href="#">
-                          <span class="glyphicon glyphicon-user navigation"></span>
-                          </a>
-                      </p>
+                  <div class="col-md-2 navigation">
+
+                    <div class="dropdown">
+                      <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      </a>
+                    
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="profile.html">Edit profile</a></li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                      </ul>
+                    </div>
+                      
                   </div>
-                  <div class="col-md-2">
+
+                  <div class="col-md-2 navigation ">
+                      
+                    <a href="#">
+                      <i class="fa-solid fa-star"></i>
+                    </a>
+            
+                  </div>
+                  
+                  <div class="col-md-2 navigation">
                       
                         <a href="#">
-                          <span class="glyphicon glyphicon-user navigation"></span>
+                          <i class="fa-solid fa-cart-shopping"></i>
                         </a>
                       
                   </div>
                   
-                  <div class="col-md-2 ">
-                      <p>
+                  <div class="col-md-2 navigation ">
+                      
                           <a href="#">
-                            <i class="fa-regular fa-user navigation"></i>
+                            <i class="fa-solid fa-bell"></i>
                           </a>
-                        </p>
+                        
                   </div>
-                  <div class="col-md-2 ">
-                      <p>
-                          <a href="#">
-                            <span class="glyphicon glyphicon-bell  navigation"></span>
-                          </a>
-                      </p>
-                
-                  </div>
+                  
               </div>
           </div>
       </div>
+
     <!--Fin de la parte común con la pagina principal-->
       <div class ="container-fluid">
         <div class ="row">
             <div class ="col-md-9">
                 <div class="row">
-                    <strong>Mi cesta</strong>
+                    <strong class="this-web-title">Mi cesta</strong>
                 </div>
                 <div class="row">
                     <div class="col-sm-2">
-                        <img href="#"></img>
+                        <img href="assets/images/pc15.jpg" class="product-image"></img>
                     </div>
                     <div class="col-sm-8">
                         <div class="row">
-                            <p>Nombre del producto</p>
+                            <p class="product-name">Nombre del producto</p>
                         </div>
                         <div class="row">
-                            <p>XXXX$</P>
+                            <p class="product-price">XXXX$</P>
                         </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-1">
                         <button type="button" onclick="alert('Quitaria el elemento')" class="secundary-button">Quitar elemento</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" onclick="alert('Añadiria un elemento o lo quitaria')" class="secundary-button">Añadir un elemnto</button>
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-2">
+                        <img href="assets/images/logo.png" class="product-image"></img>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <p class="product-name">Nombre del producto</p>
+                        </div>
+                        <div class="row">
+                            <p class="product-price">XXXX$</P>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" onclick="alert('Quitaria el elemento')" class="secundary-button">Quitar elemento</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" onclick="alert('Añadiria un elemento o lo quitaria')" class="secundary-button">Añadir un elemnto</button>
+                    </div>
                 </div>
             </div>
             <div class ="col-md-3">
