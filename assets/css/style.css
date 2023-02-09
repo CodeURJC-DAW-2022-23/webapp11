@@ -35,7 +35,7 @@ footer {
   align-items: flex-start;
   padding-left: 25px;
   padding-right: 25px;
-  padding-top: 35px;
+  padding-top: 30px;
 }
 
 .icon {
@@ -44,11 +44,9 @@ footer {
 }
 
 .navigation {
-  align-items: flex-end;
   margin-top: 35px;
   color: whitesmoke;
   padding-left: 45px;
-  padding-right: 0%;
   font-size: 18px;
 }
 
