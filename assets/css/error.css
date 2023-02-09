@@ -1,16 +1,53 @@
-html{
-    background-color: #181A1B;
+html, body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  text-align: center;
+  overflow-x: hidden;
+  background-color: black;
 }
 .errorimg{
     
-    margin: auto;
   display: block;
-  width: 500px;
-  height: 500px;
-}
-.error404{
-    color: #7aca3d;
-    text-align: center;
-    font-size: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
     
 }
+.searchbar {
+  align-items: flex-start;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-top: 30px;
+
+}
+
+
+
+.navigation {
+  align-items: flex-end;
+  margin-top: 35px;
+  color: whitesmoke;
+  padding-left: 45px;
+  padding-right: 0%;
+  font-size: 18px;
+}
+
+
+
+.logoCentered {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
