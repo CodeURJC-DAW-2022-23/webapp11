@@ -159,27 +159,50 @@ a:hover {color: #7aca3d;}
 a:active {color: #7aca3d;} 
 
 .this-web-title{
-    color: #7aca3d;
+    color: whitesmoke;
     align-items: flex-start;
     padding-bottom: 20px;
 }
 .product-name{
-    color: #7aca3d;
+    color: whitesmoke;
     align-items: flex-start;
+    font-size: medium;
 }
 .product-price{
-  color: #7aca3d;
+  color: whitesmoke;
   align-items: flex-start;
-}
-.product{
-  margin-bottom: 20px;
-}
-.product-name{
-  font-size: medium;
-}
-.product-price{
   font-size: smaller;
 }
+.product{
+  margin-top: 50px;
+  margin-bottom: 75px;
+  
+}
+.resume{
+  margin-top: 50px;
+}
+.resume-title{
+  margin-bottom: 20px;
+}
+.title{
+  color: whitesmoke;
+  font-size: large;
+}
+.title2{
+  color: whitesmoke;
+  font-size: medium;
+}
+.title3{
+  color: whitesmoke;
+  font-size: medium;
+}
+
 .product-image{
   margin-left: 30px;
 }
+.button-payment{
+  margin-bottom: 10px;
+  align-content: center;
+  align-items: center;
+}
+

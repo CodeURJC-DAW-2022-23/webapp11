@@ -69,6 +69,21 @@ h3 {
     padding-left: 30px;
 }
 
+input[type="text"] {
+    padding: 4px 8px;
+    border: 2px solid #7aca3d;
+  }
+
+  input[type="number"] {
+    padding: 4px 8px;
+    border: 2px solid #7aca3d;
+  }
+
+  input[type="file"] {
+    padding: 4px 8px;
+    border: 2px solid #7aca3d;
+  } 
+
 a:link {color: #7aca3d;}   
 a:visited {color: #7aca3d;}
 a:hover {color: #7aca3d;}

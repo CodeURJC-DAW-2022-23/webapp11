@@ -58,48 +58,6 @@ footer {
   margin-top: 20px;
 }
 
-.loginBox {
-  margin-top: 20px;
-  width: 350px;
-  height: 40px;
-  justify-content: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(0, 0, 0);
-}
-
-.loginText {
-  margin-top: 20px;
-  font-size: 28px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: white;
-}
-
-.loginButton {
-  width: 105px;
-  height: 30px;
-  line-height: 20px;
-  margin-top: 20px;
-  vertical-align: middle;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #7aca3d;
-}
-
-.noAccountText {
-  font-size: 12px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: #7aca3d;
-}
-
-a:link {
-  color: #7aca3d;
-  text-decoration: none;
-}
-
-a:visited {
-  color: #7aca3d;
-  text-decoration: none;
-}
-
 .labels {
   font-size: 12px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -317,8 +275,9 @@ a:visited {
   align-items: flex-start;
 }
 
+
 label{
-  text-align: start;
+  
   color: whitesmoke;
 }.product-btn-group .star:hover {
   box-shadow: 0 3px 6px var(--shadow);
@@ -348,6 +307,10 @@ h2:hover {
   transition: color 1s;
   color: #7aca3d;
   animation: blinker 2.3s infinite;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 .destacados p:hover {
