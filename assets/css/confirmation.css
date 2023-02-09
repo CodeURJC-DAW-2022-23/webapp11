@@ -28,6 +28,7 @@ footer {
 
 h2 {
     display: inline-block;
+    align-self: center;
     padding-top: 35px;
     color: whitesmoke;
     font-weight: 700;
@@ -38,7 +39,19 @@ h2 {
     align-items: flex-end;
     margin-top: 35px;
     color: whitesmoke;
-    padding-left: 45px;
+    padding-left: 35px;
     padding-right: 0%;
     font-size: 18px;
 }
+
+h3 {
+    color: whitesmoke;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a:link {color: #7aca3d;}   
+a:visited {color: #7aca3d;}
+a:hover {color: #7aca3d;}
+a:active {color: #7aca3d;} 
