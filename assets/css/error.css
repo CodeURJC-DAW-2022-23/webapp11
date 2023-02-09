@@ -44,7 +44,10 @@ html, body {
 
 
 
-
+a:link {color: #7aca3d;}   
+a:visited {color: #7aca3d;}
+a:hover {color: #7aca3d;}
+a:active {color: #7aca3d;} 
 
 
 
