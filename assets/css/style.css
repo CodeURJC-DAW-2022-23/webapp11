@@ -173,7 +173,7 @@ a:visited {
 
 .single-product {
   width: 1080px;
-  position: relative;
+  margin: 0 auto;
   padding-top: 10px;
 }
 
@@ -197,11 +197,16 @@ a:visited {
   object-fit: contain;
 }
 
+
+
 .product-image .image-slider {
   display: flex;
   gap: 10px;
   background-color: white;
   margin: 10px 0;
+  justify-content: center;
+  align-items: center;
+  padding-right: .5em;
 }
 
 .image-slider img {
