@@ -37,6 +37,7 @@ h1, h2 {
     align-items: flex-start;
     font-size: medium;
     text-align: left;
+    font-style: italic;
     color: whitesmoke;
     font-weight: 500;
     padding-top: 1px;
@@ -78,6 +79,7 @@ color: #7aca3d !important;
 
 .purchasedetails {
     padding-top: 35px;
+
 }
 
 @keyframes blinker {
@@ -86,11 +88,26 @@ color: #7aca3d !important;
   }
 }
 
-.modal-body, .modal-footer, .modal-content {
-  background-color: #181A1B;
-  color: whitesmoke;
+textarea {
+  resize: none;
 }
 
+.stars {
+  color: whitesmoke;
+  align-items: center;
+  padding-bottom: 15px;
+  text-transform: uppercase;
+  font-size: larger;
+  font-weight: 600;
+}
+
+.checked {
+  color: #7aca3d;
+}
+
+.review {
+  padding-top: 15px;
+}
 
 a:link {color: #7aca3d;}   
 a:visited {color: #7aca3d;}
