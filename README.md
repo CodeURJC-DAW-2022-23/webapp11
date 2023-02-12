@@ -1,4 +1,4 @@
-# **3TechMarket**
+<img src="assets/images/logo2.png" alt="3TechMarket Logo" width="200"/>
 
 Our web app provides a online tech shop for users around the world to be able to buy the latest gear with the best reviews at the best prices. We aim to provide the best buying experience, with nice to have features such as support messages, PDF invoices, email confirmations, stock alerts and much more.
 
@@ -89,7 +89,7 @@ The algorithm used on our web app will be a simple recommendation algorithm, whi
 
 <br>
 
-## **Navigation**
+## **Navigation and models**
 
 <details><summary><b>Screenshots</b></summary>
 
@@ -100,23 +100,32 @@ The algorithm used on our web app will be a simple recommendation algorithm, whi
 ![Home page](Model%20screenshots/home.png)
 *We aim to provide a simple, yet enjoyable, shopping experience, with a few featured items running on a carousel in the middle of the website, as well as some recommendations beneath it, we aim to have at least 2 rows of products, but this is just the model.*
 
-#### **Login**
+<details><summary> <b> Login </b> </summary>
 
 ![Login](Model%20screenshots/login.png)
 *A simple login page for the user to be able to authenticate, this allows the administrator and the support agents to login as well*
-#### **Sign up**
+</details>
+<details><summary> <b> Sign up </b> </summary>
 
 ![Sign up](Model%20screenshots/signup.png)
-*Another simple sign up page, where new users can sign up. Administrators and support agents have to be manuually added into the system, so they won't be able to sign up using this form*
+*Another simple sign up page, where new users can sign up. Administrators and support agents have to be manually added into the system, so they won't be able to sign up using this form*
+</details>
 
-#### **Purchase history**
+<details><summary> <b> Purchase history </b> </summary>
 
 ![Purchase history](Model%20screenshots/purchasehistory.png)
 *Our website will let the user know all the purchases he/she has done, as well as getting further assistance, leaving a review, returning the product, or cancelling an order that has recently been made. This history is similar to the one that will be accesible for the administrator. We will also provide a unique ID for each order.*
-#### **Add review**
+</details>
+<details><summary> <b> Add review </b> </summary>
 
 ![Add review](Model%20screenshots/addreview.png)
 *Our users will be able to leave reviews that include a title, a comment, and some photos*
+</details>
+<details><summary> <b> Product view </b> </summary>
+
+![Product view](Model%20screenshots/product.png)
+*A view where clients can check out photos, specifications and reviews on a product. They will feature a review, and the rest of them will be available before. Note that this is just a model, and our products will include all their information in English.*
+</details>
 
 <details><summary> <b> Confirmation </b> </summary>
 
@@ -130,13 +139,25 @@ The algorithm used on our web app will be a simple recommendation algorithm, whi
 *A simple error page*
 
 </details>
+<details><summary> <b> Checkout </b> </summary>
+
+![Checkout](Model%20screenshots/checkout.png)
+*An easy checkout for users to complete their purchases*
+
+</details>
+<details><summary> <b> Shopping cart </b> </summary>
+
+![Shopping cart](Model%20screenshots/shoppingcart.png)
+*Clients will be able to add quantities and get errors if there is no stock left, as well as continuing to checkout*
+
+</details>
 <details><summary> <b> Search results </b> </summary>
 
 ![Search results](Model%20screenshots/searchresults.png)
 *How we plan our products to be displayed when a user performs a search*
 
 </details>
-<details><summary> <b> Search results </b> </summary>
+<details><summary> <b> Review history </b> </summary>
 
 ![Review history](Model%20screenshots/reviewhistory.png)
 *How the administrator will be able to moderate reviews*
@@ -158,6 +179,18 @@ The algorithm used on our web app will be a simple recommendation algorithm, whi
 
 ![Edit product](Model%20screenshots/editproduct.png)
 *The administrator will be able to access this tool to update the product's price, as well as name, description, photos...*
+
+</details>
+<details><summary> <b> Support messages </b> </summary>
+
+![Support messages](Model%20screenshots/messages.png)
+*Users will be able to chat live or leave a conversation opened with a support agent on their messages tab*
+
+</details>
+<details><summary> <b> Admin dashboard </b> </summary>
+
+![Admin dashboard](Model%20screenshots/dashboard.png)
+*A set of tools for the admin to be able to track the progress of the website, as well as editing and adding products, and modding reviews. The administrator will also be able to access a graph that will show the number of orders that were created the last week.*
 
 </details>
 
