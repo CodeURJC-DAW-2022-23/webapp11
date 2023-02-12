@@ -3,7 +3,6 @@ body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-  text-align: center;
   overflow-x: hidden;
 }
 
@@ -23,6 +22,7 @@ h1, h2 {
   color: whitesmoke;
   font-weight: 700;
   text-transform: uppercase;
+  text-align: center;
 }
  h3 {
     align-items: flex-start;
@@ -86,11 +86,59 @@ color: #7aca3d !important;
   }
 }
 
-.modal-body, .modal-footer, .modal-content {
-  background-color: #181A1B;
+h4 {
   color: whitesmoke;
+  font-weight: 600;
+  text-align: start;
 }
 
+.info {
+  align-items: flex-start;
+  color: whitesmoke;
+  font-weight: 500;
+  text-align: start;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.disclaimer {
+  color: whitesmoke;
+  font-style: italic;
+  font-weight: 200;
+  text-align: justify;
+  padding-top: 25px;
+  align-items: center;
+}
+
+.buy {
+  padding-top: 35px;
+}
+
+.list-group {
+  text-align: start;
+}
+
+
+.price {
+  align-self: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 600;
+  padding-top: 5px;
+}
+
+.total {
+  text-align: center;
+  font-weight: 600;
+  color: #7aca3d;
+  animation: blinker 2.5s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 50%;
+  }
+}
 
 a:link {color: #7aca3d;}   
 a:visited {color: #7aca3d;}
