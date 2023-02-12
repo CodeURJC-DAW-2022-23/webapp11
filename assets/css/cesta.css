@@ -164,45 +164,91 @@ a:active {color: #7aca3d;}
     padding-bottom: 20px;
 }
 .product-name{
-    color: whitesmoke;
+    color: black;
     align-items: flex-start;
     font-size: medium;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .product-price{
-  color: whitesmoke;
+  color: black;
   align-items: flex-start;
   font-size: smaller;
 }
 .product{
-  margin-top: 50px;
-  margin-bottom: 75px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-right: 40px;
+  border-color: black;
+  border-radius: 15px;
+  border-style: solid;
+  background-color: whitesmoke;
+  border-width: 20px;
   
 }
 .resume{
   margin-top: 50px;
+  margin-bottom: 250px;
+  background-color: whitesmoke;
+  border-radius: 15px;
 }
 .resume-title{
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+
 }
 .title{
-  color: whitesmoke;
+  color: black;
   font-size: large;
 }
 .title2{
-  color: whitesmoke;
+  color: black;
   font-size: medium;
+  margin-bottom: 50px;
 }
 .title3{
-  color: whitesmoke;
+  color: black;
   font-size: medium;
+  margin-bottom: 50px;
 }
 
 .product-image{
   margin-left: 30px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.button-purchase{
+  margin-bottom: 20px;
+  border-radius: 15px;
+  color:whitesmoke;
+  background-color: #7aca3d;
+  width: 490px;
 }
 .button-payment{
-  margin-bottom: 10px;
-  align-content: center;
-  align-items: center;
+  margin-left: 20px;
+  margin-right: 50px;
 }
-
+.secundary-button{
+  background-color: #7aca3d;
+  border-radius: 15px;
+  border-color: whitesmoke;
+  margin-top: 20px;
+  color: whitesmoke;
+  height: 60px;
+}
+.button-delete{
+  margin-top: 20px;
+  height: 60px;
+}
+.button-deletecart{
+  margin-left: 20px;
+  height: 40px;
+  width: 170px;
+}
+.tertiary-button{
+  background-color: #7aca3d;
+  border-radius: 15px;
+  color:whitesmoke;
+  height: 40px;
+  width: 170px;
+}
