@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
     <script src="https://kit.fontawesome.com/73f6d44bbd.js" crossorigin="anonymous"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/8878b8cfc2.js" crossorigin="anonymous"></script>
@@ -32,10 +32,15 @@
             <input type="password" id="pass" name="password" placeholder="  Password" class="loginBox" minlength="8" required >
         </div>
         <div class="col-md-12">
-            <input type="submit" value="Sign in" class="loginButton" onclick="location.href='index.html';">
+            <div class="buttonMargin">
+                <button type="button" class="btn btn-primary" onclick="location.href='index.html';">Sign In</button>
+            </div>    
         </div>
         <div class="col-md-12">
             <h1 class="noAccountText"><a href="register.html">Don't have an account? Sign Up!</a></h1>
+        </div>
+        <div class="col-md-12">
+            <h1 class="noAccountText">Forgot password? Click here!</a></h1>
         </div>
     </div>
 </body>

@@ -58,48 +58,6 @@ footer {
   margin-top: 20px;
 }
 
-.loginBox {
-  margin-top: 20px;
-  width: 350px;
-  height: 40px;
-  justify-content: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(0, 0, 0);
-}
-
-.loginText {
-  margin-top: 20px;
-  font-size: 28px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: white;
-}
-
-.loginButton {
-  width: 105px;
-  height: 30px;
-  line-height: 20px;
-  margin-top: 20px;
-  vertical-align: middle;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #7aca3d;
-}
-
-.noAccountText {
-  font-size: 12px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: #7aca3d;
-}
-
-a:link {
-  color: #7aca3d;
-  text-decoration: none;
-}
-
-a:visited {
-  color: #7aca3d;
-  text-decoration: none;
-}
-
 .labels {
   font-size: 12px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -165,7 +123,7 @@ a:visited {
 
 .single-product {
   width: 1080px;
-  position: relative;
+  margin: 0 auto;
   padding-top: 10px;
 }
 
@@ -189,11 +147,16 @@ a:visited {
   object-fit: contain;
 }
 
+
+
 .product-image .image-slider {
   display: flex;
   gap: 10px;
   background-color: white;
   margin: 10px 0;
+  justify-content: center;
+  align-items: center;
+  padding-right: .5em;
 }
 
 .image-slider img {
@@ -239,7 +202,7 @@ a:visited {
   display: block;
   height: 1px;
   width: 100%;
-  background: whitesmoke;
+  background:rchitesmoke;
   margin: 20px 0;
   margin-left: 17px;
 }
@@ -306,7 +269,17 @@ a:visited {
   font-size: 20px;
 }
 
-.product-btn-group .star:hover {
+
+.purchase-info{
+  margin-top: 20px;
+  align-items: flex-start;
+}
+
+
+label{
+  
+  color: whitesmoke;
+}.product-btn-group .star:hover {
   box-shadow: 0 3px 6px var(--shadow);
   background: #7aca3d;
   color: #fff;
@@ -336,6 +309,10 @@ h2:hover {
   animation: blinker 2.3s infinite;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 .destacados p:hover {
   -moz-transition: color 2s;
   transition: color 1s;
@@ -352,3 +329,4 @@ a:link {color: #7aca3d;}
 a:visited {color: #7aca3d;}
 a:hover {color: #7aca3d;}
 a:active {color: #7aca3d;} 
+

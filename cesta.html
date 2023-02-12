@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/cesta.css">
     <script src="https://kit.fontawesome.com/73f6d44bbd.js" crossorigin="anonymous"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/8878b8cfc2.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="assets/js/app.js"></script>
-    <script src="assets/css/cesta.css"></script>
+
     <title>3TechMarket - The best technology shop online</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
           <div class="col-md-2">
               <h1><a href="index.html"><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-8">
             <div class="input-group mb-4 searchbar">
               <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
               <div class="input-group-append">
@@ -29,7 +30,7 @@
           </div>
 
           <!--Iconos del header-->
-          <div class="col-md-3 ">
+          <div class="col-md-2 ">
               <div class="row">
                   <div class="col-md-2 navigation">
 
@@ -38,8 +39,9 @@
                       </a>
                     
                       <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="purchases.html">Recent orders</a></li>
                         <li><a class="dropdown-item" href="profile.html">Edit profile</a></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="login.html">Log In/Sign Up</a></li>
                       </ul>
                     </div>
                       
@@ -78,14 +80,14 @@
         <div class ="row">
             <div class ="col-md-9">
                 <div class="row">
-                    <strong class="this-web-title">Mi cesta</strong>
+                    <h1><strong class="this-web-title">Mi cesta</strong></h1>
                 </div>
-                <div class="row">
+                <div class="row product">
                     <div class="col-sm-2">
-                        <img href="assets/images/pc15.jpg" class="product-image"></img>
+                        <img src="/assets/images/pc15.jpg" class="product-image" width="100px" height="100px"></img>
                     </div>
                     <div class="col-sm-8">
-                        <div class="row">
+                        <div class="row  nameproduct">
                             <p class="product-name">Nombre del producto</p>
                         </div>
                         <div class="row">
@@ -99,9 +101,9 @@
                         <button type="button" onclick="alert('Añadiria un elemento o lo quitaria')" class="secundary-button">Añadir un elemnto</button>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row product">
                     <div class="col-sm-2">
-                        <img href="assets/images/logo.png" class="product-image"></img>
+                        <img src="/assets/images/pc15.jpg" class="product-image" width="100px" height="100px"></img>
                     </div>
                     <div class="col-sm-8">
                         <div class="row">
@@ -111,29 +113,27 @@
                             <p class="product-price">XXXX$</P>
                         </div>
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1 col">
                         <button type="button" onclick="alert('Quitaria el elemento')" class="secundary-button">Quitar elemento</button>
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1 col">
                         <button type="button" onclick="alert('Añadiria un elemento o lo quitaria')" class="secundary-button">Añadir un elemnto</button>
                     </div>
                 </div>
             </div>
-            <div class ="col-md-3">
-                <div class ="row">
-                    <div class ="col-sm-2">
-                    <strong class="c">Resume</strong>
-                    </div>
+            <div class ="col-md-3 resume">
+                <div class ="row resume-title">
+                    <strong class="title">Resume</strong>
                 </div>
                 <div class="row">
                     <div class="col-sm-9">
-                        <strong class ="a">Total Cost</strong>
+                        <strong class ="title2">Total Cost</strong>
                     </div>
                     <div class="col-sm-3">
-                        <p class ="b">XXXX$</p>
+                        <p class ="title3">XXXX$</p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row button-payment">
                     <a href="#"><button type="button" onclick="alert('Llevaria a la pagina de pago')" class="button-purchase">Realizar pedido</button></a>
                 </div>
                 <div class="row">
@@ -146,6 +146,5 @@
                 </div>
             </div>
     </div>
-
-      </div>
-    </hmtml>
+</div>
+</hmtml>

@@ -4,7 +4,7 @@ html, body {
     scroll-behavior: smooth;
     text-align: center;
     overflow-x: hidden;
-    background-color: #181A1B;
+    background-color: black;
 }
 
 body {
@@ -61,12 +61,35 @@ h3 {
   background-color: #7aca3d;
 }
 
-.textBar{
-    padding-top: 10px;
+.img-wraps {
+    position: relative;
+    display: inline-block;
+    
+    font-size: 0;
+    padding-top: 30px;
 }
 
-.logoImage{
-    padding-left: 30px;
+.img-wraps .closes {
+    position: absolute;
+    top: 30px;
+    right: 8px;
+    z-index: 100;
+    background-color: #FFF;
+    padding: 7px 3px;
+     
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    
+    text-align: center;
+    font-size: 22px;
+    line-height: 10px;
+    border-radius: 50%;
+    border:1px solid #000;
+}
+
+.img-wraps:hover .closes {
+    opacity: 1;
 }
 
 input[type="text"] {
@@ -82,7 +105,18 @@ input[type="text"] {
   input[type="file"] {
     padding: 4px 8px;
     border: 2px solid #7aca3d;
-  } 
+  }
+
+.textBarStyle{
+    color: #FFF;
+}
+.textBar{
+    padding-top: 10px;
+}
+
+.logoImage{
+    padding-left: 30px;
+}
 
 a:link {color: #7aca3d;}   
 a:visited {color: #7aca3d;}
