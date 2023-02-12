@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/product.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
+        crossorigin="anonymous"></script>
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="assets/js/app.js"></script>
@@ -103,48 +101,250 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="product-info">
+                        <div class="product-info d-flex flex-column">
                             <div class="product-name">
                                 <h3>MSI Optix G241VC 23.6" LED FullHD 75Hz FreeSync Curva</h3>
                             </div>
-                            <div class="product-price">
+                            <div class="product-price d-flex justify-content-between">
                                 <span class="sale-price">139.98€</span>
                                 <span class="original-price">169€</span>
                                 <span class="discount">-17%</span>
-                            </div>
-                            <div class="product-rate">
-                                <p>si</p>
-                                <!--poner estrellitas-->
+
+                                <div class="product-rate">
+                                    <span><i class="bx bxs-star" style="color: white"></i></span>
+                                    <span><i class="bx bxs-star" style="color: white"></i></span>
+                                    <span><i class="bx bxs-star" style="color: white"></i></span>
+                                    <span><i class="bx bxs-star" style="color: white"></i></span>
+                                    <span><i class='bx bxs-star-half' style="color: white"></i></span>
+                                </div>
                             </div>
                         </div>
                         <div class="product-purchase">
-                            <span class="divider"></span>
 
                             <div class="product-btn-group">
                                 <div class="button buy-now"><i class='bx bx-money-withdraw'></i></i> Comprar</div>
-                                <div class="button add-cart"><i class='bx bx-cart-download'></i></i> Añadir al carrito</div>
-                                <div class="button star"><i class='bx bxs-star' ></i> Guardar</div>
+                                <div class="button add-cart"><i class='bx bx-cart-download'></i></i> Añadir al carrito
+                                </div>
+                                <div class="button star"><i class='bx bxs-star'></i> Guardar</div>
                             </div>
                         </div>
-                        <div class="purchase-info">
-                            <label for="availability">Recogida en tienda:</label>
 
-                            <select name="availability" id="availability">
-                            <option value="madrid">Madrid</option>
-                            <option value="barcelona">Barcelona</option>
-                            </select>
+                        <div class="purchase-info d-flex flex-column">
+                            <div class="delivery d-flex justify-content-between">
+                                <span> Envío: </span>
+                                <span class="delivery-type"> Envío GRATIS </span>
+                            </div>
 
-                            <input type="checkbox" id="cbox1" value="">
-                            <label for="vehicle1">Garantía de sustitución </label><br>
-                            
+                            <div class="refund d-flex justify-content-between">
+                                <span> Devolución: </span>
+                                <span class="refund-type"> Devolución GRATIS </span>
+                            </div>
+
+                            <div class="home-delivery d-flex justify-content-between">
+                                <span> Envío a domicilio: </span>
+                                <span class="stock"> ¡En stock! Recíbelo el 20 de febrero </span>
+                            </div>
+
+                            <div class="pickup d-flex justify-content-between">
+                                <span> Recogida en tienda:</span>
+
+                                <select name="availability" id="availability">
+                                    <option value="madrid"> Madrid </option>
+                                    <option value="barcelona"> Barcelona </option>
+                                </select>
+                            </div>
+
+                            <div class="assurance d-flex justify-content-start gap-3">
+                                <input type="checkbox" id="cbox1" value="">
+                                <span> Garantía de sustitución en 24 horas </span>
+                            </div>
                         </div>
-                        
+                        <div class="title-opinion">
+                            <span> Opinión destacada </span>
+                        </div>
+
+                        <div class="outstanding-opinion d-flex justify-content-start">
+
+                            <div class="opinion d-flex justify-content-between gap-3">
+                                <img src="/assets/images/profile.png" width="90px">
+                                <div class="user-info d-flex justify-content-between gap-5"">
+                                    <span class=" user-name">Alex</span>
+                                    <div class="product-rate">
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class='bx bxs-star-half' style="color: white"></i></span>
+                                        <div class="row">
+                                            <span class="text-op">Es simplemente perfecta la recomiendo sin duda! No me
+                                                a dado ningún problema!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="features d-flex justify-content-start">
+                    <div class="row">
+                        <h5>Características</h5>
+                        <div class="info-features">
+                            <p>
+                                <strong>Optix G241VC</strong>
+                                utiliza el panel curvo Samsung de alta calidad con muchas características especiales
+                                para los jugadores, lo que les ayudará a disfrutar del maravilloso mundo del juego.
+                            </p>
+                            <ul>
+                                <li>23.6 "panel LCD retroiluminación LED (1920 x 1080 Full HD)</li>
+                                <li>Tiempo de respuesta de 1 ms: no más imágenes borrosas</li>
+                                <li>Diseño de panel de curva 1800R: el más adecuado para el ojo humano.</li>
+                                <li>Color verdadero: NTSC 85%, sRGB 110%.</li>
+                                <li>Amplio ángulo de visión: 178 ° visible</li>
+                                <li>Optimizado con MSI Gaming VGA: ofreciéndole la mejor experiencia visua</li>
+                                <li>AMD FreeSync: mantenga la pantalla arrancada de su monitor.</li>
+                            </ul>
+                            <strong>ESPECIFICACIONES</strong>
+                            <ul>
+                                <li>Exhibición
+                                    <ul>
+                                        <li>Diagonal de la pantalla: 59,9 cm (23.6")</li>
+                                        <li>Resolución de la pantalla: 1920 x 1080 Pixeles</li>
+                                        <li>Tipo de pantalla: VA</li>
+                                        <li>Máxima velocidad de actualización: 75 Hz</li>
+                                        <li>Tecnología de visualización: LED</li>
+                                        <li>Formato de vídeo soportado: 1080p</li>
+                                        <li>Forma de la pantalla: Curva</li>
+                                    </ul>
+                                </li>
+                                <li>Puertos e interfaces
+                                    <ul>
+                                        <li>Conector USB incorporado: No</li>
+                                        <li>Cantidad de puertos VGA (D-Sub): 1</li>
+                                        <li>Puerto DVI: No</li>
+                                        <li>HDMI: Si</li>
+                                        <li>Entrada de CA: Si</li>
+                                        <li>Versión HDMI: 1.4</li>
+                                        <li>Número de puertos HDMI: 1</li>
+                                        <li>Entrada de audio: No</li>
+                                    </ul>
+                                </li>
+                                <li>Pesao y dimensiones
+                                    <ul>
+                                        <li>Ancho: 543 mm</li>
+                                        <li>Profundidad: 192 mm</li>
+                                        <li>Altura: 403 mm</li>
+                                        <li>Peso: 3,96 kg</li>
+                                    </ul>
+                                </li>
+                                <li>Control de energía
+                                    <ul>
+                                        <li>Consumo energético: 45 W</li>
+                                        <li>Voltaje de entrada AC: 100 - 240 V</li>
+                                        <li>Frecuencia de entrada AC: 50/60 Hz</li>
+                                    </ul>
+                                </li>
+                                <li>Ergonomía
+                                    <ul>
+                                        <li>montaje VESA: No</li>
+                                        <li>Ranura para cable de seguridad: No</li>
+                                        <li>Interruptor de encendido/apagado integrado: Si</li>
+                                        <li>Ajuste de la inclinación: Si</li>
+                                        <li>Ángulo de inclinación: -5 - 15°</li>
+                                        <li>Conectar y usar (Plug and Play): Si</li>
+                                    </ul>
+                                </li>
+                                <li>Diseño
+                                    <ul>
+                                        <li>Posicionamiento de mercado: Juego</li>
+                                        <li>Color del producto: Negro</li>
+                                        <li>Color de pies: Negro</li>
+                                    </ul>
+                                </li>
+                                <li>Desempeño
+                                    <ul>
+                                        <li>NVIDIA G-SYNC: No</li>
+                                        <li>AMD FreeSync: Si</li>
+                                    </ul>
+                                </li>
+                                <li>Multimedia
+                                    <ul>
+                                        <li>Altavoces incorporados: No</li>
+                                        <li>Cámara incorporada: No</li>
+                                        <li>Sintonizador de TV integrado: No</li>
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+
+                        </div>
+                        <h5>Opiniones</h5>
+                        <div class="conteiner-opinion d-flex justify-content-start">
+                            <div class="opinion d-flex justify-content-between gap-3">
+                                <img src="/assets/images/profile.png" width="90px">
+                                <div class="user-info d-flex justify-content-between gap-5"">
+                                    <span class=" user-name">Alex</span>
+                                    <div class="product-rate">
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class='bx bxs-star-half' style="color: white"></i></span>
+                                        <div class="row">
+                                            <span class="text-op">Es simplemente perfecta la recomiendo sin duda! No me
+                                                a dado ningún problema!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="conteiner-opinion d-flex justify-content-start">
+                            <div class="opinion d-flex justify-content-between gap-3">
+                                <img src="/assets/images/profile.png" width="90px">
+                                <div class="user-info d-flex justify-content-between gap-5"">
+                                    <span class=" user-name">Alex</span>
+                                    <div class="product-rate">
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class='bx bxs-star-half' style="color: white"></i></span>
+                                        <div class="row">
+                                            <span class="text-op">Es simplemente perfecta la recomiendo sin duda! No me
+                                                a dado ningún problema!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="conteiner-opinion d-flex justify-content-start">
+                            <div class="opinion d-flex justify-content-between gap-3">
+                                <img src="/assets/images/profile.png" width="90px">
+                                <div class="user-info d-flex justify-content-between gap-5"">
+                                    <span class=" user-name">Alex</span>
+                                    <div class="product-rate">
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class="bx bxs-star" style="color: white"></i></span>
+                                        <span><i class='bx bxs-star-half' style="color: white"></i></span>
+                                        <div class="row">
+                                            <span class="text-op">Es simplemente perfecta la recomiendo sin duda! No me
+                                                a dado ningún problema!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
 
                     </div>
                 </div>
+
             </div>
         </div>
+    </div>
 
-    </div>
-    </div>
 </body>
