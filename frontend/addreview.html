@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/createreview.css">
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <title>3TechMarket - Product review</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row header">
+            <div class="col-md-2">
+                <h1><a href="index.html"><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
+            </div>
+            <div class="col-md-8">
+              <div class="input-group mb-4 searchbar">
+                <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+                <div class="input-group-append">
+                  <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+  
+            <!--Iconos del header-->
+            <div class="col-md-2 ">
+                <div class="row">
+                    <div class="col-md-2 navigation">
+  
+                      <div class="dropdown">
+                        <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        </a>
+                      
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="purchases.html">Recent orders</a></li>
+                          <li><a class="dropdown-item" href="profile.html">Edit profile</a></li>
+                          <li><a class="dropdown-item" href="login.html">Log In/Sign Up</a></li>
+                        </ul>
+                      </div>
+                        
+                    </div>
+  
+                    <div class="col-md-2 navigation">
+                        
+                      <a href="#">
+                        <i class="fa-solid fa-star"></i>
+                      </a>
+              
+                    </div>
+                    
+                    <div class="col-md-2 navigation">
+                        
+                          <a href="cesta.html">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                          </a>
+                        
+                    </div>
+                    
+                    <div class="col-md-2 navigation ">
+                        
+                            <a href="#">
+                              <i class="fa-solid fa-bell"></i>
+                            </a>
+                          
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <h2>Add review</h2>
+        <br>
+        <div class="container-md">
+            <div class="row purchasedetails">
+                <div class="col-md-2"> <!--Thumbnail-->
+                    <img src="/assets/images/m1.jpg" alt="thumbnail" width="150" height="150">
+                </div>
+                <div class="col-md-10">
+                    <h3>MSI Optix G241VC 23.6" LED FullHD 75Hz FreeSync</h3>
+                    <p class="details">You ordered this 02.09.2023</p>
+                    <p class="details">Your name and review content will be visible to anyone browsing the website</p>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+                <div class="row stars">
+                    <div class="col-md-12">
+                        <span class="heading">Overall rating</span>
+                        <br>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+                <div class="row review">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Review title" id="floatingTextarea"></textarea>
+                            <label for="floatingTextarea">Review title</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row review">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave your comments here" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Additional comments</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row review">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8"> <!--The upload is handled as if it was an html input-->
+                        <form action="/file-upload"
+                        class="dropzone"
+                        id="dropreviews">
+                        <div class="dz-message" data-dz-message> <img src="/assets/images/draganddrop.png" alt="Drag and drop">
+                        <br><span>Add photos <br> Allowed formats: .png, .jpg, .jpeg, .heic, .webp, .heif, .svg</span>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row review">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2">
+                        <button type="button" onclick="window.location.href='purchases.html'" class="btn btn-danger btn-lg mt-2">Cancel</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-success btn-lg mt-1">Upload review!</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+    </div>
+</body>
+</html>

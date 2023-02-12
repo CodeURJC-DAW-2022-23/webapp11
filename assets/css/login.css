@@ -1,0 +1,103 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /*background-color: white; */
+  background-color: #181A1B;
+  margin: 0;
+  padding: 0;
+  height: 75%;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  padding-top: 15px;
+  align-items: flex-start;
+  color: whitesmoke;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+footer {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+}
+
+.logoCentered {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .loginBox {
+    margin-top: 20px;
+    width: 350px;
+    height: 40px;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(0, 0, 0);
+  }
+  
+  .loginText {
+    margin-top: 20px;
+    font-size: 28px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+  }
+  
+  .loginButton {
+    width: 105px;
+    height: 30px;
+    line-height: 20px;
+    margin-top: 20px;
+    vertical-align: middle;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #7aca3d;
+  }
+  
+  .noAccountText {
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #7aca3d;
+  }
+
+  .buttonMargin {
+    margin-top: 20px;
+  }
+
+  .btn-primary{
+    background-color: #7aca3d;
+    border: none;
+  }
+
+  input[type="text"] {
+    padding: 4px 8px;
+    border: 2px solid #7aca3d;
+  }
+
+  input[type="email"] {
+    padding: 4px 8px;
+    border: 2px solid #7aca3d;
+  }
+
+  input[type="password"] {
+    padding: 4px 8px;
+    border: 2px solid #7aca3d;
+  }
+  
+a:link {
+    color: #7aca3d;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: #7aca3d;
+    text-decoration: none;
+  }

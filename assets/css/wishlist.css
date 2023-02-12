@@ -1,0 +1,76 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  text-align: center;
+  overflow-x: hidden;
+  background-color: black;
+}
+
+h1 {
+  padding-top: 15px;
+  align-items: flex-start;
+  color: whitesmoke;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.errorimg{
+    
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    
+}
+.searchbar {
+  align-items: flex-start;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-top: 30px;
+
+}
+
+
+
+.navigation {
+  align-items: flex-end;
+  margin-top: 35px;
+  color: whitesmoke;
+  padding-left: 45px;
+  padding-right: 0%;
+  font-size: 18px;
+}
+
+
+
+.logoCentered {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-success {
+  background-color: #7aca3d !important;
+}
+
+.border-success {
+  color: #7aca3d !important;
+}
+
+
+
+
+a:link {color: #7aca3d;}   
+a:visited {color: #7aca3d;}
+a:hover {color: #7aca3d;}
+a:active {color: #7aca3d;} 
+
+
+
+
+
+
+.carousel-item{
+  margin-left: 40%;
+
+}

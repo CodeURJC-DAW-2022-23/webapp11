@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/cesta.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <title>3TechMarket - The best technology shop online</title>
+</head>
+<body>
+  <div class="container-fluid">
+      <div class="row header">
+          <div class="col-md-2">
+              <h1><a href="index.html"><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
+          </div>
+          <div class="col-md-8">
+            <div class="input-group mb-4 searchbar">
+              <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+              <div class="input-group-append">
+                <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!--Iconos del header-->
+          <div class="col-md-2 ">
+              <div class="row">
+                  <div class="col-md-2 navigation">
+
+                    <div class="dropdown">
+                      <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      </a>
+                    
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="purchases.html">Recent orders</a></li>
+                        <li><a class="dropdown-item" href="profile.html">Edit profile</a></li>
+                        <li><a class="dropdown-item" href="login.html">Log In/Sign Up</a></li>
+                      </ul>
+                    </div>
+                      
+                  </div>
+
+                  <div class="col-md-2 navigation ">
+                      
+                    <a href="#">
+                      <i class="fa-solid fa-star"></i>
+                    </a>
+            
+                  </div>
+                  
+                  <div class="col-md-2 navigation">
+                      
+                        <a href="#">
+                          <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                      
+                  </div>
+                  
+                  <div class="col-md-2 navigation ">
+                      
+                          <a href="#">
+                            <i class="fa-solid fa-bell"></i>
+                          </a>
+                        
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+
+    <!--Fin de la parte común con la pagina principal-->
+      <div class ="container-fluid">
+        <div class ="row">
+            <div class ="col-md-9">
+                <div class="row">
+                    <h1><strong class="this-web-title">Shoping cart</strong></h1>
+                </div>
+                <div class="row border product">
+                    <div class="col-sm-2">
+                        <img src="/assets/images/pc15.jpg" class="product-image" width="140px" height="140px"></img>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="row nameproduct">
+                            <p class="product-name">Product name</p>
+                        </div>
+                        <div class="row">
+                            <p class="product-price">XXXX$</P>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-danger button-delete">Delete product</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" onclick="alert('Añadiria un elemento o lo quitaria')" class="secundary-button">Quantity</button>
+                    </div>
+                </div>
+                <div class="row border product">
+                    <div class="col-sm-2">
+                        <img src="/assets/images/pc15.jpg" class="product-image" width="140px" height="140px"></img>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <p class="product-name">Product name</p>
+                        </div>
+                        <div class="row">
+                            <p class="product-price">XXXX$</P>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 col">
+                        <button type="button" class="btn btn-danger button-delete">Delete product</button>
+                    </div>
+                    <div class="col-sm-1 col">
+                        <button type="button" onclick="alert('Añadiria un elemento o lo quitaria')" class="secundary-button">Quantity</button>
+                    </div>
+                </div>
+            </div>
+            <div class ="col-md-3 border resume">
+                <div class ="row resume-title">
+                    <strong class="title">Resume</strong>
+                </div>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <strong class ="title2">Total Cost</strong>
+                    </div>
+                    <div class="col-sm-3">
+                        <p class ="title3">XXXX$</p>
+                    </div>
+                </div>
+                <div class="row button-payment">
+                    <button type="button" onclick="alert('Llevaria a la pagina de pago')" class="button-purchase">Proceed to Checkout</button>
+                </div>
+                <div class="row">
+                    <div class ="col-md-6">
+                        <button type="button" class="btn btn-danger button-deletecart">Delete all items</button>
+                    </div>
+                    <div class ="col-md-6">
+                        <a href="index.html"><button class="tertiary-button">Keep buying</button></a>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</hmtml>
