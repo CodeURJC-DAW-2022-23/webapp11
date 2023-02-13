@@ -1,5 +1,10 @@
 package com.techmarket.app.service;
 
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
+
+@Component
+@SessionScope
 public class UserSession {
     private static UserSession instance;
     private String username;
