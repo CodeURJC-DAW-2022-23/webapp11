@@ -6,26 +6,20 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class UserSession {
-    private static UserSession instance;
-    private String username;
+    private String userId;
     private String password;
 
-    private UserSession() {
+    public UserSession(String userId, String password) {
+        this.userId = userId;
+        this.password = password;
     }
 
-    public static UserSession getInstance() {
-        if (instance == null) {
-            instance = new UserSession();
-        }
-        return instance;
+    public String getUserId() {
+        return userId;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPassword() {
