@@ -1,5 +1,10 @@
 package com.techmarket.app.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.List;
 
 @Entity
@@ -14,8 +19,7 @@ public class Purchase {
     private String price;
     private String userId;
 
-    public Purchase(String purchaseId, List<Product> products, String timestamp, String address, String price,
-            String userId) {
+    public Purchase(String purchaseId, List<Product> products, String timestamp, String address, String price, String userId) {
         this.purchaseId = purchaseId;
         this.products = products;
         this.timestamp = timestamp;
@@ -23,5 +27,4 @@ public class Purchase {
         this.price = price;
         this.userId = userId;
     }
-
 }

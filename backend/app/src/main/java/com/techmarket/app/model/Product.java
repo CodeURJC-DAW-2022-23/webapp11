@@ -1,11 +1,13 @@
 package com.techmarket.app.model;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
 public class Product {
 
-    @ID
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String productName; // They have to use the same name as Mustache
 
@@ -20,6 +22,20 @@ public class Product {
 
     @OneToMany
     private List<Review> reviews;
+
+    public Product(String productName, String description, String imgUrl, String price, String tags, String discount, int productStock, String productId, String productUrl, List<Review> reviews) {
+        this.productName = productName;
+        this.description = description;
+        this.imgUrl = imgUrl;
+        this.price = price;
+        this.tags = tags;
+        this.discount = discount;
+        this.productStock = productStock;
+        this.productId = productId;
+        this.productUrl = productUrl;
+        this.reviews = reviews;
+    }
+
 
     public String getProductName() {
         return productName;
