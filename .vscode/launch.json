@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch AppApplication",
+            "request": "launch",
+            "mainClass": "com.techmarket.app.AppApplication"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-AppApplication<app>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

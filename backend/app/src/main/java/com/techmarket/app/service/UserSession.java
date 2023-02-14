@@ -9,9 +9,9 @@ public class UserSession {
     private String userId;
     private String password;
 
-    public UserSession(String userId, String password) {
-        this.userId = userId;
-        this.password = password;
+    public UserSession() {
+        userId = "";
+        password = "";
     }
 
     public String getUserId() {

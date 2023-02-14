@@ -15,4 +15,9 @@ public class ErrorController {
     public String notFound() {
         return "error";
     }
+
+    @GetMapping("/permissiondenied")
+    public String permissiondenied() {
+        return "permissiondenied";
+    }
 }
