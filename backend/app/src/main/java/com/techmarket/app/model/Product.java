@@ -12,7 +12,7 @@ public class Product {
     private String productName; // They have to use the same name as Mustache
 
     private String description;
-    private String imgUrl;
+    private String imgUrl; // There should be multiple images
     private String price;
     private String tags;
     private String discount;

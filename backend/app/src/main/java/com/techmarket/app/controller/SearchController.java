@@ -1,4 +1,4 @@
-package com.techmarket.app.controller; // This doesn't match the file path for some reason
+package com.techmarket.app.controller;
 
 import com.techmarket.app.model.Product;
 import com.techmarket.app.service.ProductService;
@@ -12,8 +12,13 @@ import java.util.List;
 
 @Controller
 public class SearchController {
-    @Autowired
-    private ProductService productService;
+
+    // Field injection is not recommended because it makes the code harder to test
+    private final ProductService productService;
+
+    public SearchController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/search")
     public String search(Model model, @RequestParam("product") String product,
