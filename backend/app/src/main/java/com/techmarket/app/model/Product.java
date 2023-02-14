@@ -1,28 +1,25 @@
 package com.techmarket.app.model;
 
+import java.util.List;
+
+@Entity
 public class Product {
+
+    @ID
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String productName; // They have to use the same name as Mustache
+
     private String description;
     private String imgUrl;
     private String price;
     private String tags;
-    private String brand;
+    private String discount;
     private int productStock;
+    private final String productId;
+    private String productUrl;
 
-    private String productId;
-    private String ProductUrl;
-
-    public Product(String productName, String description, String imgUrl, String price, String tags, String brand, int productStock, String productId, String productUrl) {
-        this.productName = productName;
-        this.description = description;
-        this.imgUrl = imgUrl;
-        this.price = price;
-        this.tags = tags;
-        this.brand = brand;
-        this.productStock = productStock;
-        this.productId = productId;
-        ProductUrl = productUrl;
-    }
+    @OneToMany
+    private List<Review> reviews;
 
     public String getProductName() {
         return productName;
@@ -64,12 +61,12 @@ public class Product {
         this.tags = tags;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getDiscount() {
+        return discount;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setDiscount(String brand) {
+        this.discount = brand;
     }
 
     public int getProductStock() {
@@ -84,15 +81,15 @@ public class Product {
         return productId;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public List<Review> getReviews() {
+        return reviews;
     }
 
     public String getProductUrl() {
-        return ProductUrl;
+        return productUrl;
     }
 
     public void setProductUrl(String productUrl) {
-        ProductUrl = productUrl;
+        this.productUrl = productUrl;
     }
 }
