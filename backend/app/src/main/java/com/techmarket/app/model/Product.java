@@ -9,7 +9,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String productName; // They have to use the same name as Mustache
+    private String productId;
 
     private String description;
     private String imgUrl; // There should be multiple images
@@ -17,7 +17,7 @@ public class Product {
     private String tags;
     private String discount;
     private int productStock;
-    private final String productId;
+    private String productName; // They have to use the same name as Mustache
     private String productUrl;
 
     @OneToMany
@@ -34,6 +34,10 @@ public class Product {
         this.productId = productId;
         this.productUrl = productUrl;
         this.reviews = reviews;
+    }
+
+    public Product() {
+
     }
 
 

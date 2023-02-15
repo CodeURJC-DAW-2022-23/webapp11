@@ -19,7 +19,7 @@ public class Purchase {
     private String userId;
 
     public Purchase(String purchaseId, String purchaseId1, List<Product> products, String timestamp, String address, String price, String userId) {
-        PurchaseId = purchaseId;
+        this.PurchaseId = purchaseId;
         this.purchaseId = purchaseId1;
         this.products = products;
         this.timestamp = timestamp;
