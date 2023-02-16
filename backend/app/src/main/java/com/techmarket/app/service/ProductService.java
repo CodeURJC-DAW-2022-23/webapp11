@@ -8,9 +8,31 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ProductService {
-    public List<Product> searchProducts(String product) {
-        List<Product> products = new ArrayList<>();
-        // Search algorithm
-        return products;
+
+    public List<Product> getProducts() {
+        // Get products from database
+        return new ArrayList<Product>();
+    }
+
+    public Product getProduct(String productId) {
+        // Get product from database
+        return new Product();
+    }
+
+    public void addProduct(Product product) {
+        // Add product to database
+    }
+
+    public void updateProduct(Product product) {
+        // Update product in database
+    }
+
+    public void deleteProduct(String productId) {
+        // Delete product from database
+    }
+
+    private void deleteAllProducts() {
+        // Delete all products from database
+        // Useful for deleting all products when the database is reset
     }
 }
