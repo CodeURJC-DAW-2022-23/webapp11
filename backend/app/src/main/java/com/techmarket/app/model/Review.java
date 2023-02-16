@@ -28,9 +28,6 @@ public class Review {
         this.reviewText = reviewText;
     }
 
-    public Review() {
-
-    }
 
     public String getReviewId() {
         return reviewId;

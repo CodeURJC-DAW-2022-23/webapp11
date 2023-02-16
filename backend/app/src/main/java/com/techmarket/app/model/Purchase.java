@@ -10,7 +10,6 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String PurchaseId;
-    private String purchaseId;
     @OneToMany
     private List<Product> products;
     private String timestamp;
@@ -18,9 +17,8 @@ public class Purchase {
     private String price;
     private String userId;
 
-    public Purchase(String purchaseId, String purchaseId1, List<Product> products, String timestamp, String address, String price, String userId) {
+    public Purchase(String purchaseId, List<Product> products, String timestamp, String address, String price, String userId) {
         this.PurchaseId = purchaseId;
-        this.purchaseId = purchaseId1;
         this.products = products;
         this.timestamp = timestamp;
         this.address = address;

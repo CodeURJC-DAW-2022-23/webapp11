@@ -34,6 +34,8 @@ public class User {
     private List<Product> shoppingCart;
     @OneToMany
     List<Purchase> purchasedProducts;
+    @OneToMany
+    List<Message> messages;
 
     protected User() {
     }
@@ -157,4 +159,20 @@ public class User {
     public Long getId() {
         return id;
     }
+
+
+ 
+
+    public List<Purchase> getPurchasedProducts() {
+        return this.purchasedProducts;
+    }
+
+
+    public List<Message> getMessages() {
+        return this.messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+    }
 }
+
