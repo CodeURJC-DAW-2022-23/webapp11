@@ -4,16 +4,15 @@ import com.techmarket.app.model.Purchase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class PurchaseService {
 
-    public Purchase getPurchase(String purchaseId) {
-        // Get purchase from database
-        return new Purchase();
-    }
-
-    public void addPurchase(Purchase purchase) {
-        // Add purchase to database
+     public List<Purchase> getUserPurchases(String userId) {
+        // Get all purchases from database by user id
+        return new ArrayList<Purchase>();
     }
 
     public void updatePurchase(Purchase purchase) {

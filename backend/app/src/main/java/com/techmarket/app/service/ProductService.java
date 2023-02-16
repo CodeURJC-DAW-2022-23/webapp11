@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class ProductService {
 
@@ -17,6 +18,11 @@ public class ProductService {
     public Product getProduct(String productId) {
         // Get product from database
         return new Product();
+    }
+
+    public List<Product> searchProducts(String query) {
+        // Search products from database
+        return new ArrayList<Product>();
     }
 
     public void addProduct(Product product) {

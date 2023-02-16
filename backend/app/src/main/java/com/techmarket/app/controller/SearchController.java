@@ -24,7 +24,7 @@ public class SearchController {
     public String search(Model model, @RequestParam("product") String product,
                          @RequestParam(value = "start", required = false, defaultValue = "0") int start) {
     List<Product> products = productService.searchProducts(product);
-    // 5 results per row
+    // 5 results per row, 10 results per page
     int end = Math.min(start + 10, products.size()); // End index for current page (10 results per page)
     List<Product> results = products.subList(start, end); // Get results for current page, if the user clicks next page, start will be 10 and end will be 20
     if (results.isEmpty()) {
