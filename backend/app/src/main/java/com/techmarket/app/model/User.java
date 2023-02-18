@@ -1,9 +1,6 @@
 package com.techmarket.app.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -24,7 +21,10 @@ public class User {
     private String country;
     private String area;
     private String city;
-    private String profilePicture;
+    //type of user
+    private String userType;
+    @OneToOne
+    private Image profilePicture;
 
     @OneToMany
     private List<Product> wishlist;
@@ -38,12 +38,13 @@ public class User {
     protected User() {
     }
 
-    public User(Long id, String password, String firstName, String lastName, String email) {
+    public User(Long id, String password, String firstName, String lastName, String email, String userType) {
         this.id = id;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.userType = userType;
     }
 
     public String getPassword() {
@@ -134,11 +135,11 @@ public class User {
         this.city = city;
     }
 
-    public String getProfilePicture() {
+    public Image getProfilePicture() {
         return this.profilePicture;
     }
 
-    public void setProfilePicture(String profilePicture) {
+    public void setProfilePicture(Image profilePicture) {
         this.profilePicture = profilePicture;
     }
 
@@ -158,8 +159,25 @@ public class User {
         return id;
     }
 
+    public String getUserType() {
+        return userType;
+    }
 
- 
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public void setWishlist(List<Product> wishlist) {
+        this.wishlist = wishlist;
+    }
+
+    public void setShoppingCart(List<Product> shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
+    public void setPurchasedProducts(List<Purchase> purchasedProducts) {
+        this.purchasedProducts = purchasedProducts;
+    }
 
     public List<Purchase> getPurchasedProducts() {
         return this.purchasedProducts;

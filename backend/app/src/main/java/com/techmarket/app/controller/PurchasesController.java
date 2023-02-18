@@ -25,4 +25,22 @@ public class PurchasesController {
         model.addAttribute("purchases", purchases);
         return "purchases";
     }
+
+    // Generate an invoice for a purchase in PDF format
+    @GetMapping("/invoice")
+    public String invoice(Model model, @RequestParam("purchase") String purchaseId) {
+        Purchase purchase = purchaseService.getPurchase(purchaseId);
+        model.addAttribute("purchase", purchase);
+        // Return the invoice.html template, which will be converted to PDF by the browser because of the content-type
+        return "invoice";
+    }
+
+    // Cancel a purchase
+    @GetMapping("/cancel-order")
+    public String cancelOrder(Model model, @RequestParam("purchase") String purchaseId) {
+        Purchase purchase = purchaseService.getPurchase(purchaseId);
+        purchase.setCancelled(true);
+        purchaseService.updatePurchase(purchase);
+        return "redirect:/purchases?user=" + purchase.getUserId();  // Redirect to the purchases page
+    }
 }

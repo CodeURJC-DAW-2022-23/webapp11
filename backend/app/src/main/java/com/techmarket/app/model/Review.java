@@ -16,22 +16,22 @@ public class Review {
     private String reviewTitle;
     private int rating;
     private String reviewText;
+    @OneToMany
+    private List<Image> images;
 
-    // We are missing the images
-
-    public Review(String reviewId, String productId, String userId, String reviewTitle, int rating, String reviewText, List<String> images) {
+    public Review(String reviewId, String productId, String userId, String reviewTitle, int rating, String reviewText, List<Image> images) {
         this.reviewId = reviewId;
         this.productId = productId;
         this.userId = userId;
         this.reviewTitle = reviewTitle;
         this.rating = rating;
         this.reviewText = reviewText;
+        this.images = images;
     }
 
     public Review() {
 
     }
-
 
     public String getReviewId() {
         return reviewId;
@@ -79,5 +79,13 @@ public class Review {
 
     public void setReviewText(String reviewText) {
         this.reviewText = reviewText;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

@@ -12,7 +12,8 @@ public class Product {
     private String productId;
 
     private String description;
-    private String imgUrl; // There should be multiple images
+    @OneToMany
+    private List<Image> images;
     private String price;
     private String tags;
     private String discount;
@@ -23,15 +24,15 @@ public class Product {
     @OneToMany
     private List<Review> reviews;
 
-    public Product(String productName, String description, String imgUrl, String price, String tags, String discount, int productStock, String productId, String productUrl, List<Review> reviews) {
-        this.productName = productName;
+    public Product(String productId, String description, List<Image> images, String price, String tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
+        this.productId = productId;
         this.description = description;
-        this.imgUrl = imgUrl;
+        this.images = images;
         this.price = price;
         this.tags = tags;
         this.discount = discount;
         this.productStock = productStock;
-        this.productId = productId;
+        this.productName = productName;
         this.productUrl = productUrl;
         this.reviews = reviews;
     }
@@ -40,13 +41,12 @@ public class Product {
 
     }
 
-
-    public String getProductName() {
-        return productName;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getDescription() {
@@ -57,12 +57,12 @@ public class Product {
         this.description = description;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public List<Image> getImages() {
+        return images;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
     public String getPrice() {
@@ -85,8 +85,8 @@ public class Product {
         return discount;
     }
 
-    public void setDiscount(String brand) {
-        this.discount = brand;
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 
     public int getProductStock() {
@@ -97,12 +97,12 @@ public class Product {
         this.productStock = productStock;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getProductName() {
+        return productName;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getProductUrl() {
@@ -111,5 +111,13 @@ public class Product {
 
     public void setProductUrl(String productUrl) {
         this.productUrl = productUrl;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

@@ -15,8 +15,17 @@ public class PurchaseService {
         return new ArrayList<Purchase>();
     }
 
+    public Purchase getPurchase(String purchaseId) {
+        // Get purchase from database by purchase id
+        return new Purchase();
+    }
+
     public void updatePurchase(Purchase purchase) {
-        // Update purchase in database
+        // Update purchase in database, useful for cancelling a purchase
+    }
+
+    public void addPurchase(Purchase purchase) {
+        // Add purchase to database
     }
 
     public void deletePurchase(String purchaseId) {
