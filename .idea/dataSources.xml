@@ -8,5 +8,14 @@
       <jdbc-url>jdbc:mysql://3techmarket.mysql.database.azure.com:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="app/Hibernate" uuid="d09a7c9d-c7aa-48b9-ad85-d87961648207">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://3techmarket.mysql.database.azure.com:3306/3techmarket?useSSL=true&amp;requireSSL=true</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
