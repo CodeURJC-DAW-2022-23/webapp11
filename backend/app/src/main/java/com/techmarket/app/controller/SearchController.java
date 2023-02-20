@@ -2,6 +2,8 @@ package com.techmarket.app.controller;
 
 import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +14,8 @@ import java.util.List;
 @Controller
 public class SearchController {
 
-    // Field injection is not recommended because it makes the code harder to test
-    private final ProductRepository productRepository;
-
-    public SearchController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+    @Autowired
+    private ProductRepository productRepository;
 
     @GetMapping("/search")
     public String search(Model model, @RequestParam("product") String product,

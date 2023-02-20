@@ -13,13 +13,16 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String messageId;
+
+    private String userId;
     private String text;
     private boolean status; // resolved or not resolved
 
-    public Message(String messageId, String text, boolean status) {
+    public Message(String messageId, String text, boolean status, String userId) {
         this.messageId = messageId;
         this.text = text;
         this.status = status;
+        this.userId = userId;
     }
 
     public Message() {
@@ -48,5 +51,13 @@ public class Message {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

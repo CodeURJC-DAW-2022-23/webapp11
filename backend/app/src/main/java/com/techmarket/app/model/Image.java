@@ -16,7 +16,7 @@ public class Image {
     private String productId;
     private String reviewId;
     private String userId; // This entity can be used for user profile pictures, reviews, and products, so we need to know which one it is, the rest of the fields will be null
-    private String image;
+    private String image;  // This is the image url, we will use this to send the image to the frontend
 
     @Lob
     @JsonIgnore  // We don't want to send the image blob to the frontend because it's too big, we will send the image url instead

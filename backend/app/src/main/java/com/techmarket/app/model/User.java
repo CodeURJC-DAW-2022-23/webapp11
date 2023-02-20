@@ -1,6 +1,7 @@
 package com.techmarket.app.model;
 
 import jakarta.persistence.*;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.util.List;
@@ -12,10 +13,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     private String password;
+    @NotNull
     private String firstName;
     private String lastName;
+    @NotNull
     private String email;
+
     private String phoneNumber;
     private String address;
     private String postcode;
@@ -37,10 +42,10 @@ public class User {
     @OneToMany
     List<Message> messages;
 
-    protected User() {
+    public User() {
     }
 
-    public User(Long id, String password, String firstName, String lastName, String email, String userType) {
+    public User(Long id, @NotNull String password, @NotNull String firstName, @NotNull String lastName, @NotNull String email, String userType) {
         this.id = id;
         this.password = password;
         this.firstName = firstName;
@@ -49,31 +54,39 @@ public class User {
         this.userType = userType;
     }
 
-    public String getPassword() {
+    // To sign up and login
+    public User(@NotNull String email, @NotNull String password, @NotNull String firstName, @NotNull String lastName) {
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public @NotNull String getPassword() {
         return this.password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(@NotNull String password) {
         this.password = password;
     }
 
-    public String getFirstName() {
+    public @NotNull String getFirstName() {
         return this.firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(@NotNull String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    public @NotNull String getLastName() {
         return this.lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(@NotNull String lastName) {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
+    public @NotNull String getEmail() {
         return this.email;
     }
 

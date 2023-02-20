@@ -3,7 +3,11 @@ package com.techmarket.app.Repositories;
 import java.util.List;
 import com.techmarket.app.model.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.stereotype.Repository;
 
+@Repository
+@EnableJpaRepositories
 public interface MessageRepository extends JpaRepository<Message, String> {
 
     // Message findByMessageId(String messageId);

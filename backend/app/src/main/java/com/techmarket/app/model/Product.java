@@ -16,7 +16,7 @@ public class Product {
     private String description;
     @OneToMany
     private List<Image> images;
-    private String price;
+    private String productPrice;
     private String tags;
     private String discount;
     private int productStock;
@@ -30,7 +30,7 @@ public class Product {
         this.productId = productId;
         this.description = description;
         this.images = images;
-        this.price = price;
+        this.productPrice = price;
         this.tags = tags;
         this.discount = discount;
         this.productStock = productStock;
@@ -67,12 +67,12 @@ public class Product {
         this.images = images;
     }
 
-    public String getPrice() {
-        return price;
+    public String getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setProductPrice(String price) {
+        this.productPrice = price;
     }
 
     public String getTags() {
