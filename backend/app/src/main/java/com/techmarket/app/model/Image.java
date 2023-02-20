@@ -2,10 +2,12 @@ package com.techmarket.app.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.sql.Blob;
 
 @Entity
+@EnableAutoConfiguration
 public class Image {
 
     @Id
@@ -27,6 +29,10 @@ public class Image {
         this.userId = userId;
         this.image = image;
         this.imageBlob = imageBlob;
+    }
+
+    public Image() {
+
     }
 
     public String getImageId() {

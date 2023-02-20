@@ -1,11 +1,13 @@
 package com.techmarket.app.model;
 
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.awt.*;
 import java.util.List;
 
 @Entity
+@EnableAutoConfiguration
 public class Review {
 
     @Id
