@@ -14,7 +14,7 @@ public class User {
     private Long id;
 
     @NotNull
-    private String password;
+    private String encodedPassword;
     @NotNull
     private String firstName;
     private String lastName;
@@ -23,8 +23,8 @@ public class User {
     private String email;
 
     // Role
-    @NotNull
-    private String role;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles;
 
     private String phoneNumber;
     private String address;
@@ -50,9 +50,9 @@ public class User {
     public User() {
     }
 
-    public User(Long id, @NotNull String password, @NotNull String firstName, @NotNull String lastName, @NotNull String email, String userType) {
+    public User(Long id, @NotNull String encodedPassword, @NotNull String firstName, @NotNull String lastName, @NotNull String email, String userType) {
         this.id = id;
-        this.password = password;
+        this.encodedPassword = encodedPassword;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -60,19 +60,21 @@ public class User {
     }
 
     // To sign up and login
-    public User(@NotNull String email, @NotNull String password, @NotNull String firstName, @NotNull String lastName) {
-        this.password = password;
+    public User(@NotNull String email, @NotNull String encodedPassword, @NotNull String firstName, @NotNull String lastName, String... roles) {
+        this.encodedPassword = encodedPassword;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        // Default role is USER
+        this.roles = List.of(roles);
     }
 
-    public @NotNull String getPassword() {
-        return this.password;
+    public @NotNull String getEncodedPassword() {
+        return this.encodedPassword;
     }
 
-    public void setPassword(@NotNull String password) {
-        this.password = password;
+    public void setEncodedPassword(@NotNull String password) {
+        this.encodedPassword = password;
     }
 
     public @NotNull String getFirstName() {
@@ -211,11 +213,12 @@ public class User {
     public void setMessages(List<Message> messages) {
     }
 
-    public void setRole(List<String> user) {
+    public List<String> getRoles() {
+        return roles;
     }
 
-    public String getRole() {
-        return this.role;
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }
 

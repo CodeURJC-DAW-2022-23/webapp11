@@ -1,7 +1,6 @@
 package com.techmarket.app.service;
 
 import com.techmarket.app.model.Purchase;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
