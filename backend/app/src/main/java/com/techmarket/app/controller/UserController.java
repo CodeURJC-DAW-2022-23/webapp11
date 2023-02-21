@@ -2,6 +2,7 @@ package com.techmarket.app.controller;
 
 import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.User;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.web.servlet.ModelAndView;
 
-
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -52,25 +55,22 @@ public class UserController {
 
     // Sign in an existing user
     @PostMapping("/signin-user")
-    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {  // IDs on the HTML must match the parameters here
+    public ModelAndView login(@RequestParam String email, @RequestParam String password) {  // IDs on the HTML must match the parameters here
         // Check if the user exists in the database
         User userInDb = userRepository.findByEmail(email);
         if (userInDb == null) {
             // User doesn't exist
-            return new ResponseEntity<>("User doesn't exist", HttpStatus.NOT_FOUND); // 404 Not Found
+            return new ModelAndView("redirect:/error"); // 404 Not Found
         }
         // Check if the password is correct
         if (!userInDb.getPassword().equals(password)) {
             // Password is incorrect
-            return new ResponseEntity<>("Incorrect password", HttpStatus.UNAUTHORIZED); // 401 Unauthorized
+            return new ModelAndView("redirect:/permissiondenied");// 401 Unauthorized
         }
         // Sign in the user
-        return new ResponseEntity<>("Signed in successfully", HttpStatus.OK); // 200 OK
+        return new ModelAndView("redirect:/"); // 200 OK
     }
 
-    @PostMapping("/edit-profile") // can't do atm because we need a session scope to check wether a user is signed in
-    public ResponseEntity<String> editprofile() {
-        return editprofile();
-    }
+
 
 }
