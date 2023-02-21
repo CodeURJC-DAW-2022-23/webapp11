@@ -8,9 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.List;
-import java.util.Optional;
+
 
 @Controller
 public class UserController {
@@ -68,5 +68,9 @@ public class UserController {
         return new ResponseEntity<>("Signed in successfully", HttpStatus.OK); // 200 OK
     }
 
+    @PostMapping("/edit-profile") // can't do atm because we need a session scope to check wether a user is signed in
+    public ResponseEntity<String> editprofile() {
+        return editprofile();
+    }
 
 }
