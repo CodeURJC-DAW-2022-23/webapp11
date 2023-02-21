@@ -19,7 +19,12 @@ public class User {
     private String firstName;
     private String lastName;
     @NotNull
+    @Column(unique = true)
     private String email;
+
+    // Role
+    @NotNull
+    private String role;
 
     private String phoneNumber;
     private String address;
@@ -204,6 +209,13 @@ public class User {
     }
 
     public void setMessages(List<Message> messages) {
+    }
+
+    public void setRole(List<String> user) {
+    }
+
+    public String getRole() {
+        return this.role;
     }
 }
 
