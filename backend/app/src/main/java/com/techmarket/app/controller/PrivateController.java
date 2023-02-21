@@ -2,6 +2,7 @@ package com.techmarket.app.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import com.techmarket.app.Repositories.UserRepository;
 import org.springframework.ui.Model;
@@ -23,6 +24,7 @@ public class PrivateController {
         return "profile";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin")
     public String admin(Model model, HttpServletRequest request) {
         // Check if the user is an admin

@@ -1,13 +1,16 @@
 package com.techmarket.app.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.DefaultSecurityFilterChain;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
@@ -24,24 +27,26 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
     @Autowired
     private EncoderConfiguration passwordEncoder;
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        // Allow access to the following pages without authentication
-        http.authorizeRequests()
-                .antMatchers("/", "/signup", "/signin", "/signup-user", "/signin-user", "/product/**", "/search").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/signin")
-                .loginProcessingUrl("/signin-user")
-                .defaultSuccessUrl("/profile")
-                .failureUrl("/signin?error=true")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                .permitAll();
+    @Bean
+    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .csrf().disable()
+                .authorizeRequests( auth -> auth
+                        .requestMatchers("/signup", "/signin", "/signin-user", "/signup-user", "/", "/product/**", "/search").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/profile").hasAnyRole("USER", "AGENT")
+                        .anyRequest().authenticated()
+                )
+                .formLogin( form -> form
+                        .loginPage("/signin")
+                        .loginProcessingUrl("/signin-user")
+                        .defaultSuccessUrl("/profile", true)
+                        .failureUrl("/signin?error")
+                )
+                .logout( logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                )
+                .build();
     }
 }
