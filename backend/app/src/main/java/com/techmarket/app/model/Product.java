@@ -17,7 +17,7 @@ public class Product {
     @OneToMany
     private List<Image> images;
     private String productPrice;
-    private String tags;
+    private List<String> tags;
     private String discount;
     private int productStock;
     private String productName; // They have to use the same name as Mustache
@@ -26,7 +26,7 @@ public class Product {
     @OneToMany
     private List<Review> reviews;
 
-    public Product(String productId, String description, List<Image> images, String price, String tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
+    public Product(String productId, String description, List<Image> images, String price, List<String> tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
         this.productId = productId;
         this.description = description;
         this.images = images;
@@ -39,8 +39,14 @@ public class Product {
         this.reviews = reviews;
     }
 
-    public Product() {
-
+    //To add products
+    public Product(String productName, String description, String price, String discount, int productStock, List<String> tags){
+        this.productName = productName;
+        this.description = description;
+        this.productPrice = price;
+        this.discount = discount;
+        this.productStock = productStock;
+        this.tags = tags;
     }
 
     public String getProductId() {
@@ -75,11 +81,11 @@ public class Product {
         this.productPrice = price;
     }
 
-    public String getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(String tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 
