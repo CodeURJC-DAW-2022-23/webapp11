@@ -41,6 +41,8 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                 )
                 .formLogin( form -> form
                         .loginPage("/signin")
+                        .usernameParameter("email")
+                        .passwordParameter("password")
                         .loginProcessingUrl("/signin-user")
                         .defaultSuccessUrl("/profile", true)
                         .failureUrl("/signin?error")

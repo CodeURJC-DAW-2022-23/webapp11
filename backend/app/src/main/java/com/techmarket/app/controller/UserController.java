@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 @Controller
@@ -43,7 +44,8 @@ public class UserController {
         user.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setRoles(Collections.singletonList("USER"));
+        user.setRoles(new ArrayList<>());
+        user.addRole("USER");
         if (userRepository.findByEmail(email) != null) {
             // User already exists
             return new ResponseEntity<>(HttpStatus.CONFLICT); // 409 Conflict, we can return something meaningful and not a blank screen
