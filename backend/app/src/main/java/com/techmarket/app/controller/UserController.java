@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,7 @@ public class UserController {
         return "login";
     }
 
+
     // Sign up a new user
     @PostMapping("/signup-user")
     public ResponseEntity<User> signupuser(@RequestParam String email, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName) {
@@ -54,6 +56,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED); // 201 Created, this will also return the user object in the response body
         // If there's information missing and the user can't be created, the response will be 400 Bad Request, Spring will handle that
     }
+
 
     // Sign in an existing user (this is handled by Spring)
 
