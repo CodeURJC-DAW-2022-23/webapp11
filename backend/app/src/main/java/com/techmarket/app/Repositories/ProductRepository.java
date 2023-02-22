@@ -20,7 +20,9 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     List<Product> findByTags(String tags);
 
-    List<Product> findByProductName(String prodcutName);
+    List<Product> findByProductName(String productName);
+
+    Product deleteAllById(String productId);
 
     // For adding new products, we will use the save method from JpaRepository
 
