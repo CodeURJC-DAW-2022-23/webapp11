@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>3TechMarket - The best technology shop online</title>
+</head>
+<body>
+  <div class="container-fluid">
+      <div class="row header">
+          <div class="col-md-2">
+              <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
+          </div>
+          <div class="col-md-8">
+            <div class="input-group mb-4 searchbar">
+              <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+              <div class="input-group-append">
+                <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!--Header icons-->
+          <div class="col-md-2 ">
+              <div class="row">
+                  <div class="col-md-2 navigation">
+
+                    <div class="dropdown">
+                      <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      </a>
+                    
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
+                        <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
+                        {{#isLoggedIn}}
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        {{/isLoggedIn}}
+                        {{^isLoggedIn}}
+                        <li><a class="dropdown-item" href="/signin">Login/Sign up</a></li>
+                        {{/isLoggedIn}}
+                      </ul>
+                    </div>
+                      
+                  </div>
+
+                  <div class="col-md-2 navigation">
+                      
+                    <a href="#">
+                      <i class="fa-solid fa-star"></i>
+                    </a>
+            
+                  </div>
+                  
+                  <div class="col-md-2 navigation">
+                      
+                        <a href="/cart">
+                          <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                      
+                  </div>
+                  
+                  <div class="col-md-2 navigation ">
+                      
+                          <a href="#">
+                            <i class="fa-solid fa-bell"></i>
+                          </a>
+                        
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+
+      <div id="carouselExampleControls" class="carousel " data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/offers1.png" width="1300px" height="350px" >
+          </div>
+          <div class="carousel-item">
+            <img src="/offers2.png" width="1300px" height="350px" >
+          </div>
+          
+        </div>
+        
+        
+      </div>
+
+      <h2>Featured offers</h2>
+      <!--Recommended products row-->
+      <div class="row destacados">
+        <div class="col-md-3">
+          <a href="#">
+            <img src="/assets/images/pc15.jpg" alt="destacado" width="100" height="100">
+            <p class="destacados">Product name  <span class="badge text-bg-success">500$</span></p>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="#">
+            <img src="/assets/images/pc17.jpg" alt="destacado" width="100" height="100">
+            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="#">
+            <img src="/assets/images/pc19.jpg" alt="destacado" width="100" height="100">
+            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="#">
+            <img src="/assets/images/pc2.jpg" alt="destacado" width="100" height="100">
+            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
+          </a>
+        </div>
+          <div class="col-md-3">
+              <a href="url">
+                  <img src="url" alt="destacado" width="100" height="100">
+                  <p class="destacados">productName<span class="badge text-bg-success">productPrice€</span></p>
+              </a>
+          </div>
+      </div>
+  </div>
+    
+
+    <footer>
+        <p> &copy 3TechMarket Apache-2.0 license <br>
+            Inés Alonso Izquierdo - i.alonso.2020@alumnos.urjc.es - Github: tsukii14 <br>
+            Santiago Arias Paniagua - s.arias.2020@alumnos.urjc.es - Github: 4rius <br>
+            Ignacio Canículo Domínguez - i.caniculo.2020@alumnos.urjc.es - Github: nachocaniculo <br>
+            Ángel Covarrubias Roldán - a.covarrubias.2020@alumnos.urjc.es - Github: Angelcova <br>
+            Andreas Wolf Wolf - a.wolf.2020@alumnos.urjc.es - Github: Andreas4122002 <br>
+        </p>
+        </footer>
+    
+    
+</body>
+</html>
