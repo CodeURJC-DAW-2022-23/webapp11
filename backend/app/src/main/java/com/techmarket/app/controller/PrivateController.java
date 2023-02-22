@@ -1,5 +1,6 @@
 package com.techmarket.app.controller;
 
+import com.techmarket.app.model.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -10,6 +11,8 @@ import com.techmarket.app.Repositories.UserRepository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
+
 @Controller
 public class PrivateController {
 
@@ -18,14 +21,19 @@ public class PrivateController {
 
     @PreAuthorize("hasAnyAuthority('USER','AGENT')")
     @GetMapping("/profile")
-    public void profile(){
+    public void profile(Model mode, Principal user) {
 
         //We want to fill out the form with the user's information when we load the page
         //First we get the user's email with the auth method
         //Then we use the email to get the user's information from the database
         //Then we fill out the form with the user's information
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = auth.getName();
+        User currentUser = userRepository.findByEmail(auth.getName());
+        if (user != null) {
+            mode.addAttribute("isLoggedIn", true);
+        } else {
+            mode.addAttribute("isLoggedIn", false);
+        }
 
        //TODO: Model this
     }
