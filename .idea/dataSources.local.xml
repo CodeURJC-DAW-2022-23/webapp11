@@ -3,9 +3,12 @@
   <component name="dataSourceStorageLocal" created-in="IU-223.8617.56">
     <data-source name="3TechMarket" uuid="f9768d87-34da-49a6-82cb-f6d91b4a019f">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
       <schema-mapping />
 =======
+=======
+>>>>>>> Stashed changes
       <database-info product="MySQL" version="8.0.31" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.31" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -15,6 +18,7 @@
       <user-name>ThreeTechRoot</user-name>
       <schema-mapping>
         <introspection-scope>
+<<<<<<< Updated upstream
           <node kind="schema">
             <name qname="@" />
             <name qname="3techmarket" />
@@ -25,6 +29,11 @@
         <enabled>true</enabled>
         <mode>REQUIRE</mode>
       </ssl-config>
+>>>>>>> Stashed changes
+=======
+          <node kind="schema" negative="1" />
+        </introspection-scope>
+      </schema-mapping>
 >>>>>>> Stashed changes
     </data-source>
     <data-source name="app/Hibernate" uuid="d09a7c9d-c7aa-48b9-ad85-d87961648207">
