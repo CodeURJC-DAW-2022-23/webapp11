@@ -33,6 +33,8 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                 .csrf().disable()
                 .authorizeRequests( auth -> auth
                         .requestMatchers("/signup", "/signin", "/signin-user", "/signup-user", "/", "/product/**", "/search").permitAll()
+                        // Access to css, js (ending with .css or .js) is allowed to everyone
+                        .requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".png")).permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/profile").hasAnyRole("USER", "AGENT")
                         .anyRequest().authenticated()

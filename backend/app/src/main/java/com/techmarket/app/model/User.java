@@ -3,7 +3,11 @@ package com.techmarket.app.model;
 import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -13,12 +17,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
     private String encodedPassword;
-    @NotNull
     private String firstName;
     private String lastName;
-    @NotNull
     @Column(unique = true)
     private String email;
 
@@ -47,9 +48,6 @@ public class User {
     @OneToMany
     List<Message> messages;
 
-    public User() {
-    }
-
     public User(Long id, @NotNull String encodedPassword, @NotNull String firstName, @NotNull String lastName, @NotNull String email, String userType) {
         this.id = id;
         this.encodedPassword = encodedPassword;
@@ -60,7 +58,7 @@ public class User {
     }
 
     // To sign up and login
-    public User(@NotNull String email, @NotNull String encodedPassword, @NotNull String firstName, @NotNull String lastName, String... roles) {
+    public User( String email, String encodedPassword, String firstName, String lastName, String... roles) {
         this.encodedPassword = encodedPassword;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -68,32 +66,45 @@ public class User {
         // Default role is USER
         this.roles = List.of(roles);
     }
+    public User(String email, String encodedPassword, Collection<GrantedAuthority> authorities) {
+        this.encodedPassword = encodedPassword;
+        this.email = email;
+        // Default role is USER
+        this.roles = new ArrayList<>();
+        for (GrantedAuthority authority : authorities) {
+            this.roles.add(authority.getAuthority());
+        }
+    }
 
-    public @NotNull String getEncodedPassword() {
+    public User() {
+
+    }
+
+    public  String getEncodedPassword() {
         return this.encodedPassword;
     }
 
-    public void setEncodedPassword(@NotNull String password) {
+    public void setEncodedPassword( String password) {
         this.encodedPassword = password;
     }
 
-    public @NotNull String getFirstName() {
+    public  String getFirstName() {
         return this.firstName;
     }
 
-    public void setFirstName(@NotNull String firstName) {
+    public void setFirstName( String firstName) {
         this.firstName = firstName;
     }
 
-    public @NotNull String getLastName() {
+    public  String getLastName() {
         return this.lastName;
     }
 
-    public void setLastName(@NotNull String lastName) {
+    public void setLastName( String lastName) {
         this.lastName = lastName;
     }
 
-    public @NotNull String getEmail() {
+    public String getEmail() {
         return this.email;
     }
 

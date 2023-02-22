@@ -1578,205 +1578,201 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>varchar(255)|0s</DasType>
       <Position>8</Position>
     </column>
-    <column id="403" parent="314" name="password">
+    <column id="403" parent="314" name="phone_number">
       <DasType>varchar(255)|0s</DasType>
       <Position>9</Position>
     </column>
-    <column id="404" parent="314" name="phone_number">
+    <column id="404" parent="314" name="postcode">
       <DasType>varchar(255)|0s</DasType>
       <Position>10</Position>
     </column>
-    <column id="405" parent="314" name="postcode">
+    <column id="405" parent="314" name="state">
       <DasType>varchar(255)|0s</DasType>
       <Position>11</Position>
     </column>
-    <column id="406" parent="314" name="state">
+    <column id="406" parent="314" name="user_type">
       <DasType>varchar(255)|0s</DasType>
       <Position>12</Position>
     </column>
-    <column id="407" parent="314" name="user_type">
+    <column id="407" parent="314" name="profile_picture_image_id">
       <DasType>varchar(255)|0s</DasType>
       <Position>13</Position>
     </column>
-    <column id="408" parent="314" name="profile_picture_image_id">
+    <column id="408" parent="314" name="role">
       <DasType>varchar(255)|0s</DasType>
       <Position>14</Position>
     </column>
-    <column id="409" parent="314" name="role">
+    <column id="409" parent="314" name="encoded_password">
       <DasType>varchar(255)|0s</DasType>
       <Position>15</Position>
     </column>
-    <column id="410" parent="314" name="encoded_password">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>16</Position>
-    </column>
-    <foreign-key id="411" parent="314" name="FKnaxt4i8jc7h4eg2khi9t0ekc6">
+    <foreign-key id="410" parent="314" name="FKnaxt4i8jc7h4eg2khi9t0ekc6">
       <ColNames>profile_picture_image_id</ColNames>
       <RefColNames>image_id</RefColNames>
       <RefTableName>image</RefTableName>
     </foreign-key>
-    <index id="412" parent="314" name="PRIMARY">
+    <index id="411" parent="314" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="413" parent="314" name="FKnaxt4i8jc7h4eg2khi9t0ekc6">
+    <index id="412" parent="314" name="FKnaxt4i8jc7h4eg2khi9t0ekc6">
       <ColNames>profile_picture_image_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="414" parent="314" name="PRIMARY">
+    <key id="413" parent="314" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="415" parent="315" name="user_id">
+    <column id="414" parent="315" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="416" parent="315" name="messages_message_id">
+    <column id="415" parent="315" name="messages_message_id">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="417" parent="315" name="FKbyu5vaot6im4pugf4e2t67ba2">
+    <foreign-key id="416" parent="315" name="FKbyu5vaot6im4pugf4e2t67ba2">
       <ColNames>user_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <foreign-key id="418" parent="315" name="FKes76kabcpy3ter0e3161rq2f5">
+    <foreign-key id="417" parent="315" name="FKes76kabcpy3ter0e3161rq2f5">
       <ColNames>messages_message_id</ColNames>
       <RefColNames>message_id</RefColNames>
       <RefTableName>message</RefTableName>
     </foreign-key>
-    <index id="419" parent="315" name="UK_6n97m93tjcxftj73hoyimjwwg">
+    <index id="418" parent="315" name="UK_6n97m93tjcxftj73hoyimjwwg">
       <ColNames>messages_message_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="420" parent="315" name="FKbyu5vaot6im4pugf4e2t67ba2">
+    <index id="419" parent="315" name="FKbyu5vaot6im4pugf4e2t67ba2">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="421" parent="315" name="UK_6n97m93tjcxftj73hoyimjwwg">
+    <key id="420" parent="315" name="UK_6n97m93tjcxftj73hoyimjwwg">
       <UnderlyingIndexName>UK_6n97m93tjcxftj73hoyimjwwg</UnderlyingIndexName>
     </key>
-    <column id="422" parent="316" name="user_id">
+    <column id="421" parent="316" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="423" parent="316" name="purchased_products_purchase_id">
+    <column id="422" parent="316" name="purchased_products_purchase_id">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="424" parent="316" name="FKlksf98t9l43kb9afkn00r6ui0">
+    <foreign-key id="423" parent="316" name="FKlksf98t9l43kb9afkn00r6ui0">
       <ColNames>user_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <foreign-key id="425" parent="316" name="FKa2kmhko97vyvqwofg4mj3bsdp">
+    <foreign-key id="424" parent="316" name="FKa2kmhko97vyvqwofg4mj3bsdp">
       <ColNames>purchased_products_purchase_id</ColNames>
       <RefColNames>purchase_id</RefColNames>
       <RefTableName>purchase</RefTableName>
     </foreign-key>
-    <index id="426" parent="316" name="UK_pbbdvickl7ivri56jthm4v4wh">
+    <index id="425" parent="316" name="UK_pbbdvickl7ivri56jthm4v4wh">
       <ColNames>purchased_products_purchase_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="427" parent="316" name="FKlksf98t9l43kb9afkn00r6ui0">
+    <index id="426" parent="316" name="FKlksf98t9l43kb9afkn00r6ui0">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="428" parent="316" name="UK_pbbdvickl7ivri56jthm4v4wh">
+    <key id="427" parent="316" name="UK_pbbdvickl7ivri56jthm4v4wh">
       <UnderlyingIndexName>UK_pbbdvickl7ivri56jthm4v4wh</UnderlyingIndexName>
     </key>
-    <column id="429" parent="317" name="user_id">
+    <column id="428" parent="317" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="430" parent="317" name="roles">
+    <column id="429" parent="317" name="roles">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <foreign-key id="431" parent="317" name="FK55itppkw3i07do3h7qoclqd4k">
+    <foreign-key id="430" parent="317" name="FK55itppkw3i07do3h7qoclqd4k">
       <ColNames>user_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <index id="432" parent="317" name="FK55itppkw3i07do3h7qoclqd4k">
+    <index id="431" parent="317" name="FK55itppkw3i07do3h7qoclqd4k">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="433" parent="318" name="next_val">
+    <column id="432" parent="318" name="next_val">
       <DasType>bigint|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="434" parent="319" name="user_id">
+    <column id="433" parent="319" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="435" parent="319" name="shopping_cart_product_id">
+    <column id="434" parent="319" name="shopping_cart_product_id">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="436" parent="319" name="FKjoknm9sxxniq294rcorghmdd">
+    <foreign-key id="435" parent="319" name="FKjoknm9sxxniq294rcorghmdd">
       <ColNames>user_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <foreign-key id="437" parent="319" name="FKi4an1tp0uwgq8uixb0unvwavr">
+    <foreign-key id="436" parent="319" name="FKi4an1tp0uwgq8uixb0unvwavr">
       <ColNames>shopping_cart_product_id</ColNames>
       <RefColNames>product_id</RefColNames>
       <RefTableName>product</RefTableName>
     </foreign-key>
-    <index id="438" parent="319" name="UK_esei8mnudugiyo4pe00u4f9cq">
+    <index id="437" parent="319" name="UK_esei8mnudugiyo4pe00u4f9cq">
       <ColNames>shopping_cart_product_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="439" parent="319" name="FKjoknm9sxxniq294rcorghmdd">
+    <index id="438" parent="319" name="FKjoknm9sxxniq294rcorghmdd">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="440" parent="319" name="UK_esei8mnudugiyo4pe00u4f9cq">
+    <key id="439" parent="319" name="UK_esei8mnudugiyo4pe00u4f9cq">
       <UnderlyingIndexName>UK_esei8mnudugiyo4pe00u4f9cq</UnderlyingIndexName>
     </key>
-    <column id="441" parent="320" name="user_id">
+    <column id="440" parent="320" name="user_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="442" parent="320" name="wishlist_product_id">
+    <column id="441" parent="320" name="wishlist_product_id">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="443" parent="320" name="FKclurv83y878u3we8ya7yjgd5m">
+    <foreign-key id="442" parent="320" name="FKclurv83y878u3we8ya7yjgd5m">
       <ColNames>user_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <foreign-key id="444" parent="320" name="FK9g5ba5rng1vx756pki81q8s87">
+    <foreign-key id="443" parent="320" name="FK9g5ba5rng1vx756pki81q8s87">
       <ColNames>wishlist_product_id</ColNames>
       <RefColNames>product_id</RefColNames>
       <RefTableName>product</RefTableName>
     </foreign-key>
-    <index id="445" parent="320" name="UK_crdwfrqhx060ih5coeetjofyd">
+    <index id="444" parent="320" name="UK_crdwfrqhx060ih5coeetjofyd">
       <ColNames>wishlist_product_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="446" parent="320" name="FKclurv83y878u3we8ya7yjgd5m">
+    <index id="445" parent="320" name="FKclurv83y878u3we8ya7yjgd5m">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="447" parent="320" name="UK_crdwfrqhx060ih5coeetjofyd">
+    <key id="446" parent="320" name="UK_crdwfrqhx060ih5coeetjofyd">
       <UnderlyingIndexName>UK_crdwfrqhx060ih5coeetjofyd</UnderlyingIndexName>
     </key>
   </database-model>
