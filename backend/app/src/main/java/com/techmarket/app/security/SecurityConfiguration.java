@@ -50,6 +50,8 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                 .logout( logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
                 )
                 .build();
     }

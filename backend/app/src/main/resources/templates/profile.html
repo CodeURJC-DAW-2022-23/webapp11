@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="row header">
             <div class="col-md-2">
-                <h1><a href="index.html"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
+                <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
             </div>
             <div class="col-md-8">
               <div class="input-group mb-4 searchbar">
@@ -39,7 +39,12 @@
                         <ul class="dropdown-menu">
                           <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
                           <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                          <li><a class="dropdown-item" href="/signin">Log In/Sign Up</a></li>
+                            {{#isLoggedIn}}
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            {{/isLoggedIn}}
+                            {{^isLoggedIn}}
+                            <li><a class="dropdown-item" href="/signin">Login/Sign up</a></li>
+                            {{/isLoggedIn}}
                         </ul>
                       </div>
                         
