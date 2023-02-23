@@ -37,6 +37,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".png")).permitAll()
                         .requestMatchers("/admin/**", "/addproduct", "/addproduct-create").hasAuthority("ADMIN")
                         .requestMatchers("/profile").hasAnyAuthority("USER", "AGENT")
+                        .requestMatchers("/edit-profile").hasAnyAuthority("USER", "AGENT")
                         .requestMatchers("/cart").hasAnyAuthority("USER")
                         .anyRequest().authenticated()
                 )

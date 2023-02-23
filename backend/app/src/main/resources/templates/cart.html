@@ -94,6 +94,9 @@
                 <div class="col-md-2">
                     <h3>Quantity</h3>
                     <p>{{quantity}}</p>
+                    <!--Buttons to increase and decrease quantity-->
+                    <button class="btn btn-success" onclick="increaseQuantity('{{productId}}')">+</button>
+                    <button class="btn btn-danger" onclick="decreaseQuantity('{{productId}}')">-</button>
                 </div>
                 <div class="col-md-2">
                     <h3>Total</h3>

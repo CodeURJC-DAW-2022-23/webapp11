@@ -11,10 +11,7 @@
       <user-name>ThreeTechRoot</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema">
-            <name qname="@" />
-            <name qname="mysql" />
-          </node>
+          <node kind="schema" qname="3techmarket" />
         </introspection-scope>
       </schema-mapping>
     </data-source>
