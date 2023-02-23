@@ -88,23 +88,23 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Profile Settings</h4>
                         </div>
-                        <form action="/edit-profile" method="get">
+                        <form action="/edit-profile" method="post">
                         <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="{{firstName}}" placeholder="First Name" ></div>
-                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="{{lastName}}" placeholder="Last Name" ></div>
+                            <div class="col-md-6"><label class="labels"></label><input type="text" id="firstName" name="firstName" class="form-control" value="{{firstName}}" placeholder="First Name" ></div>
+                            <div class="col-md-6"><label class="labels"></label><input type="text" id="lastName" name="lastName" class="form-control" value="{{lastName}}" placeholder="Last Name" ></div>
                         </div>
 
                         <div class="row mt-3" >
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{email}}" placeholder="Email" ></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{phoneNumber}}" placeholder="Phone Number"  ></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{address}}" placeholder="Address" ></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{postcode}}" placeholder="Postcode" ></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{state}}" placeholder="State" ></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{country}}" placeholder="Country" ></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{city}}" placeholder="City" ></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{area}}" placeholder="Area" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{email}}" placeholder="Email" readonly></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="{{phoneNumber}}" placeholder="Phone Number"  ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="address" name="address" class="form-control" value="{{address}}" placeholder="Address" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="postcode" name="postcode" class="form-control" value="{{postcode}}" placeholder="Postcode" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="state" name="state" class="form-control" value="{{state}}" placeholder="State" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="country" name="country" class="form-control" value="{{country}}" placeholder="Country" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="city" name="city" class="form-control" value="{{city}}" placeholder="City" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="area" name="area" class="form-control" value="{{area}}" placeholder="Area" ></div>
                         </div>
-
+                        <br>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>

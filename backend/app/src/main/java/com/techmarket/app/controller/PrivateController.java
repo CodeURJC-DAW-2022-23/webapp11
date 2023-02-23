@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.Objects;
@@ -54,7 +55,43 @@ public class PrivateController {
 
     }
 
+    @PreAuthorize("hasAnyAuthority('USER','AGENT')")
     @PostMapping("/edit-profile")
+    public String editProfile(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName, @RequestParam(required = false) String phoneNumber, @RequestParam(required = false) String address, @RequestParam(required = false) String city, @RequestParam(required = false) String state, @RequestParam(required = false) String area, @RequestParam(required = false) String country, @RequestParam(required = false) String postcode) {
+        // Basic edit profile functionality
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = userRepository.findByEmail(auth.getName());
+        // Check for null values
+        if (firstName != null) {
+            currentUser.setFirstName(firstName);
+        }
+        if (lastName != null) {
+            currentUser.setLastName(lastName);
+        }
+        if (phoneNumber != null) {
+            currentUser.setPhoneNumber(phoneNumber);
+        }
+        if (address != null) {
+            currentUser.setAddress(address);
+        }
+        if (city != null) {
+            currentUser.setCity(city);
+        }
+        if (state != null) {
+            currentUser.setState(state);
+        }
+        if (area != null) {
+            currentUser.setArea(area);
+        }
+        if (country != null) {
+            currentUser.setCountry(country);
+        }
+        if (postcode != null) {
+            currentUser.setPostcode(postcode);
+        }
+        userRepository.save(currentUser);  // Save the changes to the database
+        return "redirect:/profile";
+        }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin")

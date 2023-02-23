@@ -2,8 +2,10 @@ package com.techmarket.app.model;
 
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
+import java.sql.Blob;
 import java.util.List;
 
 @Entity
@@ -18,7 +20,7 @@ public class Review {
     private String reviewTitle;
     private int rating;
     private String reviewText;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Image> images;
 
     public Review(String reviewId, String productId, String userId, String reviewTitle, int rating, String reviewText, List<Image> images) {
@@ -33,6 +35,12 @@ public class Review {
 
     public Review() {
 
+    }
+
+    public Review(String reviewTitle, String reviewText, int rating) {
+        this.reviewTitle = reviewTitle;
+        this.reviewText = reviewText;
+        this.rating = rating;
     }
 
     public String getReviewId() {

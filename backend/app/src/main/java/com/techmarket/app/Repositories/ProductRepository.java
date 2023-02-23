@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @EnableJpaRepositories
@@ -21,6 +22,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByTags(String tags);
 
     List<Product> findByProductName(String productName);
+
+    Product findByProductId(Long id);
 
     //void deleteAllById(String productId);
 

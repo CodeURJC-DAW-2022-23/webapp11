@@ -16,6 +16,9 @@ public class Product {
     private String description;
     @OneToMany
     private List<Image> images;
+
+    @OneToOne
+    private Image mainImage;  // This is the main image of the product, used for the product card on reviews, history, cart, etc.
     private double productPrice;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> tags;
@@ -23,7 +26,6 @@ public class Product {
     private int productStock;
     private String productName; // They have to use the same name as Mustache
     private String productUrl;
-
     @OneToMany
     private List<Review> reviews;
 
@@ -38,7 +40,25 @@ public class Product {
         this.tags = tags;
     }
 
+    public Product(Long productId, String description, List<Image> images, Image mainImage, double productPrice, List<String> tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
+        this.productId = productId;
+        this.description = description;
+        this.images = images;
+        this.mainImage = mainImage;
+        this.productPrice = productPrice;
+        this.tags = tags;
+        this.discount = discount;
+        this.productStock = productStock;
+        this.productName = productName;
+        this.productUrl = productUrl;
+        this.reviews = reviews;
+    }
+
     protected Product(){}
+
+    public Product(long productId) {
+        this.productId = productId;
+    }
 
     public Long getProductId() {
         return productId;
