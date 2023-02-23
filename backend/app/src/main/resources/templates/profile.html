@@ -88,21 +88,21 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Profile Settings</h4>
                         </div>
-                        <form action="/edit-profile" method="post">
+                        <form action="/edit-profile" method="get">
                         <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" placeholder="{{firstName}}" value=""></div>
-                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="{{lastName}}"></div>
+                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" placeholder="First Name" default=""></div>
+                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" placeholder="Last Name" default=""></div>
                         </div>
 
                         <div class="row mt-3" >
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{phoneNumber}}" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{email}}" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{address}}" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{postcode}}" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{state}}" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{country}}" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="{{city}}"></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{area}}" value=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Phone Number" default=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Email" default=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Address" default=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Postcode" default=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="State" default=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Country" default=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="City" default=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Area" default=""></div>
                         </div>
 
                             <button type="submit" class="btn btn-primary">Sign In</button>

@@ -2,6 +2,7 @@ package com.techmarket.app.controller;
 
 import com.techmarket.app.model.User;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import com.techmarket.app.Repositories.UserRepository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.security.Principal;
+import java.util.Objects;
 
 @Controller
 public class PrivateController {
@@ -30,24 +33,14 @@ public class PrivateController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findByEmail(auth.getName());
         if (user != null) {
-            model.addAttribute("isLoggedIn", true);
-            model.addAttribute("firstName", currentUser.getFirstName());
-            model.addAttribute("lastName", currentUser.getLastName());
-            model.addAttribute("email", currentUser.getEmail());
-            model.addAttribute("phoneNumber", currentUser.getEmail());
-            model.addAttribute("address", currentUser.getAddress());
-            model.addAttribute("city", currentUser.getCity());
-            model.addAttribute("state", currentUser.getState());
-            model.addAttribute("area", currentUser.getArea());
-            model.addAttribute("country", currentUser.getCountry());
-            model.addAttribute("postcode", currentUser.getPostcode());
+
 
 
         } else {
             model.addAttribute("isLoggedIn", false);
         }
 
-       //TODO: Model this
+
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
