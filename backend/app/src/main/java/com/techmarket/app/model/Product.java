@@ -9,9 +9,9 @@ import java.util.List;
 @EnableAutoConfiguration
 public class Product {
 
-    @Id
+    @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String productId;
+    private Long productId;
 
     private String description;
     @OneToMany
@@ -27,18 +27,6 @@ public class Product {
     @OneToMany
     private List<Review> reviews;
 
-    public Product(String productId, String description, List<Image> images, double price, List<String> tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
-        this.productId = productId;
-        this.description = description;
-        this.images = images;
-        this.productPrice = price;
-        this.tags = tags;
-        this.discount = discount;
-        this.productStock = productStock;
-        this.productName = productName;
-        this.productUrl = productUrl;
-        this.reviews = reviews;
-    }
 
     //To add products
     public Product(String productName, String description, double price, String discount, int productStock, List<String> tags){
@@ -50,13 +38,13 @@ public class Product {
         this.tags = tags;
     }
 
-    public Product(){}
+    protected Product(){}
 
-    public String getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

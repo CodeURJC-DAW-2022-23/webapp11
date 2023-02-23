@@ -7,7 +7,9 @@ import com.techmarket.app.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,16 +57,14 @@ public class    ProductController {
     public String addproduct(){
         return "addproduct";
     }
+
+    @Transactional
     @PostMapping("/addproduct-create")
     public ResponseEntity<Product> createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags) {
         Product product = new Product(name, description, price, discount, amount, tags);
-        if (productRepository.findByProductName(name) != null) {
-            // Product already exists
-            return new ResponseEntity<>(HttpStatus.CONFLICT); // 409 Conflict, we can return something meaningful and not a blank screen
-        }
         // Create new product
         productRepository.save(product);
-        return new ResponseEntity<>(product, HttpStatus.CREATED); // 201 Created, this will also return the user object in the response body
+        return new ResponseEntity<>(product, HttpStatus.CREATED);  // 201 Created, this will also return the user object in the response body
         // If there's information missing and the product can't be created, the response will be 400 Bad Request, Spring will handle that
     }
     
