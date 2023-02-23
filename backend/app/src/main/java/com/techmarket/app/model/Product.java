@@ -16,7 +16,7 @@ public class Product {
     private String description;
     @OneToMany
     private List<Image> images;
-    private String productPrice;
+    private double productPrice;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> tags;
     private String discount;
@@ -27,7 +27,7 @@ public class Product {
     @OneToMany
     private List<Review> reviews;
 
-    public Product(String productId, String description, List<Image> images, String price, List<String> tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
+    public Product(String productId, String description, List<Image> images, double price, List<String> tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
         this.productId = productId;
         this.description = description;
         this.images = images;
@@ -41,7 +41,7 @@ public class Product {
     }
 
     //To add products
-    public Product(String productName, String description, String price, String discount, int productStock, List<String> tags){
+    public Product(String productName, String description, double price, String discount, int productStock, List<String> tags){
         this.productName = productName;
         this.description = description;
         this.productPrice = price;
@@ -76,11 +76,11 @@ public class Product {
         this.images = images;
     }
 
-    public String getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String price) {
+    public void setProductPrice(double price) {
         this.productPrice = price;
     }
 
