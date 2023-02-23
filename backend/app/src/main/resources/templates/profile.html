@@ -90,19 +90,21 @@
                         </div>
                         <form action="/edit-profile" method="post">
                         <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" placeholder="First Nname" value=""></div>
-                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
+                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" placeholder="{{firstName}}" value=""></div>
+                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="{{lastName}}"></div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Phone Number" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Address" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Postcode" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="State" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Country" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="State"></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Area" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Email" value=""></div>
+
+                        <div class="row mt-3" >
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{phoneNumber}}" value=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{email}}" value=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{address}}" value=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{postcode}}" value=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{state}}" value=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{country}}" value=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="{{city}}"></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="{{area}}" value=""></div>
                         </div>
+
                             <button type="submit" class="btn btn-primary">Sign In</button>
                         </form>
                     </div>

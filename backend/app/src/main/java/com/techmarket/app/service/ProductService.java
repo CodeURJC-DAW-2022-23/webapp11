@@ -24,6 +24,6 @@ public class ProductService {
 
 
     public void deleteAllById(Long id) {
-        productRepository.deleteAllById(String.valueOf(id));
+        productRepository.deleteAllByProductId(String.valueOf(id));
     }
 }

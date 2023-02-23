@@ -1108,28 +1108,28 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="ThreeTechRoot"/>
-    <user id="294" parent="1" name="admin_main"/>
-    <user id="295" parent="1" name="azure_superuser">
+    <user id="294" parent="1" name="azure_superuser">
       <Host>127.0.0.1</Host>
     </user>
-    <user id="296" parent="1" name="azure_superuser">
+    <user id="295" parent="1" name="azure_superuser">
       <Host>localhost</Host>
     </user>
-    <user id="297" parent="1" name="mysql.infoschema">
+    <user id="296" parent="1" name="mysql.infoschema">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="298" parent="1" name="mysql.session">
+    <user id="297" parent="1" name="mysql.session">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="299" parent="1" name="mysql.sys">
+    <user id="298" parent="1" name="mysql.sys">
       <CanLogin>0</CanLogin>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
+    <user id="299" parent="1" name="admin_main"/>
     <table id="300" parent="288" name="image">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>

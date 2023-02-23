@@ -21,7 +21,7 @@ public class PrivateController {
 
     @PreAuthorize("hasAnyAuthority('USER','AGENT')")
     @GetMapping("/profile")
-    public void profile(Model mode, Principal user) {
+    public void profile(Model model, Principal user) {
 
         //We want to fill out the form with the user's information when we load the page
         //First we get the user's email with the auth method
@@ -30,9 +30,21 @@ public class PrivateController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findByEmail(auth.getName());
         if (user != null) {
-            mode.addAttribute("isLoggedIn", true);
+            model.addAttribute("isLoggedIn", true);
+            model.addAttribute("firstName", currentUser.getFirstName());
+            model.addAttribute("lastName", currentUser.getLastName());
+            model.addAttribute("email", currentUser.getEmail());
+            model.addAttribute("phoneNumber", currentUser.getEmail());
+            model.addAttribute("address", currentUser.getAddress());
+            model.addAttribute("city", currentUser.getCity());
+            model.addAttribute("state", currentUser.getState());
+            model.addAttribute("area", currentUser.getArea());
+            model.addAttribute("country", currentUser.getCountry());
+            model.addAttribute("postcode", currentUser.getPostcode());
+
+
         } else {
-            mode.addAttribute("isLoggedIn", false);
+            model.addAttribute("isLoggedIn", false);
         }
 
        //TODO: Model this
