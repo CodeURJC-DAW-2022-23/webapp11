@@ -17,6 +17,7 @@ public class Product {
     @OneToMany
     private List<Image> images;
     private String productPrice;
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> tags;
     private String discount;
     private int productStock;
@@ -48,6 +49,8 @@ public class Product {
         this.productStock = productStock;
         this.tags = tags;
     }
+
+    public Product(){}
 
     public String getProductId() {
         return productId;
