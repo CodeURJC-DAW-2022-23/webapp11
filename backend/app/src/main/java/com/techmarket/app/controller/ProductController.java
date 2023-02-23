@@ -1,6 +1,7 @@
 package com.techmarket.app.controller;
 
 import com.techmarket.app.Repositories.ProductRepository;
+import com.techmarket.app.model.User;
 import com.techmarket.app.service.ProductService;
 import com.techmarket.app.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class ProductController {
+public class    ProductController {
 
     @Autowired
     private ProductService productService;
@@ -49,9 +51,12 @@ public class ProductController {
         }
     }
 
-
-    @PostMapping("/addproduct")
-    public ResponseEntity<Product> createproduct(@RequestParam String name, @RequestParam String description, @RequestParam String price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags) {
+    @GetMapping("/addproduct")
+    public String addproduct(){
+        return "addproduct";
+    }
+    @PostMapping("/addproduct-create")
+    public ResponseEntity<Product> createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags) {
         Product product = new Product(name, description, price, discount, amount, tags);
         if (productRepository.findByProductName(name) != null) {
             // Product already exists
@@ -63,7 +68,7 @@ public class ProductController {
         // If there's information missing and the product can't be created, the response will be 400 Bad Request, Spring will handle that
     }
     
-    @GetMapping("/deleteProduct/{id}")
+    @PostMapping("/deleteProduct/{id}")
     public String deleteProduct(@PathVariable("id") Long id){
         //productService.deleteAllByProductId(id);
         return "redirect:/products";
