@@ -20,7 +20,7 @@ public class Review {
     private String reviewTitle;
     private int rating;
     private String reviewText;
-    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Image> images;
 
     public Review(String reviewId, String productId, String userId, String reviewTitle, int rating, String reviewText, List<Image> images) {
