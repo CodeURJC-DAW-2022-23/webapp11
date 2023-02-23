@@ -51,7 +51,7 @@ public class ProductController {
 
 
     @PostMapping("/addproduct")
-    public ResponseEntity<Product> createproduct(@RequestParam String name, @RequestParam String description, @RequestParam String price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags) {
+    public ResponseEntity<Product> createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags) {
         Product product = new Product(name, description, price, discount, amount, tags);
         if (productRepository.findByProductName(name) != null) {
             // Product already exists

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -71,9 +71,11 @@
               </div>
                 {{/isLoggedIn}}
               {{^isLoggedIn}}
+              <div class="row">
               <!-- Login or register button linked to /signin -->
-              <a href="/signin" class="btn btn-success">Login or register</a>
+              <a href="/signin" class="buttonlogin"><button class="btn btn-success">Login or register</button></a>
               {{/isLoggedIn}}
+              </div>
           </div>
       </div>
 

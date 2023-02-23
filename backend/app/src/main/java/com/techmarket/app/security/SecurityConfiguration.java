@@ -44,7 +44,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .loginProcessingUrl("/signin-user")
-                        .defaultSuccessUrl("/profile", true)
+                        .defaultSuccessUrl("/", true)
                         .failureUrl("/signin?error")
                 )
                 .logout( logout -> logout
