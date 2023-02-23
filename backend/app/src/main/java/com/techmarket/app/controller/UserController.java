@@ -41,13 +41,8 @@ public class UserController {
     // Sign up a new user
     @PostMapping("/signup-user")
     public ResponseEntity<User> signupuser(@RequestParam String email, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName) {
-        User user = new User();
-        user.setEmail(email);
+        User user = new User( email,  firstName, lastName);
         user.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setRoles(new ArrayList<>());
-        user.addRole("USER");
         if (userRepository.findByEmail(email) != null) {
             // User already exists
             return new ResponseEntity<>(HttpStatus.CONFLICT); // 409 Conflict, we can return something meaningful and not a blank screen

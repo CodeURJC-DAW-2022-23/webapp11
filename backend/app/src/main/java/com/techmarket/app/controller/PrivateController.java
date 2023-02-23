@@ -12,6 +12,7 @@ import com.techmarket.app.Repositories.UserRepository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 import java.util.Objects;
@@ -33,7 +34,17 @@ public class PrivateController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findByEmail(auth.getName());
         if (user != null) {
-
+            model.addAttribute("isLoggedIn", true);
+            model.addAttribute("firstName", currentUser.getFirstName());
+            model.addAttribute("lastName", currentUser.getLastName());
+            model.addAttribute("email", currentUser.getEmail());
+            model.addAttribute("phoneNumber", currentUser.getPhoneNumber());
+            model.addAttribute("address", currentUser.getAddress());
+            model.addAttribute("city", currentUser.getCity());
+            model.addAttribute("state", currentUser.getState());
+            model.addAttribute("area", currentUser.getArea());
+            model.addAttribute("country", currentUser.getCountry());
+            model.addAttribute("postcode", currentUser.getPostcode());
 
 
         } else {
@@ -42,6 +53,8 @@ public class PrivateController {
 
 
     }
+
+    @PostMapping("/edit-profile")
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin")

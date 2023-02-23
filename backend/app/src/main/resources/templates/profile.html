@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-8">
               <div class="input-group mb-4 searchbar">
-                <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+                <input type="search" value="" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
                 <div class="input-group-append">
                   <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
                 </div>
@@ -90,22 +90,22 @@
                         </div>
                         <form action="/edit-profile" method="get">
                         <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" placeholder="First Name" default=""></div>
-                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" placeholder="Last Name" default=""></div>
+                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="{{firstName}}" placeholder="First Name" ></div>
+                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="{{lastName}}" placeholder="Last Name" ></div>
                         </div>
 
                         <div class="row mt-3" >
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Phone Number" default=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Email" default=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Address" default=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Postcode" default=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="State" default=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Country" default=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="City" default=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Area" default=""></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{email}}" placeholder="Email" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{phoneNumber}}" placeholder="Phone Number"  ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{address}}" placeholder="Address" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{postcode}}" placeholder="Postcode" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{state}}" placeholder="State" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{country}}" placeholder="Country" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{city}}" placeholder="City" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{area}}" placeholder="Area" ></div>
                         </div>
 
-                            <button type="submit" class="btn btn-primary">Sign In</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     </div>
                 </div>

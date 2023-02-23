@@ -7,7 +7,7 @@
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
-      <secret-storage>forget</secret-storage>
+      <secret-storage>master_key</secret-storage>
       <user-name>ThreeTechRoot</user-name>
       <schema-mapping>
         <introspection-scope>

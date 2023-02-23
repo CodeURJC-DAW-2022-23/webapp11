@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,7 +35,7 @@ public class User {
     private String area;
     private String city;
     //type of user
-    private String userType;
+
     @OneToOne
     private Image profilePicture;
 
@@ -47,37 +48,34 @@ public class User {
     @OneToMany
     List<Message> messages;
 
-    public User(Long id, @NotNull String encodedPassword, @NotNull String firstName, @NotNull String lastName, @NotNull String email, String userType) {
-        this.id = id;
-        this.encodedPassword = encodedPassword;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.userType = userType;
-    }
 
-    // To sign up and login
-    public User( String email, String encodedPassword, String firstName, String lastName, String... roles) {
-        this.encodedPassword = encodedPassword;
+
+    public User(String email, String firstName,  String lastName) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-        // Default role is USER
-        this.roles = List.of(roles);
-    }
-    public User(String email, String encodedPassword, Collection<GrantedAuthority> authorities) {
-        this.encodedPassword = encodedPassword;
-        this.email = email;
-        // Default role is USER
+        this.address ="";
+        this.postcode ="";
+        this.state ="";
+        this.country ="";
+        this.area ="";
+        this.city ="";
+        this.phoneNumber ="";
         this.roles = new ArrayList<>();
-        for (GrantedAuthority authority : authorities) {
-            this.roles.add(authority.getAuthority());
-        }
+        this.roles.add("USER");
+        this.profilePicture = null;
+        this.wishlist = new ArrayList<>();
+        this.shoppingCart = new ArrayList<>();
+        this.purchasedProducts = new ArrayList<>();
+        this.messages = new ArrayList<>();
+
+
+
+
+
     }
 
-    public User() {
-
-    }
+    protected User(){}
 
     public  String getEncodedPassword() {
         return this.encodedPassword;
@@ -191,13 +189,7 @@ public class User {
         return id;
     }
 
-    public String getUserType() {
-        return userType;
-    }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
 
     public void setWishlist(List<Product> wishlist) {
         this.wishlist = wishlist;
