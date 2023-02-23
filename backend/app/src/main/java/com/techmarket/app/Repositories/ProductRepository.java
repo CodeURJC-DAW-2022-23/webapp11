@@ -22,7 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     List<Product> findByProductName(String productName);
 
-    Product deleteAllByProductId(String productId);
+    //void deleteAllById(String productId);
 
     // For adding new products, we will use the save method from JpaRepository
 
