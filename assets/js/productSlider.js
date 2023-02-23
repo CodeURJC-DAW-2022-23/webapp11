@@ -1,5 +1,7 @@
 const sliderMainImage = document.getElementById("main-image"); 
 const sliderImageList = document.getElementsByClassName("image-list");
+
+
 console.log(sliderImageList);
 
 sliderImageList[0].onclick = function(){
