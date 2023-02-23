@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="IU-223.8617.56">
-    <data-source name="3TechMarket" uuid="681d6f39-1336-4edd-af7b-1348d0b80673">
+    <data-source name="3techmarke" uuid="c054276d-957f-4a8d-830c-975737720d6a">
       <database-info product="MySQL" version="8.0.31" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.31" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -11,9 +11,16 @@
       <user-name>ThreeTechRoot</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema" qname="3techmarket" />
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="3techmarket" />
+          </node>
         </introspection-scope>
       </schema-mapping>
+      <ssl-config>
+        <enabled>true</enabled>
+        <mode>REQUIRE</mode>
+      </ssl-config>
     </data-source>
   </component>
 </project>

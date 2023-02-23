@@ -84,6 +84,37 @@ public class    ProductController {
         // If there's information missing and the product can't be created, the response will be 400 Bad Request, Spring will handle that
     }
 
+    @GetMapping("/editproduct")
+    public String editproduct() {
+        return "editproduct";
+    }
+    @Transactional
+    @PostMapping("/editproduct-update")
+    public ResponseEntity<Product> editproduct(@RequestParam Long id, @RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags) {
+        Product currentproduct = productRepository.findByProductId(id);
+        if (name != null) {
+            currentproduct.setProductName(name);
+        }
+        if (description != null) {
+            currentproduct.setDescription(description);
+        }
+        if (price != currentproduct.getProductPrice()) {
+            currentproduct.setProductPrice(price);
+        }
+        if (discount != null) {
+            currentproduct.setDiscount(discount);
+        }
+        if (amount != currentproduct.getProductStock()) {
+            currentproduct.setProductStock(amount);
+        }
+        if (tags != currentproduct.getTags()) {
+            currentproduct.setTags(tags);
+        }
+        productRepository.save(currentproduct);  // Save the changes to the database
+        return new ResponseEntity<>(currentproduct, HttpStatus.CREATED);  // 201 Created, this will also return the user object in the response body
+        // If there's information missing and the product can't be created, the response will be 400 Bad Request, Spring will handle that
+    }
+
     @PostMapping("/deleteProduct/{id}")
     public String deleteProduct(@PathVariable("id") Long id) {
         //productService.deleteAllByProductId(id);
