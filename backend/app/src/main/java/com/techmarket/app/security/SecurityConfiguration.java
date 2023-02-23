@@ -35,7 +35,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .requestMatchers("/signup", "/signin", "/signin-user", "/signup-user", "/", "/product/**", "/search").permitAll()
                         // Access to css, js (ending with .css or .js) is allowed to everyone
                         .requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".png")).permitAll()
-                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/**", "/addproduct", "/addproduct-create").hasAuthority("ADMIN")
                         .requestMatchers("/profile").hasAnyAuthority("USER", "AGENT")
                         .requestMatchers("/cart").hasAnyAuthority("USER")
                         .anyRequest().authenticated()

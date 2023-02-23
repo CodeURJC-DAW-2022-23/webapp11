@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:padding-top="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,7 @@
     <div class="row header">
         <div class="col-md-2">
             <div class="logoImage">
-                <h1><a href="index.html"><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></a>
+                <h1><a href="index.html"><img src="/logo2.png" alt="logo" width="180" height="76"></a>
                 </h1>
             </div>
         </div>
@@ -61,34 +61,54 @@
 
             </div>
         </div>
-        <div class="col-md-3"></div>
-        <form action="/add-product" method="POST">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="textBar">
-                        <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control"
-                                                                                    placeholder="Product Name" value="">
+        <div class="form">
+            <form action="/addproduct-create" method="POST">
+                <div style="text-align:center">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="textBar">
+                                <div class="col-md-12">
+                                    <label class="labels"></label><input type="text" class="form-control"
+                                                                         placeholder="Product Name" value=""></div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12">
+                                    <label class="labels"></label><input type="text" class="form-control"
+                                                                         placeholder="Description" value=""></div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="number" step="0.01"
+                                                                                           class="form-control"
+                                                                                           placeholder="Price" value="">
+                                </div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="number"
+                                                                                            class="form-control"
+                                                                                            placeholder="Discount"
+                                                                                            value="">
+                                </div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="number"
+                                                                                            class="form-control"
+                                                                                            placeholder="Amount"
+                                                                                            value="">
+                                </div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control"
+                                                                                            placeholder="Tags" value="">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="textBar">
-                        <div class="col-md-12"><label class="labels"></label><input type="number" step="0.01"
-                                                                                    class="form-control"
-                                                                                    placeholder="Price" value=""></div>
-                    </div>
-                    <div class="textBar">
-                        <div class="col-md-12"><label class="labels"></label><input type="number" class="form-control"
-                                                                                    placeholder="Discount" value="">
+                        <div class="buttonMargin">
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
-                    </div>
-                    <div class="textBar">
-                        <div class="col-md-12"><label class="labels"></label><input type="number" class="form-control"
-                                                                                    placeholder="Amount" value=""></div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-        </form>
-        <div class="col-md-3"></div>
+            </form>
+        </div>
     </div>
 </div>
 </body>
