@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="/app.js"></script>
 
-    <title>3TechMarket - The best technology shop online</title>
+    <title>3TechMarket - Shopping cart</title>
 </head>
 <body>
   <div class="container-fluid">
@@ -38,9 +38,9 @@
                       </a>
                     
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="purchases.html">Recent orders</a></li>
-                        <li><a class="dropdown-item" href="profile.html">Edit profile</a></li>
-                        <li><a class="dropdown-item" href="login.html">Log In/Sign Up</a></li>
+                        <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
+                        <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
                       </ul>
                     </div>
                       
@@ -102,7 +102,7 @@
                 {{/items}}
                 {{^items}}
                 <div class="col-md-12">
-                    <h3>There are no items in your cart, <a href="/">START SHOPPING NOW!</a></h3>
+                    <h2>There are no items in your cart, <a href="/">START SHOPPING NOW!</a></h2>
                 </div>
                 {{/items}}
             </div>

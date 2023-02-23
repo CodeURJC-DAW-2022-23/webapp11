@@ -18,9 +18,19 @@ body {
 
 h1 {
   padding-top: 15px;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   color: whitesmoke;
   font-weight: 700;
+  text-transform: uppercase;
+}
+
+h2 {
+  padding-top: 15px;
+  align-items: center;
+  text-align: center;
+  color: whitesmoke;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
