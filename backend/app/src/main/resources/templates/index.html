@@ -28,22 +28,17 @@
 
           <!--Header icons-->
           <div class="col-md-2 ">
+              {{#isLoggedIn}}
               <div class="row">
                   <div class="col-md-2 navigation">
 
                     <div class="dropdown">
                       <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       </a>
-                    
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
                         <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                        {{#isLoggedIn}}
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                        {{/isLoggedIn}}
-                        {{^isLoggedIn}}
-                        <li><a class="dropdown-item" href="/signin">Login/Sign up</a></li>
-                        {{/isLoggedIn}}
                       </ul>
                     </div>
                       
@@ -74,6 +69,11 @@
                   </div>
                   
               </div>
+                {{/isLoggedIn}}
+              {{^isLoggedIn}}
+              <!-- Login or register button linked to /signin -->
+              <a href="/signin" class="btn btn-success">Login or register</a>
+              {{/isLoggedIn}}
           </div>
       </div>
 

@@ -49,6 +49,10 @@ public class Product {
         this.tags = tags;
     }
 
+    public Product() {
+
+    }
+
     public String getProductId() {
         return productId;
     }
