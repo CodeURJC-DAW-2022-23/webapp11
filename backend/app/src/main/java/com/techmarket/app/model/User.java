@@ -44,9 +44,11 @@ public class User {
     @OneToMany
     private List<Product> shoppingCart;
     @OneToMany
-    List<Purchase> purchasedProducts;
+    List<Product> purchasedProducts;
     @OneToMany
     List<Message> messages;
+    @OneToMany
+    List<Review> reviews;
 
 
 
@@ -68,6 +70,7 @@ public class User {
         this.shoppingCart = new ArrayList<>();
         this.purchasedProducts = new ArrayList<>();
         this.messages = new ArrayList<>();
+        this.reviews = new ArrayList<>();
 
 
 
@@ -199,11 +202,11 @@ public class User {
         this.shoppingCart = shoppingCart;
     }
 
-    public void setPurchasedProducts(List<Purchase> purchasedProducts) {
+    public void setPurchasedProducts(List<Product> purchasedProducts) {
         this.purchasedProducts = purchasedProducts;
     }
 
-    public List<Purchase> getPurchasedProducts() {
+    public List<Product> getPurchasedProducts() {
         return this.purchasedProducts;
     }
 
@@ -225,6 +228,14 @@ public class User {
 
     public void addRole(String role) {
         this.roles.add(role);
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }
 

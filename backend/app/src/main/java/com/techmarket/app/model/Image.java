@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.sql.Blob;
+import java.util.List;
 
 @Entity
 @EnableAutoConfiguration
