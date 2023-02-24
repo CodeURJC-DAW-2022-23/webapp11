@@ -7,47 +7,60 @@
     <link rel="stylesheet" href="/bootstrap.min.css">
     <link rel="stylesheet" href="/login.css">
     <script src="/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
+            crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="/app.js"></script>
     <title>3TechMarket - Sign Up</title>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row header">
-            <div class="logoCentered">
-                <h1><a href="/login"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
-            </div>
+<div class="container-fluid">
+    <div class="row header">
+        <div class="logoCentered">
+            <h1><a href="/login"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
         </div>
     </div>
-    <div>
-        <form action="/signup-user" method="POST">
-            <div class="col-md-12">
-                <h1 class="loginText">Sign Up</h1>
+</div>
+<div>
+    <form action="/signup-user" method="POST">
+        <div class="col-md-12">
+            <h1 class="loginText">Sign Up</h1>
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+                <input type="text" id="firstName" placeholder="First Name" name="firstName" class="loginBox">
             </div>
-            <div class="col-md-12">
-                <input type="text" id="firstName" placeholder="  First Name" name="firstName" class="loginBox">
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+                <input type="text" id="lastName" placeholder="Last Name" name="lastName" class="loginBox">
             </div>
-            <div class="col-md-12">
-                <input type="text" id="lastName" placeholder="  Last Name" name="lastName" class="loginBox">
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+                <input type="email" id="email" placeholder="Email" name="email" class="loginBox">
             </div>
-            <div class="col-md-12">
-                <input type="email" id="email" placeholder="  Email" name="email" class="loginBox">
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+                <input type="password" id="password" name="password" placeholder="Password" class="loginBox"
+                       minlength="8" required>
+                <span>
+                        <i class="fa-solid fa-eye" id="togglePassword" onclick="tooglePW()" aria-hidden="true"></i>
+                    </span>
             </div>
-            <div class="col-md-12">
-                <input type="password" id="password" name="password" placeholder="  Password" class="loginBox" minlength="8" required >
+        </div>
+        <div class="col-md-12">
+            <div class="buttonMargin">
+                <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
-            <div class="col-md-12">
-                <div class="buttonMargin">
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
-                </div>
-            </div>
-        </form>
-            <div class="col-md-12">
-                <div class="buttonMargin">
-                    <h1 class="noAccountText"><a href="/signin">Already have an account</a></h1>
-                </div>
-            </div>
+        </div>
+    </form>
+    <div class="col-md-12">
+        <div class="buttonMargin">
+            <h1 class="noAccountText"><a href="/signin">Already have an account</a></h1>
+        </div>
     </div>
+</div>
 </body>
 </html>

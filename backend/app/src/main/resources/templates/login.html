@@ -6,43 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bootstrap.min.css">
     <link rel="stylesheet" href="/login.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
+            crossorigin="anonymous"></script>
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="/app.js"></script>
     <title>3TechMarket - Login</title>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row header">
-            <div class="logoCentered">
-                <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
-            </div>
+<div class="container-fluid">
+    <div class="row header">
+        <div class="logoCentered">
+            <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
         </div>
     </div>
-    <div>
-        <div class="col-md-12">
-            <h1 class="loginText">Login</h1>
-        </div>
-        <form action="/signin-user" method="POST">
-            <div class="col-md-12">
-                <input type="email" id="email" placeholder="  Email" name="email" class="loginBox">
-            </div>
-            <div class="col-md-12">
-                <input type="password" id="password" name="password" placeholder="  Password" class="loginBox" minlength="8" required >
-            </div>
-            <div class="col-md-12">
-                <div class="buttonMargin">
-                    <button type="submit" class="btn btn-primary">Sign In</button>
-                </div>
-            </div>
-        </form>
-        <div class="col-md-12">
-            <h1 class="noAccountText"><a href="/signup">Don't have an account? Sign Up!</a></h1>
-        </div>
-        <div class="col-md-12">
-            <h1 class="noAccountText">Forgot password? Click here!</a></h1>
-        </div>
+</div>
+<div>
+    <div class="col-md-12">
+        <h1 class="loginText">Login</h1>
     </div>
+    <form action="/signin-user" method="POST">
+        <div class="col-md-12">
+            <div class="container">
+                <input type="email" id="email" placeholder="Email" name="email" class="loginBox">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+                <input type="password" id="password" name="password" placeholder="Password" class="loginBox"
+                       minlength="8" required>
+                <span>
+                    <i class="fa-solid fa-eye" id="togglePassword" onclick="tooglePW()" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="buttonMargin">
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+        </div>
+    </form>
+    <div class="col-md-12">
+        <h1 class="noAccountText"><a href="/signup">Don't have an account? Sign Up!</a></h1>
+    </div>
+    <div class="col-md-12">
+        <h1 class="noAccountText">Forgot password? Click here!</a></h1>
+    </div>
+</div>
 </body>
 </html>

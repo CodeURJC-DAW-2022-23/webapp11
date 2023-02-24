@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -85,8 +86,19 @@ public class    ProductController {
     }
 
     @GetMapping("/editproduct")
-    public String editproduct() {
-        return "editproduct";
+    public void product(Model model, Principal product, @PathVariable Long id) {
+        //We want to fill out the form with the product information when we load the page
+        //We use the id to get the information from the database
+        //Then we fill out the form with the information
+        Product currentproduct = productRepository.findByProductId(id);
+        if (product != null) {
+            model.addAttribute("name", currentproduct.getProductName());
+            model.addAttribute("description", currentproduct.getDescription());
+            model.addAttribute("price", currentproduct.getProductPrice());
+            model.addAttribute("discount", currentproduct.getDiscount());
+            model.addAttribute("stock", currentproduct.getProductStock());
+            model.addAttribute("tags", currentproduct.getTags());
+        }
     }
     @Transactional
     @PostMapping("/editproduct-update")
