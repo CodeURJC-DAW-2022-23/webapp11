@@ -3,31 +3,31 @@ package com.techmarket.app.model;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
-import java.util.List;
-
 @Entity
 @EnableAutoConfiguration
 public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String PurchaseId;
-    @OneToMany
-    private List<Product> products;
+    private String purchaseId;
+    @OneToOne
+    private Product product;  // We will create a new "Purchase" object for each product in the checkout page, easier to handle
     private String timestamp;
     private String address;
     private String price;
     private String userId;
+    private String paymentMethod;
     private boolean isCancelled;
 
-    public Purchase(String purchaseId, List<Product> products, String timestamp, String address, String price, String userId) {
-        this.PurchaseId = purchaseId;
-        this.products = products;
+    public Purchase(String purchaseId, Product product, String timestamp, String address, String price, String userId, String paymentMethod) {
+        this.purchaseId = purchaseId;
+        this.product = product;
         this.timestamp = timestamp;
         this.address = address;
         this.price = price;
         this.userId = userId;
         this.isCancelled = false;
+        this.paymentMethod = paymentMethod;
     }
 
     public Purchase() {
@@ -35,19 +35,19 @@ public class Purchase {
     }
 
     public String getPurchaseId() {
-        return PurchaseId;
+        return purchaseId;
     }
 
     public void setPurchaseId(String purchaseId) {
-        PurchaseId = purchaseId;
+        this.purchaseId = purchaseId;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProduct(Product products) {
+        this.product = product;
     }
 
     public String getTimestamp() {
@@ -88,5 +88,13 @@ public class Purchase {
 
     public void setCancelled(boolean cancelled) {
         isCancelled = cancelled;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }

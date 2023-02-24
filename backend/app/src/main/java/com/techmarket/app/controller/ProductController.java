@@ -140,7 +140,7 @@ public class    ProductController {
         Optional<Product> product = productService.getProductById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findByEmail(auth.getName());
-        // Check if the logged in user has bought the product and not reviewed it yet, as well as if the product still exists
+        // Check if the logged-in user has bought the product and not reviewed it yet, as well as if the product still exists
         if (product.isPresent() && currentUser.getPurchasedProducts().contains(product.get()) && !currentUser.getReviews().contains(product.get())) {
             model.addAttribute("product", product.get());
             return "review";
@@ -150,13 +150,13 @@ public class    ProductController {
     }
 
     @PreAuthorize("hasAnyAuthority('USER')")
-    @PostMapping("/product/{id}/send-review")
-    public String addReview(@PathVariable("id") Long id, @RequestParam String reviewTitle, @RequestParam String reviewText, @RequestParam int rating, @RequestParam(required = false) MultipartFile[] images) {
+    @PostMapping("/product/{ProductId}/send-review")
+    public String addReview(@PathVariable("ProductId") Long id, @RequestParam String reviewTitle, @RequestParam String reviewText, @RequestParam int rating, @RequestParam(required = false) MultipartFile[] images) {
         // Check if product exists
         Optional<Product> product = productService.getProductById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findByEmail(auth.getName());
-        // Check if the logged in user has bought the product and not reviewed it yet, as well as if the product still exists
+        // Check if the logged-in user has bought the product and not reviewed it yet, as well as if the product still exists
         if (product.isPresent() && currentUser.getPurchasedProducts().contains(product.get()) && !currentUser.getReviews().contains(product.get())) {
             // Create review
             Review review = new Review();

@@ -1,13 +1,9 @@
 package com.techmarket.app.model;
 
 import jakarta.persistence.*;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
