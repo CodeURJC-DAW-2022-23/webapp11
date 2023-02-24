@@ -3,6 +3,7 @@ package com.techmarket.app.controller;
 import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.EncoderConfiguration;
+import com.techmarket.app.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 
 
@@ -24,6 +26,9 @@ public class UserController {
 
     @Autowired
     private EncoderConfiguration passwordEncoder;
+
+    @Autowired
+    private EmailService emailService;
 
     // Sign up page
     @GetMapping("/signup")
@@ -40,16 +45,25 @@ public class UserController {
 
     // Sign up a new user
     @PostMapping("/signup-user")
-    public ResponseEntity<User> signupuser(@RequestParam String email, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName) {
+    public String signupuser(@RequestParam String email, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName) throws MessagingException {
         User user = new User( email,  firstName, lastName);
         user.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));
         if (userRepository.findByEmail(email) != null) {
-            // User already exists
-            return new ResponseEntity<>(HttpStatus.CONFLICT); // 409 Conflict, we can return something meaningful and not a blank screen
+            // User already exists, 409 Conflict
+            return "redirect:/signup?error=409";
         }
         userRepository.save(user);
-        return new ResponseEntity<>(user, HttpStatus.CREATED); // 201 Created, this will also return the user object in the response body
+        // Check if the user has successfully signed up by checking the response code to send them the confirmation email
+        if (userRepository.findByEmail(email) != null) {
+            // User created, 201 Created
+            emailService.sendAccountConfirmationEmail(email, firstName);
+            return "redirect:/signin?success=201";  // Redirect to sign in page
+        } else {
+            // User not created, 400 Bad Request
+            return "redirect:/signup?error=400";
+        }
         // If there's information missing and the user can't be created, the response will be 400 Bad Request, Spring will handle that
+
     }
 
 
