@@ -205,3 +205,94 @@ The algorithm used on our web app will be a simple recommendation algorithm, whi
 *The diagram shows how the user will be able to move throughout our website, all the screenshots can be found on the tab before, as the diagram was not comprehensible using thumbnails, as our website includes several administrator tools and other features that made it impossible to read.*
 
 </details>
+
+<br>
+
+# **Our Web app**
+## New navigation diagram
+We'll add it here once we're done
+
+## Building and running our web app
+
+We provide instructions to build and run a complete .jar package including all the necessary dependencies, as well as running the web app from an IDE or from the command line.
+Note: We don't provide instructions to build a .war file, as we believe that the .jar file is more convenient for this project as we don't need to deploy it on a server, and we will use Docker when we deploy it on a server anyway.
+<br>
+For this guide to work, you need to have the following installed:
+- [Java 17](https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html) *(We use Corretto 17, but any other OpenJDK 17 distribution should work, we use Corretto because Amazon provides it, and it's a trusted source)*
+- [Maven](https://maven.apache.org/download.cgi) *(We recommend installing it from your package manager (brew, pacman, apt), or let your IDE do it for you)*
+- [Git](https://git-scm.com/downloads) *(You can also use the GitHub Desktop app)*
+- Access to our database (We will provide the credentials, URL, ports and allow the IP addresses of the machines that will be accessing the database)
+- Access to a terminal
+- Access to a web browser (We have tested [Firefox](https://www.mozilla.org/en-US/firefox/new/) and some [Chromium](https://www.chromium.org/getting-involved/download-chromium) based browsers, it should work on anything)
+- Access to our [GitHub repository](https://github.com/CodeURJC-DAW-2022-23/webapp11)
+
+Optional:
+- [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/download/)
+- [VS Code](https://code.visualstudio.com/download)
+
+<details><summary> <b> Building a .jar using mvn and running it from the command line <i>(recommended)</i> </b> </summary>
+
+1. Clone the repository: `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
+2. Navigate to the project's root directory: `cd webapp11/backend/app`, this is where the `pom.xml` file is located
+3. Build the .jar file: `mvn clean package`
+   - If everything goes well, you should see something like this:
+      ![img_4.png](img_4.png)
+4. Run the .jar file: `java -jar target/app-0.0.1-SNAPSHOT.jar`
+5. Go to `https://localhost:8443/` to see the web app running
+6. To stop the web app, press `Ctrl+C` on the terminal
+- To run the web app in the background, run `java -jar target/app-0.0.1-SNAPSHOT.jar &` instead of step 4
+- To stop the web app, run `kill $(lsof -t -i:8443)` on the terminal
+  - To run the web app on a different port, run `java -jar target/app-0.0.1-SNAPSHOT.jar --server.port=XXXX` instead of step 4, where `XXXX` is the port you want to use, we use 8443 because it's the default port for HTTPS when using Spring Boot in development mode.
+  - To stop the web app, run `kill $(lsof -t -i:XXXX)` on the terminal, where `XXXX` is the port you used to run the web app
+
+</details>
+<details><summary> <b> Running the app from an IDE <i>(easier)</i> </b> </summary>
+
+We recommend using IntelliJ Idea Ultimate, as it's the IDE we use to develop the web app, and it's the one we're most familiar with, but you can use any IDE you want, as long as it supports Maven projects.
+
+<details><summary> <b> Using IntelliJ Idea Ultimate </b> </summary>
+
+1. Open the project in IntelliJ Idea Ultimate, clone the repository if you haven't already: `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
+2. IntelliJ will automatically detect the project as a Maven project, and will ask you if you want to import it, click on `Import Maven Projects`
+3. Once the project is imported, navigate to the `AppApplication.java` file, located at `backend/app/src/main/java/com/techmarket/app/AppApplication.java`
+4. Right click on the file and click on `Run 'AppApplication'`
+
+    ![img_1.png](img_1.png)
+5. Go to `https://localhost:8443/` to see the web app running
+6. To stop the web app, press the stop button in the top right corner of the IDE or on the bottom left side of the console
+- If your IDE is properly configured, you can also run the web app from the top right corner of the IDE, by clicking on the green play button next to the `AppApplication` class
+
+  ![img_2.png](img_2.png)
+
+</details>
+
+<details><summary> <b> Visual Studio Code </b> </summary>
+
+This steps assume you have the Java Extension Pack and the Spring Boot Extension Pack installed on Visual Studio Code.
+1. Open the project in Visual Studio Code, clone the repository if you haven't already: `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
+2. Navigate to the `AppApplication.java` file, located at `backend/app/src/main/java/com/techmarket/app/AppApplication.java`
+3. The editor should show a `Run` button above the `main` method, click on it (you can also press the Play button in the top right corner of the editor assuming you have the Spring Boot Extension Pack installed)
+   
+    ![img.png](img.png)
+4. Go to `https://localhost:8443/` to see the web app running
+5. To stop the web app, press the stop button in the floating menu bar that will appear at the top of the screen, or press `Ctrl+C` on the terminal
+
+</details>
+</details>
+
+<details><summary> <b> Running the app from the command line <i>(faster)</i> </b> </summary>
+
+1. Clone the repository: `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
+2. Navigate to the project's root directory: `cd webapp11/backend/app`, this is where the `pom.xml` file is located
+3. Run the app: `mvn spring-boot:run`
+   - If everything goes well, you should see something like this:
+      
+       ![img_3.png](img_3.png)
+4. Navigate to `https://localhost:8443/` to see the web app running
+5. To stop the web app, press `Ctrl+C` on the terminal
+6. To run the web app in the background, run `mvn spring-boot:run &` instead of step 3
+7. To stop the web app, run `kill $(lsof -t -i:8443)` on the terminal
+  - To run the web app on a different port, run `mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=XXXX` instead of step 3, where `XXXX` is the port you want to use, we use 8443 because it's the default port for HTTPS when using Spring Boot in development mode.
+  - To stop the web app, run `kill $(lsof -t -i:XXXX)` on the terminal, where `XXXX` is the port you used to run the web app
+
+</details>
