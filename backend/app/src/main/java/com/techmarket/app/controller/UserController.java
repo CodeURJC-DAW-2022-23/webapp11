@@ -4,18 +4,15 @@ import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.EncoderConfiguration;
 import com.techmarket.app.service.EmailService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import javax.mail.MessagingException;
-import java.util.ArrayList;
 
 
 @Controller
@@ -32,13 +29,26 @@ public class UserController {
 
     // Sign up page
     @GetMapping("/signup")
-    public String signup() {
+    public String signup(Model model, HttpServletRequest request) {
+        String error = request.getParameter("error");
+        if (error != null && error.equals("409")) {
+            model.addAttribute("error409", true);
+        }
+        if (error != null && error.equals("400")) {
+            model.addAttribute("success400", true);
+        }
         return "register";
     }
 
     // Sign in page
     @GetMapping("/signin")
-    public String signin() {
+    public String signin(Model model, HttpServletRequest request) {
+        if (request.getParameter("error") != null) {
+            model.addAttribute("error", true);
+        }
+        if (request.getParameter("success") != null) {
+            model.addAttribute("success", true);
+        }
         return "login";
     }
 

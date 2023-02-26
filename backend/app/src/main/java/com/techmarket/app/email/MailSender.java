@@ -1,4 +1,4 @@
-package com.techmarket.app;
+package com.techmarket.app.email;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

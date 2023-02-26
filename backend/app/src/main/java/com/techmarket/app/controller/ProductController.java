@@ -92,7 +92,7 @@ public class    ProductController {
             if (Objects.equals(file.getContentType(), "image/jpeg") || Objects.equals(file.getContentType(), "image/png")) {
                 Image image = new Image();
                 image.setFileName(file.getOriginalFilename());
-                image.setImageBlob(new javax.sql.rowset.serial.SerialBlob(file.getBytes()));
+                image.setImageBlob(new SerialBlob(file.getBytes()));
                 images.add(image);
                 imageRepository.save(image);
             } else {

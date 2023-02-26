@@ -50,6 +50,25 @@
                     </span>
             </div>
         </div>
+        {{#error409}}
+        <!--Using Bootstrap alerts-->
+        <div class="col-md-12">
+            <div class="container">
+                <div class="alert alert-danger" role="alert">
+                    Error 409: Conflict, the email you entered is already in use.
+                </div>
+            </div>
+        </div>
+        {{/error409}}
+        {{#error400}}
+        <div class="col-md-12">
+            <div class="container">
+                <div class="alert alert-danger" role="alert">
+                    Error 400: Bad Request, we could not process your request.
+                </div>
+            </div>
+        </div>
+        {{/error400}}
         <div class="col-md-12">
             <div class="buttonMargin">
                 <button type="submit" class="btn btn-primary">Sign Up</button>

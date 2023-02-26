@@ -1,22 +1,27 @@
 package com.techmarket.app.controller;
 
+import com.techmarket.app.Repositories.ImageRepository;
+import com.techmarket.app.Repositories.UserRepository;
+import com.techmarket.app.model.Image;
 import com.techmarket.app.model.User;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.constraints.NotNull;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import com.techmarket.app.Repositories.UserRepository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
 import java.security.Principal;
-import java.util.Objects;
+import java.sql.Blob;
+import java.sql.SQLException;
 
 @Controller
 public class PrivateController {
@@ -24,37 +29,44 @@ public class PrivateController {
     @Autowired
     private UserRepository userRepository;
 
-    @PreAuthorize("hasAnyAuthority('USER','AGENT')")
+    @Autowired
+    private ImageRepository imageRepository;
+
+    @PreAuthorize("hasAnyAuthority('USER','AGENT', 'ADMIN')")
     @GetMapping("/profile")
-    public void profile(Model model, Principal user) {
+    public void profile(Model model, Principal user) throws SQLException {
         //We want to fill out the form with the user's information when we load the page
         //First we get the user's email with the auth method
         //Then we use the email to get the user's information from the database
         //Then we fill out the form with the user's information
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findByEmail(auth.getName());
-        if (user != null) {
-            model.addAttribute("isLoggedIn", true);
-            model.addAttribute("firstName", currentUser.getFirstName());
-            model.addAttribute("lastName", currentUser.getLastName());
-            model.addAttribute("email", currentUser.getEmail());
-            model.addAttribute("phoneNumber", currentUser.getPhoneNumber());
-            model.addAttribute("address", currentUser.getAddress());
-            model.addAttribute("city", currentUser.getCity());
-            model.addAttribute("state", currentUser.getState());
-            model.addAttribute("area", currentUser.getArea());
-            model.addAttribute("country", currentUser.getCountry());
-            model.addAttribute("postcode", currentUser.getPostcode());
-
-
+        // Get user information
+        // Get his profile picture from the database, if it exists
+        if (currentUser.getProfilePicture() != null) {
+            model.addAttribute("hasPfp", true);
+            Blob profilePicture = currentUser.getProfilePicture().getImageBlob();
+            byte[] profilePictureBytes = profilePicture.getBytes(1, (int) profilePicture.length());  // Get the image as a byte array, the first parameter is the offset, so we start at 1, and the second parameter is the length of the image
+            String profilePictureString = Base64.encodeBase64String(profilePictureBytes);  // Encode the image to base64, so we can display it in the HTML
+            model.addAttribute("profilePicture", profilePictureString);
         } else {
-            model.addAttribute("isLoggedIn", false);
+            // Default profile picture until the user uploads one
+            model.addAttribute("hasPfp", false);
         }
-
-
+        model.addAttribute("isLoggedIn", true);
+        model.addAttribute("firstName", currentUser.getFirstName());
+        model.addAttribute("lastName", currentUser.getLastName());
+        model.addAttribute("email", currentUser.getEmail());
+        model.addAttribute("phoneNumber", currentUser.getPhoneNumber());
+        model.addAttribute("address", currentUser.getAddress());
+        model.addAttribute("city", currentUser.getCity());
+        model.addAttribute("state", currentUser.getState());
+        model.addAttribute("area", currentUser.getArea());
+        model.addAttribute("country", currentUser.getCountry());
+        model.addAttribute("postcode", currentUser.getPostcode());
     }
 
-    @PreAuthorize("hasAnyAuthority('USER','AGENT')")
+    @PreAuthorize("hasAnyAuthority('USER','AGENT', 'ADMIN')")
     @PostMapping("/edit-profile")
     public String editProfile(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName, @RequestParam(required = false) String phoneNumber, @RequestParam(required = false) String address, @RequestParam(required = false) String city, @RequestParam(required = false) String state, @RequestParam(required = false) String area, @RequestParam(required = false) String country, @RequestParam(required = false) String postcode) {
         // Basic edit profile functionality
@@ -91,6 +103,27 @@ public class PrivateController {
         userRepository.save(currentUser);  // Save the changes to the database
         return "redirect:/profile";
         }
+
+    @PostMapping("/edit-pfp")
+    public String editPfp(@RequestParam(required = false) MultipartFile pfp) throws IOException, SQLException {
+        if (pfp == null) {
+            return "redirect:/profile";
+        }
+        if (pfp.isEmpty()) {
+            return "redirect:/profile";
+        }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = userRepository.findByEmail(auth.getName());
+        // Check if the file is empty
+        // We already checked the user can only upload jpg or png files, so we don't need to check the file type
+        Image image = new Image();
+        image.setFileName(pfp.getOriginalFilename());
+        image.setImageBlob(new SerialBlob(pfp.getBytes()));
+        currentUser.setProfilePicture(image);
+        imageRepository.save(image);
+        userRepository.save(currentUser);  // Save the changes to the database
+        return "redirect:/profile";
+    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin")
