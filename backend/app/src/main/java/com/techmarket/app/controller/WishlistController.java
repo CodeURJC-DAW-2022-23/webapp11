@@ -26,11 +26,40 @@ public class WishlistController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = UserRepository.findByEmail(authentication.getName());
         if (user.getWishlist().isEmpty()){
-
+            model.addAttribute("items", null);
+        } else {
+            model.addAttribute("items", user.getWishlist());
         }
 
         return "wishlist";
 
+    }
+
+
+
+    @GetMapping("/add-to-wishlist")
+    public String addToCart(int productId) {
+        // Access the user's wishlist using the session using the SecurityContext and user repository with the email
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = UserRepository.findByEmail(authentication.getName());
+        // Add the product to the wishlist
+        user.getWishlist().add(new Product(productId));  // This will add the product to the cart, but it will not be a product from the database, it will be a product with only the productId, so it will not have the product name, price, etc.
+        // Save the changes to the database
+        UserRepository.save(user);  // This will update the user's cart as the cart is a list of products on the user model
+        return "redirect:/cart";
+    }
+
+    @GetMapping("/remove-from-wishlist")
+    public String removeFromCart(int productId) {
+        // Access the user's wishlist using the session using the SecurityContext and user repository with the email
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        User user = UserRepository.findByEmail(email);
+        // Remove the product from the wishlist
+        user.getWishlist().remove(new Product(productId));
+        // Save the changes to the database
+        UserRepository.save(user);  // This will update the user's cart as the cart is a list of products on the user model
+        return "redirect:/cart";
     }
 
 }
