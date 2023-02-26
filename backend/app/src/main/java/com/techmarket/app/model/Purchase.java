@@ -10,24 +10,28 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String purchaseId;
-    @OneToOne
-    private Product product;  // We will create a new "Purchase" object for each product in the checkout page, easier to handle
+    // Instead of String ids, we use product and User to avoid having to query the database for the product and user
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
     private String timestamp;
     private String address;
     private String price;
-    private String userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
     private String paymentMethod;
     private boolean isCancelled;
 
-    public Purchase(String purchaseId, Product product, String timestamp, String address, String price, String userId, String paymentMethod) {
+    public Purchase(String purchaseId, Product product, String timestamp, String address, String price, User user, String paymentMethod, boolean isCancelled) {
         this.purchaseId = purchaseId;
         this.product = product;
         this.timestamp = timestamp;
         this.address = address;
         this.price = price;
-        this.userId = userId;
-        this.isCancelled = false;
+        this.user = user;
         this.paymentMethod = paymentMethod;
+        this.isCancelled = isCancelled;
     }
 
     public Purchase() {
@@ -74,12 +78,12 @@ public class Purchase {
         this.price = price;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public boolean isCancelled() {

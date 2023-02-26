@@ -26,7 +26,7 @@ public class Product {
     private int productStock;
     private String productName; // They have to use the same name as Mustache
     private String productUrl;
-    @OneToMany
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 
 

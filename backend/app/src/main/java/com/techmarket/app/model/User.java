@@ -20,9 +20,10 @@ public class User {
     private String email;
 
     // Role
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.EAGER)  // We want to load the roles when we load the user
     private List<String> roles;
 
+    // The address could be another entity, but for simplicity we'll just store the information in the user entity
     private String phoneNumber;
     private String address;
     private String postcode;
@@ -32,19 +33,21 @@ public class User {
     private String city;
     //type of user
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)  // If we delete the user, we want to delete the image as well
     private Image profilePicture;
 
-    @OneToMany
-    private List<Product> wishlist;
-    @OneToMany
-    private List<Product> shoppingCart;
-    @OneToMany
-    List<Product> purchasedProducts;
-    @OneToMany
-    List<Message> messages;
-    @OneToMany
-    List<Review> reviews;
+    // Cascade to eliminate some stuff when the user is deleted, fetch lazy to avoid loading all the products when we load the user.
+    // Lists are initialized to an empty list, so we can add products to it later without having to check if it's null
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Product> wishlist = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Product> shoppingCart = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY)
+    List<Product> purchasedProducts = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Message> messages = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Review> reviews = new ArrayList<>();
 
 
 

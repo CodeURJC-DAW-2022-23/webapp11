@@ -13,10 +13,12 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long imageId;
+    @Column(nullable = false)
     private String fileName;  // This is the image url, we will use this to send the image to the frontend
 
     @Lob
-    @JsonIgnore  // We don't want to send the image blob to the frontend because it's too big, we will send the image url instead
+    @JsonIgnore
+    @Column(nullable = false)
     private Blob imageBlob;  // We don't use byte[] because it will end up taking too much space in the server's memory
 
     public Image(Long imageId, String fileName, Blob imageBlob) {
