@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/wishlist.css"> <!--Todo wishlist.css-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+  <script src="/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="/app.js"></script>
+
+  <title>3TechMarket - Wishlist</title>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row header">
+    <div class="col-md-2">
+      <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
+    </div>
+    <div class="col-md-8">
+      <div class="input-group mb-4 searchbar">
+        <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+        <div class="input-group-append">
+          <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!--Header Icons-->
+    <div class="col-md-2 ">
+      <div class="row">
+        <div class="col-md-2 navigation">
+
+          <div class="dropdown">
+            <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
+              <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="col-md-2 navigation ">
+
+          <a href="#">
+            <i class="fa-solid fa-star"></i>
+          </a>
+
+        </div>
+
+        <div class="col-md-2 navigation">
+
+          <a href="#">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
+
+        </div>
+
+        <div class="col-md-2 navigation ">
+
+          <a href="#">
+            <i class="fa-solid fa-bell"></i>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <h1>Shopping Cart</h1>
+
+  <!--Wishlist -->
+  <div class="container-fluid">
+    <!--Using Mustache to generate the items-->
+    {{#items}} <!--If there are items in the wishlist, then show them-->
+    <div class="row item">
+      <div class="col-md-4">
+        <img src="{{image}}" alt="item" width="100" height="100">
+      </div>
+      <div class="col-md-4">
+        <h3>{{productName}}</h3>
+        <p>{{description}}</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Price</h3>
+        <p>${{productPrice}}</p>
+      </div>
+      {{/items}}
+      {{^items}}
+      <div class="col-md-12">
+        <h2>There are no items in your wishlist, <a href="/">START SHOPPING NOW!</a></h2>
+      </div>
+      {{/items}}
+    </div>
+
+  </div>
+
+</div>
+</body>
