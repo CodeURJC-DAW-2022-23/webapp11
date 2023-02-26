@@ -54,7 +54,7 @@ public class Product {
         this.reviews = reviews;
     }
 
-    protected Product(){}
+    public Product(){}
 
     public Product(long productId) {
         this.productId = productId;

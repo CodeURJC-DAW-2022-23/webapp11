@@ -20,6 +20,6 @@ public interface ImageRepository extends JpaRepository<Image, String> {
     List<Image> findByProductId(String productId);
     // We need this one to get all the images of a product
 
-    Image findByImage(String image);
+    Image findByImageId(String imageId);
 
 }

@@ -19,7 +19,7 @@
     <div class="row header">
         <div class="col-md-2">
             <div class="logoImage">
-                <h1><a href="index.html"><img src="/logo2.png" alt="logo" width="180" height="76"></a>
+                <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a>
                 </h1>
             </div>
         </div>
@@ -38,22 +38,22 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="addproduct.html">Add Product</a></li>
-                            <li><a class="dropdown-item" href="editproduct.html">Edit Product</a></li>
+                            <li><a class="dropdown-item" href="/addproduct">Add Product</a></li>
+                            <li><a class="dropdown-item" href="/editproduct">Edit Product</a></li>
                         </ul>
                     </div>
 
                 </div>
 
                 <div class="col-md-2 navigation">
-                    <a href="reviewhistory.html">
+                    <a href="/reviewhistory">
                         <i class="fa-solid fa-message"></i>
                     </a>
 
                 </div>
 
                 <div class="col-md-2 navigation ">
-                    <a href="dashboard.html">
+                    <a href="/admin/dashboard">
                         <i class="fa-solid fa-chart-line"></i>
                     </a>
 
@@ -62,7 +62,7 @@
             </div>
         </div>
         <div class="form">
-            <form action="/addproduct-create" method="POST">
+            <form action="/addproduct-create" enctype="multipart/form-data" method="POST">
                 <div style="text-align:center">
                     <div class="col-md-12">
                         <div class="row">
@@ -101,6 +101,16 @@
                                                                                             placeholder="Tags" value="" name="tags">
                                 </div>
                             </div>
+                            <!--Add the product main image and other images-->
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="file" class="form-control"
+                                                                                            placeholder="Main Image" value="" name="mainImage">
+                                </div>
+                            <!--Multi image upload-->
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="file" class="form-control"
+                                                                                            placeholder="More Images" value="" name="moreImages" multiple="multiple">
+                                </div>
                         </div>
                         <div class="buttonMargin">
                             <button type="submit" class="btn btn-primary">Save</button>

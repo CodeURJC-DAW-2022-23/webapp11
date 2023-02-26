@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import java.sql.Blob;
-import java.util.List;
 
 @Entity
 @EnableAutoConfiguration
@@ -13,22 +12,22 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String imageId;
+    private Long imageId;
     private String productId;
     private String reviewId;
     private String userId; // This entity can be used for user profile pictures, reviews, and products, so we need to know which one it is, the rest of the fields will be null
-    private String image;  // This is the image url, we will use this to send the image to the frontend
+    private String fileName;  // This is the image url, we will use this to send the image to the frontend
 
     @Lob
     @JsonIgnore  // We don't want to send the image blob to the frontend because it's too big, we will send the image url instead
     private Blob imageBlob;  // We don't use byte[] because it will end up taking too much space in the server's memory
 
-    public Image(String imageId, String productId, String reviewId, String userId, String image, Blob imageBlob) {
+    public Image(Long imageId, String productId, String reviewId, String userId, String fileName, Blob imageBlob) {
         this.imageId = imageId;
         this.productId = productId;
         this.reviewId = reviewId;
         this.userId = userId;
-        this.image = image;
+        this.fileName = fileName;
         this.imageBlob = imageBlob;
     }
 
@@ -36,11 +35,11 @@ public class Image {
 
     }
 
-    public String getImageId() {
+    public Long getImageId() {
         return imageId;
     }
 
-    public void setImageId(String imageId) {
+    public void setImageId(Long imageId) {
         this.imageId = imageId;
     }
 
@@ -68,12 +67,12 @@ public class Image {
         this.userId = userId;
     }
 
-    public String getImage() {
-        return image;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setFileName(String image) {
+        this.fileName = image;
     }
 
     public Blob getImageBlob() {

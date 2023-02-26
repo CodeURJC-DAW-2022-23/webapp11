@@ -1,13 +1,14 @@
 package com.techmarket.app.controller;
 
+import com.techmarket.app.Repositories.ImageRepository;
 import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.Repositories.ReviewRepository;
 import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.Image;
+import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Review;
 import com.techmarket.app.model.User;
 import com.techmarket.app.service.ProductService;
-import com.techmarket.app.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +24,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -45,6 +48,9 @@ public class    ProductController {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private ImageRepository imageRepository;
 
     @GetMapping("/product")
     public String product() {
@@ -77,8 +83,33 @@ public class    ProductController {
 
     @Transactional
     @PostMapping("/addproduct-create")
-    public ResponseEntity<Product> createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags) {
-        Product product = new Product(name, description, price, discount, amount, tags);
+    public ResponseEntity<Product> createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam MultipartFile mainImage, @RequestParam MultipartFile[] moreImages) throws IOException, SQLException {
+        Product product = new Product();
+        // Create the list of images
+        List<Image> images = new ArrayList<>();
+        product.setImages(images);
+        for (MultipartFile file : moreImages) {
+            if (Objects.equals(file.getContentType(), "image/jpeg") || Objects.equals(file.getContentType(), "image/png")) {
+                Image image = new Image();
+                image.setFileName(file.getOriginalFilename());
+                image.setImageBlob(new javax.sql.rowset.serial.SerialBlob(file.getBytes()));
+                images.add(image);
+                imageRepository.save(image);
+            } else {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);  // 400 Bad Request, user didn't upload an image
+            }
+        }
+        Image image = new Image();
+        image.setFileName(mainImage.getOriginalFilename());
+        image.setImageBlob(new SerialBlob(mainImage.getBytes()));
+        imageRepository.save(image);
+        product.setProductName(name);
+        product.setDescription(description);
+        product.setProductPrice(price);
+        product.setDiscount(discount);
+        product.setProductStock(amount);
+        product.setTags(tags);
+        product.setMainImage(image);
         // Create new product
         productRepository.save(product);
         return new ResponseEntity<>(product, HttpStatus.CREATED);  // 201 Created, this will also return the user object in the response body
