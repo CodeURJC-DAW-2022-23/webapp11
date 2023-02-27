@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/product.css">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
+          crossorigin="anonymous"></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/productSlider.js"></script>
+  <title>3TechMarket - Login</title>
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row header">
+    <div class="col-md-2">
+      <h1><a href="index.html"><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></a>
+      </h1>
+    </div>
+    <div class="col-md-8">
+      <div class="input-group mb-4 searchbar">
+        <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5"
+               class="form-control border-success">
+        <div class="input-group-append">
+          <button id="button-addon7" type="submit" class="btn btn-success"><i
+                  class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!--Iconos del header-->
+    <div class="col-md-2 ">
+      <div class="row">
+        <div class="col-md-2 navigation">
+
+          <div class="dropdown">
+            <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="purchases.html">Recent orders</a></li>
+              <li><a class="dropdown-item" href="profile.html">Edit profile</a></li>
+              <li><a class="dropdown-item" href="login.html">Log In/Sign Up</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="col-md-2 navigation ">
+
+          <a href="#">
+            <i class="fa-solid fa-star"></i>
+          </a>
+
+        </div>
+
+        <div class="col-md-2 navigation">
+
+          <a href="#">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
+
+        </div>
+
+        <div class="col-md-2 navigation ">
+
+          <a href="#">
+            <i class="fa-solid fa-bell"></i>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="single-product">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="product-image">
+            <div class="main-image">
+              <img src="{{main_image}}" alt="" width="460px">
+            </div>
+            <div class="image-slider">
+              {{#imageList}}}
+                <img src="{{.}}" alt="" width="110px" class="image-list">
+              {{#imageList}}}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="product-info d-flex flex-column">
+            <div class="product-name">
+              <h3>{{product_name}}}</h3>
+            </div>
+            <div class="product-price d-flex justify-content-between">
+              {{#discount}}
+              <span class="sale-price">{{product_discounted}}}</span>
+              <span class="original-price">{{product_price}}}</span>
+              <span class="discount">{{discount}}</span>
+              {{/discount}}}
+
+              {{^discount}}
+              <span class="sale-price">{{product_price}}</span>
+              {{/discount}}
+              <!--have to do this-->
+              <div class="product-rate">
+                <span><i class="bx bxs-star" style="color: white"></i></span>
+                <span><i class="bx bxs-star" style="color: white"></i></span>
+                <span><i class="bx bxs-star" style="color: white"></i></span>
+                <span><i class="bx bxs-star" style="color: white"></i></span>
+                <span><i class='bx bxs-star-half' style="color: white"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="product-purchase">
+
+            <div class="product-btn-group">
+              <div class="button buy-now"><i class='bx bx-money-withdraw'></i></i> Comprar</div>
+              <div class="button add-cart"><i class='bx bx-cart-download'></i></i> Añadir al carrito
+              </div>
+              <div class="button star"><i class='bx bxs-star'></i> Guardar</div>
+            </div>
+          </div>
+
+          <div class="purchase-info d-flex flex-column">
+            <div class="delivery d-flex justify-content-between">
+              <span> Envío: </span>
+              <span class="delivery-type"> Envío GRATIS </span>
+            </div>
+
+            <div class="refund d-flex justify-content-between">
+              <span> Devolución: </span>
+              <span class="refund-type"> Devolución GRATIS </span>
+            </div>
+
+            <div class="home-delivery d-flex justify-content-between">
+              <span> Envío a domicilio: </span>
+              {{#product_stock}}
+              <span class="stock"> ¡En stock!</span>
+              {{/product_stock}}
+
+              {{^product_stock}}
+              <span class="stock"> No hay stock</span>
+              {{/product_stock}}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <div class="features d-flex justify-content-start">
+        <div class="row">
+          <h5>Características</h5>
+          <div class="info-features">
+            <p>{{description}}</p>
+
+          </div>
+          <h5>Opiniones</h5>
+          {{#product_reviews}}
+          <div class="conteiner-opinion d-flex justify-content-start">
+            <div class="opinion d-flex justify-content-between gap-3">
+              {{#profilePicture}}}
+              <img src="{{profilePicture}}" width="90px">
+              {{/profilePicture}}
+
+              {{^profilePicture}}
+              <img src="https://i.imgur.com/FSW2P4r.jpg" width="90px">
+              {{/profilePicture}}
+
+              <div class="user-info d-flex justify-content-between gap-5">
+                <span class=" user-name">{{userEmail}}</span>
+                <div class="product-rate">
+                  <!--have to do this-->
+                  <span><i class="bx bxs-star" style="color: white"></i></span>
+                  <span><i class="bx bxs-star" style="color: white"></i></span>
+                  <span><i class="bx bxs-star" style="color: white"></i></span>
+                  <span><i class="bx bxs-star" style="color: white"></i></span>
+                  <span><i class='bx bxs-star-half' style="color: white"></i></span>
+                  <div class="row">
+                    <b>{{review_title}}</b>
+                    <span class="text-op">{review_text}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/product_reviews}}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
