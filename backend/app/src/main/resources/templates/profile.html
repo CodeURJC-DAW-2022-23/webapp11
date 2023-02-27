@@ -40,7 +40,10 @@
                           <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
                           <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
                             {{#isLoggedIn}}
-                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            <li><form action="/logout" method="post">
+                                <button class="dropdown-item" type="submit">Logout</button>
+                                <input type="hidden" name="_csrf" value="{{token}}"/>
+                            </form></li>
                             {{/isLoggedIn}}
                             {{^isLoggedIn}}
                             <li><a class="dropdown-item" href="/signin">Login/Sign up</a></li>

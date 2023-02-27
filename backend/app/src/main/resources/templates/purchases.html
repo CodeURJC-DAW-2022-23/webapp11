@@ -39,7 +39,10 @@
                         <ul class="dropdown-menu">
                           <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
                           <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            <li><form action="/logout" method="post">
+                                <button class="dropdown-item" type="submit">Logout</button>
+                                <input type="hidden" name="_csrf" value="{{token}}"/>
+                            </form></li>
                         </ul>
                       </div>
                         

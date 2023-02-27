@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 
-  <title>Unauthorized user</title>
+  <title>Error</title>
 </head>
 
 <body>
@@ -34,23 +34,26 @@
 
       <!--Header icons-->
       <div class="col-md-2 ">
+        {{#isLoggedIn}}
         <div class="row">
           <div class="col-md-2 navigation">
 
             <div class="dropdown">
               <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               </a>
-
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
                 <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                <li><a class="dropdown-item" href="/signin">Log In/Sign Up</a></li>
+                <li><form action="/logout" method="post">
+                  <button class="dropdown-item" type="submit">Logout</button>
+                  <input type="hidden" name="_csrf" value="{{token}}"/>
+                </form></li>
               </ul>
             </div>
 
           </div>
 
-          <div class="col-md-2 navigation ">
+          <div class="col-md-2 navigation">
 
             <a href="/wishlist">
               <i class="fa-solid fa-star"></i>
@@ -75,7 +78,13 @@
           </div>
 
         </div>
-      </div>
+        {{/isLoggedIn}}
+        {{^isLoggedIn}}
+        <div class="row">
+          <!-- Login or register button linked to /signin -->
+          <a href="/signin" class="buttonlogin"><button class="btn btn-success">Login or register</button></a>
+        </div>
+        {{/isLoggedIn}}
     </div>
   </div>
 
