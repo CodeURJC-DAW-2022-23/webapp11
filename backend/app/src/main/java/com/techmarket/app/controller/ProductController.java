@@ -66,7 +66,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public String showProduct(@PathVariable Long id, Model model) {
+    public String product(@PathVariable Long id, Model model) {
         Optional<Product> product = productService.getProductById(id);
         if (product.isPresent()) {
             model.addAttribute("product", product.get());
@@ -156,11 +156,7 @@ public class ProductController {
         // If there's information missing and the product can't be created, the response will be 400 Bad Request, Spring will handle that
     }
 
-    @PostMapping("/deleteProduct/{id}")
-    public String deleteProduct(@PathVariable("id") Long id) {
-        //productService.deleteAllByProductId(id);
-        return "redirect:/products";
-    }
+
 
     @PreAuthorize("hasAnyAuthority('USER')")
     @GetMapping("/product/{id}/review")
