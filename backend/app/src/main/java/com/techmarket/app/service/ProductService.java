@@ -24,7 +24,4 @@ public class ProductService {
     }
 
 
-    //public void deleteAllByProductId(Long id) {
-    //    productRepository.deleteAllById(String.valueOf(id));
-    //}
 }
