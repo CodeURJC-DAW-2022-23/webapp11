@@ -1,12 +1,28 @@
 package com.techmarket.app.controller;
 
+import com.techmarket.app.Repositories.ImageRepository;
+import com.techmarket.app.Repositories.UserRepository;
+import com.techmarket.app.model.User;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+@Controller
 public class ImageController {
+
+    @Autowired
+    private ImageRepository imageRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/{id}/upload")
     public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile) throws IOException {
@@ -14,11 +30,23 @@ public class ImageController {
         return ResponseEntity.created(null).build(); // Returns a 201 Created response, we will change null to the location of the image
     }
 
-    @GetMapping("/{id}/image")
-    public ResponseEntity<Object> getImage(@PathVariable long id) {
-        // Get image from database
-        return ResponseEntity.ok().build(); // Returns a 200 OK response, we will change null to the image
-        // return ResponseEntity.notFound().build(); // Returns a 404 Not Found response when the image is not found
+    @GetMapping("/{id}/userpfp")
+    public ResponseEntity<Object> getImage(HttpServletResponse response, @PathVariable long id) throws SQLException, IOException {
+        if (userRepository.findById(id).isPresent()) {
+            User user = userRepository.findById(id).get();
+            if (user.getProfilePicture() != null) {
+                // Get the InputStreamResource from the database
+                InputStreamResource file = new InputStreamResource(user.getProfilePicture().getImageBlob().getBinaryStream());
+                return ResponseEntity.ok()
+                        .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+                        .contentLength(user.getProfilePicture().getImageBlob().length())
+                        .body(file);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}/image")
@@ -26,4 +54,6 @@ public class ImageController {
         // Delete image from database
         return ResponseEntity.noContent().build(); // Returns a 204 No Content response
     }
+
+
 }

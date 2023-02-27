@@ -29,7 +29,6 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf().disable()
                 .exceptionHandling( exception -> exception
                         .accessDeniedPage("/access-denied")
                 )

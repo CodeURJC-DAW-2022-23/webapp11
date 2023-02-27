@@ -5,7 +5,6 @@ import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.Image;
 import com.techmarket.app.model.User;
 import jakarta.servlet.http.HttpServletRequest;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -20,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.security.Principal;
-import java.sql.Blob;
 import java.sql.SQLException;
 
 @Controller
@@ -31,6 +29,9 @@ public class PrivateController {
 
     @Autowired
     private ImageRepository imageRepository;
+
+    @Autowired
+    private ImageController imageController;
 
     @PreAuthorize("hasAnyAuthority('USER','AGENT', 'ADMIN')")
     @GetMapping("/profile")
@@ -45,10 +46,10 @@ public class PrivateController {
         // Get his profile picture from the database, if it exists
         if (currentUser.getProfilePicture() != null) {
             model.addAttribute("hasPfp", true);
-            Blob profilePicture = currentUser.getProfilePicture().getImageBlob();
-            byte[] profilePictureBytes = profilePicture.getBytes(1, (int) profilePicture.length());  // Get the image as a byte array, the first parameter is the offset, so we start at 1, and the second parameter is the length of the image
-            String profilePictureString = Base64.encodeBase64String(profilePictureBytes);  // Encode the image to base64, so we can display it in the HTML
-            model.addAttribute("profilePicture", profilePictureString);
+            // Get the pfp from the controller
+            Long userId = currentUser.getId();
+            String pfp = "/" + userId + "/userpfp";
+            model.addAttribute("pfp", pfp);
         } else {
             // Default profile picture until the user uploads one
             model.addAttribute("hasPfp", false);
