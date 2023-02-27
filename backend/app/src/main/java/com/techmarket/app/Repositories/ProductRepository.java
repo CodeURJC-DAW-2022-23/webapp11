@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findByProductId(Long id);
 
+    ArrayList<Product> findAll();
+    ArrayList<Product> findAllByTags(String tag);
     //void deleteAllById(String productId);
 
     // For adding new products, we will use the save method from JpaRepository
