@@ -46,7 +46,7 @@ public class WishlistController {
         user.getWishlist().add(new Product(productId));  // This will add the product to the cart, but it will not be a product from the database, it will be a product with only the productId, so it will not have the product name, price, etc.
         // Save the changes to the database
         UserRepository.save(user);  // This will update the user's cart as the cart is a list of products on the user model
-        return "redirect:/cart";
+        return "redirect:/wishlist";
     }
 
     @GetMapping("/remove-from-wishlist")
@@ -59,7 +59,7 @@ public class WishlistController {
         user.getWishlist().remove(new Product(productId));
         // Save the changes to the database
         UserRepository.save(user);  // This will update the user's cart as the cart is a list of products on the user model
-        return "redirect:/cart";
+        return "redirect:/wishlist";
     }
 
 }

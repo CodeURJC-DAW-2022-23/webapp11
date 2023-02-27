@@ -83,7 +83,7 @@ public class    ProductController {
 
     @Transactional
     @PostMapping("/addproduct-create")
-    public ResponseEntity<Product> createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam MultipartFile mainImage, @RequestParam MultipartFile[] moreImages) throws IOException, SQLException {
+    public ResponseEntity<Product> createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam MultipartFile mainImage, @RequestParam(required = false) MultipartFile[] moreImages) throws IOException, SQLException {
         Product product = new Product();
         // Create the list of images
         List<Image> images = new ArrayList<>();
