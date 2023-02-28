@@ -36,7 +36,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .requestMatchers("/signup", "/signin", "/signin-user", "/signup-user", "/", "/product/**", "/search", "/error", "access-denied").permitAll()
                         // Access to the assets so the frontend can load correctly
                         .requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".jpg") || request.getServletPath().endsWith(".png")).permitAll()
-                        .requestMatchers("/admin/**", "/addproduct", "/addproduct-create", "/editproduct", "/editproduct-update").hasAuthority("ADMIN")
+                        .requestMatchers("/admin/**", "/addproduct", "/addproduct-create", "/editproduct", "/editproduct-update","/dashboard").hasAuthority("ADMIN")
                         .requestMatchers("/profile").authenticated()  // Any role will be able to access its profile
                         .requestMatchers("/edit-profile").authenticated()
                         .requestMatchers("/wishlist").authenticated()

@@ -5,13 +5,13 @@ import com.techmarket.app.Repositories.PurchaseRepository;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Purchase;
 import com.techmarket.app.service.RecommendationService;
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -26,7 +26,7 @@ public class HomeController {
     public String home(Model model, Principal user) {  // Using Principal to check if user is logged in
         if (user != null) {
             model.addAttribute("isLoggedIn", true);
-            ArrayList<Product> recommended = recommendationService.getRecommendedProducts();
+            List<Product> recommended = recommendationService.getRecommendedProducts();
             if(recommended.size() != 0){
                 model.addAttribute("default",false);
                 for(int i = 0;i<recommended.size();i++) {
