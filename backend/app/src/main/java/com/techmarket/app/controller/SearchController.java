@@ -32,10 +32,6 @@ public class SearchController {
     if (results.isEmpty()) {
       model.addAttribute("results", null);
     } else {
-      for (Product p : results) {
-        String image = "/product/" + p.getProductId() + "/image"; // Get the main image for the product
-        model.addAttribute("img", image);
-      }
       model.addAttribute("results", results);
     }
     model.addAttribute("product", product);  // Search query
