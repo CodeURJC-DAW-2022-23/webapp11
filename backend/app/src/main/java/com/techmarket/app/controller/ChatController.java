@@ -10,6 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -30,5 +32,15 @@ public class ChatController {
         List<Message> messages = messageRepository.findByUserId(currentUser.getId());
         model.addAttribute("messages", messages);
         return "messages";
+    }
+
+    @PostMapping("/send-message")
+    public String sendMessage(Message message, @RequestParam String messageText) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = userRepository.findByEmail(auth.getName());
+        message.setUser(currentUser);
+        message.setMessage(messageText);
+        messageRepository.save(message);
+        return "redirect:/messages";
     }
 }
