@@ -1,6 +1,7 @@
 package com.techmarket.app.controller;
 
 import com.techmarket.app.Repositories.ImageRepository;
+import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.User;
 import jakarta.servlet.http.HttpServletResponse;
@@ -24,6 +25,9 @@ public class ImageController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @PostMapping("/{id}/upload")
     public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile) throws IOException {
         // Upload image to database, last one should be a .save() method, then return the location of the image
@@ -44,6 +48,20 @@ public class ImageController {
             } else {
                 return ResponseEntity.notFound().build();
             }
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/product/{productId}/image")  // Main image for a product
+    public ResponseEntity<Object> getImage(@PathVariable long productId) throws SQLException, IOException {
+        if (productRepository.findById(productId).isPresent()) {
+            // Get the InputStreamResource from the database
+            InputStreamResource file = new InputStreamResource(productRepository.findById(productId).get().getMainImage().getImageBlob().getBinaryStream());
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_TYPE, "image/jpeg", "image/png")
+                    .contentLength(productRepository.findById(productId).get().getMainImage().getImageBlob().length())
+                    .body(file);
         } else {
             return ResponseEntity.notFound().build();
         }

@@ -2,13 +2,13 @@ package com.techmarket.app.Repositories;
 
 import com.techmarket.app.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @EnableJpaRepositories
@@ -28,6 +28,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     ArrayList<Product> findAll();
     ArrayList<Product> findAllByTags(String tag);
+
+    // Find products by name but allow for partial matches
+    @Query("SELECT p FROM Product p WHERE p.productName LIKE %?1%")  // ?1 is the first parameter passed to the method and %?1% means that we allow for partial matches (e.g. "iphone" will match "iphone 14") because we are using LIKE
+    List<Product> findByProductNameContaining(String productName);
+
     //void deleteAllById(String productId);
 
     // For adding new products, we will use the save method from JpaRepository
