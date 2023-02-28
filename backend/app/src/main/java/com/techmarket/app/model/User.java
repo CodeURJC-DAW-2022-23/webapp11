@@ -31,7 +31,8 @@ public class User {
     private String country;
     private String area;
     private String city;
-    //type of user
+
+    private Long passwordChangeToken;
 
     @OneToOne(cascade = CascadeType.ALL)  // If we delete the user, we want to delete the image as well
     private Image profilePicture;
@@ -70,11 +71,9 @@ public class User {
         this.purchasedProducts = new ArrayList<>();
         this.messages = new ArrayList<>();
         this.reviews = new ArrayList<>();
-
-
-
-
-
+        long leftLimit = 10000L;
+        long rightLimit = 99999L;
+        this.passwordChangeToken = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
     }
 
     protected User(){}
@@ -191,7 +190,12 @@ public class User {
         return id;
     }
 
-
+    public void setToken(Long token) {
+        this.passwordChangeToken = token;
+    }
+    public Long getToken() {
+        return passwordChangeToken;
+    }
 
     public void setWishlist(List<Product> wishlist) {
         this.wishlist = wishlist;
