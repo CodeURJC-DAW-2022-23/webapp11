@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.MessagingException;
+import java.util.Objects;
 
 
 @Controller
@@ -56,14 +57,23 @@ public class UserController {
     @GetMapping("/recovery")
     public String recovery(Model model, HttpServletRequest request){
         String error = request.getParameter("error");
-        String success = request.getParameter("success");
         if (error != null && error.equals("400")) {
             model.addAttribute("error400", true);
         }
-        if (success != null && success.equals("201")) {
-            model.addAttribute("success201", true);
-        }
         return "recovery";
+    }
+    @GetMapping("/code")
+    public String code(Model model, HttpServletRequest request){
+        String error = request.getParameter("error");
+        if (error != null && error.equals("400")) {
+            model.addAttribute("error400", true);
+        }
+        return "code";
+    }
+
+    @GetMapping("/changepassword")
+    public String changepassword(){
+        return "changepassword";
     }
 
     // Sign up a new user
@@ -89,12 +99,12 @@ public class UserController {
 
     }
     @PostMapping("/recover-email")
-    public String recover(@RequestParam String email) throws MessagingException {
+    public String recover(@RequestParam String email, Model model) throws MessagingException {
         User currentUser = userRepository.findByEmail(email);
         if (currentUser != null) {
             // User created, 201 Created
             emailService.sendAccountRecoveryEmail(email, currentUser.getFirstName(), currentUser.getToken());
-            return "redirect:/recovery?success=201&email=" + email;
+            return "redirect:/code?email=" + email;
         } else {
             // User not created, 400 Bad Request
             return "redirect:/recovery?error=400";
@@ -103,25 +113,18 @@ public class UserController {
 
     }
     @PostMapping("/verify-code")
-    public String passwordChanger(@PathVariable String email, @RequestParam Long code) throws MessagingException {
+    public String passwordChanger(@RequestParam String email, @RequestParam Long code, @RequestParam String password) throws MessagingException {
         User currentUser = userRepository.findByEmail(email);
-        if (code == currentUser.getToken()){
-            return "redirect:/changepassword";
+        if (Objects.equals(code, currentUser.getToken())){
+            currentUser.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));
+            userRepository.save(currentUser);
+            return "redirect:/signin?success=201";  // Redirect to sign in page
         }else {
-            return "redirect:/recovery?error=409";
+            return "redirect:/code?error=400";
         }
         // If there's information missing and the user can't be created, the response will be 400 Bad Request, Spring will handle that
 
     }
-    @PostMapping("/password-changer")
-    public String passwordChanger(@RequestParam String email, @RequestParam String password) throws MessagingException {
-        User currentUser = userRepository.findByEmail(email);
-        currentUser.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));
-        return "redirect:/signin?success=201";  // Redirect to sign in page
-        // If there's information missing and the user can't be created, the response will be 400 Bad Request, Spring will handle that
-
-    }
-
 
     // Sign in an existing user (this is handled by Spring)
 
