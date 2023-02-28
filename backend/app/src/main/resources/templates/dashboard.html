@@ -33,14 +33,13 @@
         <div class="col-md-2 ">
 
             <div class="row">
-                <div class="col-md-2 navigation">
+                <div class="col-md-3 navigation">
 
                     <div class="dropdown">
                         <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
                             <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
                             <li>
                                 <form action="/logout" method="post">
@@ -82,7 +81,13 @@
             <a href="/product/{{productId}}">
                 <img src="/product/{{productId}}/image" alt="resultimage" width="120" height="120">
                 <p class="name">{{productName}}</p>
-                <p>{{productPrice}} $ <span class="badge text-bg-success">{{productStock}}</span></p>
+                <p>{{productPrice}} $ <span class="badge text-bg-success">Stock: {{productStock}}</span></p>
+                <p ><a href="/product/{{productId}}/edit" class="btn btn-primary">Edit</a>
+                    <a href="/product/{{productId}}/delete" class="btn btn-danger">Delete</a>
+                    <a href="reviewhistory/{{productId}}" class="btn btn-dark">Review history</a>
+                    <a href="/pricehistory/{{productId}}" class="btn btn-dark">Price history</a>
+                </p>
+
             </a>
         </div>
         {{/item}}
