@@ -11,7 +11,7 @@
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="/app.js"></script>
-    <title>3TechMarket - Login</title>
+    <title>3TechMarket - Enter verification code</title>
 </head>
 <body>
 <div class="container-fluid">
@@ -23,55 +23,47 @@
 </div>
 <div>
     <div class="col-md-12">
-        <h1 class="loginText">Login</h1>
+        <h1 class="loginText">Enter the code we've sent to your inbox</h1>
     </div>
-    <form action="/signin-user" method="POST">
+    <form action="/verify-code" method="POST">
         <div class="col-md-12">
             <div class="container">
-                <input type="email" id="email" placeholder="Email" name="email" class="loginBox">
+                <input type="email" id="email" placeholder="Introduce Your Email" name="email" class="loginBox">
             </div>
         </div>
         <div class="col-md-12">
             <div class="container">
-                <input type="password" id="password" name="password" placeholder="Password" class="loginBox"
+                <input type="number" id="code" placeholder="Verification Code" name="code" class="loginBox">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+                <input type="password" id="password" name="password" placeholder="New Password" class="loginBox"
                        minlength="8" required>
                 <span>
                     <i class="fa-solid fa-eye" id="togglePassword" onclick="tooglePW()" aria-hidden="true"></i>
                 </span>
             </div>
         </div>
-        {{#error}}
+        {{#error400}}
+        <!--Using Bootstrap alerts-->
         <div class="col-md-12">
             <div class="container">
-                <!--Show a bootstrap alert-->
                 <div class="alert alert-danger" role="alert">
-                    Email or password is incorrect!
+                    Error: The code you've entered doesn't match with your email.
                 </div>
             </div>
         </div>
-        {{/error}}
-        {{#success}}
-        <div class="col-md-12">
-            <div class="container">
-                <!--Show a bootstrap alert-->
-                <div class="alert alert-success" role="alert">
-                    You can now log in using your email and password!
-                </div>
-            </div>
-        </div>
-        {{/success}}
+        {{/error400}}
         <div class="col-md-12">
             <div class="buttonMargin">
-                <button type="submit" class="btn btn-primary">Sign In</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
         <input type="hidden" name="_csrf" value="{{token}}"/>
     </form>
     <div class="col-md-12">
-        <h1 class="noAccountText"><a href="/signup">Don't have an account? Sign Up!</a></h1>
-    </div>
-    <div class="col-md-12">
-        <h1 class="noAccountText"><a href="/recovery">Forgot password? Click here!</a></h1>
+        <h1 class="noAccountText"><a href="/login">Sign In!</a></h1>
     </div>
 </div>
 </body>

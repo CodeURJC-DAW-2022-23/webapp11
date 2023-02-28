@@ -7,6 +7,7 @@ import com.techmarket.app.model.Purchase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.ArrayList;
 
 
@@ -16,12 +17,12 @@ public class RecommendationService {
     private PurchaseRepository purchaseRepository;
     @Autowired
     private ProductRepository productRepository;
-    public ArrayList<Product> getRecommendedProducts(){
+    public List<Product> getRecommendedProducts(){
         ArrayList<Purchase> purchases = getPurchases();
-        ArrayList<Product> purchasedItems  = getProductsPurchased(purchases);
-        ArrayList<String> tags = getTags(purchasedItems);
-        ArrayList<Product> productsTag = getProductByTags(tags);
-        ArrayList<Product> recommendedProducts = new ArrayList<>();
+        List<Product> purchasedItems  = getProductsPurchased(purchases);
+        List<String> tags = getTags(purchasedItems);
+        List<Product> productsTag = getProductByTags(tags);
+        List<Product> recommendedProducts = new ArrayList<>();
 
         int z = 0;
         int number;
@@ -34,16 +35,16 @@ public class RecommendationService {
         return recommendedProducts;
     }
 
-    public ArrayList<Product> getProductByTags(ArrayList<String> tags){
-        ArrayList<Product> productsTag = new ArrayList<>();
+    public List<Product> getProductByTags(List<String> tags){
+        List<Product> productsTag = new ArrayList<>();
         for(int i = 0; i<tags.size();i++){
             productsTag.addAll(productRepository.findAllByTags(tags.get(i)));
         }
         return productsTag;
     }
 
-    public ArrayList<String> getTags(ArrayList<Product> purchasedItems){
-        ArrayList<String> tags = new ArrayList<>();
+    public List<String> getTags(List<Product> purchasedItems){
+        List<String> tags = new ArrayList<>();
         for(int i = 0; i< purchasedItems.size(); i++){
             for(int j = 0; j< purchasedItems.get(i).getTags().size(); j++){
                 if (!tags.contains(purchasedItems.get(i).getTags().get(j))){
@@ -53,13 +54,13 @@ public class RecommendationService {
         }
         return tags;
     }
-    public ArrayList<Product> getAllProducts(){
-        ArrayList<Product> products;
+    public List<Product> getAllProducts(){
+        List<Product> products;
         products = productRepository.findAll();
         return products;
     }
-    public ArrayList<Product> getProductsPurchased(ArrayList<Purchase> purchases){
-        ArrayList<Product> productsBought = new ArrayList<>();
+    public List<Product> getProductsPurchased(List<Purchase> purchases){
+        List<Product> productsBought = new ArrayList<>();
         for(int i = 0;i<purchases.size();i++){
             productsBought.add(productRepository.findByProductId(purchases.get(i).getProduct().getProductId()));
         }

@@ -43,4 +43,32 @@ public class EmailService {
                 "</html>", true);
         javaMailSender.send(message.getMimeMessage());
     }
+
+    public void sendAccountRecoveryEmail(String email, String name, Long code) throws MessagingException {
+        MimeMessageHelper message = new MimeMessageHelper(javaMailSender.createMimeMessage(), true);
+        // Set who the email is from
+        message.setFrom("threetechmarket@outlook.com");
+        message.setTo(email);
+        message.setSubject("Change your 3TechMarket password!");
+        // Use our html template, this is hideous, but it works and I have to figure out how to do it properly using Mustache
+        message.setText("<body style=\"font-family: Verdana, Geneva, Tahoma, sans-serif; background-color: #181A1B; color: whitesmoke\">\n" +
+                "\n" +
+                "<center><img  style=\"padding-top: 15px\" src=\"https://i.imgur.com/e8DsdaG.png\" alt=\"logo\" width=\"180\" height=\"76\"></center>\n" +
+                "\n" +
+                "<h1 style=\"text-align: center; padding-top: 25px; color: #7aca3d\">Change Your Password</h1>\n" +
+                "<div style=\"text-align: center\">\n" +
+                "    <p>Hi " + name + ",</p>\n" +
+                "    <p> Type this code to change your password</p>\n" +
+                "    <p>"+ code +"</p>\n" +
+                "    <p>3TechMarket Team</p>\n" +
+                "</div>\n" +
+                "<br>\n" +
+                "<footer style=\"text-align: center\">\n" +
+                "    <p>Do not reply to this email. This mailbox is not monitored, and you will not receive a response.</p>\n" +
+                "</footer>\n" +
+                "\n" +
+                "</body>\n" +
+                "</html>", true);
+        javaMailSender.send(message.getMimeMessage());
+    }
 }

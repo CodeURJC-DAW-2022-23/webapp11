@@ -83,7 +83,7 @@ public class ProductController {
 
     @Transactional
     @PostMapping("/addproduct-create")
-    public ResponseEntity<Product> createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam MultipartFile mainImage, @RequestParam(required = false) MultipartFile[] moreImages) throws IOException, SQLException {
+    public String createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam MultipartFile mainImage, @RequestParam(required = false) MultipartFile[] moreImages) throws IOException, SQLException {
         Product product = new Product();
         // Create the list of images
         List<Image> images = new ArrayList<>();
@@ -96,7 +96,7 @@ public class ProductController {
                 images.add(image);
                 imageRepository.save(image);
             } else {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);  // 400 Bad Request, user didn't upload an image
+                return "redirect:/error";  // 400 Bad Request, user didn't upload an image, redirected to main error page
             }
         }
         Image image = new Image();
@@ -112,8 +112,8 @@ public class ProductController {
         product.setMainImage(image);
         // Create new product
         productRepository.save(product);
-        return new ResponseEntity<>(product, HttpStatus.CREATED);  // 201 Created, this will also return the user object in the response body
-        // If there's information missing and the product can't be created, the response will be 400 Bad Request, Spring will handle that
+        return "redirect:/dashboard";
+
     }
 
     @GetMapping("/editproduct")

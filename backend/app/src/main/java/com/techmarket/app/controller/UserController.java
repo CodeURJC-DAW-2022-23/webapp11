@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.MessagingException;
+import java.util.Objects;
 
 
 @Controller
@@ -52,6 +54,27 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/recovery")
+    public String recovery(Model model, HttpServletRequest request){
+        String error = request.getParameter("error");
+        if (error != null && error.equals("400")) {
+            model.addAttribute("error400", true);
+        }
+        return "recovery";
+    }
+    @GetMapping("/code")
+    public String code(Model model, HttpServletRequest request){
+        String error = request.getParameter("error");
+        if (error != null && error.equals("400")) {
+            model.addAttribute("error400", true);
+        }
+        return "code";
+    }
+
+    @GetMapping("/changepassword")
+    public String changepassword(){
+        return "changepassword";
+    }
 
     // Sign up a new user
     @PostMapping("/signup-user")
@@ -75,7 +98,33 @@ public class UserController {
         // If there's information missing and the user can't be created, the response will be 400 Bad Request, Spring will handle that
 
     }
+    @PostMapping("/recover-email")
+    public String recover(@RequestParam String email, Model model) throws MessagingException {
+        User currentUser = userRepository.findByEmail(email);
+        if (currentUser != null) {
+            // User created, 201 Created
+            emailService.sendAccountRecoveryEmail(email, currentUser.getFirstName(), currentUser.getToken());
+            return "redirect:/code?email=" + email;
+        } else {
+            // User not created, 400 Bad Request
+            return "redirect:/recovery?error=400";
+        }
+        // If there's information missing and the user can't be created, the response will be 400 Bad Request, Spring will handle that
 
+    }
+    @PostMapping("/verify-code")
+    public String passwordChanger(@RequestParam String email, @RequestParam Long code, @RequestParam String password) throws MessagingException {
+        User currentUser = userRepository.findByEmail(email);
+        if (Objects.equals(code, currentUser.getToken())){
+            currentUser.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));
+            userRepository.save(currentUser);
+            return "redirect:/signin?success=201";  // Redirect to sign in page
+        }else {
+            return "redirect:/code?error=400";
+        }
+        // If there's information missing and the user can't be created, the response will be 400 Bad Request, Spring will handle that
+
+    }
 
     // Sign in an existing user (this is handled by Spring)
 

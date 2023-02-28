@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Repository
@@ -26,8 +26,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findByProductId(Long id);
 
-    ArrayList<Product> findAll();
-    ArrayList<Product> findAllByTags(String tag);
+
+
+    List<Product> findAll();
+
+    List<Product> findAllByTags(String tag);
 
     // Find products by name but allow for partial matches
     @Query("SELECT p FROM Product p WHERE p.productName LIKE %?1%")  // ?1 is the first parameter passed to the method and %?1% means that we allow for partial matches (e.g. "iphone" will match "iphone 14") because we are using LIKE
