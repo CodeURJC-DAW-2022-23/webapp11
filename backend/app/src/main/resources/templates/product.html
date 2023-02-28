@@ -13,8 +13,8 @@
           crossorigin="anonymous"></script>
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="assets/js/app.js"></script>
-  <script src="assets/js/productSlider.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/productRate.js"></script>
   <title>3TechMarket - Login</title>
 </head>
 
@@ -122,13 +122,11 @@
               {{^discount}}
               <span class="sale-price">{{product_price}}</span>
               {{/discount}}
-              <!--have to do this-->
               <div class="product-rate">
-                <span><i class="bx bxs-star" style="color: white"></i></span>
-                <span><i class="bx bxs-star" style="color: white"></i></span>
-                <span><i class="bx bxs-star" style="color: white"></i></span>
-                <span><i class="bx bxs-star" style="color: white"></i></span>
-                <span><i class='bx bxs-star-half' style="color: white"></i></span>
+                <div class="d-flex align-items-center gap-3">
+                  <img src="/assets/images/1.png" id="starRating" width="130px">
+                  <span class="d-none" id="rate">{{productRate}}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -192,15 +190,13 @@
               <div class="user-info d-flex justify-content-between gap-5">
                 <span class=" user-name">{{userEmail}}</span>
                 <div class="product-rate">
-                  <!--have to do this-->
-                  <span><i class="bx bxs-star" style="color: white"></i></span>
-                  <span><i class="bx bxs-star" style="color: white"></i></span>
-                  <span><i class="bx bxs-star" style="color: white"></i></span>
-                  <span><i class="bx bxs-star" style="color: white"></i></span>
-                  <span><i class='bx bxs-star-half' style="color: white"></i></span>
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="/assets/images/1.png" id="starRating" width="130px">
+                    <span class="d-none" id="rate">{{rating}}</span>
+                  </div>
                   <div class="row">
-                    <b>{{review_title}}</b>
-                    <span class="text-op">{review_text}</span>
+                    <b>{{reviewTitle}}</b>
+                    <span class="text-op">{reviewText}</span>
                   </div>
                 </div>
               </div>
