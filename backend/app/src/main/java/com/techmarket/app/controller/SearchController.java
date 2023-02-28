@@ -2,8 +2,8 @@ package com.techmarket.app.controller;
 
 import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.model.Product;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,27 +37,31 @@ public class SearchController {
     } else {
       model.addAttribute("results", results);
     }
+    model.addAttribute("total", products.size());  // Total number of results
     model.addAttribute("product", product);  // Search query
     model.addAttribute("start", end);  // Start index for next page
     model.addAttribute("hasMore", end < products.size());  // Boolean to check if there are more results
-    return "searchresults";  // Return searchresults.html
+    return "searchresults";
   }
 
-  @GetMapping("/search/loadmore")
-    public String loadMore(Model model, HttpServletRequest httpServletRequest, Principal principal) {
-    String product = httpServletRequest.getParameter("product");
-    int start = Integer.parseInt(httpServletRequest.getParameter("start"));
-    if (principal != null) {
-        model.addAttribute("isLoggedIn", true);
-    } else {
-        model.addAttribute("isLoggedIn", false);
-    }
+  @GetMapping("search/loadmore")
+    public ResponseEntity<String> loadMore(@RequestParam("product") String product,
+                                           @RequestParam("start") int start) {
     List<Product> products = productRepository.findByProductNameContaining(product);
     int end = Math.min(start + 10, products.size());
     List<Product> results = products.subList(start, end);
-    model.addAttribute("results", results);
-    model.addAttribute("start", end);
-    return "searchresults :: results";  // Return searchresults.html and only the results section
+    StringBuilder sb = new StringBuilder();
+    // This is hideous, but it works, and Mustache was giving errors trying to return partial views
+    for (Product p : results) {
+      sb.append("<div class=\"col-md-2\">");
+      sb.append("<a href=\"/product/"+ p.getProductId() +"\">");
+      sb.append("<img src=\"/product/"+ p.getProductId() +"/image\" alt=\"resultimage\" width=\"120\" height=\"120\">");
+      sb.append("<p class=\"name\">"+ p.getProductName() +"</p>");
+      sb.append("<p>"+ p.getProductPrice() +" € <span class=\"badge text-bg-success\">"+ p.getProductStock() +"</span></p>");
+      sb.append("</a>");
+      sb.append("</div>");
   }
+    return ResponseEntity.ok(sb.toString());
+    }
 
 }
