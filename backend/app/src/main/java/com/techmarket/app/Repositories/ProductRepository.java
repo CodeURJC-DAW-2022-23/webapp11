@@ -26,8 +26,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findByProductId(Long id);
 
+
+
     List<Product> findAll();
-    List<Product> findFirst10ByOrderByProductName(); //ToModify
+
     List<Product> findAllByTags(String tag);
 
     // Find products by name but allow for partial matches

@@ -3,6 +3,7 @@ package com.techmarket.app.controller;
 import com.techmarket.app.Repositories.ProductRepository;
 
 import com.techmarket.app.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,16 +15,17 @@ import java.util.List;
 @Controller
 public class DashboardController {
 
+    @Autowired
     private ProductRepository productRepository;
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
 
-        List<Product> items = productRepository.findFirst10ByOrderByProductName();
+        List<Product> items = productRepository.findAll();
         if (items.isEmpty()) {
-            model.addAttribute("results", null);
+            model.addAttribute("item", null);
         } else {
-            model.addAttribute("results", items);
+            model.addAttribute("item", items);
         }
 
         return "dashboard";
