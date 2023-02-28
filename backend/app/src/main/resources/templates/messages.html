@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/bootstrap.min.css">
-  <link rel="stylesheet" href="/messages.css">
   <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/messages.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
           crossorigin="anonymous"></script>
   <script src="/bootstrap.bundle.min.js"></script>
@@ -20,8 +20,7 @@
 <div class="container-fluid">
   <div class="row header">
     <div class="col-md-2">
-      <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a>
-      </h1>
+      <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
     </div>
     <div class="col-md-8">
       <form action="/search" method="post">
@@ -34,48 +33,50 @@
         </div>
       </form>
     </div>
-  </div>
 
-  <!--Iconos del header-->
-  <div class="col-md-2 ">
-    <div class="row">
-      <div class="col-md-2 navigation">
+    <!--Header icons-->
+    <div class="col-md-2 ">
+      <div class="row">
+        <div class="col-md-2 navigation">
 
-        <div class="dropdown">
-          <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown"
-             aria-expanded="false">
-          </a>
+          <div class="dropdown">
+            <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
+              <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
+              <li><form action="/logout" method="post">
+                <button class="dropdown-item" type="submit">Logout</button>
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+              </form></li>
+            </ul>
+          </div>
 
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
-            <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-            <li><a class="dropdown-item" href="/login">Log In/Sign Up</a></li>
-          </ul>
         </div>
 
-      </div>
+        <div class="col-md-2 navigation">
 
-      <div class="col-md-2 navigation">
+          <a href="/wishlist">
+            <i class="fa-solid fa-star"></i>
+          </a>
 
-        <a href="#">
-          <i class="fa-solid fa-star"></i>
-        </a>
+        </div>
 
-      </div>
+        <div class="col-md-2 navigation">
 
-      <div class="col-md-2 navigation">
+          <a href="/cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
 
-        <a href="/cart">
-          <i class="fa-solid fa-cart-shopping"></i>
-        </a>
+        </div>
 
-      </div>
+        <div class="col-md-2 navigation ">
 
-      <div class="col-md-2 navigation ">
+          <a href="#">
+            <i class="fa-solid fa-bell"></i>
+          </a>
 
-        <a href="#">
-          <i class="fa-solid fa-bell"></i>
-        </a>
+        </div>
 
       </div>
 
@@ -98,8 +99,9 @@
   </div>
   <div class="footer">
     <form method="POST" action="/send-message">
-      <input type="text" name="message" placeholder="Type your message here...">
-      <button type="submit">Send</button>
+      <input type="text" name="messageText" placeholder="Type your message here...">
+      <input type="hidden" name="_csrf" value="{{token}}"/>
+      <button type="submit" class="formbutton">Send</button>
     </form>
   </div>
 </div>

@@ -52,7 +52,7 @@ form input{
     
 }
 
-form button{
+.formbutton {
     width: 100px;
     border: none;
     outline: none;
@@ -61,7 +61,7 @@ form button{
     cursor:pointer;
 }
 
-form button:hover{
+.formbutton:hover{
     background-color: gray;
     transition: 0.2s ease;
 }
