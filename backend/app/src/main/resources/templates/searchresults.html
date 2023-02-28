@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/searchresults.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>3TechMarket - Purchase history</title>
 </head>
 <body>
@@ -20,7 +20,8 @@
             <div class="col-md-8">
               <form action="/search" method="post">
                 <div class="input-group mb-4 searchbar">
-                  <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+                  <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
                   <div class="input-group-append">
                     <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
                   </div>
@@ -86,6 +87,7 @@
         <div class="container-md">
           <h2>Search results for: {{product}}</h2>
           <br>
+            <div id="searchResults">
           <div class="row results">
             {{#results}}
               <div class="col-md-2">
@@ -102,15 +104,39 @@
               </div>
             {{/results}}
           </div>
+            </div>
           {{#hasMore}}
           <div class="row">
             <div class="col-md-12">
-              <a href="/search/{{product}}/{{start}}">Load more</a>
-                <!--Start keeps track of the results displayed, hasmore will return wether there are more contents to be displayed-->
+                <button id="loadMore" class="btn btn-success">Load more</button>
             </div>
           </div>
           {{/hasMore}}
         </div>
         </div>
+    <script>
+        $(document).ready(function() {
+            $("#loadMore").click(function() {
+                var product = "{{product}}";
+                var start = "{{start}}";
+                $.ajax({
+                    type: "GET",
+                    url: "/search/loadmore",
+                    data: {
+                        product: product,
+                        start: start
+                    },
+                    success: function(data) {
+                        $("#searchResults").append(data);
+                        var newStart = parseInt(start) + 10;
+                        $("#start").val(newStart);
+                        if (!data) {
+                            $("#loadMore").hide();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
