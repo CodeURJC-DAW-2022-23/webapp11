@@ -105,6 +105,9 @@ public class ProductController {
         imageRepository.save(image);
         product.setProductName(name);
         product.setDescription(description);
+        List<Double> prices = new ArrayList<>();
+        prices.add(price);
+        product.setProductPrices(prices);
         product.setProductPrice(price);
         product.setDiscount(discount);
         product.setProductStock(amount);
@@ -145,6 +148,9 @@ public class ProductController {
         imageRepository.save(image);
         product.setProductName(name);
         product.setDescription(description);
+        List<Double> prices = new ArrayList<>();
+        prices.add(price);
+        product.setProductPrices(prices);
         product.setProductPrice(price);
         product.setDiscount(discount);
         product.setProductStock(amount);

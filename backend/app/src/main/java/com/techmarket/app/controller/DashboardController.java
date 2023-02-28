@@ -30,4 +30,9 @@ public class DashboardController {
 
         return "dashboard";
     }
+
+    @GetMapping("/statistics")
+    public String statistics(){
+        return "statistics";
+    }
 }
