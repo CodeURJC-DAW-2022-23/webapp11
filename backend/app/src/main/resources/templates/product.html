@@ -98,29 +98,29 @@
         <div class="col-md-6">
           <div class="product-image">
             <div class="main-image">
-              <img src="{{main_image}}" alt="" width="460px">
+              <img src="{{image}}" alt="" width="460px">
             </div>
             <div class="image-slider">
-              {{#imageList}}}
+              {{#images}}
                 <img src="{{.}}" alt="" width="110px" class="image-list">
-              {{#imageList}}}
+              {{/images}}
             </div>
           </div>
         </div>
         <div class="col-md-6">
           <div class="product-info d-flex flex-column">
             <div class="product-name">
-              <h3>{{product_name}}}</h3>
+              <h3>{{productName}}</h3>
             </div>
             <div class="product-price d-flex justify-content-between">
               {{#discount}}
-              <span class="sale-price">{{product_discounted}}}</span>
-              <span class="original-price">{{product_price}}}</span>
+              <span class="sale-price">{{productDiscounted}}</span>
+              <span class="original-price">{{productPrice}}</span>
               <span class="discount">{{discount}}</span>
-              {{/discount}}}
+              {{/discount}}
 
               {{^discount}}
-              <span class="sale-price">{{product_price}}</span>
+              <span class="sale-price">{{productPrice}}</span>
               {{/discount}}
               <div class="product-rate">
                 <div class="d-flex align-items-center gap-3">
@@ -153,13 +153,13 @@
 
             <div class="home-delivery d-flex justify-content-between">
               <span> Envío a domicilio: </span>
-              {{#product_stock}}
+              {{#productStock}}
               <span class="stock"> ¡En stock!</span>
-              {{/product_stock}}
+              {{/productStock}}
 
-              {{^product_stock}}
+              {{^productStock}}
               <span class="stock"> No hay stock</span>
-              {{/product_stock}}
+              {{/productStock}}
 
             </div>
 
@@ -176,7 +176,7 @@
 
           </div>
           <h5>Opiniones</h5>
-          {{#product_reviews}}
+          {{#reviews}}
           <div class="conteiner-opinion d-flex justify-content-start">
             <div class="opinion d-flex justify-content-between gap-3">
               {{#profilePicture}}}
@@ -188,7 +188,7 @@
               {{/profilePicture}}
 
               <div class="user-info d-flex justify-content-between gap-5">
-                <span class=" user-name">{{userEmail}}</span>
+                <span class=" user-name">{{email}}</span>
                 <div class="product-rate">
                   <div class="d-flex align-items-center gap-3">
                     <img src="/assets/images/1.png" id="starRating" width="130px">
@@ -196,13 +196,13 @@
                   </div>
                   <div class="row">
                     <b>{{reviewTitle}}</b>
-                    <span class="text-op">{reviewText}</span>
+                    <span class="text-op">{{reviewText}}</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {{/product_reviews}}
+          {{/reviews}}
 
         </div>
       </div>
