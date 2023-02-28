@@ -17,9 +17,10 @@ public class Product {
     @OneToMany
     private List<Image> images;
 
+    private double productPrice;
+
     @OneToOne
     private Image mainImage;  // This is the main image of the product, used for the product card on reviews, history, cart, etc.
-    private double productPrice;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> tags;
     private String discount;
@@ -28,12 +29,15 @@ public class Product {
     private String productUrl;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Double> prices;
 
 
     //To add products
     public Product(String productName, String description, double price, String discount, int productStock, List<String> tags){
         this.productName = productName;
         this.description = description;
+        this.prices.add(price);
         this.productPrice = price;
         this.discount = discount;
         this.productStock = productStock;
@@ -45,8 +49,9 @@ public class Product {
         this.description = description;
         this.images = images;
         this.mainImage = mainImage;
-        this.productPrice = productPrice;
+        this.prices.add(productPrice);
         this.tags = tags;
+        this.productPrice = productPrice;
         this.discount = discount;
         this.productStock = productStock;
         this.productName = productName;
@@ -82,6 +87,14 @@ public class Product {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public List<Double> getProductPrices() {
+        return prices;
+    }
+
+    public void setProductPrices(List<Double> price) {
+        this.prices = price;
     }
 
     public double getProductPrice() {
