@@ -1,22 +1,18 @@
 package com.techmarket.app.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.model.Product;
+import com.techmarket.app.service.JSONService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class DashboardController {
@@ -51,13 +47,7 @@ public class DashboardController {
         Pageable pageable = PageRequest.of(start / pageSize, pageSize);
         Page<Product> page = productRepository.findAll(pageable);
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("data", page.getContent());
-
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(map);
-
-        return new ResponseEntity<>(json, HttpStatus.OK);
+        return JSONService.getStringResponseEntity(page);
     }
 
     @GetMapping("/statistics")

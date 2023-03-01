@@ -10,7 +10,7 @@
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/ajaxsearch.js"></script>
-    <title>3TechMarket - Purchase history</title>
+    <title>3TechMarket - Search: {{product}}</title>
     <meta name="_csrf" content="{{token}}" />
 </head>
 <body>
@@ -25,7 +25,7 @@
                   <a href="/product/{{productId}}">
                       <img src="/product/{{productId}}/image" alt="resultimage" width="120" height="120">
                       <p class="name">{{productName}}</p>
-                      <p>{{productPrice}} € <span class="badge text-bg-success">{{productStock}}</span></p>
+                      <p>{{productPrice}} € <span class="badge text-bg-success">Stock: {{productStock}}</span></p>
                   </a>
               </div>
               {{/results}}

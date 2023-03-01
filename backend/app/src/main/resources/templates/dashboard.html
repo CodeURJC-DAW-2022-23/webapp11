@@ -11,7 +11,7 @@
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="/ajaxdashboard.js"></script>
-    <title>3TechMarket - The best technology shop online</title>
+    <title>3TechMarket - Admin dashboard</title>
 </head>
 <body>
 <div class="container-fluid">
@@ -23,8 +23,13 @@
             <a href="/product/{{productId}}">
                 <img src="/product/{{productId}}/image" alt="resultimage" width="120" height="120">
                 <p class="name">{{productName}}</p>
+<<<<<<< HEAD
                 <p>{{productPrice}} $ <span class="badge text-bg-success">Stock: {{productStock}}</span></p>
                 <p><a href="/product/{{productId}}/editproduct" class="btn btn-primary">Edit</a>
+=======
+                <p>{{productPrice}} € <span class="badge text-bg-success">Stock: {{productStock}}</span></p>
+                <p><a href="/product/{{productId}}/edit" class="btn btn-primary">Edit</a>
+>>>>>>> 1bd0a253b5c2a03677d971b2bc5d9c640e8b5b50
                     <a href="/product/{{productId}}/delete" class="btn btn-danger">Delete</a>
                     <a href="reviewhistory/{{productId}}" class="btn btn-dark">Review history</a>
                     <a href="/pricehistory/{{productId}}" class="btn btn-dark">Price history</a>
