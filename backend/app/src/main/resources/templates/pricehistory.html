@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,6 +61,41 @@
             </div>
         </div>
     </div>
+    {{#product}}
+    <div class="col-md-4">
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <div id="container" style="height: 400px"></div>
+        <script th:inline="javascript">
+            const arraysize = []
+            for (let step = 0; step < $("#prices").length(); step++) {
+                arraysize.push(step);
+            }
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'line',
+                    width: 500
+                },
+                title: {
+                    text: "Price History for {{productName}}"
+                },
+                xAxix: {
+                    categories: arraysize
+                },
+                tooltip: {
+                    formatter: function () {
+                        console.log(this);
+                    }
+                },
+                series: [{
+                    data: [143,4324,4323]
+                }]
+            });
+        </script>
+    </div>
+    {{/product}}
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </div>
 </body>
 </html>

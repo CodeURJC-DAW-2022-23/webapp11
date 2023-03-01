@@ -66,6 +66,17 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/pricehistory/{id}")
+    public String showPriceHistory(@PathVariable Long id, Model model) {
+        Optional<Product> product = productService.getProductById(id);
+        if (product.isPresent()) {
+            model.addAttribute("product", product.get().getProductPrices());
+            return "pricehistory";
+        } else {
+            return "/dashboard"; //not sure of this
+        }
+    }
+
     @GetMapping("/addproduct")
     public String addproduct() {
         return "addproduct";
