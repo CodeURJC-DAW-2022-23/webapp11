@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -30,6 +31,8 @@ public class ChatController {
         User currentUser = userRepository.findByEmail(auth.getName());
         // Get all messages associated with the current user
         List<Message> messages = messageRepository.findByUserId(currentUser.getId());
+        // Show them by chronological order
+        messages.sort(Comparator.comparing(Message::getTimestamp));
         model.addAttribute("messages", messages);
         return "messages";
     }

@@ -19,14 +19,14 @@ public class Message {
 
     private String message;
 
-    private boolean status;  // True if the thread has been resolved, false otherwise
+    private Long timestamp = System.currentTimeMillis();
 
-    public Message(Long messageId, User user, User agent, String message, boolean status) {
+    public Message(Long messageId, User user, User agent, String message, Long timestamp) {
         this.messageId = messageId;
         this.user = user;
         this.agent = agent;
         this.message = message;
-        this.status = status;
+        this.timestamp = timestamp;
     }
 
     public Message() {
@@ -65,11 +65,11 @@ public class Message {
         this.message = message;
     }
 
-    public boolean isStatus() {
-        return status;
+    public Long getTimestamp() {
+        return timestamp;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 }
