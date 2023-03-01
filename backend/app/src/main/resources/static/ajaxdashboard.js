@@ -20,7 +20,7 @@ $(document).ready(function() {
                     html += '<a href="/product/' + product.productId + '">';
                     html += '<img src="/product/' + product.productId + '/image" alt="resultimage" width="120" height="120">';
                     html += '<p class="name">' + product.productName + '</p>';
-                    html += '<p>' + product.productPrice + ' € <span class="badge text-bg-success">' + product.productStock + '</span></p>';
+                    html += '<p>' + product.productPrice + ' € <span class="badge text-bg-success">Stock: ' + product.productStock + '</span></p>';
                     html += '<p><a href="/product/' + product.productId + '/edit" class="btn btn-primary">Edit</a>&nbsp;';
                     html += '<a href="/product/' + product.productId + '/delete" class="btn btn-danger">Delete</a>&nbsp;';
                     html += '<a href="reviewhistory/' + product.productId + '" class="btn btn-dark">Review history</a>&nbsp;';
