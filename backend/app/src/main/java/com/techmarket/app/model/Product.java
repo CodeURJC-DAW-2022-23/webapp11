@@ -23,7 +23,6 @@ public class Product {
     private Image mainImage;  // This is the main image of the product, used for the product card on reviews, history, cart, etc.
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> tags;
-    private String discount;
     private int productStock;
     private String productName; // They have to use the same name as Mustache
     private String productUrl;
@@ -34,17 +33,16 @@ public class Product {
 
 
     //To add products
-    public Product(String productName, String description, double price, String discount, int productStock, List<String> tags){
+    public Product(String productName, String description, double price, int productStock, List<String> tags){
         this.productName = productName;
         this.description = description;
         this.prices.add(price);
         this.productPrice = price;
-        this.discount = discount;
         this.productStock = productStock;
         this.tags = tags;
     }
 
-    public Product(Long productId, String description, List<Image> images, Image mainImage, double productPrice, List<String> tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
+    public Product(Long productId, String description, List<Image> images, Image mainImage, double productPrice, List<String> tags, int productStock, String productName, String productUrl, List<Review> reviews) {
         this.productId = productId;
         this.description = description;
         this.images = images;
@@ -52,7 +50,6 @@ public class Product {
         this.prices.add(productPrice);
         this.tags = tags;
         this.productPrice = productPrice;
-        this.discount = discount;
         this.productStock = productStock;
         this.productName = productName;
         this.productUrl = productUrl;
@@ -111,14 +108,6 @@ public class Product {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
-    }
-
-    public String getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(String discount) {
-        this.discount = discount;
     }
 
     public int getProductStock() {

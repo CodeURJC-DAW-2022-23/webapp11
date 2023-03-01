@@ -109,7 +109,6 @@ public class ProductController {
         prices.add(price);
         product.setProductPrices(prices);
         product.setProductPrice(price);
-        product.setDiscount(discount);
         product.setProductStock(amount);
         product.setTags(tags);
         product.setMainImage(image);
@@ -152,7 +151,6 @@ public class ProductController {
         prices.add(price);
         product.setProductPrices(prices);
         product.setProductPrice(price);
-        product.setDiscount(discount);
         product.setProductStock(amount);
         product.setTags(tags);
         product.setMainImage(image);
