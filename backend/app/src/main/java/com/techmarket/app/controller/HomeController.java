@@ -27,13 +27,6 @@ public class HomeController {
         User currentUser = userRepository.findByEmail(auth.getName());
             // Check if user is logged in
         if (currentUser != null) {
-            model.addAttribute("isLoggedIn", true);
-            // Check if the user is an admin
-            if (currentUser.getRoles().contains("ADMIN")) {
-                model.addAttribute("isAdmin", true);
-            } else {
-                model.addAttribute("isAdmin", false);
-            }
             List<Product> recommended = recommendationService.getRecommendedProducts();
             if(recommended.size() != 0){
                 model.addAttribute("default",false);
@@ -48,7 +41,6 @@ public class HomeController {
             }
 
         } else {
-            model.addAttribute("isLoggedIn", false);
             model.addAttribute("default",true);
         }
         return "index";
