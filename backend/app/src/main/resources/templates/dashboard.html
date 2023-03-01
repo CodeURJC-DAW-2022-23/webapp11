@@ -10,13 +10,14 @@
             crossorigin="anonymous"></script>
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/ajaxdashboard.js"></script>
     <title>3TechMarket - The best technology shop online</title>
 </head>
 <body>
 <div class="container-fluid">
     {{> header}}
     <h1 class="text-center">Admin dashboard</h1>
-    <div class="row results">
+    <div class="row results" id="results">
         {{#item}}
         <div class="col-md-2">
             <a href="/product/{{productId}}">
@@ -28,7 +29,6 @@
                     <a href="reviewhistory/{{productId}}" class="btn btn-dark">Review history</a>
                     <a href="/pricehistory/{{productId}}" class="btn btn-dark">Price history</a>
                 </p>
-
             </a>
         </div>
         {{/item}}
@@ -38,6 +38,14 @@
         </div>
         {{/item}}
     </div>
+    {{#hasMore}}
+    <div class="row">
+        <div class="col-md-12">
+            <button id="loadMore" class="btn btn-success">Load more</button>
+            <input type="hidden" name="total" id="total" value="{{total}}"/>
+        </div>
+    </div>
+    {{/hasMore}}
 </div>
 </body>
 </html>

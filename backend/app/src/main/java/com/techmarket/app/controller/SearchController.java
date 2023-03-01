@@ -58,7 +58,7 @@ public class SearchController {
 
         // Send the results to the ajax call
         Map<String, Object> map = new HashMap<>();
-        map.put("data", results);
+        map.put("items", results);
 
         // Convert the map to JSON
         // We used StringBuilder to send the ResponseBody built with StringBuilder, but now we use Jackson (ObjectMapper)
