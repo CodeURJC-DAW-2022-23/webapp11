@@ -72,7 +72,7 @@ public class ProductController {
             model.addAttribute("product", product.get());
             return "product";
         } else {
-            return "/products"; //not sure of this
+            return "redirect:/error"; // 404 Not Found, product not found, redirected to main error page
         }
     }
 
