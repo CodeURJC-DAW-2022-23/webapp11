@@ -25,7 +25,6 @@ public class Product {
     private List<String> tags;
     private int productStock;
     private String productName; // They have to use the same name as Mustache
-    private String productUrl;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
     @ElementCollection(fetch = FetchType.EAGER)
@@ -42,7 +41,7 @@ public class Product {
         this.tags = tags;
     }
 
-    public Product(Long productId, String description, List<Image> images, Image mainImage, double productPrice, List<String> tags, int productStock, String productName, String productUrl, List<Review> reviews) {
+    public Product(Long productId, String description, List<Image> images, Image mainImage, double productPrice, List<String> tags, int productStock, String productName, List<Review> reviews) {
         this.productId = productId;
         this.description = description;
         this.images = images;
@@ -52,7 +51,6 @@ public class Product {
         this.productPrice = productPrice;
         this.productStock = productStock;
         this.productName = productName;
-        this.productUrl = productUrl;
         this.reviews = reviews;
     }
 
@@ -124,14 +122,6 @@ public class Product {
 
     public void setProductName(String productName) {
         this.productName = productName;
-    }
-
-    public String getProductUrl() {
-        return productUrl;
-    }
-
-    public void setProductUrl(String productUrl) {
-        this.productUrl = productUrl;
     }
 
     public List<Review> getReviews() {
