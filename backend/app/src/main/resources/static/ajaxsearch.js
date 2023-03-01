@@ -10,12 +10,12 @@ $(document).ready(function() {
                 product: product,
                 start: start
             },
-            // Add a spinner while loading
+            // Add a bootstrap spinner while loading
             beforeSend: function() {
-                $("#loadMore").html('<i class="fa fa-spinner fa-spin"></i> Loading');
+                $("#loadMore").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
             },
             success: function(data) {
-                const products = JSON.parse(data).data;
+                const products = JSON.parse(data).data;  // we need to add the .data to get the array of products, otherwise we get the whole response
                 let html = '';
                 products.forEach(function(product) {
                     html += '<div class="col-md-2">';
