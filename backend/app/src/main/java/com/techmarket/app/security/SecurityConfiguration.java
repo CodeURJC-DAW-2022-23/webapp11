@@ -49,7 +49,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .loginProcessingUrl("/signin-user")
-                        .defaultSuccessUrl("/", true)
+                        .successHandler(new LoginHandler())
                         .failureUrl("/signin?error")
                 )
                 .logout( logout -> logout
