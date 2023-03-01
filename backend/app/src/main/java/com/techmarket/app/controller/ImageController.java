@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ImageController {
@@ -62,6 +64,21 @@ public class ImageController {
                     .header(HttpHeaders.CONTENT_TYPE, "image/jpeg", "image/png")
                     .contentLength(productRepository.findById(productId).get().getMainImage().getImageBlob().length())
                     .body(file);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/product/{productId}/images/{index}")  // Image from the image list of a product
+    public ResponseEntity<Object> getImages(@PathVariable long productId, @PathVariable int index) throws SQLException, IOException {
+        if (productRepository.findById(productId).isPresent()) {
+            index-=1;
+            InputStreamResource file = new InputStreamResource(productRepository.findById(productId).get().getImages().get(index).getImageBlob().getBinaryStream());
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_TYPE, "image/jpeg", "image/png")
+                    .contentLength(productRepository.findById(productId).get().getImages().get(index).getImageBlob().length())
+                    .body(file);
+
         } else {
             return ResponseEntity.notFound().build();
         }
