@@ -24,12 +24,19 @@ public class RecommendationService {
         List<Product> productsTag = getProductByTags(tags);
         List<Product> recommendedProducts = new ArrayList<>();
 
-        int z = 0;
-        int number;
-        for(int i = 0; i<4; i++){
-            if (z < productsTag.size()){
-                number = (int)(Math.random()*productsTag.size());
-                recommendedProducts.add(productsTag.get(number));
+        // Remove products already purchased
+        for(int i = 0; i<productsTag.size(); i++){
+            for(int j = 0; j<purchasedItems.size(); j++){
+                if(productsTag.get(i).getProductId() == purchasedItems.get(j).getProductId()){
+                    productsTag.remove(i);
+                }
+            }
+        }
+
+        // Get 4 products based on tags
+        for (int i = 0; i<4; i++){
+            if (i < productsTag.size()){
+                recommendedProducts.add(productsTag.get(i));
             }
         }
         return recommendedProducts;

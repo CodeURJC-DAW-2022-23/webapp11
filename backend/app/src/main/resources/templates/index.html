@@ -68,7 +68,7 @@
                   
                   <div class="col-md-2 navigation ">
                       
-                          <a href="#">
+                          <a href="/messages">
                             <i class="fa-solid fa-bell"></i>
                           </a>
                         
@@ -132,8 +132,8 @@
       {{^default}}
       <div class="col-md-3">
           <a href="#">
-              <!--<img src="productImage" alt="destacado" width="100" height="100">-->
-              <p class="destacados">{{productName}}<span class="badge text-bg-success">{{productPrice}}$</span></p>
+              <img src="/product/{{productId}}/image" alt="destacado" width="100" height="100">
+              <p class="destacados">{{productName}}<span class="badge text-bg-warning">{{productPrice}}€</span></p>
           </a>
       </div>
       {{/default}}
