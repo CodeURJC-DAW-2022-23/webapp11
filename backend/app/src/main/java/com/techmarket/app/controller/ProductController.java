@@ -119,8 +119,16 @@ public class ProductController {
 
     }
 
-    @GetMapping("/editproduct")
-    public String editproduct() {
+    @GetMapping("/product/{id}/editproduct")
+    public String editproduct(@PathVariable long id, Model model){
+        Product product = productRepository.findById(id).get();
+        model.addAttribute("productName",product.getProductName());
+        model.addAttribute("productDescription",product.getDescription());
+        model.addAttribute("productPrice",product.getProductPrice());
+        model.addAttribute("productStock", product.getProductStock());
+        model.addAttribute("tags", product.getTags());
+
+
         return "editproduct";
     }
 

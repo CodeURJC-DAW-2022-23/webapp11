@@ -18,78 +18,73 @@
 <body>
 <div class="container-fluid">
     {{> header}}
-        <div class="form">
-            <form action="/editproduct-update" enctype="multipart/form-data" method="POST">
-                <div style="text-align:center">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="textBar">
-                                <div class="col-md-12">
-                                    <label class="labels"></label><input type="text" class="form-control"
-                                                                         placeholder="Product ID" value=""
-                                                                         name="id"></div>
+    <div class="form">
+        <form action="/editproduct-update" enctype="multipart/form-data" method="POST">
+            <div style="text-align:center">
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <div class="textBar">
+                            <div class="col-md-12">
+                                <label class="labels"></label><input type="text" class="form-control"
+                                                                     placeholder="Product Name" value={{productName}}
+                                                                     name="name"></div>
+                        </div>
+                        <div class="textBar">
+                            <div class="col-md-12">
+                                <label class="labels"></label><input type="text" class="form-control"
+                                                                     placeholder="Description" value={{productDescription}}
+                                                                     name="description"></div>
+                        </div>
+                        <div class="textBar">
+                            <div class="col-md-12"><label class="labels"></label><input type="number" step="0.01"
+                                                                                        class="form-control"
+                                                                                        placeholder="Price" value={{productPrice}}
+                                                                                        name="price">
                             </div>
-                            <div class="textBar">
-                                <div class="col-md-12">
-                                    <label class="labels"></label><input type="text" class="form-control"
-                                                                         placeholder="Product Name" value=""
-                                                                         name="name"></div>
+                        </div>
+                        <div class="textBar">
+                            <div class="col-md-12"><label class="labels"></label><input type="number"
+                                                                                        class="form-control"
+                                                                                        placeholder="Amount"
+                                                                                        value={{productStock}} name="amount">
                             </div>
-                            <div class="textBar">
-                                <div class="col-md-12">
-                                    <label class="labels"></label><input type="text" class="form-control"
-                                                                         placeholder="Description" value=""
-                                                                         name="description"></div>
+                        </div>
+                        <div class="textBar">
+                            <div class="col-md-12"><label class="labels"></label><input type="text"
+                                                                                        class="form-control"
+                                                                                        placeholder="Tags" value={{tags}}
+                                                                                        name="tags">
                             </div>
-                            <div class="textBar">
-                                <div class="col-md-12"><label class="labels"></label><input type="number" step="0.01"
-                                                                                            class="form-control"
-                                                                                            placeholder="Price" value=""
-                                                                                            name="price">
-                                </div>
+                        </div>
+                        <!--Add the product main image and other images-->
+                        <div class="textBar">
+                            <div class="col-md-12"><label class="labels"></label><input type="file"
+                                                                                        class="form-control"
+                                                                                        placeholder="Main Image"
+                                                                                        value="" name="mainImage">
                             </div>
-                            <div class="textBar">
-                                <div class="col-md-12"><label class="labels"></label><input type="number"
-                                                                                            class="form-control"
-                                                                                            placeholder="Amount"
-                                                                                            value="" name="amount">
-                                </div>
-                            </div>
-                            <div class="textBar">
-                                <div class="col-md-12"><label class="labels"></label><input type="text"
-                                                                                            class="form-control"
-                                                                                            placeholder="Tags" value=""
-                                                                                            name="tags">
-                                </div>
-                            </div>
-                            <!--Add the product main image and other images-->
+                            <!--Multi image upload-->
                             <div class="textBar">
                                 <div class="col-md-12"><label class="labels"></label><input type="file"
                                                                                             class="form-control"
-                                                                                            placeholder="Main Image"
-                                                                                            value="" name="mainImage">
+                                                                                            placeholder="More Images"
+                                                                                            value=""
+                                                                                            name="moreImages"
+                                                                                            multiple="multiple">
                                 </div>
-                                <!--Multi image upload-->
-                                <div class="textBar">
-                                    <div class="col-md-12"><label class="labels"></label><input type="file"
-                                                                                                class="form-control"
-                                                                                                placeholder="More Images"
-                                                                                                value=""
-                                                                                                name="moreImages"
-                                                                                                multiple="multiple">
-                                    </div>
-                                </div>
-                                <div class="buttonMargin">
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                </div>
+                            </div>
+                            <div class="buttonMargin">
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-    <div class="col-md-3"></div>
+</div>
+<div class="col-md-3"></div>
 </div>
 </div>
 </div>
