@@ -26,7 +26,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
-import java.security.Principal;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -69,6 +68,7 @@ public class ProductController {
     public String showProduct(@PathVariable Long id, Model model) {
         Optional<Product> product = productService.getProductById(id);
         if (product.isPresent()) {
+            model.addAttribute("name", product.get().getProductName());
             model.addAttribute("product", product.get());
             return "product";
         } else {

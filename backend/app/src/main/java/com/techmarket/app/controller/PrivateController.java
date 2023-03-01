@@ -42,6 +42,11 @@ public class PrivateController {
         //Then we fill out the form with the user's information
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findByEmail(auth.getName());
+        if (currentUser.getRoles().contains("ADMIN")) {
+            model.addAttribute("isAdmin", true);
+        } else {
+            model.addAttribute("isAdmin", false);
+        }
         // Get user information
         // Get his profile picture from the database, if it exists
         if (currentUser.getProfilePicture() != null) {
@@ -54,7 +59,6 @@ public class PrivateController {
             // Default profile picture until the user uploads one
             model.addAttribute("hasPfp", false);
         }
-        model.addAttribute("isLoggedIn", true);
         model.addAttribute("firstName", currentUser.getFirstName());
         model.addAttribute("lastName", currentUser.getLastName());
         model.addAttribute("email", currentUser.getEmail());
