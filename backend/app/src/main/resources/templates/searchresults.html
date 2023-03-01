@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/ajaxsearch.js"></script>
     <title>3TechMarket - Purchase history</title>
     <meta name="_csrf" content="{{token}}" />
 </head>
@@ -108,42 +109,12 @@
           <div class="row">
             <div class="col-md-12">
                 <button id="loadMore" class="btn btn-success">Load more</button>
+                <input type="hidden" name="total" id="total" value="{{total}}"/>
+                <input type="hidden" name="product" id="product" value="{{product}}"/>
             </div>
           </div>
           {{/hasMore}}
         </div>
         </div>
-    <script>
-        $(document).ready(function() {
-                const total = "{{total}}";
-                let start = 10;
-            $("#loadMore").click(function() {
-                const product = "{{product}}";
-                $.ajax({
-                    url: "/search/loadmore",
-                    type: "GET",
-                    data: {
-                        product: product,
-                        start: start
-                    },
-                    // Add a spinner while loading
-                    beforeSend: function() {
-                        $("#loadMore").html('<i class="fa fa-spinner fa-spin"></i> Loading');
-                    },
-                    success: function(data) {
-                        $("#results").append(data);
-                        start += 10;
-                        if (start >= total) {
-                            $("#loadMore").hide();
-                        }
-                    },
-                    complete: function() {
-                        $("#loadMore").html("Load more");
-                    }
-                });
-            });
-        });
-
-    </script>
 </body>
 </html>
