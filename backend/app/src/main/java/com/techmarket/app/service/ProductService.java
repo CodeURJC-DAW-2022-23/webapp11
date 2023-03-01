@@ -23,6 +23,13 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public void deleteByProductId(Long id) {
+        productRepository.deleteByProductId(id);
+    }
+
+
+
+
 
     //public void deleteAllByProductId(Long id) {
     //    productRepository.deleteAllById(String.valueOf(id));

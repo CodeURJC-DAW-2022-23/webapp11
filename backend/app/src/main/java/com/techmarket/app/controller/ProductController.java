@@ -18,10 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -56,13 +53,6 @@ public class ProductController {
         return "product";
     }
 
-    //we still have to make it only show 10 products
-    @GetMapping("/products")
-    public String products(Model model) {
-        List<Product> products = productService.getAll();
-        model.addAttribute("products", products);
-        return "/products";
-    }
 
     @GetMapping("/product/{id}")
     public String showProduct(@PathVariable Long id, Model model) {
@@ -160,10 +150,11 @@ public class ProductController {
         // If there's information missing and the product can't be created, the response will be 400 Bad Request, Spring will handle that
     }
 
-    @PostMapping("/deleteProduct/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @GetMapping("/product/{id}/delete")
     public String deleteProduct(@PathVariable("id") Long id) {
-        //productService.deleteAllByProductId(id);
-        return "redirect:/products";
+        productService.deleteByProductId(id);
+        return "redirect:/dashboard";
     }
 
     @PreAuthorize("hasAnyAuthority('USER')")
