@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,32 +18,33 @@
               <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
           </div>
           <div class="col-md-8">
+              <form action="/search" method="post">
             <div class="input-group mb-4 searchbar">
-              <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
-              <div class="input-group-append">
-                <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
-              </div>
+                    <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    <div class="input-group-append">
+                        <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                    </div>
             </div>
+                </form>
           </div>
 
           <!--Header icons-->
           <div class="col-md-2 ">
+              {{#isLoggedIn}}
               <div class="row">
                   <div class="col-md-2 navigation">
 
                     <div class="dropdown">
                       <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       </a>
-                    
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
                         <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                        {{#isLoggedIn}}
-                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                        {{/isLoggedIn}}
-                        {{^isLoggedIn}}
-                        <li><a class="dropdown-item" href="/signin">Login/Sign up</a></li>
-                        {{/isLoggedIn}}
+                        <li><form action="/logout" method="post">
+                            <button class="dropdown-item" type="submit">Logout</button>
+                            <input type="hidden" name="_csrf" value="{{token}}"/>
+                        </form></li>
                       </ul>
                     </div>
                       
@@ -51,7 +52,7 @@
 
                   <div class="col-md-2 navigation">
                       
-                    <a href="#">
+                    <a href="/wishlist">
                       <i class="fa-solid fa-star"></i>
                     </a>
             
@@ -74,6 +75,13 @@
                   </div>
                   
               </div>
+                {{/isLoggedIn}}
+              {{^isLoggedIn}}
+              <div class="row">
+              <!-- Login or register button linked to /signin -->
+              <a href="/signin" class="buttonlogin"><button class="btn btn-success">Login or register</button></a>
+              {{/isLoggedIn}}
+              </div>
           </div>
       </div>
 
@@ -94,6 +102,7 @@
       <h2>Featured offers</h2>
       <!--Recommended products row-->
       <div class="row destacados">
+          {{#default}}
         <div class="col-md-3">
           <a href="#">
             <img src="/assets/images/pc15.jpg" alt="destacado" width="100" height="100">
@@ -118,13 +127,16 @@
             <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
           </a>
         </div>
-          <div class="col-md-3">
-              <a href="url">
-                  <img src="url" alt="destacado" width="100" height="100">
-                  <p class="destacados">productName<span class="badge text-bg-success">productPrice€</span></p>
-              </a>
-          </div>
+          {{/default}}
       </div>
+      {{^default}}
+      <div class="col-md-3">
+          <a href="#">
+              <!--<img src="productImage" alt="destacado" width="100" height="100">-->
+              <p class="destacados">{{productName}}<span class="badge text-bg-success">{{productPrice}}$</span></p>
+          </a>
+      </div>
+      {{/default}}
   </div>
     
 

@@ -9,29 +9,49 @@ import java.util.List;
 @EnableAutoConfiguration
 public class Product {
 
-    @Id
+    @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String productId;
+    private Long productId;
 
     private String description;
     @OneToMany
     private List<Image> images;
-    private String productPrice;
+
+    private double productPrice;
+
+    @OneToOne
+    private Image mainImage;  // This is the main image of the product, used for the product card on reviews, history, cart, etc.
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> tags;
     private String discount;
     private int productStock;
     private String productName; // They have to use the same name as Mustache
     private String productUrl;
-
-    @OneToMany
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Double> prices;
 
-    public Product(String productId, String description, List<Image> images, String price, List<String> tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
+
+    //To add products
+    public Product(String productName, String description, double price, String discount, int productStock, List<String> tags){
+        this.productName = productName;
+        this.description = description;
+        this.prices.add(price);
+        this.productPrice = price;
+        this.discount = discount;
+        this.productStock = productStock;
+        this.tags = tags;
+    }
+
+    public Product(Long productId, String description, List<Image> images, Image mainImage, double productPrice, List<String> tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
         this.productId = productId;
         this.description = description;
         this.images = images;
-        this.productPrice = price;
+        this.mainImage = mainImage;
+        this.prices.add(productPrice);
         this.tags = tags;
+        this.productPrice = productPrice;
         this.discount = discount;
         this.productStock = productStock;
         this.productName = productName;
@@ -39,21 +59,17 @@ public class Product {
         this.reviews = reviews;
     }
 
-    //To add products
-    public Product(String productName, String description, String price, String discount, int productStock, List<String> tags){
-        this.productName = productName;
-        this.description = description;
-        this.productPrice = price;
-        this.discount = discount;
-        this.productStock = productStock;
-        this.tags = tags;
+    public Product(){}
+
+    public Product(long productId) {
+        this.productId = productId;
     }
 
-    public String getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -73,11 +89,19 @@ public class Product {
         this.images = images;
     }
 
-    public String getProductPrice() {
+    public List<Double> getProductPrices() {
+        return prices;
+    }
+
+    public void setProductPrices(List<Double> price) {
+        this.prices = price;
+    }
+
+    public double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String price) {
+    public void setProductPrice(double price) {
         this.productPrice = price;
     }
 
@@ -127,5 +151,13 @@ public class Product {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public Image getMainImage() {
+        return mainImage;
+    }
+
+    public void setMainImage(Image mainImage) {
+        this.mainImage = mainImage;
     }
 }

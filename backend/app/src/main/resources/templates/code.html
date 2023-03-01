@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/login.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/app.js"></script>
+    <title>3TechMarket - Enter verification code</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row header">
+        <div class="logoCentered">
+            <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="col-md-12">
+        <h1 class="loginText">Enter the code we've sent to your inbox</h1>
+    </div>
+    <form action="/verify-code" method="POST">
+        <div class="col-md-12">
+            <div class="container">
+                <input type="email" id="email" placeholder="Introduce Your Email" name="email" class="loginBox">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+                <input type="number" id="code" placeholder="Verification Code" name="code" class="loginBox">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="container">
+                <input type="password" id="password" name="password" placeholder="New Password" class="loginBox"
+                       minlength="8" required>
+                <span>
+                    <i class="fa-solid fa-eye" id="togglePassword" onclick="tooglePW()" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+        {{#error400}}
+        <!--Using Bootstrap alerts-->
+        <div class="col-md-12">
+            <div class="container">
+                <div class="alert alert-danger" role="alert">
+                    Error: The code you've entered doesn't match with your email.
+                </div>
+            </div>
+        </div>
+        {{/error400}}
+        <div class="col-md-12">
+            <div class="buttonMargin">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+        <input type="hidden" name="_csrf" value="{{token}}"/>
+    </form>
+    <div class="col-md-12">
+        <h1 class="noAccountText"><a href="/login">Sign In!</a></h1>
+    </div>
+</div>
+</body>
+</html>

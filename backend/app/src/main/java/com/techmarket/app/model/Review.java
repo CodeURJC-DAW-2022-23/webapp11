@@ -3,7 +3,6 @@ package com.techmarket.app.model;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
-import java.awt.*;
 import java.util.List;
 
 @Entity
@@ -13,18 +12,25 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String reviewId;
-    private String productId;
-    private String userId;
+
+    // Instead of String ids, we use product and User to avoid having to query the database for the product and user
+    // This translates to a direct join in the database
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
     private String reviewTitle;
     private int rating;
     private String reviewText;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)  // Can be LAZY because sometimes we don't need to query the images when we query the review
     private List<Image> images;
 
-    public Review(String reviewId, String productId, String userId, String reviewTitle, int rating, String reviewText, List<Image> images) {
+    public Review(String reviewId, Product product, User user, String reviewTitle, int rating, String reviewText, List<Image> images) {
         this.reviewId = reviewId;
-        this.productId = productId;
-        this.userId = userId;
+        this.product = product;
+        this.user = user;
         this.reviewTitle = reviewTitle;
         this.rating = rating;
         this.reviewText = reviewText;
@@ -35,6 +41,12 @@ public class Review {
 
     }
 
+    public Review(String reviewTitle, String reviewText, int rating) {
+        this.reviewTitle = reviewTitle;
+        this.reviewText = reviewText;
+        this.rating = rating;
+    }
+
     public String getReviewId() {
         return reviewId;
     }
@@ -43,20 +55,20 @@ public class Review {
         this.reviewId = reviewId;
     }
 
-    public String getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getReviewTitle() {

@@ -1,12 +1,9 @@
 package com.techmarket.app.model;
 
 import jakarta.persistence.*;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -23,9 +20,10 @@ public class User {
     private String email;
 
     // Role
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.EAGER)  // We want to load the roles when we load the user
     private List<String> roles;
 
+    // The address could be another entity, but for simplicity we'll just store the information in the user entity
     private String phoneNumber;
     private String address;
     private String postcode;
@@ -33,51 +31,52 @@ public class User {
     private String country;
     private String area;
     private String city;
-    //type of user
-    private String userType;
-    @OneToOne
+
+    private Long passwordChangeToken;
+
+    @OneToOne(cascade = CascadeType.ALL)  // If we delete the user, we want to delete the image as well
     private Image profilePicture;
 
-    @OneToMany
-    private List<Product> wishlist;
-    @OneToMany
-    private List<Product> shoppingCart;
-    @OneToMany
-    List<Purchase> purchasedProducts;
-    @OneToMany
-    List<Message> messages;
+    // Cascade to eliminate some stuff when the user is deleted, fetch lazy to avoid loading all the products when we load the user.
+    // Lists are initialized to an empty list, so we can add products to it later without having to check if it's null
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Product> wishlist = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Product> shoppingCart = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY)
+    List<Product> purchasedProducts = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Message> messages = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Review> reviews = new ArrayList<>();
 
-    public User(Long id, @NotNull String encodedPassword, @NotNull String firstName, @NotNull String lastName, @NotNull String email, String userType) {
-        this.id = id;
-        this.encodedPassword = encodedPassword;
+
+
+    public User(String email, String firstName,  String lastName) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-        this.userType = userType;
-    }
-
-    // To sign up and login
-    public User( String email, String encodedPassword, String firstName, String lastName, String... roles) {
-        this.encodedPassword = encodedPassword;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        // Default role is USER
-        this.roles = List.of(roles);
-    }
-    public User(String email, String encodedPassword, Collection<GrantedAuthority> authorities) {
-        this.encodedPassword = encodedPassword;
-        this.email = email;
-        // Default role is USER
+        this.address ="";
+        this.postcode ="";
+        this.state ="";
+        this.country ="";
+        this.area ="";
+        this.city ="";
+        this.phoneNumber ="";
         this.roles = new ArrayList<>();
-        for (GrantedAuthority authority : authorities) {
-            this.roles.add(authority.getAuthority());
-        }
+        this.roles.add("USER");
+        this.profilePicture = null;
+        this.wishlist = new ArrayList<>();
+        this.shoppingCart = new ArrayList<>();
+        this.purchasedProducts = new ArrayList<>();
+        this.messages = new ArrayList<>();
+        this.reviews = new ArrayList<>();
+        long leftLimit = 10000L;
+        long rightLimit = 99999L;
+        this.passwordChangeToken = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
     }
 
-    public User() {
-
-    }
+    protected User(){}
 
     public  String getEncodedPassword() {
         return this.encodedPassword;
@@ -191,12 +190,11 @@ public class User {
         return id;
     }
 
-    public String getUserType() {
-        return userType;
+    public void setToken(Long token) {
+        this.passwordChangeToken = token;
     }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public Long getToken() {
+        return passwordChangeToken;
     }
 
     public void setWishlist(List<Product> wishlist) {
@@ -207,11 +205,11 @@ public class User {
         this.shoppingCart = shoppingCart;
     }
 
-    public void setPurchasedProducts(List<Purchase> purchasedProducts) {
+    public void setPurchasedProducts(List<Product> purchasedProducts) {
         this.purchasedProducts = purchasedProducts;
     }
 
-    public List<Purchase> getPurchasedProducts() {
+    public List<Product> getPurchasedProducts() {
         return this.purchasedProducts;
     }
 
@@ -233,6 +231,14 @@ public class User {
 
     public void addRole(String role) {
         this.roles.add(role);
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }
 

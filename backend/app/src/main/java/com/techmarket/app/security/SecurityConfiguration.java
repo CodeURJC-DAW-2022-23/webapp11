@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -30,13 +29,19 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf().disable()
-                .authorizeRequests( auth -> auth
-                        .requestMatchers("/signup", "/signin", "/signin-user", "/signup-user", "/", "/product/**", "/search").permitAll()
-                        // Access to css, js (ending with .css or .js) is allowed to everyone
-                        .requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".png")).permitAll()
-                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                        .requestMatchers("/profile").hasAnyAuthority("USER", "AGENT")
+                .exceptionHandling( exception -> exception
+                        .accessDeniedPage("/access-denied")
+                )
+                .authorizeHttpRequests( auth -> auth
+                        .requestMatchers("/signup", "/signin", "/signin-user", "/signup-user", "/", "/product/**", "/search/**", "/error", "access-denied", "/recovery", "/recover-email", "/code", "/verify-code").permitAll()
+                        // Access to the assets so the frontend can load correctly
+                        .requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".jpg") || request.getServletPath().endsWith(".png")).permitAll()
+                        .requestMatchers("/admin/**", "/addproduct", "/addproduct-create", "/editproduct", "/editproduct-update","/dashboard","/statistics").hasAuthority("ADMIN")
+                        .requestMatchers("/profile").authenticated()  // Any role will be able to access its profile
+                        .requestMatchers("/edit-profile").authenticated()
+                        .requestMatchers("/wishlist").authenticated()
+                        .requestMatchers("/cart").hasAnyAuthority("USER")
+                        .requestMatchers("/messages").hasAnyAuthority("USER", "AGENT")
                         .anyRequest().authenticated()
                 )
                 .formLogin( form -> form
@@ -44,13 +49,14 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .loginProcessingUrl("/signin-user")
-                        .defaultSuccessUrl("/profile", true)
+                        .defaultSuccessUrl("/", true)
                         .failureUrl("/signin?error")
                 )
                 .logout( logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
+                        .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
                 )
                 .build();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:padding-top="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,7 @@
     <div class="row header">
         <div class="col-md-2">
             <div class="logoImage">
-                <h1><a href="index.html"><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></a>
+                <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a>
                 </h1>
             </div>
         </div>
@@ -38,22 +38,22 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="addproduct.html">Add Product</a></li>
-                            <li><a class="dropdown-item" href="editproduct.html">Edit Product</a></li>
+                            <li><a class="dropdown-item" href="/addproduct">Add Product</a></li>
+                            <li><a class="dropdown-item" href="/editproduct">Edit Product</a></li>
                         </ul>
                     </div>
 
                 </div>
 
                 <div class="col-md-2 navigation">
-                    <a href="reviewhistory.html">
+                    <a href="/reviewhistory">
                         <i class="fa-solid fa-message"></i>
                     </a>
 
                 </div>
 
                 <div class="col-md-2 navigation ">
-                    <a href="dashboard.html">
+                    <a href="/admin/dashboard">
                         <i class="fa-solid fa-chart-line"></i>
                     </a>
 
@@ -61,34 +61,79 @@
 
             </div>
         </div>
-        <div class="col-md-3"></div>
-        <form action="/add-product" method="POST">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="textBar">
-                        <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control"
-                                                                                    placeholder="Product Name" value="">
+        <div class="form">
+            <form action="/addproduct-create" enctype="multipart/form-data" method="POST">
+                <div style="text-align:center">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="textBar">
+                                <div class="col-md-12">
+                                    <label class="labels"></label><input type="text" class="form-control"
+                                                                         placeholder="Product Name" value=""
+                                                                         name="name"></div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12">
+                                    <label class="labels"></label><input type="text" class="form-control"
+                                                                         placeholder="Description" value=""
+                                                                         name="description"></div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="number" step="0.01"
+                                                                                            class="form-control"
+                                                                                            placeholder="Price" value=""
+                                                                                            name="price">
+                                </div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="number"
+                                                                                            class="form-control"
+                                                                                            placeholder="Discount"
+                                                                                            value="" name="discount">
+                                </div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="number"
+                                                                                            class="form-control"
+                                                                                            placeholder="Amount"
+                                                                                            value="" name="amount">
+                                </div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder="Tags" value=""
+                                                                                            name="tags">
+                                </div>
+                            </div>
+                            <!--Add the product main image and other images-->
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="file"
+                                                                                            class="form-control"
+                                                                                            placeholder="Main Image"
+                                                                                            value="" name="mainImage">
+                                </div>
+                                <!--Multi image upload-->
+                                <div class="textBar">
+                                    <div class="col-md-12"><label class="labels"></label><input type="file"
+                                                                                                class="form-control"
+                                                                                                placeholder="More Images"
+                                                                                                value=""
+                                                                                                name="moreImages"
+                                                                                                multiple="multiple">
+                                    </div>
+                                </div>
+                                <div class="buttonMargin">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="textBar">
-                        <div class="col-md-12"><label class="labels"></label><input type="number" step="0.01"
-                                                                                    class="form-control"
-                                                                                    placeholder="Price" value=""></div>
-                    </div>
-                    <div class="textBar">
-                        <div class="col-md-12"><label class="labels"></label><input type="number" class="form-control"
-                                                                                    placeholder="Discount" value="">
-                        </div>
-                    </div>
-                    <div class="textBar">
-                        <div class="col-md-12"><label class="labels"></label><input type="number" class="form-control"
-                                                                                    placeholder="Amount" value=""></div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-        </form>
-        <div class="col-md-3"></div>
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+            </form>
+        </div>
+
     </div>
 </div>
 </body>

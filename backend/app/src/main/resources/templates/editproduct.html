@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/addproduct.css">
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/app.js"></script>
+    <title>3TechMarket - Edit Product</title>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row header">
+        <div class="col-md-2">
+            <div class="logoImage">
+                <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
+            </div>
+        </div>
+
+
+        <div class="col-md-8">
+        </div>
+
+        <!--Iconos del header-->
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-2 navigation">
+                    <div class="dropdown">
+                        <a class="fa-solid fa-clipboard" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="addproduct.html">Add Product</a></li>
+                            <li><a class="dropdown-item" href="editproduct.html">Edit Product</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="col-md-2 navigation">
+                    <a href="reviewhistory.html">
+                        <i class="fa-solid fa-message"></i>
+                    </a>
+
+                </div>
+
+                <div class="col-md-2 navigation ">
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="form">
+            <form action="/editproduct-update" enctype="multipart/form-data" method="POST">
+                <div style="text-align:center">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="textBar">
+                                <div class="col-md-12">
+                                    <label class="labels"></label><input type="text" class="form-control"
+                                                                         placeholder="Product ID" value=""
+                                                                         name="id"></div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12">
+                                    <label class="labels"></label><input type="text" class="form-control"
+                                                                         placeholder="Product Name" value=""
+                                                                         name="name"></div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12">
+                                    <label class="labels"></label><input type="text" class="form-control"
+                                                                         placeholder="Description" value=""
+                                                                         name="description"></div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="number" step="0.01"
+                                                                                            class="form-control"
+                                                                                            placeholder="Price" value=""
+                                                                                            name="price">
+                                </div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="number"
+                                                                                            class="form-control"
+                                                                                            placeholder="Discount"
+                                                                                            value="" name="discount">
+                                </div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="number"
+                                                                                            class="form-control"
+                                                                                            placeholder="Amount"
+                                                                                            value="" name="amount">
+                                </div>
+                            </div>
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="text"
+                                                                                            class="form-control"
+                                                                                            placeholder="Tags" value=""
+                                                                                            name="tags">
+                                </div>
+                            </div>
+                            <!--Add the product main image and other images-->
+                            <div class="textBar">
+                                <div class="col-md-12"><label class="labels"></label><input type="file"
+                                                                                            class="form-control"
+                                                                                            placeholder="Main Image"
+                                                                                            value="" name="mainImage">
+                                </div>
+                                <!--Multi image upload-->
+                                <div class="textBar">
+                                    <div class="col-md-12"><label class="labels"></label><input type="file"
+                                                                                                class="form-control"
+                                                                                                placeholder="More Images"
+                                                                                                value=""
+                                                                                                name="moreImages"
+                                                                                                multiple="multiple">
+                                    </div>
+                                </div>
+                                <div class="buttonMargin">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+</div>
+</div>
+</body>
+
+</html>

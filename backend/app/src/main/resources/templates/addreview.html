@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/createreview.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>3TechMarket - Product review</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row header">
+            <div class="col-md-2">
+                <h1><a href="index.html"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
+            </div>
+            <div class="col-md-8">
+              <div class="input-group mb-4 searchbar">
+                  <form action="/search" method="post">
+                      <div class="input-group mb-4 searchbar">
+                          <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+                          <input type="hidden" name="_csrf" value="{{token}}"/>
+                          <div class="input-group-append">
+                              <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+            </div>
+  
+            <!--Iconos del header-->
+            <div class="col-md-2 ">
+                <div class="row">
+                    <div class="col-md-2 navigation">
+  
+                      <div class="dropdown">
+                        <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        </a>
+                      
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
+                          <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
+                          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                      </div>
+                        
+                    </div>
+  
+                    <div class="col-md-2 navigation">
+                        
+                      <a href="/wishlist">
+                        <i class="fa-solid fa-star"></i>
+                      </a>
+              
+                    </div>
+                    
+                    <div class="col-md-2 navigation">
+                        
+                          <a href="/cart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                          </a>
+                        
+                    </div>
+                    
+                    <div class="col-md-2 navigation ">
+                        
+                            <a href="#">
+                              <i class="fa-solid fa-bell"></i>
+                            </a>
+                          
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <h2>Add review</h2>
+        <br>
+        <div class="container-md">
+            <div class="row purchasedetails">
+                <div class="col-md-2"> <!--Thumbnail added with Mustache-->
+                    <img src="{{mainImage}}" alt="thumbnail" width="150" height="150">
+                </div>
+                <div class="col-md-10">
+                    <h3>{{productName}}</h3>
+                    <p class="details">You ordered this {{timestamp}}</p>
+                    <p class="details">Your name and review content will be visible to anyone browsing the website</p>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <form action="/send-review" method="post" enctype="multipart/form-data">
+                <div class="row stars">
+                    <div class="col-md-12">
+                        <span class="heading">Overall rating</span>
+                        <br>
+                        <!--Select number of stars-->
+                        <div class="rating">
+                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 stars">1</label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">2</label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">3</label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">4</label>
+                            <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">5</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row review">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Review title" id="floatingTextarea" name="reviewTitle" required></textarea>
+                            <label for="floatingTextarea">Review title</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row review">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave your comments here" id="floatingTextarea2" name="reviewText" style="height: 100px" required></textarea>
+                            <label for="floatingTextarea2">Additional comments</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row review">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="form-floating">
+                            <label for="floatingInput">Upload some images!</label>
+                            <input type="file" class="form-control" id="floatingInput" name="images" accept="image/*" multiple>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <div class="row review">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2">
+                        <button type="button" onclick="window.location.href='/'" class="btn btn-danger btn-lg mt-2">Cancel</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-success btn-lg mt-1">Upload review!</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </form>
+            </div>
+    </div>
+</body>
+</html>

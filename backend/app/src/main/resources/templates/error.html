@@ -12,7 +12,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 
-  <title>Unauthorized user</title>
+  <title>Error</title>
 </head>
 
 <body>
@@ -23,36 +23,41 @@
         <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
       </div>
       <div class="col-md-8">
-        <div class="input-group mb-4 searchbar">
-          <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5"
-            class="form-control border-success">
-          <div class="input-group-append">
-            <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+        <form action="/search" method="post">
+          <div class="input-group mb-4 searchbar">
+            <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+            <input type="hidden" name="_csrf" value="{{token}}"/>
+            <div class="input-group-append">
+              <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
 
       <!--Header icons-->
       <div class="col-md-2 ">
+        {{#isLoggedIn}}
         <div class="row">
           <div class="col-md-2 navigation">
 
             <div class="dropdown">
               <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               </a>
-
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
                 <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                <li><a class="dropdown-item" href="/signin">Log In/Sign Up</a></li>
+                <li><form action="/logout" method="post">
+                  <button class="dropdown-item" type="submit">Logout</button>
+                  <input type="hidden" name="_csrf" value="{{token}}"/>
+                </form></li>
               </ul>
             </div>
 
           </div>
 
-          <div class="col-md-2 navigation ">
+          <div class="col-md-2 navigation">
 
-            <a href="#">
+            <a href="/wishlist">
               <i class="fa-solid fa-star"></i>
             </a>
 
@@ -60,7 +65,7 @@
 
           <div class="col-md-2 navigation">
 
-            <a href="#">
+            <a href="/cart">
               <i class="fa-solid fa-cart-shopping"></i>
             </a>
 
@@ -75,14 +80,20 @@
           </div>
 
         </div>
-      </div>
+        {{/isLoggedIn}}
+        {{^isLoggedIn}}
+        <div class="row">
+          <!-- Login or register button linked to /signin -->
+          <a href="/signin" class="buttonlogin"><button class="btn btn-success">Login or register</button></a>
+        </div>
+        {{/isLoggedIn}}
     </div>
   </div>
 
   <div class="col-md-2 errorimg">
     <h1><img src="/error-404.png"></h1>
   </div>
-
+  </div>
 
 </body>
 

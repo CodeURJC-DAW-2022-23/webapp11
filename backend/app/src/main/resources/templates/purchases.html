@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/purchases.css">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/purchases.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="/app.js"></script>
     <title>3TechMarket - Purchase history</title>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row header">
             <div class="col-md-2">
-                <h1><a href="index.html"><img src="/assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
+                <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
             </div>
             <div class="col-md-8">
-              <div class="input-group mb-4 searchbar">
-                <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
-                <div class="input-group-append">
-                  <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
-                </div>
-              </div>
+                <form action="/search" method="post">
+                    <div class="input-group mb-4 searchbar">
+                        <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                        <div class="input-group-append">
+                            <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
             </div>
   
             <!--Iconos del header-->
@@ -37,9 +40,12 @@
                         </a>
                       
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="purchases.html">Recent orders</a></li>
-                          <li><a class="dropdown-item" href="profile.html">Edit profile</a></li>
-                          <li><a class="dropdown-item" href="login.html">Log In/Sign Up</a></li>
+                          <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
+                          <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
+                            <li><form action="/logout" method="post">
+                                <button class="dropdown-item" type="submit">Logout</button>
+                                <input type="hidden" name="_csrf" value="{{token}}"/>
+                            </form></li>
                         </ul>
                       </div>
                         
@@ -47,7 +53,7 @@
   
                     <div class="col-md-2 navigation">
                         
-                      <a href="#">
+                      <a href="/wishlist">
                         <i class="fa-solid fa-star"></i>
                       </a>
               
@@ -55,7 +61,7 @@
                     
                     <div class="col-md-2 navigation">
                         
-                          <a href="cesta.html">
+                          <a href="/cart">
                             <i class="fa-solid fa-cart-shopping"></i>
                           </a>
                         
@@ -73,32 +79,35 @@
             </div>
         </div>
         <h2>Your recent orders</h2>
+        {{#message}} <!--Message will be displayed if the user has cancelled and order and has just been redirected-->
+        <div class="alert alert-success" role="alert">
+            {{message}}
+        </div>
+        {{/message}}
         <br>
         <div class="container-md">
         {{#purchases}}
             <div class="row purchasedetails">
                 <div class="col-md-2"> <!--Thumbnail-->
-                    <img src="{{img-Url}}" alt="thumbnail" width="150" height="150">
+                    <img src="{{productThumbnail}}" alt="thumbnail" width="150" height="150">
                 </div>
                 <div class="col-md-4">
                     <h3>{{productName}}</h3>
-                    <p class="details">Date: <span class="badge text-bg-info">{{productName}}</span></p>
-                    <p class="details">Status: <span class="badge text-bg-success">{{shippingStatus}}</span></p>
-                    <p class="details">{{productPrice}}€ x {{numberOfUnits}} unit</p>
+                    <p class="details">Date: <span class="badge text-bg-info">{{timestamp}}</span></p>
+                    <p class="details">{{price}}€</p>
                 </div> <!--Purchase details-->
                 <div class="col-md-4">
                     <h3>Shipping address and payment method</h3>
-                    <p class="details">Address: <b>{{userAddress}}</b></p>
+                    <p class="details">Address: <b>{{address}}</b></p>
                     <p class="details">Payment method: <b>{{paymentMethod}}</b></p>
-                    <p class="details"><button type="button" class="btn btn-info">Download your invoice (PDF)</button>
-                    </p>
+                    <p class="details"><a href="/invoice/{purcahseId}"><button type="button" class="btn btn-info">Download your invoice (PDF)</button></a></p>
                 </div>
                 <div class="col-md-2">
-                    <button type="button" onclick="window.location.href='addreview.html'" class="btn btn-outline-success btn-lg mt-1">Leave a review</button>
+                    <button type="button" onclick="window.location.href='/product/{productId}/review'" class="btn btn-outline-success btn-lg mt-1">Leave a review</button> <!--Review button, I don't know if it will work given that the id is different from the one on the Purchase model-->
                     <br>
-                    <button type="button" class="btn btn-outline-primary btn-lg mt-2">Contact support</button>
+                    <button type="button" onclick="window.location.href='/messages'" class="btn btn-outline-primary btn-lg mt-2">Contact support</button>
                     <br>
-                    <button type="button" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>
+                    <button type="button" onclick="window.location.href='/return/{purchaseId}'" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>
                 </div> <!--Price and invoice-->
             </div>
             {{/purchases}}

@@ -1,9 +1,6 @@
 package com.techmarket.app.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 @Entity
@@ -12,37 +9,60 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String messageId;
+    private Long messageId;
 
-    private String userId;
-    private String text;
-    private boolean status; // resolved or not resolved
+    @ManyToOne
+    private User user;
 
-    public Message(String messageId, String text, boolean status, String userId) {
+    @ManyToOne
+    private User agent;
+
+    private String message;
+
+    private boolean status;  // True if the thread has been resolved, false otherwise
+
+    public Message(Long messageId, User user, User agent, String message, boolean status) {
         this.messageId = messageId;
-        this.text = text;
+        this.user = user;
+        this.agent = agent;
+        this.message = message;
         this.status = status;
-        this.userId = userId;
     }
 
     public Message() {
 
     }
 
-    public String getMessageId() {
+    public Long getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(String messageId) {
+    public void setMessageId(Long messageId) {
         this.messageId = messageId;
     }
 
-    public String getText() {
-        return text;
+    public User getUser() {
+        return user;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getAgent() {
+        return agent;
+    }
+
+    public void setAgent(User agent) {
+        this.agent = agent;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public boolean isStatus() {
@@ -51,13 +71,5 @@ public class Message {
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 }

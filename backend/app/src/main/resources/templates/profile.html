@@ -10,7 +10,7 @@
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="/app.js"></script>
-    <title>3TechMarket - Login</title>
+    <title>3TechMarket - Profile</title>
 </head>
 <body>
     <div class="container-fluid">
@@ -19,12 +19,15 @@
                 <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
             </div>
             <div class="col-md-8">
-              <div class="input-group mb-4 searchbar">
-                <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
-                <div class="input-group-append">
-                  <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
-                </div>
-              </div>
+                <form action="/search" method="post">
+                    <div class="input-group mb-4 searchbar">
+                        <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                        <div class="input-group-append">
+                            <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
             </div>
   
             <!--Iconos del header-->
@@ -40,7 +43,10 @@
                           <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
                           <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
                             {{#isLoggedIn}}
-                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            <li><form action="/logout" method="post">
+                                <button class="dropdown-item" type="submit">Logout</button>
+                                <input type="hidden" name="_csrf" value="{{token}}"/>
+                            </form></li>
                             {{/isLoggedIn}}
                             {{^isLoggedIn}}
                             <li><a class="dropdown-item" href="/signin">Login/Sign up</a></li>
@@ -81,7 +87,24 @@
         <div class="container rounded bg-white mt-1 mb-5">
             <div class="row">
                 <div class="col-md-3 border-right">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        {{#hasPfp}}
+                        <img class="rounded-circle mt-5" width="150px" src="{{pfp}}">
+                        {{/hasPfp}}
+                        {{^hasPfp}}
+                        <img class="rounded-circle mt-5" width="150px" src="https://i.imgur.com/FSW2P4r.jpg">
+                        {{/hasPfp}}
+                        <br>
+                        <span class="font-weight-bold">{{firstName}}</span>
+                        <span class="text-black-50">{{email}}</span>
+                        <span> </span>
+                        <form action="/edit-pfp" method="post" enctype="multipart/form-data">
+                            <br>
+                            <input class="pfp" type="file" placeholder="Upload a new profile picture" name="pfp" id="pfp" accept="image/jpeg, image/png">
+                            <br>
+                            <input type="submit" value="Save new profile picture" class="btn btn-outline-primary">
+                        </form>
+                    </div>
                 </div>
                 <div class="col-md-8 border-right">
                     <div class="p-3 py-5">
@@ -90,20 +113,23 @@
                         </div>
                         <form action="/edit-profile" method="post">
                         <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" placeholder="First Nname" value=""></div>
-                            <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="Last Name"></div>
+                            <div class="col-md-6"><label class="labels"></label><input type="text" id="firstName" name="firstName" class="form-control" value="{{firstName}}" placeholder="First Name" ></div>
+                            <div class="col-md-6"><label class="labels"></label><input type="text" id="lastName" name="lastName" class="form-control" value="{{lastName}}" placeholder="Last Name" ></div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Phone Number" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Address" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Postcode" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="State" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Country" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="State"></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Area" value=""></div>
-                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" placeholder="Email" value=""></div>
+
+                        <div class="row mt-3" >
+                            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{email}}" placeholder="Email" readonly></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="{{phoneNumber}}" placeholder="Phone Number"  ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="address" name="address" class="form-control" value="{{address}}" placeholder="Address" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="postcode" name="postcode" class="form-control" value="{{postcode}}" placeholder="Postcode" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="state" name="state" class="form-control" value="{{state}}" placeholder="State" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="country" name="country" class="form-control" value="{{country}}" placeholder="Country" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="city" name="city" class="form-control" value="{{city}}" placeholder="City" ></div>
+                            <div class="col-md-12"><label class="labels"></label><input type="text" id="area" name="area" class="form-control" value="{{area}}" placeholder="Area" ></div>
                         </div>
-                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        <br>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <input type="hidden" name="_csrf" value="{{token}}"/>
                         </form>
                     </div>
                 </div>

@@ -1,0 +1,10 @@
+GET https://localhost:8443/access-denied
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: JSESSIONID=03D14B53F199CD3ADD58292E8F535CB9
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-02-27T210741.200.html
+
+###
+
