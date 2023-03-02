@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.yaml.snakeyaml.util.ArrayUtils;
 
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -132,7 +133,7 @@ public class ProductController {
 
     @Transactional
     @PostMapping("/editproduct-update/{id}")
-    public String editproductupdate(@PathVariable long id, @RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam MultipartFile mainImage, @RequestParam MultipartFile[] moreImages) throws IOException, SQLException {
+    public String editproductupdate(@PathVariable long id, @RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam(required = false) MultipartFile mainImage, @RequestParam(required = false) MultipartFile[] moreImages) throws IOException, SQLException {
 
         Product product = productRepository.findByProductId(id);
 
@@ -163,17 +164,23 @@ public class ProductController {
             imageRepository.save(image);
             product.setMainImage(image);
         }
-        if (moreImages!=null) {
-            //First we delete all the other images and replace them with the new ones
-            imageRepository.deleteAll(product.getImages());
+
+        if (Arrays.stream(moreImages).allMatch(element -> element.getSize() > 0)){ //Check if all the images are not empty
+
+            if(product.getImages().isEmpty()) { //If there are images in the database, we delete them and update them with the new ones
+                imageRepository.deleteAll(product.getImages());
+            }
             product.setImages(null);
+            List<Image> images = new ArrayList<>();
             for (MultipartFile file : moreImages) {
                 if (Objects.equals(file.getContentType(), "image/jpeg") || Objects.equals(file.getContentType(), "image/png")) {
                     Image image = new Image();
                     image.setFileName(file.getOriginalFilename());
                     image.setImageBlob(new SerialBlob(file.getBytes()));
                     imageRepository.save(image);
-                    product.getImages().add(image);
+                    images.add(image);
+                    product.setImages(images);
+
 
                 } else {
                     return "error";  // 400 Bad Request, user didn't upload an image, redirected to main error page
