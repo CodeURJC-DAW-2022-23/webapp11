@@ -21,14 +21,14 @@
       <br><br>
 
     <!--Shopping cart -->
-      <div class="container-fluid" id="items">
+      <div class="container-md" id="items">
             {{#items}} <!--If there are items in the cart, then show them-->
             <div class="row item">
                 <div class="col-md-4">
                     <img src="/product/{{productId}}/image" class="center" alt="item" width="200" height="200">
                 </div>
                 <div class="col-md-4">
-                    <h3>{{productName}}</h3>
+                    <a href="/product/{{productId}}"><h3>{{productName}}</h3></a>
                     <p class="description">{{description}}</p>
                 </div>
                 <div class="col-md-2">
@@ -36,8 +36,6 @@
                     <p class="price">€{{productPrice}}</p>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn btn-success" onclick="window.location.href='/checkout/{{productId}}'">Checkout</button>
-                    <br><br>
                     <button class="btn btn-outline-danger" onclick="window.location.href='/remove-from-cart/{{productId}}'">Remove</button>
                 </div>
             </div>
@@ -63,6 +61,13 @@
                   <h2>Total: <span class="total">€{{totalPrice}}</span></h2>
               </div>
           </div>
+      {{#hasItems}}
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-success" onclick="window.location.href='/checkout'">Checkout</button>
+            </div>
+        </div>
+        {{/hasItems}}
 
 </div>
   {{> footer}}

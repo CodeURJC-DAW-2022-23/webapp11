@@ -21,7 +21,7 @@ $(document).ready(function() {
                     html += '<img src="/product/' + product.productId + '/image" class="center" alt="item" width="200" height="200">';
                     html += '</div>';
                     html += '<div class="col-md-4">';
-                    html += '<h3>' + product.productName + '</h3>';
+                    html += '<a href="/product/' + product.productId + '"><h3>' + product.productName + '</h3></a>';
                     html += '<p class="description">' + product.description + '</p>';
                     html += '</div>';
                     html += '<div class="col-md-2">';
@@ -29,8 +29,6 @@ $(document).ready(function() {
                     html += '<p class="price">€' + product.productPrice + '</p>';
                     html += '</div>';
                     html += '<div class="col-md-2">';
-                    html += '<button class="btn btn-success" onclick="window.location.href=\'/checkout/' + product.productId + '\'">Checkout</button>';
-                    html += '<br><br>'
                     html += '<button class="btn btn-outline-danger" onclick="window.location.href=\'/remove-from-cart/' + product.productId + '\'">Remove</button>';
                     html += '</div>';
                     html += '</div>';

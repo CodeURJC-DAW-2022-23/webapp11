@@ -41,6 +41,7 @@ public class CartController {
         if (!user.getShoppingCart().isEmpty()) {
             List<Product> productList = user.getShoppingCart();
             model.addAttribute("total", productList.size());
+            model.addAttribute("hasItems", true);
             if (productList.size() > 10) {
                 model.addAttribute("hasMore", true);
             } else {
@@ -59,6 +60,7 @@ public class CartController {
         } else {
             model.addAttribute("items", null);
             model.addAttribute("total", 0);
+            model.addAttribute("hasItems", false);
             model.addAttribute("hasMore", false);
             model.addAttribute("totalPrice", 0);
         }
