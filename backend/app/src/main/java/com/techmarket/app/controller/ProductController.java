@@ -70,10 +70,10 @@ public class ProductController {
     public String showPriceHistory(@PathVariable Long id, Model model) {
         Optional<Product> product = productService.getProductById(id);
         if (product.isPresent()) {
-            model.addAttribute("product", product.get().getProductPrices());
+            model.addAttribute("product", product.get());
             return "pricehistory";
         } else {
-            return "/dashboard"; //not sure of this
+            return "/dashboard";
         }
     }
 

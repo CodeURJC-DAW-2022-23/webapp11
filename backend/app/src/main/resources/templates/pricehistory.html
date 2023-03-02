@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -10,96 +11,30 @@
             crossorigin="anonymous"></script>
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="/app.js"></script>
     <title>3TechMarket - Price History</title>
 </head>
 <body>
 <div class="container-fluid">
-<<<<<<< Updated upstream
-    <div class="row header">
-        <div class="col-md-2">
-            <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
-        </div>
-        <div class="col-md-8">
-            <div class="input-group mb-4 searchbar">
-                <input type="search" placeholder="Search 3TechMarket" aria-describedby="button-addon5"
-                       class="form-control border-success">
-                <div class="input-group-append">
-                    <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!--Header icons-->
-        <div class="col-md-2 ">
-            <div class="row">
-                <div class="col-md-2 navigation">
-                    <div class="dropdown">
-                        <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
-                            <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                            <li>
-                                <form action="/logout" method="post">
-                                    <button class="dropdown-item" type="submit">Logout</button>
-                                    <input type="hidden" name="_csrf" value="{{token}}"/>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3 navigation">
-                    <a href="/addproduct">
-                        <i class="fa-solid fa-circle-plus"></i>
-                    </a>
-                </div>
-                <div class="col-md-3 navigation">
-                    <a href="/statistics">
-                        <i class="fa-solid fa-chart-simple"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{> header}}
     {{#product}}
-    <div class="col-md-4">
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <div id="container" style="height: 400px"></div>
-        <script th:inline="javascript">
-            const arraysize = []
-            for (let step = 0; step < $("#prices").length(); step++) {
-                arraysize.push(step);
-            }
-            Highcharts.chart('container', {
-                chart: {
-                    type: 'line',
-                    width: 500
-                },
-                title: {
-                    text: "Price History for {{productName}}"
-                },
-                xAxix: {
-                    categories: arraysize
-                },
-                tooltip: {
-                    formatter: function () {
-                        console.log(this);
-                    }
-                },
-                series: [{
-                    data: [143,4324,4323]
-                }]
-            });
-        </script>
+    <div class="col-md-12">
+        <button id="loadMore" onclick="javascript: load('{{prices}}', '{{productName}}');" class="btn btn-success">LOAD
+            GRAPH
+        </button>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div id="container" style="height: 400px"></div>
+        </div>
+        <div class="col-md-4"></div>
     </div>
     {{/product}}
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-=======
-    {{> header}}
->>>>>>> Stashed changes
 </div>
 </body>
 </html>
