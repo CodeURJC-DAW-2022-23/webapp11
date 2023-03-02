@@ -10,8 +10,6 @@ import com.techmarket.app.model.Review;
 import com.techmarket.app.model.User;
 import com.techmarket.app.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,13 +22,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class ProductController {
@@ -123,7 +119,7 @@ public class ProductController {
 
     @GetMapping("/product/{id}/editproduct")
     public String editproduct(@PathVariable long id, Model model) {
-        Product product = productRepository.findById(id).get();
+        Product product = productRepository.findByProductId(id);
         model.addAttribute("productName", product.getProductName());
         model.addAttribute("productDescription", product.getDescription());
         model.addAttribute("productPrice", product.getProductPrice());
@@ -137,9 +133,10 @@ public class ProductController {
     @Transactional
     @PostMapping("/editproduct-update/{id}")
     public String editproductupdate(@PathVariable long id, @RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam MultipartFile mainImage, @RequestParam MultipartFile[] moreImages) throws IOException, SQLException {
-        System.out.println(mainImage.getSize()>0);
-        System.out.println(moreImages.length>0);
+
         Product product = productRepository.findByProductId(id);
+
+
         if (name != null) {
             product.setProductName(name);
         }
@@ -166,7 +163,7 @@ public class ProductController {
             imageRepository.save(image);
             product.setMainImage(image);
         }
-        if (moreImages.length>0) {
+        if (moreImages!=null) {
             //First we delete all the other images and replace them with the new ones
             imageRepository.deleteAll(product.getImages());
             product.setImages(null);
@@ -200,12 +197,12 @@ public class ProductController {
     @GetMapping("/product/{id}/review")
     public String reviewProduct(@PathVariable("id") Long id, Model model) {
         // Check if product exists
-        Optional<Product> product = productService.getProductById(id);
+        Product product = productRepository.findByProductId(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findByEmail(auth.getName());
         // Check if the logged-in user has bought the product and not reviewed it yet, as well as if the product still exists
-        if (product.isPresent() && currentUser.getPurchasedProducts().contains(product.get()) && !currentUser.getReviews().contains(product.get())) {
-            model.addAttribute("product", product.get());
+        if (product!=null && currentUser.getPurchasedProducts().contains(product) && !currentUser.getReviews().contains(product)) {
+            model.addAttribute("product", product);
             return "addreview";
         } else {
             return "redirect:/products" + id;  // The user has not bought the product
