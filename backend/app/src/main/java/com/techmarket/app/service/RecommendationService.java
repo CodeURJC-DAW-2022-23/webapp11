@@ -7,7 +7,6 @@ import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Purchase;
 import com.techmarket.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -44,7 +43,17 @@ public class RecommendationService {
         for (int i = 0; i<4; i++){
             if (i < productsTag.size()){
                 recommendedProducts.add(productsTag.get(i));
-                System.out.println("Product " + i + ": " + recommendedProducts.get(i).getProductName());
+            }
+        }
+        if (recommendedProducts.size()<3){
+            List<Product> productsList = getAllProducts();
+            int i = recommendedProducts.size();
+            while(i < 4){
+                int random = (int) (Math.random()*productsList.size());
+                if (!recommendedProducts.contains(productsList.get(random))) {
+                    recommendedProducts.add(productsList.get(random));
+                    i++;
+                }
             }
         }
         return recommendedProducts;
