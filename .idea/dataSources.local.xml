@@ -14,10 +14,6 @@
           <node kind="schema" qname="3techmarket" />
         </introspection-scope>
       </schema-mapping>
-      <ssl-config>
-        <enabled>true</enabled>
-        <mode>REQUIRE</mode>
-      </ssl-config>
     </data-source>
   </component>
 </project>

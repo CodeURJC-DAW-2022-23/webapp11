@@ -28,7 +28,7 @@ h1, h2 {
     align-items: flex-start;
     font-size: small;
     text-align: justify;
-    font-weight: 600;
+    font-weight: 700;
     color: whitesmoke;
     text-transform: uppercase;
  }
@@ -43,6 +43,16 @@ h1, h2 {
     padding-top: 1px;
     padding-bottom: 1px;
  }
+
+.detailsone {
+    align-items: flex-start;
+    font-size: medium;
+    text-align: left;
+    color: whitesmoke;
+    font-weight: 500;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
 
 footer {
   font-family: Verdana, Geneva, Tahoma, sans-serif;

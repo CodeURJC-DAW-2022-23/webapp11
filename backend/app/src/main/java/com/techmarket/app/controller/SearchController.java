@@ -47,7 +47,7 @@ public class SearchController {
         Page<Product> page = productRepository.findByProductNameContaining(product, pageable);
 
         // Send the results to the ajax call
-        return JSONService.getStringResponseEntity(page);
+        return JSONService.getProductStringResponseEntity(page);
     }
 
 

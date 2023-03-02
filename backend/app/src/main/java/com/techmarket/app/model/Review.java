@@ -1,5 +1,6 @@
 package com.techmarket.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
@@ -11,15 +12,17 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String reviewId;
+    private Long reviewId;
 
     // Instead of String ids, we use product and User to avoid having to query the database for the product and user
     // This translates to a direct join in the database
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     private Product product;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
     private String reviewTitle;
     private int rating;
@@ -27,7 +30,7 @@ public class Review {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)  // Can be LAZY because sometimes we don't need to query the images when we query the review
     private List<Image> images;
 
-    public Review(String reviewId, Product product, User user, String reviewTitle, int rating, String reviewText, List<Image> images) {
+    public Review(Long reviewId, Product product, User user, String reviewTitle, int rating, String reviewText, List<Image> images) {
         this.reviewId = reviewId;
         this.product = product;
         this.user = user;
@@ -47,11 +50,11 @@ public class Review {
         this.rating = rating;
     }
 
-    public String getReviewId() {
+    public Long getReviewId() {
         return reviewId;
     }
 
-    public void setReviewId(String reviewId) {
+    public void setReviewId(Long reviewId) {
         this.reviewId = reviewId;
     }
 

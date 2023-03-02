@@ -71,7 +71,7 @@ public class CartController {
         Page<Product> page = productRepository.findProductsInShoppingCart(user.getEmail(), pageable);
 
 
-        return JSONService.getStringResponseEntity(page);
+        return JSONService.getProductStringResponseEntity(page);
     }
 
     @GetMapping("/add-to-cart/{id}")

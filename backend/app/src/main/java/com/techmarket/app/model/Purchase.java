@@ -16,19 +16,17 @@ public class Purchase {
     private Product product;
     private String timestamp;
     private String address;
-    private String price;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
     private String paymentMethod;
     private boolean isCancelled;
 
-    public Purchase(String purchaseId, Product product, String timestamp, String address, String price, User user, String paymentMethod, boolean isCancelled) {
+    public Purchase(String purchaseId, Product product, String timestamp, String address, User user, String paymentMethod, boolean isCancelled) {
         this.purchaseId = purchaseId;
         this.product = product;
         this.timestamp = timestamp;
         this.address = address;
-        this.price = price;
         this.user = user;
         this.paymentMethod = paymentMethod;
         this.isCancelled = isCancelled;
@@ -68,14 +66,6 @@ public class Purchase {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public User getUser() {

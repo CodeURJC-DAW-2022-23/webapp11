@@ -18,12 +18,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -186,7 +188,7 @@ public class ProductController {
         // Check if the logged-in user has bought the product and not reviewed it yet, as well as if the product still exists
         if (product.isPresent() && currentUser.getPurchasedProducts().contains(product.get()) && !currentUser.getReviews().contains(product.get())) {
             model.addAttribute("product", product.get());
-            return "review";
+            return "addreview";
         } else {
             return "redirect:/products" + id;  // The user has not bought the product
         }
@@ -194,38 +196,39 @@ public class ProductController {
 
     @PreAuthorize("hasAnyAuthority('USER')")
     @PostMapping("/product/{ProductId}/send-review")
-    public String addReview(@PathVariable("ProductId") Long id, @RequestParam String reviewTitle, @RequestParam String reviewText, @RequestParam int rating, @RequestParam(required = false) MultipartFile[] images) {
+    public String addReview(@PathVariable("ProductId") Long id, @RequestParam String reviewTitle, @RequestParam String reviewText, @RequestParam int rating, @RequestParam(required = false) MultipartFile[] images) throws IOException, SQLException {
         // Check if product exists
         Optional<Product> product = productService.getProductById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findByEmail(auth.getName());
-        // Check if the logged-in user has bought the product and not reviewed it yet, as well as if the product still exists
-        if (product.isPresent() && currentUser.getPurchasedProducts().contains(product.get()) && !currentUser.getReviews().contains(product.get())) {
-            // Create review
-            Review review = new Review();
-            if (images != null) {
-                List<Image> imageList = new ArrayList<>();
-                for (MultipartFile image : images) {
-                    Image img = new Image();
-                    img.setImageBlob((Blob) image);
-                    imageList.add(img);
+        // Create review
+        Review review = new Review();
+        if (images != null) {
+            List<Image> imageList = new ArrayList<>();
+            review.setImages(imageList);
+            for (MultipartFile file : images) {
+                if (Objects.equals(file.getContentType(), "image/jpeg") || Objects.equals(file.getContentType(), "image/png")) {
+                    Image image = new Image();
+                    image.setFileName(file.getOriginalFilename());
+                    image.setImageBlob(new SerialBlob(file.getBytes()));
+                    imageList.add(image);
+                    imageRepository.save(image);
+                } else {
+                    return "redirect:/error";  // Error trying to upload an image
                 }
-                review.setReviewTitle(reviewTitle);
-                review.setReviewText(reviewText);
-                review.setRating(rating);
-                review.setImages(imageList);
-            } else {
-                review = new Review(reviewTitle, reviewText, rating);
             }
-            // Save review
-            reviewRepository.save(review);
-            // Save product
-            productRepository.save(product.get());
-            // Save user
-            userRepository.save(currentUser);  // This will also save the review on the user table because of the @OneToMany relationship
-            return "redirect:/product/" + id;
-        } else {
-            return "redirect:/products";  // The user has not bought the product
         }
+        review.setReviewTitle(reviewTitle);
+        review.setReviewText(reviewText);
+        review.setRating(rating);
+        review.setProduct(product.get());
+        review.setUser(currentUser);
+        reviewRepository.save(review);
+        // Add review to user and product
+        currentUser.getReviews().add(review);
+        product.get().getReviews().add(review);
+        userRepository.save(currentUser);
+        productRepository.save(product.get());
+        return "redirect:/product/" + id;
     }
 }

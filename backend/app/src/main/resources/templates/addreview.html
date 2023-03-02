@@ -18,17 +18,19 @@
         <br>
         <div class="container-md">
             <div class="row purchasedetails">
+                {{#product}}
                 <div class="col-md-2"> <!--Thumbnail added with Mustache-->
-                    <img src="{{mainImage}}" alt="thumbnail" width="150" height="150">
+                    <img src="/product/{{productId}}/image" alt="thumbnail" width="150" height="150">
                 </div>
                 <div class="col-md-10">
                     <h3>{{productName}}</h3>
-                    <p class="details">You ordered this {{timestamp}}</p>
+                    <p class="detailsone">{{description}}</p>
                     <p class="details">Your name and review content will be visible to anyone browsing the website</p>
                 </div>
                 <div class="col-md-2"></div>
             </div>
-            <form action="/send-review" method="post" enctype="multipart/form-data">
+            <form action="/product/{{productId}}/send-review" method="post" enctype="multipart/form-data">
+                {{/product}}
                 <div class="row stars">
                     <div class="col-md-12">
                         <span class="heading">Overall rating</span>
@@ -66,10 +68,7 @@
                 <div class="row review">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
-                        <div class="form-floating">
-                            <label for="floatingInput">Upload some images!</label>
-                            <input type="file" class="form-control" id="floatingInput" name="images" accept="image/*" multiple>
-                        </div>
+                        <input type="file" class="form-control" id="floatingInput" name="images" accept="image/*" multiple placeholder="Upload images">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -81,6 +80,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-success btn-lg mt-1">Upload review!</button>
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
