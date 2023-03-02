@@ -120,11 +120,11 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}/editproduct")
-    public String editproduct(@PathVariable long id, Model model){
+    public String editproduct(@PathVariable long id, Model model) {
         Product product = productRepository.findById(id).get();
-        model.addAttribute("productName",product.getProductName());
-        model.addAttribute("productDescription",product.getDescription());
-        model.addAttribute("productPrice",product.getProductPrice());
+        model.addAttribute("productName", product.getProductName());
+        model.addAttribute("productDescription", product.getDescription());
+        model.addAttribute("productPrice", product.getProductPrice());
         model.addAttribute("productStock", product.getProductStock());
         model.addAttribute("tags", product.getTags());
 
@@ -133,40 +133,58 @@ public class ProductController {
     }
 
     @Transactional
-    @PostMapping("/editproduct-update")
-    public ResponseEntity<Product> editproduct(@RequestParam Long id, @RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam String discount, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam MultipartFile mainImage, @RequestParam MultipartFile[] moreImages) throws IOException, SQLException {
-        Product product = new Product();
-        // Create the list of images
-        List<Image> images = new ArrayList<>();
-        product.setImages(images);
-        for (MultipartFile file : moreImages) {
-            if (Objects.equals(file.getContentType(), "image/jpeg") || Objects.equals(file.getContentType(), "image/png")) {
-                Image image = new Image();
-                image.setFileName(file.getOriginalFilename());
-                image.setImageBlob(new SerialBlob(file.getBytes()));
-                images.add(image);
-                imageRepository.save(image);
-            } else {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);  // 400 Bad Request, user didn't upload an image
+    @PostMapping("/editproduct-update/{id}")
+    public String editproductupdate(@PathVariable long id, @RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam MultipartFile mainImage, @RequestParam MultipartFile[] moreImages) throws IOException, SQLException {
+        System.out.println(mainImage.getSize()>0);
+        System.out.println(moreImages.length>0);
+        Product product = productRepository.findByProductId(id);
+        if (name != null) {
+            product.setProductName(name);
+        }
+        if (description != null) {
+            product.setDescription(description);
+        }
+        if (price != 0) {
+            product.setProductPrice(price);
+        }
+
+        if (amount != 0) {
+            product.setProductStock(amount);
+        }
+        if (tags != null) {
+            product.setTags(tags);
+        }
+        if (mainImage.getSize()>0) {
+            //First we delete any existing Main image and then replace it with the new one
+            imageRepository.deleteByImageId(product.getMainImage().getImageId());
+            product.setMainImage(null);
+            Image image = new Image();
+            image.setFileName(mainImage.getOriginalFilename());
+            image.setImageBlob(new SerialBlob(mainImage.getBytes()));
+            imageRepository.save(image);
+            product.setMainImage(image);
+        }
+        if (moreImages.length>0) {
+            //First we delete all the other images and replace them with the new ones
+            imageRepository.deleteAll(product.getImages());
+            product.setImages(null);
+            for (MultipartFile file : moreImages) {
+                if (Objects.equals(file.getContentType(), "image/jpeg") || Objects.equals(file.getContentType(), "image/png")) {
+                    Image image = new Image();
+                    image.setFileName(file.getOriginalFilename());
+                    image.setImageBlob(new SerialBlob(file.getBytes()));
+                    imageRepository.save(image);
+                    product.getImages().add(image);
+
+                } else {
+                    return "error";  // 400 Bad Request, user didn't upload an image, redirected to main error page
+                }
+
             }
         }
-        Image image = new Image();
-        image.setFileName(mainImage.getOriginalFilename());
-        image.setImageBlob(new SerialBlob(mainImage.getBytes()));
-        imageRepository.save(image);
-        product.setProductName(name);
-        product.setDescription(description);
-        List<Double> prices = new ArrayList<>();
-        prices.add(price);
-        product.setProductPrices(prices);
-        product.setProductPrice(price);
-        product.setProductStock(amount);
-        product.setTags(tags);
-        product.setMainImage(image);
-        // Create new product
+
         productRepository.save(product);
-        return new ResponseEntity<>(product, HttpStatus.CREATED);  // 201 Created, this will also return the user object in the response body
-        // If there's information missing and the product can't be created, the response will be 400 Bad Request, Spring will handle that
+        return "redirect:/dashboard";
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN')")
