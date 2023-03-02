@@ -15,8 +15,7 @@ $(document).ready(function() {
             success: function(data) {
                 const purchases = JSON.parse(data).data;  // we need to add the .data to get the array of products, otherwise we get the whole response
                 let html = '';
-                products.forEach(function(product) {
-                    //<div className="row purchasedetails">
+                purchases.forEach(function(purchase) {
                     html += '<div class="row purchasedetails">';
                     html += '<div class="col-md-2">';
                     html += '<img src="/product/' + purchases.product.productId + '/image" alt="thumbnail" width="150" height="150">';

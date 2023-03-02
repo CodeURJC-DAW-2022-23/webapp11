@@ -24,7 +24,7 @@
     {{#items}} <!--If there are items in the wishlist, then show them-->
     <div class="row item">
       <div class="col-md-4">
-        <img src="{{image}}" alt="item" width="100" height="100">
+        <img src="/product/{{productId}}/image" alt="item" width="200" height="200">
       </div>
       <div class="col-md-4">
         <h3>{{productName}}</h3>
@@ -39,8 +39,16 @@
       <div class="col-md-12">
         <h2>There are no items in your wishlist, <a href="/">START SHOPPING NOW!</a></h2>
       </div>
-      {{/items}}
     </div>
+    {{/items}}
+    {{#hasMore}}
+    <div class="row">
+      <div class="col-md-12">
+        <button id="loadMore" class="btn btn-info">Load more</button>
+        <input type="hidden" name="total" id="total" value="{{total}}"/>
+      </div>
+    </div>
+    {{/hasMore}}
 
   </div>
 

@@ -33,14 +33,14 @@
                     <h3>Shipping address and payment method</h3>
                     <p class="details">Address: <b>{{address}}</b></p>
                     <p class="details">Payment method: <b>{{paymentMethod}}</b></p>
-                    <p class="details"><a href="/invoice/{purcahseId}"><button type="button" class="btn btn-info">Download your invoice (PDF)</button></a></p>
+                    <p class="details"><a href="/invoice/{{purchaseId}}"><button type="button" class="btn btn-info">Download your invoice (PDF)</button></a></p>
                 </div>
                 <div class="col-md-2">
                     <button type="button" onclick="window.location.href='/product/{{product.productId}}/review'" class="btn btn-outline-success btn-lg mt-1">Leave a review</button> <!--Review button, I don't know if it will work given that the id is different from the one on the Purchase model-->
                     <br>
                     <button type="button" onclick="window.location.href='/messages'" class="btn btn-outline-primary btn-lg mt-2">Contact support</button>
                     <br>
-                    <button type="button" onclick="window.location.href='/return/{purchaseId}'" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>
+                    <button type="button" onclick="window.location.href='/return/{{purchaseId}}'" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>
                 </div> <!--Price and invoice-->
             </div>
             {{/purchases}}

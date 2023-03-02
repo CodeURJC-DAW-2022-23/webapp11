@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class CartController {
 
@@ -39,7 +41,14 @@ public class CartController {
         if (!user.getShoppingCart().isEmpty()) {
             // Model the cart using the products from the database
             Page<Product> products = productRepository.findProductsInShoppingCart(user.getEmail(), pageable);
-            model.addAttribute("items", products.getContent());
+            List<Product> productList = user.getShoppingCart();
+            // Remove the products that are not in the cart and are in the wishlist
+            for (Product product : products) {
+                if (!productList.contains(product)) {
+                    products.getContent().remove(product);
+                }
+            }
+            model.addAttribute("items", productList);
             model.addAttribute("total", products.getTotalElements());
             if (products.getTotalElements() > 10) {
                 model.addAttribute("hasMore", true);
@@ -49,7 +58,7 @@ public class CartController {
 
             // Calculate the total price of the cart
             double totalPrice = 0;
-            for (Product product : products.getContent()) {
+            for (Product product : productList) {
                 totalPrice += product.getProductPrice();
             }
             model.addAttribute("totalPrice", totalPrice);
@@ -69,6 +78,14 @@ public class CartController {
         int pageSize = 10;
         Pageable pageable = PageRequest.of(start / pageSize, pageSize);
         Page<Product> page = productRepository.findProductsInShoppingCart(user.getEmail(), pageable);
+        List<Product> productList = user.getShoppingCart();
+        // Check if the elements are on the page and the cart
+        for (Product product : page) {
+            if (!productList.contains(product)) {
+                page.getContent().remove(product);
+            }
+        }
+
 
 
         return JSONService.getProductStringResponseEntity(page);

@@ -42,6 +42,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from Product p where p.user.email = :email")
     Page<Product> findProductsInShoppingCart(@Param("email") String email, Pageable pageable);
 
+    @Query("select p from Product p where p.user.email = :email")
+    Page<Product> findProductsInWishlist(@Param("email") String email, Pageable pageable);
+
 
     //void deleteAllById(String productId);
 
