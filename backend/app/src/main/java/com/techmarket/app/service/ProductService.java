@@ -3,7 +3,6 @@ package com.techmarket.app.service;
 import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

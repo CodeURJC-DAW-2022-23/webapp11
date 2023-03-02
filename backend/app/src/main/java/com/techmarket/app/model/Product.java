@@ -30,6 +30,10 @@ public class Product {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Double> prices;
 
+    // Many-to-one relationship with the user for the wishlist and shopping cart
+    @ManyToOne
+    private User user;
+
 
     //To add products
     public Product(String productName, String description, double price, int productStock, List<String> tags){
