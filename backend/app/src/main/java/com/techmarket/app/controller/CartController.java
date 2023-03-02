@@ -8,6 +8,7 @@ import com.techmarket.app.model.User;
 import com.techmarket.app.service.JSONService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class CartController {
@@ -39,29 +41,23 @@ public class CartController {
 
         // Check if the cart is empty
         if (!user.getShoppingCart().isEmpty()) {
-            // Model the cart using the products from the database
-            Page<Product> products = productRepository.findProductsInShoppingCart(user.getEmail(), pageable);
             List<Product> productList = user.getShoppingCart();
-            // Remove the products that are not in the cart and are in the wishlist
-            for (Product product : products) {
-                if (!productList.contains(product)) {
-                    products.getContent().remove(product);
-                }
-            }
-            model.addAttribute("items", productList);
-            model.addAttribute("total", products.getTotalElements());
-            if (products.getTotalElements() > 10) {
+            model.addAttribute("total", productList.size());
+            if (productList.size() > 10) {
                 model.addAttribute("hasMore", true);
             } else {
                 model.addAttribute("hasMore", false);
             }
-
             // Calculate the total price of the cart
             double totalPrice = 0;
             for (Product product : productList) {
                 totalPrice += product.getProductPrice();
             }
             model.addAttribute("totalPrice", totalPrice);
+            // Limit the number of products to 10
+            productList = productList.subList(0, Math.min(productList.size(), 10));
+            model.addAttribute("items", productList);
+
         } else {
             model.addAttribute("items", null);
             model.addAttribute("total", 0);
@@ -75,17 +71,11 @@ public class CartController {
     public ResponseEntity<String> loadMore(@RequestParam("start") int start) throws JsonProcessingException {
 
         User user = UserRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        int pageSize = 10;
-        Pageable pageable = PageRequest.of(start / pageSize, pageSize);
-        Page<Product> page = productRepository.findProductsInShoppingCart(user.getEmail(), pageable);
         List<Product> productList = user.getShoppingCart();
-        // Check if the elements are on the page and the cart
-        for (Product product : page) {
-            if (!productList.contains(product)) {
-                page.getContent().remove(product);
-            }
-        }
-
+        // Create the sublist from the start index to the end index
+        int end = Math.min(start + 10, productList.size());
+        productList = productList.subList(start, end);
+        Page<Product> page = new PageImpl<>(productList, PageRequest.of(0, 10), productList.size());  // Create a page object to create the JSON response
 
 
         return JSONService.getProductStringResponseEntity(page);
@@ -108,8 +98,8 @@ public class CartController {
         // Access the user's cart using the session using the SecurityContext and user repository with the email
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = UserRepository.findByEmail(authentication.getName());
-        // Remove the product from the cart
-        user.getShoppingCart().remove(new Product(id));  // This will remove the product from the cart, but it will not be a product from the database, it will be a product with only the productId, so it will not have the product name, price, etc.
+        // Remove the product from the cart (the product is identified by its id)
+        user.getShoppingCart().removeIf(product -> Objects.equals(product.getProductId(), id));
         // Save the changes to the database
         UserRepository.save(user);  // This will update the user's cart as the cart is a list of products on the user model
         return "redirect:/cart";

@@ -18,13 +18,14 @@
   <div class="container-fluid">
       {{> header}}
       <h1>Shopping Cart</h1>
+      <br>
 
     <!--Shopping cart -->
       <div class="container-fluid" id="items">
             {{#items}} <!--If there are items in the cart, then show them-->
             <div class="row item">
                 <div class="col-md-4">
-                    <img src="/product/{{productId}}/image" alt="item" width="200" height="200">
+                    <img src="/product/{{productId}}/image" class="center" alt="item" width="200" height="200">
                 </div>
                 <div class="col-md-4">
                     <h3>{{productName}}</h3>
@@ -32,35 +33,36 @@
                 </div>
                 <div class="col-md-2">
                     <h3>Price</h3>
-                    <p>${{productPrice}}</p>
+                    <p class="price">€{{productPrice}}</p>
                 </div>
                 <div class="col-md-2">
-                    <h3>Checkout now</h3>
-                    <a href="/checkout/{{productId}}"><button class="btn btn-success">Checkout</button></a>
-                    <a href="/remove-from-cart/{{productId}}"><button class="btn btn-danger">Remove</button></a>
+                    <button class="btn btn-success" onclick="window.location.href='/checkout/{{productId}}'">Checkout</button>
+                    <br><br>
+                    <button class="btn btn-outline-danger" onclick="window.location.href='/remove-from-cart/{{productId}}'">Remove</button>
                 </div>
-                {{/items}}
-                {{^items}}
-                <div class="col-md-12">
-                    <h2>There are no items in your cart, <a href="/">START SHOPPING NOW!</a></h2>
-                </div>
-                {{/items}}
             </div>
-          <div class="row">
-              <div class="col-md-12">
-                  <h2>Total: €{{totalPrice}}</h2>
-              </div>
+            <hr>
+            {{/items}}
+            {{^items}}
+            <div class="col-md-12">
+                <h2>There are no items in your cart, <a href="/">START SHOPPING NOW!</a></h2>
             </div>
+            {{/items}}
+
+      </div>
           {{#hasMore}}
           <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-12 text-center">
                   <button id="loadMore" class="btn btn-info">Load more</button>
                   <input type="hidden" name="total" id="total" value="{{total}}"/>
               </div>
           </div>
           {{/hasMore}}
-
-      </div>
+          <div class="row">
+              <div class="col-md-12">
+                  <h2>Total: <span class="total">€{{totalPrice}}</span></h2>
+              </div>
+          </div>
 
 </div>
   {{> footer}}

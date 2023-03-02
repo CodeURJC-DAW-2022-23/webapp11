@@ -18,7 +18,7 @@ $(document).ready(function() {
                 products.forEach(function(product) {
                     html += '<div class="row item">';
                     html += '<div class="col-md-4">';
-                    html += '<img src="/product/' + product.productId + '/image" alt="item" width="200" height="200">';
+                    html += '<img src="/product/' + product.productId + '/image" class="center" alt="item" width="200" height="200">';
                     html += '</div>';
                     html += '<div class="col-md-4">';
                     html += '<h3>' + product.productName + '</h3>';
@@ -29,15 +29,12 @@ $(document).ready(function() {
                     html += '<p>$' + product.productPrice + '</p>';
                     html += '</div>';
                     html += '<div class="col-md-2">';
-                    html += '<h3>Checkout now</h3>';
-                    html += '<a href="/checkout/' + product.productId + '">';
-                    html += '<button class="btn btn-success">Checkout</button>';
-                    html += '</a>';
-                    html += '<a href="/remove-from-cart/' + product.productId + '">';
-                    html += '<button class="btn btn-danger">Remove</button>';
-                    html += '</a>';
+                    html += '<button class="btn btn-success" onclick="window.location.href=\'/checkout/' + product.productId + '\'">Checkout</button>';
+                    html += '<br><br>'
+                    html += '<button class="btn btn-outline-danger" onclick="window.location.href=\'/remove-from-cart/' + product.productId + '\'">Remove</button>';
                     html += '</div>';
                     html += '</div>';
+                    html += '<hr>';
                 });
                 $("#items").append(html);
                 start += 10;
