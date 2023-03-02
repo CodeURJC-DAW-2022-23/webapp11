@@ -2,9 +2,14 @@ package com.techmarket.app.service;
 
 import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.Repositories.PurchaseRepository;
+import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Purchase;
+import com.techmarket.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +22,8 @@ public class RecommendationService {
     private PurchaseRepository purchaseRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private UserRepository userRepository;
     public List<Product> getRecommendedProducts(){
         ArrayList<Purchase> purchases = getPurchases();
         List<Product> purchasedItems  = getProductsPurchased(purchases);
@@ -37,6 +44,7 @@ public class RecommendationService {
         for (int i = 0; i<4; i++){
             if (i < productsTag.size()){
                 recommendedProducts.add(productsTag.get(i));
+                System.out.println("Product " + i + ": " + recommendedProducts.get(i).getProductName());
             }
         }
         return recommendedProducts;
@@ -75,7 +83,9 @@ public class RecommendationService {
     }
     public ArrayList<Purchase> getPurchases (){
         ArrayList<Purchase> purchases;
-        purchases = purchaseRepository.findFirst10ByOrderByPurchaseIdDesc();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User cuarrentUser = userRepository.findByEmail(auth.getName());
+        purchases = purchaseRepository.findFirst10Byuser_idOrderByPurchaseIdDesc(cuarrentUser.getId());
         return purchases;
     }
 }
