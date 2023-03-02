@@ -25,7 +25,7 @@ public class Product {
     private List<String> tags;
     private int productStock;
     private String productName; // They have to use the same name as Mustache
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Review> reviews;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Double> prices;

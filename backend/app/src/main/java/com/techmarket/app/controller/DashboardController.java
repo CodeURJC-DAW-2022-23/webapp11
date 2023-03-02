@@ -47,7 +47,7 @@ public class DashboardController {
         Pageable pageable = PageRequest.of(start / pageSize, pageSize);
         Page<Product> page = productRepository.findAll(pageable);
 
-        return JSONService.getStringResponseEntity(page);
+        return JSONService.getProductStringResponseEntity(page);
     }
 
     @GetMapping("/statistics")

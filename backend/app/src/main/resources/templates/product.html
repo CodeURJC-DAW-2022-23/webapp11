@@ -54,32 +54,32 @@
           </div>
           <div class="product-purchase">
             <div class="product-btn-group">
-              <div class="button buy-now"><i class='bx bx-money-withdraw'></i></i> Comprar</div>
-              <div class="button add-cart"><i class='bx bx-cart-download'></i></i> Añadir al carrito
+              <div class="button buy-now"><i class='bx bx-money-withdraw'></i></i> Buy</div>
+              <div class="button add-cart"><i class='bx bx-cart-download'></i></i> Add to cart
               </div>
-              <div class="button star"><i class='bx bxs-star'></i> Guardar</div>
+              <div class="button star"><i class='bx bxs-star'></i> Save</div>
             </div>
           </div>
 
           <div class="purchase-info d-flex flex-column">
             <div class="delivery d-flex justify-content-between">
               <span> Envío: </span>
-              <span class="delivery-type"> Envío GRATIS </span>
+              <span class="delivery-type"> FREE shipping </span>
             </div>
 
             <div class="refund d-flex justify-content-between">
               <span> Devolución: </span>
-              <span class="refund-type"> Devolución GRATIS </span>
+              <span class="refund-type"> FREE returns </span>
             </div>
 
             <div class="home-delivery d-flex justify-content-between">
               <span> Envío a domicilio: </span>
               {{#productStock}}
-              <span class="stock"> ¡En stock!</span>
+              <span class="stock"> Units available!</span>
               {{/productStock}}
 
               {{^productStock}}
-              <span class="stock"> No hay stock</span>
+              <span class="stock"> Out of stock</span>
               {{/productStock}}
 
             </div>
@@ -91,17 +91,17 @@
       </div>
       <div class="features d-flex justify-content-start">
         <div class="row">
-          <h5>Características</h5>
+          <h5>Features</h5>
           <div class="info-features">
             <p>{{description}}</p>
 
           </div>
-          <h5>Opiniones</h5>
+          <h5>Reviews</h5>
           {{#reviews}}
           <div class="conteiner-opinion d-flex justify-content-start">
             <div class="opinion d-flex justify-content-between gap-3">
               {{#profilePicture}}
-              <img src="{{profilePicture}}" width="90px">
+              <img src="/{{userId}}/pfp" width="90px">
               {{/profilePicture}}
 
               {{^profilePicture}}
