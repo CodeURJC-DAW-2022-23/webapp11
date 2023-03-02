@@ -61,24 +61,12 @@
       {{^default}}
       <div class="col-md-3">
           <a href="/product/{{productId}}">
-              <img src="/product/{{productId}}/image" alt="destacado" width="100" height="100">
+              <img src="/product/{{productId}}/image" alt="featured" width="100" height="100">
               <p class="destacados">{{productName}}<span class="badge text-bg-warning">{{productPrice}}€</span></p>
           </a>
       </div>
       {{/default}}
   </div>
-    
-
-    <footer>
-        <p> &copy 3TechMarket Apache-2.0 license <br>
-            Inés Alonso Izquierdo - i.alonso.2020@alumnos.urjc.es - Github: tsukii14 <br>
-            Santiago Arias Paniagua - s.arias.2020@alumnos.urjc.es - Github: 4rius <br>
-            Ignacio Canículo Domínguez - i.caniculo.2020@alumnos.urjc.es - Github: nachocaniculo <br>
-            Ángel Covarrubias Roldán - a.covarrubias.2020@alumnos.urjc.es - Github: Angelcova <br>
-            Andreas Wolf Wolf - a.wolf.2020@alumnos.urjc.es - Github: Andreas4122002 <br>
-        </p>
-        </footer>
-    
-    
+  {{> footer}}
 </body>
 </html>
