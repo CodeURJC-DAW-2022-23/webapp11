@@ -277,7 +277,7 @@ p {
 }
 
 .price {
-  color: whitesmoke;
+  color: #7aca3d;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -286,6 +286,13 @@ p {
 .total {
   color: #7aca3d;
   font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.description {
+  color: whitesmoke;
+  font-style: italic;
   margin-top: 20px;
   margin-bottom: 20px;
 }

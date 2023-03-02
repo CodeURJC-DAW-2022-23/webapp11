@@ -22,11 +22,11 @@ $(document).ready(function() {
                     html += '</div>';
                     html += '<div class="col-md-4">';
                     html += '<h3>' + product.productName + '</h3>';
-                    html += '<p>' + product.description + '</p>';
+                    html += '<p class="description">' + product.description + '</p>';
                     html += '</div>';
                     html += '<div class="col-md-2">';
                     html += '<h3>Price</h3>';
-                    html += '<p>$' + product.productPrice + '</p>';
+                    html += '<p class="price">€' + product.productPrice + '</p>';
                     html += '</div>';
                     html += '<div class="col-md-2">';
                     html += '<button class="btn btn-success" onclick="window.location.href=\'/checkout/' + product.productId + '\'">Checkout</button>';

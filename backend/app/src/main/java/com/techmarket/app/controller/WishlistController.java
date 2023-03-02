@@ -5,10 +5,7 @@ import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.User;
-import com.techmarket.app.service.JSONService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +14,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Objects;
+
+import static com.techmarket.app.service.JSONService.getStringResponseEntity;
 
 @Controller
 public class WishlistController {
@@ -35,74 +36,50 @@ public class WishlistController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = UserRepository.findByEmail(authentication.getName());
         if (!user.getWishlist().isEmpty()) {
-            // Model the cart using the products from the database
-            Page<Product> products = productRepository.findProductsInWishlist(user.getEmail(), pageable);
             List<Product> productList = user.getWishlist();
-            // Remove the products that are not in the wishlist and are in the cart
-            for (Product product : products) {
-                if (!productList.contains(product)) {
-                    products.getContent().remove(product);
-                }
-            }
-            model.addAttribute("items", productList);
-            model.addAttribute("total", products.getTotalElements());
-            if (products.getTotalElements() > 10) {
+            model.addAttribute("total", productList.size());
+            if (productList.size() > 10) {
                 model.addAttribute("hasMore", true);
             } else {
                 model.addAttribute("hasMore", false);
             }
-            return "wishlist";
+            productList = productList.subList(0, Math.min(productList.size(), 10));
+            model.addAttribute("items", productList);
         } else {
             model.addAttribute("items", null);
             model.addAttribute("total", 0);
             model.addAttribute("hasMore", false);
-            return "wishlist";
         }
-
+        return "wishlist";
     }
 
     @GetMapping("/wishlist/loadmore")
     public ResponseEntity<String> loadMore(@RequestParam("start") int start) throws JsonProcessingException {
 
         User user = UserRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        int pageSize = 10;
-        Pageable pageable = PageRequest.of(start / pageSize, pageSize);
-        Page<Product> page = productRepository.findProductsInShoppingCart(user.getEmail(), pageable);
         List<Product> productList = user.getWishlist();
-        // Check if the elements are on the page and the wishlist
-        for (Product product : page) {
-            if (!productList.contains(product)) {
-                page.getContent().remove(product);
-            }
-        }
-
-
-
-        return JSONService.getProductStringResponseEntity(page);
+        return getStringResponseEntity(start, productList);
     }
 
 
-
-    @GetMapping("/add-to-wishlist")
-    public String addToCart(int productId) {
+    @GetMapping("/add-to-wishlist{id}")
+    public String addToWishlist(@PathVariable Long id) {
         // Access the user's wishlist using the session using the SecurityContext and user repository with the email
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = UserRepository.findByEmail(authentication.getName());
         // Add the product to the wishlist
-        user.getWishlist().add(new Product(productId));  // This will add the product to the cart, but it will not be a product from the database, it will be a product with only the productId, so it will not have the product name, price, etc.
+        user.getWishlist().add(productRepository.findById(id).get());
         // Save the changes to the database
         UserRepository.save(user);  // This will update the user's cart as the cart is a list of products on the user model
         return "redirect:/wishlist";
     }
 
-    @GetMapping("/remove-from-wishlist")
-    public String removeFromCart(int productId) {
+    @GetMapping("/remove-from-wishlist/{id}")
+    public String removeFromWishlist(@PathVariable Long id) {
         // Access the user's wishlist using the session using the SecurityContext and user repository with the email
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        User user = UserRepository.findByEmail(email);
+        User user = UserRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         // Remove the product from the wishlist
-        user.getWishlist().remove(new Product(productId));
+        user.getWishlist().removeIf(product -> Objects.equals(product.getProductId(), id));  // This will remove the product from the wishlist if the product id is equal to the id passed in the path
         // Save the changes to the database
         UserRepository.save(user);  // This will update the user's cart as the cart is a list of products on the user model
         return "redirect:/wishlist";

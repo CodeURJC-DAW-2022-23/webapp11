@@ -18,9 +18,10 @@
 <div class="container-fluid">
   {{> header}}
   <h1>Wishlist</h1>
+  <br><br>
 
   <!--Wishlist -->
-  <div class="container-fluid">
+  <div class="container-fluid" id="items">
     <!--Using Mustache to generate the items-->
     {{#items}} <!--If there are items in the wishlist, then show them-->
     <div class="row item">
@@ -29,29 +30,33 @@
       </div>
       <div class="col-md-4">
         <h3>{{productName}}</h3>
-        <p>{{description}}</p>
+        <p class="description">{{description}}</p>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
         <h3>Price</h3>
-        <p>${{productPrice}}</p>
+        <p class="price">€{{productPrice}}</p>
       </div>
+      <div class="col-md-2">
+        <button class="btn btn-outline-danger" onclick="window.location.href='/remove-from-wishlist/{{productId}}'">Remove</button>
+      </div>
+    </div>
+    <hr>
       {{/items}}
       {{^items}}
       <div class="col-md-12">
         <h2>There are no items in your wishlist, <a href="/">START SHOPPING NOW!</a></h2>
       </div>
-    </div>
     {{/items}}
+
+  </div>
     {{#hasMore}}
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 text-center">
         <button id="loadMore" class="btn btn-info">Load more</button>
         <input type="hidden" name="total" id="total" value="{{total}}"/>
       </div>
     </div>
     {{/hasMore}}
-
-  </div>
 
 </div>
 {{> footer}}

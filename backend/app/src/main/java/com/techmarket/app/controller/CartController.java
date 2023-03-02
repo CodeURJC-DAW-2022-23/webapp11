@@ -5,11 +5,7 @@ import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.User;
-import com.techmarket.app.service.JSONService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Objects;
+
+import static com.techmarket.app.service.JSONService.getStringResponseEntity;
 
 @Controller
 public class CartController {
@@ -72,13 +70,7 @@ public class CartController {
 
         User user = UserRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         List<Product> productList = user.getShoppingCart();
-        // Create the sublist from the start index to the end index
-        int end = Math.min(start + 10, productList.size());
-        productList = productList.subList(start, end);
-        Page<Product> page = new PageImpl<>(productList, PageRequest.of(0, 10), productList.size());  // Create a page object to create the JSON response
-
-
-        return JSONService.getProductStringResponseEntity(page);
+        return getStringResponseEntity(start, productList);
     }
 
     @GetMapping("/add-to-cart/{id}")
@@ -86,8 +78,8 @@ public class CartController {
         // Access the user's cart using the session using the SecurityContext and user repository with the email
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = UserRepository.findByEmail(authentication.getName());
-        // Add the product to the cart
-        user.getShoppingCart().add(new Product(id));
+        // Add the product to the cart (the product is identified by its id)
+        user.getShoppingCart().add(productRepository.findById(id).get());
         // Save the changes to the database
         UserRepository.save(user);  // This will update the user's cart as the cart is a list of products on the user model
         return "redirect:/cart";

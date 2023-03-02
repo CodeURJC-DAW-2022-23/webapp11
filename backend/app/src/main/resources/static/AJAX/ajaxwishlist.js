@@ -17,19 +17,22 @@ $(document).ready(function() {
                 let html = '';
                 products.forEach(function(product) {
                     html += '<div class="row item">';
-                    //<div className="col-md-4">
                     html += '<div class="col-md-4">';
-                    html += '<img src="/product/' + product.id + '/image" alt="item" width="200" height="200">';
+                    html += '<img src="/product/' + product.productId + '/image" alt="item" width="200" height="200">';
                     html += '</div>';
                     html += '<div class="col-md-4">';
-                    html += '<h3>' + product.name + '</h3>';
-                    html += '<p>' + product.description + '</p>';
+                    html += '<h3>' + product.productName + '</h3>';
+                    html += '<p class="description">' + product.description + '</p>';
                     html += '</div>';
-                    html += '<div class="col-md-4">';
+                    html += '<div class="col-md-2">';
                     html += '<h3>Price</h3>';
-                    html += '<p>€' + product.price + '</p>';
+                    html += '<p class="price">€' + product.productPrice + '</p>';
+                    html += '</div>';
+                    html += '<div class="col-md-2">';
+                    html += '<button class="btn btn-outline-danger" onclick="window.location.href=\'/remove-from-wishlist/' + product.productId + '\'">Remove</button>';
                     html += '</div>';
                     html += '</div>';
+                    html += '<hr>';
                 });
                 $("#items").append(html);
                 start += 10;
