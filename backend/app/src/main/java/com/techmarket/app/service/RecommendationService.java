@@ -45,10 +45,10 @@ public class RecommendationService {
                 recommendedProducts.add(productsTag.get(i));
             }
         }
-        if (recommendedProducts.size()<3){
+        if ((recommendedProducts.size()<3) && (recommendedProducts.size() != 0)){
             List<Product> productsList = getAllProducts();
             int i = recommendedProducts.size();
-            while(i < 4){
+            while((i < 4)&&(i<productsList.size())){
                 int random = (int) (Math.random()*productsList.size());
                 if (!recommendedProducts.contains(productsList.get(random))) {
                     recommendedProducts.add(productsList.get(random));
