@@ -36,7 +36,7 @@ function load(a, b) {
             }
         },
         series: [{
-            data: values.reverse()
+            data: values
         }]
     });
 }

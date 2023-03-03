@@ -169,7 +169,10 @@ a:active {
   padding-top: 30px;
 }
 
-.graphcontainer{
-  horiz-align: center;
+.container{
+  padding-top: 15px;
+  padding-left: 50px;
+  margin: 0 auto;
+  padding-bottom: 15px;
 }
 

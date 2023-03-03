@@ -41,7 +41,9 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .requestMatchers("/edit-profile").authenticated()
                         .requestMatchers("/wishlist").authenticated()
                         .requestMatchers("/cart").hasAnyAuthority("USER")
-                        .requestMatchers("/messages").hasAnyAuthority("USER", "AGENT")
+                        .requestMatchers("/messages").hasAnyAuthority("USER")
+                        .requestMatchers("/messages/**").hasAnyAuthority("AGENT")
+                        .requestMatchers("/chats").hasAnyAuthority("AGENT")
                         .anyRequest().authenticated()
                 )
                 .formLogin( form -> form

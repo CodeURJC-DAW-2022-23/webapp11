@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bootstrap.min.css">
     <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/ranaemptyicon.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -36,6 +37,7 @@
                             <input class="pfp" type="file" placeholder="Upload a new profile picture" name="pfp" id="pfp" accept="image/jpeg, image/png">
                             <br>
                             <input type="submit" value="Save new profile picture" class="btn btn-outline-primary">
+                            <input type="hidden" name="_csrf" value="{{token}}"/>
                         </form>
                     </div>
                 </div>
