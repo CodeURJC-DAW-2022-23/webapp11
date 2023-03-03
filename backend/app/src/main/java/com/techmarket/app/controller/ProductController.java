@@ -54,13 +54,12 @@ public class ProductController {
     @GetMapping("/product/{id}")
     public String showProduct(@PathVariable Long id, Model model) {
         Optional<Product> product = productService.getProductById(id);
-        if (product.isPresent()) {
-            model.addAttribute("name", product.get().getProductName());
-            model.addAttribute("product", product.get());
-            return "product";
-        } else {
-            return "redirect:/error"; // 404 Not Found, product not found, redirected to main error page
-        }
+        // Get the reviews for the product
+        List<Review> reviews = reviewRepository.findAllByProduct(product.get());
+        model.addAttribute("name", product.get().getProductName());
+        model.addAttribute("product", product.get());
+        model.addAttribute("reviews", reviews);
+        return "product";
     }
 
     @GetMapping("/pricehistory/{id}")

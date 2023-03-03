@@ -62,7 +62,7 @@ public class WishlistController {
     }
 
 
-    @GetMapping("/add-to-wishlist{id}")
+    @GetMapping("/add-to-wishlist/{id}")
     public String addToWishlist(@PathVariable Long id) {
         // Access the user's wishlist using the session using the SecurityContext and user repository with the email
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

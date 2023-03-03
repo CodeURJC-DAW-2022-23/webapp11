@@ -56,23 +56,23 @@
                     <div class="product-purchase">
                         <div class="product-btn-group">
                             <a class="button add-cart" href="/add-to-cart/{{productId}}"><i class='bx bx-cart-download'></i></i> Add to cart</a>
-                            <a class="button star" href="/add-to-wishlist{{productId}}"><i class='bx bxs-star'></i> Save</a>
+                            <a class="button star" href="/add-to-wishlist/{{productId}}"><i class='bx bxs-star'></i> Save</a>
                         </div>
                     </div>
 
                     <div class="purchase-info d-flex flex-column">
                         <div class="delivery d-flex justify-content-between">
-                            <span> Envío: </span>
+                            <span> Shipping: </span>
                             <span class="delivery-type"> FREE shipping </span>
                         </div>
 
                         <div class="refund d-flex justify-content-between">
-                            <span> Devolución: </span>
+                            <span> Returns: </span>
                             <span class="refund-type"> FREE returns </span>
                         </div>
 
                         <div class="home-delivery d-flex justify-content-between">
-                            <span> Envío a domicilio: </span>
+                            <span> Stock: </span>
                             {{#productStock}}
                             <span class="stock"> Units available!</span>
                             {{/productStock}}
@@ -100,7 +100,7 @@
                     <div class="conteiner-opinion d-flex justify-content-start">
                         <div class="opinion d-flex justify-content-between gap-3">
                             {{#profilePicture}}
-                            <img src="/{{userId}}/pfp" width="90px">
+                            <img src="/{{user.userId}}/pfp" width="90px">
                             {{/profilePicture}}
 
                             {{^profilePicture}}
@@ -108,7 +108,7 @@
                             {{/profilePicture}}
 
                             <div class="user-info d-flex justify-content-between gap-5">
-                                <span class="user-name">{{email}}</span>
+                                <span class="user-name">{{user.email}}</span>
                                 <div class="product-rate">
                                     <div class="d-flex align-items-center gap-3">
                                         <img src="/1.png" id="starRating" width="130px">

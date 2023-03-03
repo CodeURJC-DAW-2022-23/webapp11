@@ -1,6 +1,7 @@
 package com.techmarket.app.Repositories;
 
 
+import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -20,5 +21,5 @@ public interface ReviewRepository extends JpaRepository<Review, String> {
     List<Review> findByRating(int rating);
 
 
-
+    List<Review> findAllByProduct(Product product);
 }
