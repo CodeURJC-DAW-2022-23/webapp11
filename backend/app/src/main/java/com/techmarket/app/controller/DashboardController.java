@@ -30,8 +30,10 @@ public class DashboardController {
         if (page.isEmpty()) {
             model.addAttribute("item", null);
             model.addAttribute("hasMore", false);
+
         } else {
             model.addAttribute("item", page.getContent());
+
         }
 
         model.addAttribute("total", page.getTotalElements());

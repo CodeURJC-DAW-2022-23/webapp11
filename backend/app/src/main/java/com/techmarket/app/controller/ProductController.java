@@ -192,9 +192,15 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN')")
-    @GetMapping("/product/{id}/delete")
-    public String deleteProduct(@PathVariable("id") Long id) {
-        productService.deleteByProductId(id);
+    @GetMapping("/product/{id}/removeFromStock")
+    public String removeFromStock(@PathVariable("id") Long id) {
+        //Get the product by its id and set stock to 0
+        Product product = productRepository.findByProductId(id);
+        product.setProductStock(0);
+        productRepository.save(product);
+
+
+
         return "redirect:/dashboard";
     }
 

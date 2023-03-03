@@ -93,6 +93,11 @@
             <artifactId>spring-webmvc</artifactId>
             <version>6.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>24.0.0</version>
+        </dependency>
 
 
     </dependencies>
