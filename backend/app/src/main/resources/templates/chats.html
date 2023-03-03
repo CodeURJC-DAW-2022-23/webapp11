@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/bootstrap.min.css">
-  <link rel="shortcut icon" href="/ranaemptyicon.png">
   <link rel="stylesheet" href="/chats.css">
+  <link rel="shortcut icon" href="/ranaemptyicon.png" type="image/x-icon">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
   <script src="/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -28,17 +28,17 @@
     <div class="row item">
       <div class="col-md-4">
         <!--User profile image-->
-        <img src="/{user.id}/userpfp" alt="User profile image" class="img-fluid" width="150" height="150">
+        <img src="/{{id}}/userpfp" alt="User profile image" class="img-fluid" width="150" height="150">
       </div>
       <div class="col-md-4">
         <!--User name-->
-        <h3>{{user.firstName}}</h3>
+        <h3>{{firstName}}</h3>
         <!--User email-->
-        <h3>{{user.email}}</h3>
+        <h4>{{email}}</h4>
       </div>
         <div class="col-md-4">
           <!--Configure the controller so that only support can enter this address-->
-          <button class="btn btn-outline-primary" onclick="window.location.href='/messages/{{user.id}}'">Access chat</button>
+          <button class="btn btn-outline-primary" onclick="window.location.href='/messages/{{id}}'">Access chat</button>
           <br><br>
         </div>
     </div>

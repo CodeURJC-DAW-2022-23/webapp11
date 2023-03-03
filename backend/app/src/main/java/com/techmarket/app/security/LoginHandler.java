@@ -45,7 +45,7 @@ public class LoginHandler implements AuthenticationSuccessHandler {
         } else if (authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("USER"))) {
             url = "/";
         } else if (authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("AGENT"))) {
-            url = "/";
+            url = "/chats";
         }
 
         return url;

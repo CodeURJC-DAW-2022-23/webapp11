@@ -18,7 +18,7 @@ public interface MessageRepository extends JpaRepository<Message, String> {
     // Return the page of all messages
     Page<Message> findAll(Pageable pageable);
 
-    List<Message> findByUserId(Long id);
+    List<Message> findByUserId(Long userId);
 
     // List<Message> findByStatus(boolean status);
     // Not really sure if we need this one

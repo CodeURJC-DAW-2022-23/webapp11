@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/bootstrap.min.css">
-  <link rel="stylesheet" href="/style.css">
   <link rel="shortcut icon" href="/ranaemptyicon.png">
   <link rel="stylesheet" href="/messages.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
@@ -36,9 +35,10 @@
     {{/messages}}
   </div>
   <div class="footer">
-    <form method="POST" action="/send-message">
+    <form method="POST" action="/send-message{{agent}}">
       <input type="text" name="messageText" placeholder="Type your message here...">
       <input type="hidden" name="_csrf" value="{{token}}"/>
+      <input type="hidden" name="identification" value="{{userId}}"/>
       <button type="submit" class="formbutton">Send</button>
     </form>
   </div>

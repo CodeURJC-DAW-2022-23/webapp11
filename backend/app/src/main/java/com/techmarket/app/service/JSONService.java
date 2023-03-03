@@ -2,9 +2,9 @@ package com.techmarket.app.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.techmarket.app.model.Message;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Purchase;
+import com.techmarket.app.model.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -43,7 +43,7 @@ public class JSONService {
     }
 
     @NotNull
-    public static ResponseEntity<String> getMessageStringResponseEntity(Page<Message> page) throws JsonProcessingException {
+    public static ResponseEntity<String> getMessageStringResponseEntity(Page<User> page) throws JsonProcessingException {
         Map<String, Object> map = new HashMap<>();
         map.put("data", page.getContent());
 

@@ -23,8 +23,10 @@ public class HeaderController {
             model.addAttribute("isLoggedIn", true);
             if (user.getRoles().contains("ADMIN")) {
                 model.addAttribute("isAdmin", true);
+            } else if (user.getRoles().contains("AGENT")) {
+                model.addAttribute("isAgent", true);
             } else {
-                model.addAttribute("isAdmin", false);
+                model.addAttribute("isUser", true);
             }
         } else {
             model.addAttribute("isLoggedIn", false);

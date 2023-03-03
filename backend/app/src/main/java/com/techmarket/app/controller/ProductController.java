@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.yaml.snakeyaml.util.ArrayUtils;
-
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
@@ -213,7 +211,7 @@ public class ProductController {
             model.addAttribute("product", product);
             return "addreview";
         } else {
-            return "redirect:/products" + id;  // The user has not bought the product
+            return "redirect:/products/" + id;  // The user has not bought the product
         }
     }
 

@@ -13,23 +13,20 @@ $(document).ready(function() {
                 $("#loadMore").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
             },
             success: function(data) {
-                const products = JSON.parse(data).data;  // we need to add the .data to get the array of products, otherwise we get the whole response
+                const users = JSON.parse(data).data;  // we need to add the .data to get the array of products, otherwise we get the whole response
                 let html = '';
-                products.forEach(function(product) {
+                users.forEach(function(user) {
                     html += '<div class="row item">';
                     html += '<div class="col-md-4">';
-                    html += '<img src="/product/' + product.productId + '/image" class="center" alt="item" width="200" height="200">';
+                    html += '<img src="/' + user.id + '/userpfp" alt="User profile image" class="img-fluid" width="150" height="150">';
                     html += '</div>';
                     html += '<div class="col-md-4">';
-                    html += '<a href="/product/' + product.productId + '"><h3>' + product.productName + '</h3></a>';
-                    html += '<p class="description">' + product.description + '</p>';
+                    html += '<h3>' + user.firstName + '</h3>';
+                    html += '<h4>' + user.email + '</h4>';
                     html += '</div>';
-                    html += '<div class="col-md-2">';
-                    html += '<h3>Price</h3>';
-                    html += '<p class="price">€' + product.productPrice + '</p>';
-                    html += '</div>';
-                    html += '<div class="col-md-2">';
-                    html += '<button class="btn btn-outline-danger" onclick="window.location.href=\'/remove-from-cart/' + product.productId + '\'">Remove</button>';
+                    html += '<div class="col-md-4">';
+                    html += '<button class="btn btn-outline-primary" onclick="window.location.href=\'/messages/' + user.id + '\'">Access chat</button>';
+                    html += '<br><br>';
                     html += '</div>';
                     html += '</div>';
                     html += '<hr>';
