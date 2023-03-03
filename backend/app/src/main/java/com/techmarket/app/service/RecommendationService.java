@@ -33,8 +33,8 @@ public class RecommendationService {
         // Remove products already purchased
         for(int i = 0; i<productsTag.size(); i++){
             for(int j = 0; j<purchasedItems.size(); j++){
-                if(productsTag.get(i).getProductId() == purchasedItems.get(j).getProductId()){
-                    productsTag.remove(i);
+                if(productsTag.contains(purchasedItems.get(j))){
+                    productsTag.remove(purchasedItems.get(j));
                 }
             }
         }
@@ -45,12 +45,12 @@ public class RecommendationService {
                 recommendedProducts.add(productsTag.get(i));
             }
         }
-        if ((recommendedProducts.size()<3) && (recommendedProducts.size() != 0)){
+        if (recommendedProducts.size() != 0){
             List<Product> productsList = getAllProducts();
             int i = recommendedProducts.size();
             while((i < 4)&&(i<productsList.size())){
                 int random = (int) (Math.random()*productsList.size());
-                if (!recommendedProducts.contains(productsList.get(random))) {
+                if ((!recommendedProducts.contains(productsList.get(random)))&&(!purchasedItems.contains(productsList.get(random)))) {
                     recommendedProducts.add(productsList.get(random));
                     i++;
                 }
