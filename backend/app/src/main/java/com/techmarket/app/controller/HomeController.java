@@ -30,11 +30,8 @@ public class HomeController {
             List<Product> recommended = recommendationService.getRecommendedProducts();
             if(recommended.size() != 0){
                 model.addAttribute("default",false);
-                for (Product product : recommended) {
-                    model.addAttribute("productName", product.getProductName());
-                    model.addAttribute("productPrice", product.getProductPrice());
-                    model.addAttribute("productId", product.getProductId());
-                }
+                model.addAttribute("products", recommended);
+
             }
             else{
                 model.addAttribute("default",true);
