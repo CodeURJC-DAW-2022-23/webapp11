@@ -146,7 +146,11 @@ public class ProductController {
         }
         if (price != 0) {
             product.setProductPrice(price);
+            List<Double> prices = product.getProductPrices();
+            prices.add(price);
+            product.setProductPrices(prices);
         }
+
 
         if (amount != 0) {
             product.setProductStock(amount);
