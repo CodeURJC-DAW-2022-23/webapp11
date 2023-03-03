@@ -299,6 +299,10 @@ This steps assume you have the Java Extension Pack and the Spring Boot Extension
 
 ## Diagrams
 <details><summary> <b> Entity Relationship Diagram (ERD) </b> </summary>
+Please bear in mind that many of the relationships represent lists, and that sequences, which may
+appear like we have lots of entities, are actually just one entity with a list of objects. Some of the
+relationships overlap on the diagram, to read the diagram, please follow the arrows and read
+how the entities are related, comparing the diagram with the code will help you understand it.
 
 ![ER Diagram](img_5.png)
 
