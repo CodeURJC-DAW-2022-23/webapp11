@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -81,6 +80,7 @@ public class UserController {
     public String signupuser(@RequestParam String email, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName) throws MessagingException {
         User user = new User( email,  firstName, lastName);
         user.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));
+        // Set a default profile picture
         if (userRepository.findByEmail(email) != null) {
             // User already exists, 409 Conflict
             return "redirect:/signup?error=409";
