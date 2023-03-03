@@ -11,13 +11,9 @@
       <user-name>ThreeTechRoot</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema" qname="3techmarket" />
+          <node kind="schema" negative="1" />
         </introspection-scope>
       </schema-mapping>
-      <ssl-config>
-        <enabled>true</enabled>
-        <mode>REQUIRE</mode>
-      </ssl-config>
     </data-source>
   </component>
 </project>
