@@ -1,0 +1,292 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /*background-color: white; */
+    background-color: #181A1B;
+    margin: 0;
+    padding: 0;
+    height: 75%;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    padding-top: 15px;
+    align-items: center;
+    text-align: center;
+    color: whitesmoke;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+h2 {
+    padding-top: 15px;
+    align-items: center;
+    text-align: justify;
+    color: whitesmoke;
+    font-weight: 500;
+    text-transform: none;
+}
+
+h3 {
+    color: whitesmoke;
+    text-align: justify;
+    font-weight: 500;
+    text-transform: none;
+}
+
+footer {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+
+
+.searchbar {
+    align-items: flex-start;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 30px;
+}
+
+.icon {
+    align-items: flex-start;
+    padding-top: 25px;
+}
+
+.navigation {
+    margin-top: 35px;
+    color: whitesmoke;
+    padding-left: 45px;
+    font-size: 18px;
+}
+
+
+
+.logoCentered {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.loginBox {
+    margin-top: 20px;
+    width: 350px;
+    height: 40px;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+.loginText {
+    margin-top: 20px;
+    font-size: 28px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+}
+
+.loginButton {
+    width: 105px;
+    height: 30px;
+    line-height: 20px;
+    margin-top: 20px;
+    vertical-align: middle;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #7aca3d;
+}
+
+.noAccountText {
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #7aca3d;
+}
+
+a:link {
+    color: #7aca3d;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #7aca3d;
+    text-decoration: none;
+}
+
+.labels {
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+.btn-success {
+    background-color: #7aca3d !important;
+}
+
+.border-success {
+    color: #7aca3d !important;
+}
+
+a:link {color: #7aca3d;}
+a:visited {color: #7aca3d;}
+a:hover {color: #7aca3d;}
+a:active {color: #7aca3d;}
+
+.this-web-title{
+    color: whitesmoke;
+    align-items: flex-start;
+    padding-bottom: 20px;
+}
+.product-name{
+    color: black;
+    align-items: flex-start;
+    font-size: medium;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.product-price{
+    color: black;
+    align-items: flex-start;
+    font-size: smaller;
+}
+.product{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    margin-right: 40px;
+    border-color: black;
+    border-radius: 15px;
+    border-style: solid;
+    background-color: whitesmoke;
+    border-width: 20px;
+
+}
+.resume{
+    margin-top: 50px;
+    margin-bottom: 250px;
+    background-color: whitesmoke;
+    border-radius: 15px;
+}
+.resume-title{
+    margin-bottom: 30px;
+    margin-top: 10px;
+
+}
+.title{
+    color: black;
+    font-size: large;
+}
+.title2{
+    color: black;
+    font-size: medium;
+    margin-bottom: 50px;
+}
+.title3{
+    color: black;
+    font-size: medium;
+    margin-bottom: 50px;
+}
+
+.product-image{
+    margin-left: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.button-purchase{
+    margin-bottom: 20px;
+    border-radius: 15px;
+    color:whitesmoke;
+    background-color: #7aca3d;
+    width: 490px;
+}
+.button-payment{
+    margin-left: 20px;
+    margin-right: 50px;
+}
+.secundary-button{
+    background-color: #7aca3d;
+    border-radius: 15px;
+    border-color: whitesmoke;
+    margin-top: 20px;
+    color: whitesmoke;
+    height: 60px;
+}
+.button-delete{
+    margin-top: 20px;
+    height: 60px;
+}
+.button-deletecart{
+    margin-left: 20px;
+    height: 40px;
+    width: 170px;
+}
+.tertiary-button{
+    background-color: #7aca3d;
+    border-radius: 15px;
+    color:whitesmoke;
+    height: 40px;
+    width: 170px;
+}
+
+p {
+    color: whitesmoke;
+    font-size: medium;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.price {
+    color: #7aca3d;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: whitesmoke;
+    font-style: italic;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

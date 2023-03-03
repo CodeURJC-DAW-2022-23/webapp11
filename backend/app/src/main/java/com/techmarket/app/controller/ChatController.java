@@ -46,4 +46,14 @@ public class ChatController {
         messageRepository.save(message);
         return "redirect:/messages";
     }
+
+    @GetMapping("/chats")
+    public String getChats(Model model) {
+        // Get all the messages from all the users, ordered by timestamp
+        List<Message> messages = messageRepository.findAll();
+        messages.sort(Comparator.comparing(Message::getTimestamp));
+        model.addAttribute("totalChats", messages.size());
+        model.addAttribute("chats", messages);
+        return "chats";
+    }
 }
