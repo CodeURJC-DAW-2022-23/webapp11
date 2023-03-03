@@ -326,4 +326,58 @@ All members have contributed to the project in a similar way, and all members ha
 | [Inés Alonso](https://github.com/tsukii14)           | Product details - Review handling - Thorough testing                                                                                                                 |
 | [Ángel Covarrubias](https://github.com/angelcova)    | Recommendation algorithm - Home page - Thorough testing                                                                                                              |
 
-### Featured contributions
+### 5 most important commits
+
+<details><summary> <b> Santiago Arias </b> </summary>
+
+- [Finished support chat](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/adbb2af3a1d2687c3d75ad596838626ce0b51691)
+- [Ajax button and cart controller](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/ddbf93d0da4b8249b3f8604d182d21388da7a4bf)
+- [Headers,pageable and AJAX with JSON](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/0f55370475d94e8f47ed2c345ea3ee146af542dc#diff-1cc9442bfbec310ff7a3a5005337b137a0e1c1dde0a3ffe08258b49b34aad16d)
+- [Database optimisation (reduced queries for the vast majority of tasks)](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/fd8278e475a8d64609f27dd5edb72e5dadb21f65)
+- [Email confirmation when signing up](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/5788d318549cb70423c3e8dd691a622316ae3238)
+
+</details>
+
+<details><summary> <b> Andreas Wolf </b> </summary>
+
+</details>
+
+<details><summary> <b> Ignacio Canículo </b> </summary>
+
+</details>
+
+<details><summary> <b> Inés Alonso </b> </summary>
+
+</details>
+
+<details><summary> <b> Ángel Covarrubias </b> </summary>
+
+</details>
+
+### 5 most edited files
+
+<details><summary> <b> Santiago Arias </b> </summary>
+
+- [ProductController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/ProductController.java)
+- [CartController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/CartController.java)
+- [ajaxsearch.js](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/resources/static/ajaxsearch.js)
+- [ChatController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/ChatController.java)
+- [SearchController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/SearchController.java)
+
+</details>
+
+<details><summary> <b> Andreas Wolf </b> </summary>
+
+</details>
+
+<details><summary> <b> Ignacio Canículo </b> </summary>
+
+</details>
+
+<details><summary> <b> Inés Alonso </b> </summary>
+
+</details>
+
+<details><summary> <b> Ángel Covarrubias </b> </summary>
+
+</details>
