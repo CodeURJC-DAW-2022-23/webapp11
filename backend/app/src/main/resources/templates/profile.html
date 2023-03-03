@@ -36,6 +36,7 @@
                             <input class="pfp" type="file" placeholder="Upload a new profile picture" name="pfp" id="pfp" accept="image/jpeg, image/png">
                             <br>
                             <input type="submit" value="Save new profile picture" class="btn btn-outline-primary">
+                            <input type="hidden" name="_csrf" value="{{token}}"/>
                         </form>
                     </div>
                 </div>

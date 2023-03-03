@@ -38,6 +38,10 @@ h3{
     margin-left: auto;
 }
 
+.agent_message{
+    margin-right: auto;
+}
+
 .footer form{
     display: flex;
 }

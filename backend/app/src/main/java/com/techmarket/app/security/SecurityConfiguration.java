@@ -42,6 +42,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .requestMatchers("/wishlist").authenticated()
                         .requestMatchers("/cart").hasAnyAuthority("USER")
                         .requestMatchers("/messages").hasAnyAuthority("USER")
+                        .requestMatchers("/messages/**").hasAnyAuthority("AGENT")
                         .requestMatchers("/chats").hasAnyAuthority("AGENT")
                         .anyRequest().authenticated()
                 )

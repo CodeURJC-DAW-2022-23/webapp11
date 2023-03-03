@@ -2,6 +2,7 @@ package com.techmarket.app.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.techmarket.app.model.Message;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Purchase;
 import org.jetbrains.annotations.NotNull;
@@ -32,6 +33,17 @@ public class JSONService {
 
     @NotNull
     public static ResponseEntity<String> getPurchaseStringResponseEntity(Page<Purchase> page) throws JsonProcessingException {
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", page.getContent());
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(map);
+
+        return new ResponseEntity<>(json, HttpStatus.OK);
+    }
+
+    @NotNull
+    public static ResponseEntity<String> getMessageStringResponseEntity(Page<Message> page) throws JsonProcessingException {
         Map<String, Object> map = new HashMap<>();
         map.put("data", page.getContent());
 
