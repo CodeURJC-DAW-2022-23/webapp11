@@ -296,3 +296,30 @@ This steps assume you have the Java Extension Pack and the Spring Boot Extension
   - To stop the web app, run `kill $(lsof -t -i:XXXX)` on the terminal, where `XXXX` is the port you used to run the web app
 
 </details>
+
+## Diagrams
+<details><summary> <b> Entity Relationship Diagram (ERD) </b> </summary>
+
+![ER Diagram](img_5.png)
+
+</details>
+
+<details><summary> <b> Class and templates diagram </b> </summary>
+
+![Class Diagram](img_6.jpg)
+
+</details>
+
+## Contributions
+
+All members have contributed to the project in a similar way, and all members have worked on all parts of the project, this table is just a rough estimate of the amount of work each member has done.
+
+| Member                                               | Contributions                                                                                                                                                        |
+|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Santiago Arias](https://github.com/4rius)           | Spring security - All AJAX request buttons - Cart - Purchase history - Image handling - Product search - Automatic emails - Support messages - Entities - Add reviews |
+| [Andreas Wolf](https://github.com/Andreas4122002)    | Checkout - Wishlist - Edit profile - Edit product - Admin dashboard - Entities                                                                                       |
+| [Ignacio Canículo](https://github.com/nachocaniculo) | Add product - Price history chart - Email password recovery - Login - Signup                                                                                         |
+| [Inés Alonso](https://github.com/tsukii14)           | Product details - Review handling - Thorough testing                                                                                                                 |
+| [Ángel Covarrubias](https://github.com/angelcova)    | Recommendation algorithm - Home page - Thorough testing                                                                                                              |
+
+### Featured contributions
