@@ -3,6 +3,7 @@ package com.techmarket.app.model;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -105,7 +106,14 @@ public class Product {
     }
 
     public List<String> getTags() {
+
         return tags;
+
+    }
+
+    public String getTagList() {
+        return String.join(", \n", this.getTags());
+
     }
 
     public void setTags(List<String> tags) {

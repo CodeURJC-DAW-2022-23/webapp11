@@ -121,11 +121,8 @@ public class ProductController {
     @GetMapping("/product/{id}/editproduct")
     public String editproduct(@PathVariable long id, Model model) {
         Product product = productRepository.findByProductId(id);
-        model.addAttribute("productName", product.getProductName());
-        model.addAttribute("productDescription", product.getDescription());
-        model.addAttribute("productPrice", product.getProductPrice());
-        model.addAttribute("productStock", product.getProductStock());
-        model.addAttribute("tags", product.getTags());
+        model.addAttribute("product", product);
+        model.addAttribute("tagList", product.getTagList());
 
 
         return "editproduct";
@@ -133,7 +130,7 @@ public class ProductController {
 
     @Transactional
     @PostMapping("/editproduct-update/{id}")
-    public String editproductupdate(@PathVariable long id, @RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam(required = false) MultipartFile mainImage, @RequestParam(required = false) MultipartFile[] moreImages) throws IOException, SQLException {
+    public String editproductupdate(@PathVariable long id, @RequestParam(required = false) String name, @RequestParam(required = false) String description, @RequestParam(required = false) double price, @RequestParam(required = false) int amount, @RequestParam List<String> tags, @RequestParam(required = false) MultipartFile mainImage, @RequestParam(required = false) MultipartFile[] moreImages) throws IOException, SQLException {
 
         Product product = productRepository.findByProductId(id);
 
