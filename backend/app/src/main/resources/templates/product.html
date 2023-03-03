@@ -2,136 +2,134 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/bootstrap.min.css">
-  <link rel="stylesheet" href="/style.css">
-  <link rel="shortcut icon" href="/ranaemptyicon.png">
-  <link rel="stylesheet" href="/product.css">
-  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
-          crossorigin="anonymous"></script>
-  <script src="/bootstrap.bundle.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="/productRate.js"></script>
-  <script src="/app.js"></script>
-  <title>3TechMarket - {{name}}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/ranaemptyicon.png">
+    <link rel="stylesheet" href="/product.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/productRate.js"></script>
+    <script src="/app.js"></script>
+    <title>3TechMarket - {{name}}</title>
 </head>
 
 <body>
 <div class="container-fluid">
-  {{> header}}
-{{#product}}
-  <div class="container">
-    <div class="single-product">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="product-image">
-            <div class="main-image">
-              <img src="/product/{{productId}}/image" alt="" width="460px">
-            </div>
-            {{#images}}
-            <div class="image-slider">
-                <img src="/product/{{productId}}/images/{{-index}}" alt="" width="110px" class="image-list">
-            </div>
-            {{/images}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="product-info d-flex flex-column">
-            <div class="product-name">
-              <h3>{{productName}}</h3>
-            </div>
-            <div class="product-price d-flex justify-content-between">
-              <span class="sale-price">{{productPrice}}</span>
-              <div class="product-rate">
-                <div class="d-flex align-items-center gap-3">
-                  <img src="/1.png" id="productRating" width="130px">
-                  <span class="d-none" id="productRate">5</span> <!--have to do this-->
+    {{> header}}
+    {{#product}}
+    <div class="container">
+        <div class="single-product">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="product-image">
+                        <div class="main-image">
+                            <img src="/product/{{productId}}/image" alt="" width="460px">
+                        </div>
+                        <div class="image-slider">
+                            {{#images}}
+                            <img src="/product/{{productId}}/images/{{-index}}" alt="" width="110px" class="image-list">
+                            {{/images}}
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-purchase">
-            <div class="product-btn-group">
-              <div class="button buy-now"><i class='bx bx-money-withdraw'></i></i> Buy</div>
-              <div class="button add-cart"><i class='bx bx-cart-download'></i></i> Add to cart
-              </div>
-              <div class="button star"><i class='bx bxs-star'></i> Save</div>
-            </div>
-          </div>
+                <div class="col-md-6">
+                    <div class="product-info d-flex flex-column">
+                        <div class="product-name">
+                            <h3>{{productName}}</h3>
+                        </div>
+                        <div class="product-price d-flex justify-content-between">
+                            <span class="sale-price">{{productPrice}}</span>
+                            <div class="product-rate">
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="/1.png" id="productRating" width="130px">
+                                    <span class="d-none" id="productRate">5</span> <!--have to do this-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-purchase">
+                        <div class="product-btn-group">
+                            <a class="button add-cart" href="/add-to-cart/{{productId}}"><i class='bx bx-cart-download'></i></i> Add to cart</a>
+                            <a class="button star" href="/add-to-wishlist{{productId}}"><i class='bx bxs-star'></i> Save</a>
+                        </div>
+                    </div>
 
-          <div class="purchase-info d-flex flex-column">
-            <div class="delivery d-flex justify-content-between">
-              <span> Envío: </span>
-              <span class="delivery-type"> FREE shipping </span>
-            </div>
+                    <div class="purchase-info d-flex flex-column">
+                        <div class="delivery d-flex justify-content-between">
+                            <span> Envío: </span>
+                            <span class="delivery-type"> FREE shipping </span>
+                        </div>
 
-            <div class="refund d-flex justify-content-between">
-              <span> Devolución: </span>
-              <span class="refund-type"> FREE returns </span>
-            </div>
+                        <div class="refund d-flex justify-content-between">
+                            <span> Devolución: </span>
+                            <span class="refund-type"> FREE returns </span>
+                        </div>
 
-            <div class="home-delivery d-flex justify-content-between">
-              <span> Envío a domicilio: </span>
-              {{#productStock}}
-              <span class="stock"> Units available!</span>
-              {{/productStock}}
+                        <div class="home-delivery d-flex justify-content-between">
+                            <span> Envío a domicilio: </span>
+                            {{#productStock}}
+                            <span class="stock"> Units available!</span>
+                            {{/productStock}}
 
-              {{^productStock}}
-              <span class="stock"> Out of stock</span>
-              {{/productStock}}
+                            {{^productStock}}
+                            <span class="stock"> Out of stock</span>
+                            {{/productStock}}
 
-            </div>
+                        </div>
 
-          </div>
+                    </div>
 
-        </div>
-
-      </div>
-      <div class="features d-flex justify-content-start">
-        <div class="row">
-          <h5>Features</h5>
-          <div class="info-features">
-            <p>{{description}}</p>
-
-          </div>
-          <h5>Reviews</h5>
-          {{#reviews}}
-          <div class="conteiner-opinion d-flex justify-content-start">
-            <div class="opinion d-flex justify-content-between gap-3">
-              {{#profilePicture}}
-              <img src="/{{userId}}/pfp" width="90px">
-              {{/profilePicture}}
-
-              {{^profilePicture}}
-              <img src="https://i.imgur.com/FSW2P4r.jpg" width="90px">
-              {{/profilePicture}}
-
-              <div class="user-info d-flex justify-content-between gap-5">
-                <span class=" user-name">{{email}}</span>
-                <div class="product-rate">
-                  <div class="d-flex align-items-center gap-3">
-                    <img src="/1.png" id="starRating" width="130px">
-                    <span class="d-none" id="rate">{{rating}}</span>
-                  </div>
-                  <div class="row">
-                    <b>{{reviewTitle}}</b>
-                    <span class="text-op">{{reviewText}}</span>
-                  </div>
                 </div>
-              </div>
+
             </div>
-          </div>
-          {{/reviews}}
+            <div class="features d-flex justify-content-start">
+                <div class="row">
+                    <h5>Features</h5>
+                    <div class="info-features">
+                        <p>{{description}}</p>
+
+                    </div>
+                    <h5>Reviews</h5>
+                    {{#reviews}}
+                    <div class="conteiner-opinion d-flex justify-content-start">
+                        <div class="opinion d-flex justify-content-between gap-3">
+                            {{#profilePicture}}
+                            <img src="/{{userId}}/pfp" width="90px">
+                            {{/profilePicture}}
+
+                            {{^profilePicture}}
+                            <img src="https://i.imgur.com/FSW2P4r.jpg" width="90px">
+                            {{/profilePicture}}
+
+                            <div class="user-info d-flex justify-content-between gap-5">
+                                <span class="user-name">{{email}}</span>
+                                <div class="product-rate">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <img src="/1.png" id="starRating" width="130px">
+                                        <span class="d-none" id="rate">5</span>
+                                    </div>
+                                    <div class="row">
+                                        <b>{{reviewTitle}}</b>
+                                        <span class="text-op">{{reviewText}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/reviews}}
+
+                </div>
+            </div>
 
         </div>
-      </div>
-
     </div>
-  </div>
-  {{/product}}
+    {{/product}}
 </div>
 {{> footer}}
 </body>
