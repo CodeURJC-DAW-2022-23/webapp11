@@ -39,7 +39,8 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .requestMatchers("/admin/**", "/addproduct", "/addproduct-create", "/editproduct", "/editproduct-update","/dashboard","/statistics","/pricehistory").hasAuthority("ADMIN")
                         .requestMatchers("/profile").authenticated()  // Any role will be able to access its profile
                         .requestMatchers("/edit-profile").authenticated()
-                        .requestMatchers("/wishlist").authenticated()
+                        .requestMatchers("/wishlist").hasAnyAuthority("USER")
+                        .requestMatchers("/checkout").hasAnyAuthority("USER")
                         .requestMatchers("/cart").hasAnyAuthority("USER")
                         .requestMatchers("/messages").hasAnyAuthority("USER")
                         .requestMatchers("/messages/**").hasAnyAuthority("AGENT")

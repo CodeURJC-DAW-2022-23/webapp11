@@ -1,17 +1,16 @@
 package com.techmarket.app.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
+
+@Controller
 public class CheckoutController {
-    @RequestMapping("/checkout") // Map ONLY GET Requests
-    // Returns the checkout page
+    @GetMapping("/checkout")
     public String checkout() {
+
         return "checkout";
+
     }
 
-    @RequestMapping("/checkout/complete") // Map ONLY GET Requests
-    // Returns the confirmation page
-    public String checkoutComplete() {
-        return "checkoutcomplete";
-    }
 }
