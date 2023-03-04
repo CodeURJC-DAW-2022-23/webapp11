@@ -45,7 +45,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("select p from Product p where p.user.email = :email")
     Page<Product> findProductsInWishlist(@Param("email") String email, Pageable pageable);
 
-
+    // Get 4 random products for the home page when we don't have to tailor the products to the user
+    @Query("SELECT p FROM Product p ORDER BY RAND() LIMIT 4")
+    List<Product> findRandomProducts();
     //void deleteAllById(String productId);
 
     // For adding new products, we will use the save method from JpaRepository

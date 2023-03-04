@@ -32,42 +32,14 @@
       <h2>Featured offers</h2>
       <!--Recommended products row-->
       <div class="row destacados">
-          {{#default}}
-        <div class="col-md-3">
-          <a href="#">
-            <img src="/assets/images/pc15.jpg" alt="destacado" width="100" height="100">
-            <p class="destacados">Product name  <span class="badge text-bg-success">500$</span></p>
-          </a>
-        </div>
-        <div class="col-md-3">
-          <a href="#">
-            <img src="/assets/images/pc17.jpg" alt="destacado" width="100" height="100">
-            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
-          </a>
-        </div>
-        <div class="col-md-3">
-          <a href="#">
-            <img src="/assets/images/pc19.jpg" alt="destacado" width="100" height="100">
-            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
-          </a>
-        </div>
-        <div class="col-md-3">
-          <a href="#">
-            <img src="/assets/images/pc2.jpg" alt="destacado" width="100" height="100">
-            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
-          </a>
-        </div>
-          {{/default}}
-      {{^default}}
       {{#products}}
       <div class="col-md-3">
           <a href="/product/{{productId}}">
               <img src="/product/{{productId}}/image" alt="featured" width="100" height="100">
-              <p class="destacados">{{productName}}<span class="badge text-bg-warning">{{productPrice}}€</span></p>
+              <p class="destacados">{{productName}} <span class="badge text-bg-warning">{{productPrice}}€</span></p>
           </a>
       </div>
       {{/products}}
-      {{/default}}
       </div>
   </div>
   {{> footer}}
