@@ -99,7 +99,6 @@
                     <div class="conteiner-opinion d-flex justify-content-start">
                         <div class="opinion d-flex justify-content-between gap-3">
                             <img src="/{{user.id}}/userpfp" alt="Profile Picture" width="90px" onerror="this.src='https://i.imgur.com/FSW2P4r.jpg'">
-
                             <div class="user-info d-flex justify-content-between gap-5">
                                 <span class="user-name">{{user.email}}</span>
                                 <div class="product-rate">
@@ -111,6 +110,13 @@
                                         <b>{{reviewTitle}}</b>
                                         <span class="text-op">{{reviewText}}</span>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="image-slider">
+                                    {{#images}}
+                                    <img src="/{{reviewId}}/{{-index}}" alt="" width="200px">
+                                    {{/images}}
                                 </div>
                             </div>
                         </div>

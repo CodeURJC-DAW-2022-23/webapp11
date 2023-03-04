@@ -2,6 +2,7 @@ package com.techmarket.app.controller;
 
 import com.techmarket.app.Repositories.ImageRepository;
 import com.techmarket.app.Repositories.ProductRepository;
+import com.techmarket.app.Repositories.ReviewRepository;
 import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.User;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,6 +30,9 @@ public class ImageController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @PostMapping("/{id}/upload")
     public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile) throws IOException {
@@ -77,6 +81,21 @@ public class ImageController {
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_TYPE, "image/jpeg", "image/png")
                     .contentLength(productRepository.findById(productId).get().getImages().get(index).getImageBlob().length())
+                    .body(file);
+
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/{reviewId}/{index}")  // Image from the image list of a product
+    public ResponseEntity<Object> getImagesReview(@PathVariable int index, @PathVariable long reviewId) throws SQLException, IOException {
+        if (reviewRepository.findById(String.valueOf(reviewId)).isPresent()) {
+            index-=1;
+            InputStreamResource file = new InputStreamResource(reviewRepository.findById(String.valueOf(reviewId)).get().getImages().get(index).getImageBlob().getBinaryStream());
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_TYPE, "image/jpeg", "image/png")
+                    .contentLength(reviewRepository.findById(String.valueOf(reviewId)).get().getImages().get(index).getImageBlob().length())
                     .body(file);
 
         } else {
