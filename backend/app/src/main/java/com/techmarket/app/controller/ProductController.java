@@ -220,6 +220,20 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/product/{id}/rate")
+    public String rateProduct(@PathVariable("id") Long id, Model model){
+        Product product = productRepository.findByProductId(id);
+        int rate = 0;
+        if (product!=null && product.getReviews().size()!=0){
+            for (int i = 0; i < product.getReviews().size(); i++) {
+                rate += product.getReviews().get(i).getRating();
+            }
+            rate = rate/product.getReviews().size();
+            return "/" + String.valueOf(rate) + ".png";
+        }
+        return "/5.png";
+    }
+
     @PreAuthorize("hasAnyAuthority('USER')")
     @PostMapping("/product/{ProductId}/send-review")
     public String addReview(@PathVariable("ProductId") Long id, @RequestParam String reviewTitle, @RequestParam String reviewText, @RequestParam int rating, @RequestParam(required = false) MultipartFile[] images) throws IOException, SQLException {

@@ -242,10 +242,10 @@ Optional:
 *We use Azure's MySQL database as it was more convenient for us than having to deploy lots of objects
 when testing the ajax buttons, or other features, plus it has allowed us to save time redeploying it
 each time we had to test, or adding lots of products, allowing us to store them indefinitely. This was free
-as part of our student subscription to Microsoft Services.*
+as part of our Microsoft Azure Subscription.*
 
-*The Java code provides a SampleDataService.java file that creates 3 products, 3 users and a review, so
-for basic testing it might come in handy, however, to test our web app and get a glimpse of what it can do
+*Either way, we provide a SampleDataService.java file that creates 3 products, 3 users and a review,
+for basic testing it might come in handy, however, to test our web app and get a glimpse of what it looks like
 with more products, we highly recommend running it with our database. The credentials can be found
 under application.properties, and we can provide access to the IPs that will be running the app*
 
