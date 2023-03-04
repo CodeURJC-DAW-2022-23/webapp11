@@ -15,7 +15,7 @@
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script defer src="/productRate.js"></script>
-    <script src="/app.js"></script>
+    <script defer src="/app.js"></script>
     <title>3TechMarket - {{name}}</title>
 </head>
 
@@ -47,8 +47,7 @@
                             <span class="sale-price">{{productPrice}}</span>
                             <div class="product-rate">
                                 <div class="d-flex align-items-center gap-3">
-                                    <img src="/1.png" id="productRating" width="130px">
-                                    <span class="d-none" id="productRate">5</span> <!--have to do this-->
+                                    <img src="/product/{{productId}}/rate" width="130px">
                                 </div>
                             </div>
                         </div>
