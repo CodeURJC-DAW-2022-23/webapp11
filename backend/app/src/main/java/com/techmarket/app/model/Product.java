@@ -3,7 +3,7 @@ package com.techmarket.app.model;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,7 +27,7 @@ public class Product {
     private int productStock;
     private String productName; // They have to use the same name as Mustache
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Double> prices;
 

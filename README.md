@@ -208,16 +208,24 @@ The algorithm used on our web app will be a simple recommendation algorithm, whi
 
 <br>
 
-# **Our Web app**
+# **Our Web app - Phase 2**
 ## New navigation diagram
-We'll add it here once we're done
+The navigation is as we established on the previous phase, with minor tweaks, for example, we figured agents should be able to use their
+account to buy products, and the admin shouldn't have access to the shopping cart, as it would be nonsense for him to buy products.
+We believe the roles are clear enough, we allow the users and agents to buy products, and the admin to manage the website. All the features in
+between are available for all of them, as long as they are not related to the purchase of products.
+The anonymous user will be able to access the home page, the login page, the sign-up page, the search results page, the product page, and he will
+need to log in to access the rest of the features.
+
+Our main pages have been minimally updated, and here are the results:
 
 ## Building and running our web app
 
 We provide instructions to build and run a complete .jar package including all the necessary dependencies, as well as running the web app from an IDE or from the command line.
 Note: We don't provide instructions to build a .war file, as we believe that the .jar file is more convenient for this project as we don't need to deploy it on a server, and we will use Docker when we deploy it on a server anyway.
 <br>
-For this guide to work, you need to have the following installed:
+
+**For this guide to work, you need to have the following installed:**
 - [Java 17](https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html) *(We use Corretto 17, but any other OpenJDK 17 distribution should work, we use Corretto because Amazon provides it, and it's a trusted source)*
 - [Maven](https://maven.apache.org/download.cgi) *(We recommend installing it from your package manager (brew, pacman, apt), or let your IDE do it for you)*
 - [Git](https://git-scm.com/downloads) *(You can also use the GitHub Desktop app)*
@@ -229,6 +237,16 @@ For this guide to work, you need to have the following installed:
 Optional:
 - [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/download/)
 - [VS Code](https://code.visualstudio.com/download)
+
+*We use Azure's MySQL database as it was more convenient for us than having to deploy lots of objects
+when testing the ajax buttons, or other features, plus it has allowed us to save time redeploying it
+each time we had to test, or adding lots of products, allowing us to store them indefinitely. This was free
+as part of our student subscription to Microsoft Services.*
+
+*The Java code provides a SampleDataService.java file that creates 3 products, 3 users and a review, so
+for basic testing it can be handy, however, to test our web app and get a glimpse of what it can do
+with more products, we highly recommend running it with our database. The credentials can be found
+on the application.properties and we can provide the required access to the IPs that will be hosting the app*
 
 <details><summary> <b> Building a .jar using mvn and running it from the command line <i>(recommended)</i> </b> </summary>
 

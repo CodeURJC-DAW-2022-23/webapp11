@@ -76,7 +76,7 @@ public class User {
         this.passwordChangeToken = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
     }
 
-    protected User(){}
+    public User(){}
 
     public  String getEncodedPassword() {
         return this.encodedPassword;

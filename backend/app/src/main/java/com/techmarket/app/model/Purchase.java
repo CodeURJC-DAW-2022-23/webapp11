@@ -9,7 +9,7 @@ public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String purchaseId;
+    private Long purchaseId;
     // Instead of String ids, we use product and User to avoid having to query the database for the product and user
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
@@ -23,7 +23,7 @@ public class Purchase {
 
     private boolean isCancelled;
 
-    public Purchase(String purchaseId, Product product, String timestamp, String address, User user, String paymentMethod, boolean isCancelled) {
+    public Purchase(Long purchaseId, Product product, String timestamp, String address, User user, String paymentMethod, boolean isCancelled) {
         this.purchaseId = purchaseId;
         this.product = product;
         this.timestamp = timestamp;
@@ -37,11 +37,11 @@ public class Purchase {
         
     }
 
-    public String getPurchaseId() {
+    public Long getPurchaseId() {
         return purchaseId;
     }
 
-    public void setPurchaseId(String purchaseId) {
+    public void setPurchaseId(Long purchaseId) {
         this.purchaseId = purchaseId;
     }
 
