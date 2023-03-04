@@ -2,7 +2,6 @@ package com.techmarket.app.service;
 
 import com.techmarket.app.Repositories.*;
 import com.techmarket.app.model.*;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,7 +37,7 @@ public class SampleDataService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostConstruct
+    //@PostConstruct
 
     public void createSampleData() throws IOException, SQLException {
         // Create users
