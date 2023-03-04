@@ -17,7 +17,7 @@
 {{> header}}
 <div class="row results" id="results">
 
-    {{#cart}}
+    {{#items}}
     <div class="col-md-2">
         <a href="/product/{{productId}}">
             <img src="/product/{{productId}}/image" alt="resultimage" width="120" height="120">
@@ -25,23 +25,28 @@
             <p>{{productPrice}} $ </p>
         </a>
     </div>
-    {{/cart}}
+    {{/items}}
 
-    {{^cart}}
-    <div class="col-md-12">
-        <h1>No results found</h1>
+    <div class="col-md-12 form" style="background-color: white">
+        <form action="/payout" method="post" style="color: white">
+            <label class="address" name="address" placeholder="Address"></label>
+        </form>
+
+
     </div>
-    {{/cart}}
+
+    <div class="col-md-12" >
+        <p class="total" style="color: white">Total: {{totalPrice}} $
+            <a href="/payout">
+                <button class="btn btn-primary" type="button">Payout</button>
+            </a>
+        </p>
+
+    </div>
+
 </div>
 
-<div class="col-md-12">
-    <p class="total" style="color: white">Total: {{totalPrice}} $
-    <a href="/payout">
-        <button class="btn btn-primary" type="button">Checkout</button>
-    </a>
-    </p>
 
-</div>
 {{> footer}}
 </body>
 </html>
