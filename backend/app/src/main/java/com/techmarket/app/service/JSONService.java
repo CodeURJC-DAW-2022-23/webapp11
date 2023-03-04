@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Purchase;
+import com.techmarket.app.model.Review;
 import com.techmarket.app.model.User;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
@@ -63,5 +64,15 @@ public class JSONService {
 
 
         return JSONService.getProductStringResponseEntity(page);
+    }
+
+    public static ResponseEntity<String> getReviewStringResponseEntity(Page<Review> page) throws JsonProcessingException {
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", page.getContent());
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(map);
+
+        return new ResponseEntity<>(json, HttpStatus.OK);
     }
 }

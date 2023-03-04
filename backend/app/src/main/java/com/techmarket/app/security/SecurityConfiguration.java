@@ -45,6 +45,9 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .requestMatchers("/messages").hasAnyAuthority("USER")
                         .requestMatchers("/messages/**").hasAnyAuthority("AGENT")
                         .requestMatchers("/chats").hasAnyAuthority("AGENT")
+                        .requestMatchers("/removereview/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/addreview/**").hasAnyAuthority("USER")
+                        .requestMatchers("/reviewhistory/**").hasAnyAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin( form -> form

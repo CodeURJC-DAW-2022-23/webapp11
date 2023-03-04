@@ -40,6 +40,18 @@ h3 {
     text-transform: uppercase;
 }
 
+h4 {
+    color: whitesmoke;
+    font-weight: 500;
+    text-transform: none;
+}
+
+h5 {
+    color: whitesmoke;
+    font-weight: 500;
+    text-transform: none;
+}
+
 footer {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;

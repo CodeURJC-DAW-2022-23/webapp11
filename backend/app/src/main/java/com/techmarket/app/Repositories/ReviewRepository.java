@@ -3,6 +3,8 @@ package com.techmarket.app.Repositories;
 
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Review;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
@@ -22,4 +24,6 @@ public interface ReviewRepository extends JpaRepository<Review, String> {
 
 
     List<Review> findAllByProduct(Product product);
+
+    Page<Review> findByProduct(Product product, Pageable pageable);
 }
