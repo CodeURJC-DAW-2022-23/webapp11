@@ -383,7 +383,13 @@ All members have contributed to the project in a similar way, and all members ha
 </details>
 
 <details><summary> <b> Ángel Covarrubias </b> </summary>
-
+    
+- [Recommendations refactor](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/3ff044766d26450e162bbd2dd2493b13dc54fb1a)
+- [Recommended products](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/074fce6d60867cae65c9cf5276f001c665dae9ff#diff-82607adf4067143c3ecd7fa4eb43cff33b549f9293579f0a40ba5c9714b05e4d)
+- [Some algorithm errors fixed](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/2a2ec4012f0acfccc2147d117b9db2b794556c2b#diff-62d8fd2e53751f3d3cae52f82e0cd8f3ed87ab4ef25ce26f2c8d3be019c0a3e3)
+- [Recommendation algorithm fix](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/dbe953d2d766617f9f4b1e4730c428a548f4ea21#diff-8ee70ef5ad0b0383cd723ccf16bc5c27c4da071c7b63de1ff2458b06d62c1def)
+- [Update recommendation algorithm](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/fca38df21321509047d4fee5d88d5c1f5a6b539e)
+    
 </details>
 
 ### 5 most edited files
@@ -412,4 +418,10 @@ All members have contributed to the project in a similar way, and all members ha
 
 <details><summary> <b> Ángel Covarrubias </b> </summary>
 
+- [HomeController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/HomeController.java)
+- [RecommendationService.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/service/RecommendationService.java)
+- [ProductRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/Repositories/ProductRepository.java)
+- [PurchaseRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/Repositories/PurchaseRepository.java)
+- [index.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/resources/templates/index.html)    
+    
 </details>
