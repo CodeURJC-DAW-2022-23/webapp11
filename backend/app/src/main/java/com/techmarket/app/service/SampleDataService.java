@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -45,79 +44,43 @@ public class SampleDataService {
         User user = createUser("user@example.com", "Normal", "user123456", "USER");
         User agent = createUser("agent@example.com", "Agent", "agent123456", "AGENT");
 
+        // Save users
+        userRepository.save(admin);
+        userRepository.save(agent);
+        userRepository.save(user);
+
         // Create products
         Image mainImage = createImage("mainImage.jpg", "https://i.imgur.com/JAJDWcI.jpg");
         Image additionalImage1 = createImage("additionalImage1.jpg", "https://imgur.com/mopBDFC.jpg");
 
         List<String> tags = List.of("gpu", "msi", "gaming");
         Product product1 = createProduct("MSI Nvidia 4070Ti", "Very good GPU", tags, mainImage, List.of(additionalImage1));
-        productRepository.save(product1);
 
         mainImage = createImage("mainImage.jpg", "https://imgur.com/sw6CL21.jpg");
         additionalImage1 = createImage("additionalImage1.jpg", "https://imgur.com/4LPMurb.jpg");
 
         tags = List.of("ryzen", "motherboard", "gaming");
         Product product2 = createProduct("Ryzen 9 + MSI motherboard", "it is very fast!", tags, mainImage, List.of(additionalImage1));
-        productRepository.save(product2);
 
         mainImage = createImage("mainImage.jpg", "https://imgur.com/PYFGKHU.jpg");
         additionalImage1 = createImage("additionalImage1.jpg", "https://imgur.com/7oqGmFI.jpg");
 
         tags = List.of("Apple", "mac", "laptop");
         Product product3 = createProduct("14\" MacBook Pro - Silver", "A great companion for your everyday needs", tags, mainImage, List.of(additionalImage1));
+
+        // Save products
+        productRepository.save(product1);
+        productRepository.save(product2);
         productRepository.save(product3);
 
-        // Save users
-        userRepository.save(admin);
-        userRepository.save(agent);
 
         // Create purchases
-        Purchase purchase1 = new Purchase();
-        purchase1.setProduct(product1);
-        purchase1.setUser(user);
-        purchase1.setTimestamp(LocalDateTime.now().minusDays(7).toString());
-        purchase1.setAddress("123 Main St");
-        purchase1.setPaymentMethod("Cash on delivery");
-        purchase1.setCancelled(false);
-        user.getPurchasedProducts().add(product1);
-        userRepository.save(user);
-        purchaseRepository.save(purchase1);
+        purchaseRepository.save(new Purchase(1L, product1, "2022-04-20", "123 Main St", user, "Cash on delivery", false));
+        purchaseRepository.save(new Purchase(2L, product2, "2022-04-20", "123 Main St", user, "Credit Card", true));
+        purchaseRepository.save(new Purchase(3L, product3, "2022-04-20", "123 Main St", user, "Cash on delivery", false));
 
-        Purchase purchase2 = new Purchase();
-        purchase2.setProduct(product2);
-        purchase2.setUser(user);
-        purchase2.setTimestamp(LocalDateTime.now().minusDays(6).toString());
-        purchase2.setAddress("123 Main St");
-        purchase2.setPaymentMethod("Cash on delivery");
-        purchase2.setCancelled(true);
-        user.getPurchasedProducts().add(product2);
-        userRepository.save(user);
-        purchaseRepository.save(purchase2);
-
-        Purchase purchase3 = new Purchase();
-        purchase3.setProduct(product3);
-        purchase3.setUser(user);
-        purchase3.setTimestamp(LocalDateTime.now().minusDays(5).toString());
-        purchase3.setAddress("123 Main St");
-        purchase3.setPaymentMethod("Credit Card");
-        purchase3.setCancelled(false);
-        user.getPurchasedProducts().add(product3);
-        userRepository.save(user);
-        purchaseRepository.save(purchase3);
-
-
-        // Add a review to one of the products
-        Review review1 = new Review();
-        review1.setProduct(product1);
-        review1.setUser(user);
-        review1.setRating(5);
-        review1.setReviewTitle("Great product!");
-        review1.setReviewText("This product is great!");
-        user.getReviews().add(review1);
-        product1.getReviews().add(review1);
-        userRepository.save(user);
-        productRepository.save(product1);
-        reviewRepository.save(review1);
+        // Add a review
+        reviewRepository.save(new Review(1L, "Nice product", "This is a great product, I liked it very much", 5, user, product1));
     }
 
     private User createUser(String email, String firstName, String password, String role) {

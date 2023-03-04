@@ -50,6 +50,15 @@ public class Review {
         this.rating = rating;
     }
 
+    public Review(long id, String Title, String Text, int rating, User user, Product product) {
+        this.reviewId = id;
+        this.reviewTitle = Title;
+        this.reviewText = Text;
+        this.rating = rating;
+        this.user = user;
+        this.product = product;
+    }
+
     public Long getReviewId() {
         return reviewId;
     }

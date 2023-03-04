@@ -1351,7 +1351,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="371" parent="306" name="product_product_id">
+    <column id="371" parent="306" name="product_id">
       <DasType>bigint|0s</DasType>
       <Position>6</Position>
     </column>
@@ -1359,8 +1359,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>bigint|0s</DasType>
       <Position>7</Position>
     </column>
-    <foreign-key id="373" parent="306" name="FKf3ebnxpkqcgxtp0ov8tmotp7h">
-      <ColNames>product_product_id</ColNames>
+    <foreign-key id="373" parent="306" name="FK3s4jktret4nl7m8yhfc8mfrn5">
+      <ColNames>product_id</ColNames>
       <RefColNames>product_id</RefColNames>
       <RefTableName>product</RefTableName>
     </foreign-key>
@@ -1374,8 +1374,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="376" parent="306" name="FKf3ebnxpkqcgxtp0ov8tmotp7h">
-      <ColNames>product_product_id</ColNames>
+    <index id="376" parent="306" name="FK3s4jktret4nl7m8yhfc8mfrn5">
+      <ColNames>product_id</ColNames>
       <Type>btree</Type>
     </index>
     <index id="377" parent="306" name="FK86i0stm7cqsglqptdvjij1k3m">

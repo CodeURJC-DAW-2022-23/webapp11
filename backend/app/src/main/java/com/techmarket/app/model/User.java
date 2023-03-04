@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @EnableAutoConfiguration
 public class User {
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
