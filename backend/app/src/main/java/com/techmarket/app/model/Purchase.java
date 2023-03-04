@@ -1,6 +1,7 @@
 package com.techmarket.app.model;
 
 import jakarta.persistence.*;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 @Entity
@@ -13,11 +14,13 @@ public class Purchase {
     // Instead of String ids, we use product and User to avoid having to query the database for the product and user
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
+    @NotNull
     private Product product;
     private String timestamp;
     private String address;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
     private String paymentMethod;
 

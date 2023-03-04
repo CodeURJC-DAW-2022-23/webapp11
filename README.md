@@ -237,6 +237,7 @@ Note: We don't provide instructions to build a .war file, as we believe that the
 Optional:
 - [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/download/)
 - [VS Code](https://code.visualstudio.com/download)
+- [MySQL Server](https://dev.mysql.com/downloads/mysql/) *(We use an Azure MySQL database as it was more convenient for us, but it works on any MySQL server)*
 
 *We use Azure's MySQL database as it was more convenient for us than having to deploy lots of objects
 when testing the ajax buttons, or other features, plus it has allowed us to save time redeploying it
@@ -244,9 +245,22 @@ each time we had to test, or adding lots of products, allowing us to store them 
 as part of our student subscription to Microsoft Services.*
 
 *The Java code provides a SampleDataService.java file that creates 3 products, 3 users and a review, so
-for basic testing it can be handy, however, to test our web app and get a glimpse of what it can do
+for basic testing it might come in handy, however, to test our web app and get a glimpse of what it can do
 with more products, we highly recommend running it with our database. The credentials can be found
-on the application.properties and we can provide the required access to the IPs that will be hosting the app*
+under application.properties, and we can provide access to the IPs that will be running the app*
+
+<details><summary> <b> Setting up a database <i>(Not recommended)</i> </b> </summary>
+
+1. Install MySQL Server
+2. Create a database with a schema called `3techmarket`
+3. Change the commented lines in the `application.properties` file to match your database's credentials and comment the lines that connect the actual Azure database.
+
+    ![img_6.png](img_6.png)
+4. Uncomment the @PostConstruct method in the `SampleDataService.java` file
+
+    ![img_7.png](img_7.png)
+5. Run the web app, and it should create the tables and populate them with the sample data
+</details>
 
 <details><summary> <b> Building a .jar using mvn and running it from the command line <i>(recommended)</i> </b> </summary>
 

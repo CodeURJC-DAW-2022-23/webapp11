@@ -10,7 +10,7 @@ import java.util.List;
 @EnableAutoConfiguration
 public class Product {
 
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productId;
 
@@ -150,5 +150,9 @@ public class Product {
 
     public void setMainImage(Image mainImage) {
         this.mainImage = mainImage;
+    }
+
+    public Long getId() {
+        return productId;
     }
 }
