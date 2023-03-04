@@ -1,4 +1,5 @@
 function rate(){
+
     let img =document.getElementById("starRating");
     let imgProduct = document.getElementById("productRating");
     let int =document.getElementById("rate").textContent;
