@@ -1,4 +1,4 @@
-<img src="assets/images/logo2.png" alt="3TechMarket Logo" width="200"/>
+<img src="backend/app/src/main/resources/static/logo2.png" alt="3TechMarket Logo" width="200"/>
 
 Our web app provides a online tech shop for users around the world to be able to buy the latest gear with the best reviews at the best prices. We aim to provide the best buying experience, with nice to have features such as support messages, PDF invoices, email confirmations, stock alerts and much more.
 
