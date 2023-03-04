@@ -11,8 +11,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -28,33 +30,31 @@ public class RecommendationService {
         List<Product> purchasedItems  = getProductsPurchased(purchases);
         List<String> tags = getTags(purchasedItems);
         List<Product> productsTag = getProductByTags(tags);
-        List<Product> recommendedProducts = new ArrayList<>();
+        List<Product> recommendedProducts = getAllProducts().stream()
+                // Filter out products that don't have any of the tags
+                .filter(product -> product.getTags().stream().anyMatch(tags::contains))
+                // Filter out products that have already been purchased
+                .filter(product -> !purchasedItems.contains(product))
+                .limit(4)
+                .collect(Collectors.toList());
 
-        // Remove products already purchased
-        for(int i = 0; i<productsTag.size(); i++){
-            for(int j = 0; j<purchasedItems.size(); j++){
-                if(productsTag.contains(purchasedItems.get(j))){
-                    productsTag.remove(purchasedItems.get(j));
-                }
-            }
-        }
+        if (recommendedProducts.size() < 4) {
+            // If we don't have enough products, fill the rest with random products
+            // Use a set because it is faster to check if an item is in the set
+            Set<Long> purchasedProductIds = purchasedItems.stream()
+                    // Get the product IDs of the purchased items, so we can filter them out
+                    .map(Product::getProductId)
+                    .collect(Collectors.toSet());
 
-        // Get 4 products based on tags
-        for (int i = 0; i<4; i++){
-            if (i < productsTag.size()){
-                recommendedProducts.add(productsTag.get(i));
-            }
-        }
-        if (recommendedProducts.size() != 0){
-            List<Product> productsList = getAllProducts();
-            int i = recommendedProducts.size();
-            while((i < 4)&&(i<productsList.size())){
-                int random = (int) (Math.random()*productsList.size());
-                if ((!recommendedProducts.contains(productsList.get(random)))&&(!purchasedItems.contains(productsList.get(random)))) {
-                    recommendedProducts.add(productsList.get(random));
-                    i++;
-                }
-            }
+            List<Product> remainingProducts = getAllProducts().stream()
+                    // Filter out products that have already been purchased
+                    .filter(product -> !purchasedProductIds.contains(product.getProductId()))
+                    // Filter out products that are already in the recommended list
+                    .filter(product -> !recommendedProducts.contains(product))
+                    .limit(4 - recommendedProducts.size())
+                    .toList();
+            // Add the remaining products to the list
+            recommendedProducts.addAll(remainingProducts);
         }
         return recommendedProducts;
     }
@@ -94,7 +94,7 @@ public class RecommendationService {
         ArrayList<Purchase> purchases;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User cuarrentUser = userRepository.findByEmail(auth.getName());
-        purchases = purchaseRepository.findFirst10Byuser_idOrderByPurchaseIdDesc(cuarrentUser.getId());
+        purchases = purchaseRepository.findFirst10ByUserIdOrderByPurchaseIdDesc(cuarrentUser.getId());
         return purchases;
     }
 }

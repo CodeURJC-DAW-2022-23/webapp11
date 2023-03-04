@@ -16,31 +16,34 @@ $(document).ready(function() {
                 const purchases = JSON.parse(data).data;  // we need to add the .data to get the array of products, otherwise we get the whole response
                 let html = '';
                 purchases.forEach(function(purchase) {
-                    html += '<div class="row purchasedetails">';
-                    html += '<div class="col-md-2">';
-                    html += '<img src="/product/' + purchases.product.productId + '/image" alt="thumbnail" width="150" height="150">';
-                    html += '</div>';
-                    html += '<div class="col-md-4">';
-                    html += '<h3>' + purchases.product.productName + '</h3>';
-                    html += '<p class="details">Date: <span class="badge text-bg-info">' + purchases.timestamp + '</span></p>';
-                    html += '<p class="details">' + purchases.product.price + '€</p>';
-                    html += '</div>';
-                    html += '<div class="col-md-4">';
-                    html += '<h3>Shipping address and payment method</h3>';
-                    html += '<p class="details">Address: <b>' + purchases.address + '</b></p>';
-                    html += '<p class="details">Payment method: <b>' + purchases.paymentMethod + '</b></p>';
-                    html += '<p class="details"><a href="/invoice/' + purchases.purchaseId + '">';
-                    html += '<button type="button" class="btn btn-info">Download your invoice (PDF)</button>';
-                    html += '</a></p>';
-                    html += '</div>';
-                    html += '<div class="col-md-2">';
-                    html += '<button type="button" onclick="window.location.href=\'/product/' + purchases.product.id + '/review\'" class="btn btn-outline-success btn-lg mt-1">Leave a review</button>';
-                    html += '<br>';
-                    html += '<button type="button" onclick="window.location.href=\'/messages\'" class="btn btn-outline-primary btn-lg mt-2">Contact support</button>';
-                    html += '<br>';
-                    html += '<button type="button" onclick="window.location.href=\'/return/' + purchases.purchaseId + '\'" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>';
-                    html += '</div>';
-                    html += '</div>';
+                    //<div class="row purchasedetails">
+                    html += '<div class="row purchasedetails">'
+                    html += '<div class="col-md-4"> <!--Thumbnail-->'
+                    html += '<img src="/product/' + purchase.product.productId + '/image" alt="thumbnail" width="200" height="200">'
+                    html += '</div>'
+                    html += '<div class="col-md-2">'
+                    html += '<h3>' + purchase.product.productName + '</h3>'
+                    html += '<p class="details">Date: <span class="badge text-bg-info">' + purchase.timestamp + '</span></p>'
+                    html += '<p class="details">' + purchase.product.productPrice + '€</p>'
+                    html += '</div> <!--Purchase details-->'
+                    html += '<div class="col-md-4">'
+                    html += '<h3>Shipping address and payment method</h3>'
+                    html += '<p class="details">Address: <b>' + purchase.address + '</b></p>'
+                    html += '<p class="details">Payment method: <b>' + purchase.paymentMethod + '</b></p>'
+                    html += '<p class="details"><a href="/invoice/' + purchase.purchaseId + '"><button type="button" class="btn btn-info">Download your invoice (PDF)</button></a></p>'
+                    html += '</div>'
+                    html += '<div class="col-md-2">'
+                    if (purchase.isCancelled) {
+                        html += '<button type="button" class="btn btn-outline-secondary btn-lg mt-2" disabled>This order has been cancelled</button>'
+                    } else {
+                        html += '<button type="button" onclick="window.location.href=\'/product/' + purchase.product.productId + '/review\'" class="btn btn-outline-success btn-lg mt-1">Leave a review</button>' //Review button, I don't know if it will work given that the id is different from the one on the Purchase model
+                        html += '<br>'
+                        html += '<button type="button" onclick="window.location.href=\'/messages\'" class="btn btn-outline-primary btn-lg mt-2">Contact support</button>'
+                        html += '<br>'
+                        html += '<button type="button" onclick="window.location.href=\'/return/' + purchase.purchaseId + '\'" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>'
+                    }
+                    html += '</div> <!--Price and invoice-->'
+                    html += '</div>'
                 });
                 $("#items").append(html);
                 start += 10;

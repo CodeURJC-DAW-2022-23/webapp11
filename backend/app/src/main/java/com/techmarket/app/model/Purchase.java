@@ -21,13 +21,16 @@ public class Purchase {
     private User user;
     private String paymentMethod;
 
-    public Purchase(String purchaseId, Product product, String timestamp, String address, User user, String paymentMethod) {
+    private boolean isCancelled;
+
+    public Purchase(String purchaseId, Product product, String timestamp, String address, User user, String paymentMethod, boolean isCancelled) {
         this.purchaseId = purchaseId;
         this.product = product;
         this.timestamp = timestamp;
         this.address = address;
         this.user = user;
         this.paymentMethod = paymentMethod;
+        this.isCancelled = isCancelled;
     }
 
     public Purchase() {
@@ -80,5 +83,13 @@ public class Purchase {
 
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public boolean isCancelled() {
+        return isCancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        isCancelled = cancelled;
     }
 }

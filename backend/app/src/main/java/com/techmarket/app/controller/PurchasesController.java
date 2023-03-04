@@ -17,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -77,13 +78,12 @@ public class PurchasesController {
 
     // Cancel a purchase
     @GetMapping("/return/{PurchaseId}")
-    public String cancelOrder(Model model, @RequestParam("purchaseId") String purchaseId) {  // Get the purchase id from the URL
+    public String cancelOrder(Model model, @PathVariable("PurchaseId") String purchaseId) {  // Get the purchase id from the URL
         // Get the purchase
         Purchase purchase = purchaseRepository.findByPurchaseId(purchaseId);
-        // Delete the purchase from the database
-        purchaseRepository.delete(purchase);
-        // Show a message to the user
-        model.addAttribute("message", "Your purchase has been canceled");
+        // Set the status of the purchase to "Cancelled"
+        purchase.setCancelled(true);
+        purchaseRepository.save(purchase);
         return "redirect:/purchases";
     }
 }

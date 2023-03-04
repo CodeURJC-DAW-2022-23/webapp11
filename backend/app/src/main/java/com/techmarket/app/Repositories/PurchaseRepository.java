@@ -19,8 +19,5 @@ public interface PurchaseRepository extends JpaRepository<Purchase, String> {
 
     // Get a purchase by its ID, used to generate an invoice
     Purchase findByPurchaseId(String purchaseId);
-
-    ArrayList<Purchase> findFirst10Byuser_idOrderByPurchaseIdDesc(Long id);
-
-
+    ArrayList<Purchase> findFirst10ByUserIdOrderByPurchaseIdDesc(Long id);
 }
