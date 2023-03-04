@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bootstrap.min.css">
-    <link rel="stylesheet" href="/checkout.css">
+
     <link rel="stylesheet" href="/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
             crossorigin="anonymous"></script>
@@ -16,8 +16,9 @@
 <body>
 {{> header}}
 <div class="row results" id="results">
+
     {{#cart}}
-    <div class="col-md-12">
+    <div class="col-md-2">
         <a href="/product/{{productId}}">
             <img src="/product/{{productId}}/image" alt="resultimage" width="120" height="120">
             <p class="name">{{productName}}</p>
@@ -25,14 +26,21 @@
         </a>
     </div>
     {{/cart}}
+
     {{^cart}}
     <div class="col-md-12">
         <h1>No results found</h1>
     </div>
     {{/cart}}
 </div>
-<div class="col-md-12" style="color: white">
-    <p>Total price:{{totalPrice}}</p>
+
+<div class="col-md-12">
+    <p class="total" style="color: white">Total: {{totalPrice}} $
+    <a href="/payout">
+        <button class="btn btn-primary" type="button">Checkout</button>
+    </a>
+    </p>
+
 </div>
 {{> footer}}
 </body>
