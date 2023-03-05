@@ -36,12 +36,20 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .requestMatchers("/signup", "/signin", "/signin-user", "/signup-user", "/", "/product/**", "/search/**", "/error", "access-denied", "/recovery", "/recover-email", "/code", "/verify-code").permitAll()
                         // Access to the assets so the frontend can load correctly
                         .requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".jpg") || request.getServletPath().endsWith(".png")).permitAll()
-                        .requestMatchers("/admin/**", "/addproduct", "/addproduct-create", "/editproduct", "/editproduct-update","/dashboard","/statistics").hasAuthority("ADMIN")
+                        .requestMatchers("/addproduct", "/addproduct-create", "/editproduct", "/editproduct-update","/dashboard","/statistics","/pricehistory").hasAuthority("ADMIN")
                         .requestMatchers("/profile").authenticated()  // Any role will be able to access its profile
                         .requestMatchers("/edit-profile").authenticated()
-                        .requestMatchers("/wishlist").authenticated()
-                        .requestMatchers("/cart").hasAnyAuthority("USER")
-                        .requestMatchers("/messages").hasAnyAuthority("USER", "AGENT")
+                        .requestMatchers("/wishlist").hasAnyAuthority("USER", "AGENT")
+                        .requestMatchers("/checkout").hasAnyAuthority("USER", "AGENT")
+                        .requestMatchers("/cart").hasAnyAuthority("USER", "AGENT")
+                        .requestMatchers("/messages").hasAnyAuthority("USER")
+                        .requestMatchers("/messages/**").hasAnyAuthority("AGENT")
+                        .requestMatchers("/chats").hasAnyAuthority("AGENT")
+                        .requestMatchers("/removereview/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/addreview/**").hasAnyAuthority("USER")
+                        .requestMatchers("/reviewhistory/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/add-to-cart/**").hasAnyAuthority("USER", "AGENT")
+                        .requestMatchers("/add-to-wishlist/**").hasAnyAuthority("USER", "AGENT")
                         .anyRequest().authenticated()
                 )
                 .formLogin( form -> form
@@ -49,7 +57,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .loginProcessingUrl("/signin-user")
-                        .defaultSuccessUrl("/", true)
+                        .successHandler(new LoginHandler())
                         .failureUrl("/signin?error")
                 )
                 .logout( logout -> logout

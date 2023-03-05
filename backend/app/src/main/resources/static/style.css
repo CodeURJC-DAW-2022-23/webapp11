@@ -168,3 +168,11 @@ a:active {
 .buttonlogin {
   padding-top: 30px;
 }
+
+.container{
+  padding-top: 15px;
+  padding-left: 50px;
+  margin: 0 auto;
+  padding-bottom: 15px;
+}
+

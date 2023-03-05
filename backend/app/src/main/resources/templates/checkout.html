@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
+            crossorigin="anonymous"></script>
+    <script src="/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>3TechMarket - Checkout</title>
+</head>
+<body>
+{{> header}}
+<div class="row results" id="results">
+
+    {{#items}}
+    <div class="col-md-2">
+        <a href="/product/{{productId}}">
+            <img src="/product/{{productId}}/image" alt="resultimage" width="120" height="120">
+            <p class="name">{{productName}}</p>
+            <p>{{productPrice}} $ </p>
+        </a>
+    </div>
+    {{/items}}
+
+    <div class="form" enctype="multipart/form-data">
+        <form action="/payout" method="post">
+            <div class="textBar">
+                <div class="col-md-12">
+                    <label class="label"></label>
+                    <input type="text" class="form-control"
+                           placeholder="Address" value=""
+                           name="address">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <p class="total" style="color: white">Total: {{totalPrice}} $
+
+                    <button class="btn btn-primary" type="submit">Payout</button>
+
+                </p>
+
+            </div>
+            <input type="hidden" name="_csrf" value="{{token}}"/>
+        </form>
+    </div>
+
+
+</div>
+
+
+{{> footer}}
+</body>
+</html>

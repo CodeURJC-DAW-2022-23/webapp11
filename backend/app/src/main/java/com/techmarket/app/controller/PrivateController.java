@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
-import java.security.Principal;
 import java.sql.SQLException;
 
 @Controller
@@ -35,7 +34,7 @@ public class PrivateController {
 
     @PreAuthorize("hasAnyAuthority('USER','AGENT', 'ADMIN')")
     @GetMapping("/profile")
-    public void profile(Model model, Principal user) throws SQLException {
+    public void profile(Model model) throws SQLException {
         //We want to fill out the form with the user's information when we load the page
         //First we get the user's email with the auth method
         //Then we use the email to get the user's information from the database
@@ -54,7 +53,6 @@ public class PrivateController {
             // Default profile picture until the user uploads one
             model.addAttribute("hasPfp", false);
         }
-        model.addAttribute("isLoggedIn", true);
         model.addAttribute("firstName", currentUser.getFirstName());
         model.addAttribute("lastName", currentUser.getLastName());
         model.addAttribute("email", currentUser.getEmail());

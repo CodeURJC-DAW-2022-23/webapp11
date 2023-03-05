@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="shortcut icon" href="/ranaemptyicon.png">
+  <link rel="stylesheet" href="/wishlist.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+  <script src="/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="/ajaxreviewhistory.js"></script>
+  <script src="/app.js"></script>
+
+  <title>3TechMarket - Review history</title>
+</head>
+<body>
+<div class="container-fluid">
+  {{> header}}
+  {{#product}}
+  <h1>Review history for: {{productName}}</h1>
+  <input type="hidden" name="id" id="id" value="{{id}}"/>
+  <br><br>
+  {{/product}}
+
+  <div class="container-md" id="items">
+    <!--Using Mustache to generate the items-->
+    {{#items}} <!--If there are items in the wishlist, then show them-->
+    <div class="row item">
+      <div class="col-md-4">
+        <img src="/{{user.id}}/userpfp" alt="User profile picture" width="200" height="200">
+      </div>
+      <div class="col-md-6">
+        <h4>{{user.email}}</h4>
+        <br>
+        <h5>{{reviewTitle}}</h5>
+        <p class="description">Stars: {{rating}}</p>
+        <p class="description">{{reviewText}}</p>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-outline-danger" onclick="window.location.href='/removereview/{{reviewId}}'">Remove</button>
+      </div>
+    </div>
+    <hr>
+    {{/items}}
+    {{^items}}
+    <div class="col-md-12">
+      <h2>This item doesn't have reviews yet</h2>
+    </div>
+    {{/items}}
+
+  </div>
+  {{#hasMore}}
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button id="loadMore" class="btn btn-info">Load more</button>
+      <input type="hidden" name="total" id="total" value="{{total}}"/>
+    </div>
+  </div>
+  {{/hasMore}}
+
+</div>
+{{> footer}}
+</body>
+</html>

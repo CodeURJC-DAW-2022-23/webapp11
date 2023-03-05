@@ -3,13 +3,14 @@ package com.techmarket.app.model;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @EnableAutoConfiguration
 public class Product {
 
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productId;
 
@@ -22,29 +23,30 @@ public class Product {
     @OneToOne
     private Image mainImage;  // This is the main image of the product, used for the product card on reviews, history, cart, etc.
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> tags;
-    private String discount;
+    private List<String> tags = new ArrayList<>();
     private int productStock;
     private String productName; // They have to use the same name as Mustache
-    private String productUrl;
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Review> reviews = new ArrayList<>();
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Double> prices;
 
+    // Many-to-one relationship with the user for the wishlist and shopping cart
+    @ManyToOne
+    private User user;
+
 
     //To add products
-    public Product(String productName, String description, double price, String discount, int productStock, List<String> tags){
+    public Product(String productName, String description, double price, int productStock, List<String> tags){
         this.productName = productName;
         this.description = description;
         this.prices.add(price);
         this.productPrice = price;
-        this.discount = discount;
         this.productStock = productStock;
         this.tags = tags;
     }
 
-    public Product(Long productId, String description, List<Image> images, Image mainImage, double productPrice, List<String> tags, String discount, int productStock, String productName, String productUrl, List<Review> reviews) {
+    public Product(Long productId, String description, List<Image> images, Image mainImage, double productPrice, List<String> tags, int productStock, String productName, List<Review> reviews) {
         this.productId = productId;
         this.description = description;
         this.images = images;
@@ -52,10 +54,8 @@ public class Product {
         this.prices.add(productPrice);
         this.tags = tags;
         this.productPrice = productPrice;
-        this.discount = discount;
         this.productStock = productStock;
         this.productName = productName;
-        this.productUrl = productUrl;
         this.reviews = reviews;
     }
 
@@ -106,19 +106,18 @@ public class Product {
     }
 
     public List<String> getTags() {
+
         return tags;
+
+    }
+
+    public String getTagList() {
+        return String.join(", \n", this.getTags());
+
     }
 
     public void setTags(List<String> tags) {
         this.tags = tags;
-    }
-
-    public String getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(String discount) {
-        this.discount = discount;
     }
 
     public int getProductStock() {
@@ -137,14 +136,6 @@ public class Product {
         this.productName = productName;
     }
 
-    public String getProductUrl() {
-        return productUrl;
-    }
-
-    public void setProductUrl(String productUrl) {
-        this.productUrl = productUrl;
-    }
-
     public List<Review> getReviews() {
         return reviews;
     }
@@ -159,5 +150,9 @@ public class Product {
 
     public void setMainImage(Image mainImage) {
         this.mainImage = mainImage;
+    }
+
+    public Long getId() {
+        return productId;
     }
 }

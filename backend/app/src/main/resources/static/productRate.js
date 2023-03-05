@@ -1,11 +1,12 @@
 function rate(){
-    let img =document.getElementById("starRating");
-    let imgProduct = document.getElementById("productRating");
-    let int =document.getElementById("rate").textContent;
-    let int2 =document.getElementById("productRate").textContent;
 
-    img.src="/"+ int + ".png"
-    imgProduct.src="/"+ int2 + ".png"
+    let img =document.getElementById("starRating");
+    let int =document.getElementById("rate");
+
+    if (int!=null){
+        img.src="/"+ int.textContent + ".png"
+    }
+
 }
 
 rate();

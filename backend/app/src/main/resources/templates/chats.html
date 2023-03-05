@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/chats.css">
+  <link rel="shortcut icon" href="/ranaemptyicon.png" type="image/x-icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+  <script src="/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="/ajaxchats.js"></script>
+  <script src="/app.js"></script>
+
+  <title>3TechMarket - Support chats</title>
+</head>
+<body>
+<div class="container-fluid">
+  {{> header}}
+  <h1>Support chats</h1>
+  <br><br>
+
+  <!--Wishlist -->
+  <div class="container-md" id="chats">
+    <!--Using Mustache to generate the items-->
+    {{#chats}} <!--If there are items in the wishlist, then show them-->
+    <div class="row item">
+      <div class="col-md-4">
+        <!--User profile image-->
+        <img src="/{{id}}/userpfp" alt="User profile image" class="img-fluid" width="150" height="150">
+      </div>
+      <div class="col-md-4">
+        <!--User name-->
+        <h3>{{firstName}}</h3>
+        <!--User email-->
+        <h4>{{email}}</h4>
+      </div>
+        <div class="col-md-4">
+          <!--Configure the controller so that only support can enter this address-->
+          <button class="btn btn-outline-primary" onclick="window.location.href='/messages/{{id}}'">Access chat</button>
+          <br><br>
+        </div>
+    </div>
+    <hr>
+    {{/chats}}
+    {{^chats}}
+    <div class="col-md-12">
+      <h2>There are no chats yet</h2>
+    </div>
+    {{/chats}}
+
+  </div>
+  {{#hasMore}}
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button id="loadMore" class="btn btn-info">Load more</button>
+      <input type="hidden" name="total" id="total" value="{{total}}"/>
+    </div>
+  </div>
+  {{/hasMore}}
+
+</div>
+{{> footer}}
+</body>
+</html>

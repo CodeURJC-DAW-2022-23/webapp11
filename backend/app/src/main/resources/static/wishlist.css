@@ -34,6 +34,24 @@ h2 {
     text-transform: uppercase;
 }
 
+h3 {
+    color: whitesmoke;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+h4 {
+    color: whitesmoke;
+    font-weight: 500;
+    text-transform: none;
+}
+
+h5 {
+    color: whitesmoke;
+    font-weight: 500;
+    text-transform: none;
+}
+
 footer {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
@@ -261,4 +279,25 @@ a:active {color: #7aca3d;}
     color:whitesmoke;
     height: 40px;
     width: 170px;
+}
+
+p {
+    color: whitesmoke;
+    font-size: medium;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.price {
+    color: #7aca3d;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: whitesmoke;
+    font-style: italic;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

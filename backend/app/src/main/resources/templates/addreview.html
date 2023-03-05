@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bootstrap.min.css">
     <link rel="stylesheet" href="/createreview.css">
+    <link rel="shortcut icon" href="/ranaemptyicon.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -13,84 +14,24 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row header">
-            <div class="col-md-2">
-                <h1><a href="index.html"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
-            </div>
-            <div class="col-md-8">
-              <div class="input-group mb-4 searchbar">
-                  <form action="/search" method="post">
-                      <div class="input-group mb-4 searchbar">
-                          <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
-                          <input type="hidden" name="_csrf" value="{{token}}"/>
-                          <div class="input-group-append">
-                              <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
-                          </div>
-                      </div>
-                  </form>
-              </div>
-            </div>
-  
-            <!--Iconos del header-->
-            <div class="col-md-2 ">
-                <div class="row">
-                    <div class="col-md-2 navigation">
-  
-                      <div class="dropdown">
-                        <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        </a>
-                      
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
-                          <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                          <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                        </ul>
-                      </div>
-                        
-                    </div>
-  
-                    <div class="col-md-2 navigation">
-                        
-                      <a href="/wishlist">
-                        <i class="fa-solid fa-star"></i>
-                      </a>
-              
-                    </div>
-                    
-                    <div class="col-md-2 navigation">
-                        
-                          <a href="/cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                          </a>
-                        
-                    </div>
-                    
-                    <div class="col-md-2 navigation ">
-                        
-                            <a href="#">
-                              <i class="fa-solid fa-bell"></i>
-                            </a>
-                          
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
+        {{> header}}
         <h2>Add review</h2>
         <br>
         <div class="container-md">
             <div class="row purchasedetails">
+                {{#product}}
                 <div class="col-md-2"> <!--Thumbnail added with Mustache-->
-                    <img src="{{mainImage}}" alt="thumbnail" width="150" height="150">
+                    <img src="/product/{{productId}}/image" alt="thumbnail" width="150" height="150">
                 </div>
                 <div class="col-md-10">
                     <h3>{{productName}}</h3>
-                    <p class="details">You ordered this {{timestamp}}</p>
-                    <p class="details">Your name and review content will be visible to anyone browsing the website</p>
+                    <p class="detailsone">{{description}}</p>
+                    <p class="details">Your email and review content will be visible to anyone browsing the website</p>
                 </div>
                 <div class="col-md-2"></div>
             </div>
-            <form action="/send-review" method="post" enctype="multipart/form-data">
+            <form action="/product/{{productId}}/send-review" method="post" enctype="multipart/form-data">
+                {{/product}}
                 <div class="row stars">
                     <div class="col-md-12">
                         <span class="heading">Overall rating</span>
@@ -128,10 +69,7 @@
                 <div class="row review">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
-                        <div class="form-floating">
-                            <label for="floatingInput">Upload some images!</label>
-                            <input type="file" class="form-control" id="floatingInput" name="images" accept="image/*" multiple>
-                        </div>
+                        <input type="file" class="form-control" id="floatingInput" name="images" accept="image/*" multiple placeholder="Upload images">
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -143,11 +81,13 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-success btn-lg mt-1">Upload review!</button>
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
             </form>
             </div>
     </div>
+    {{> footer}}
 </body>
 </html>

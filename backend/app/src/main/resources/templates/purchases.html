@@ -5,126 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="shortcut icon" href="/ranaemptyicon.png">
     <link rel="stylesheet" href="/purchases.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/ajaxpurchases.js"></script>
     <script src="/app.js"></script>
     <title>3TechMarket - Purchase history</title>
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row header">
-            <div class="col-md-2">
-                <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
-            </div>
-            <div class="col-md-8">
-                <form action="/search" method="post">
-                    <div class="input-group mb-4 searchbar">
-                        <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
-                        <input type="hidden" name="_csrf" value="{{token}}"/>
-                        <div class="input-group-append">
-                            <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-  
-            <!--Iconos del header-->
-            <div class="col-md-2 ">
-                <div class="row">
-                    <div class="col-md-2 navigation">
-  
-                      <div class="dropdown">
-                        <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        </a>
-                      
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
-                          <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                            <li><form action="/logout" method="post">
-                                <button class="dropdown-item" type="submit">Logout</button>
-                                <input type="hidden" name="_csrf" value="{{token}}"/>
-                            </form></li>
-                        </ul>
-                      </div>
-                        
-                    </div>
-  
-                    <div class="col-md-2 navigation">
-                        
-                      <a href="/wishlist">
-                        <i class="fa-solid fa-star"></i>
-                      </a>
-              
-                    </div>
-                    
-                    <div class="col-md-2 navigation">
-                        
-                          <a href="/cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                          </a>
-                        
-                    </div>
-                    
-                    <div class="col-md-2 navigation ">
-                        
-                            <a href="#">
-                              <i class="fa-solid fa-bell"></i>
-                            </a>
-                          
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
+        {{> header}}
         <h2>Your recent orders</h2>
-        {{#message}} <!--Message will be displayed if the user has cancelled and order and has just been redirected-->
-        <div class="alert alert-success" role="alert">
-            {{message}}
-        </div>
-        {{/message}}
         <br>
-        <div class="container-md">
+        <div class="container-md" id="items">
         {{#purchases}}
             <div class="row purchasedetails">
-                <div class="col-md-2"> <!--Thumbnail-->
-                    <img src="{{productThumbnail}}" alt="thumbnail" width="150" height="150">
+                <div class="col-md-4"> <!--Thumbnail-->
+                    <img src="/product/{{product.productId}}/image" alt="thumbnail" width="200" height="200">
                 </div>
-                <div class="col-md-4">
-                    <h3>{{productName}}</h3>
+                <div class="col-md-2">
+                    <h3>{{product.productName}}</h3>
                     <p class="details">Date: <span class="badge text-bg-info">{{timestamp}}</span></p>
-                    <p class="details">{{price}}€</p>
+                    <p class="details">{{product.productPrice}}€</p>
                 </div> <!--Purchase details-->
                 <div class="col-md-4">
                     <h3>Shipping address and payment method</h3>
                     <p class="details">Address: <b>{{address}}</b></p>
                     <p class="details">Payment method: <b>{{paymentMethod}}</b></p>
-                    <p class="details"><a href="/invoice/{purcahseId}"><button type="button" class="btn btn-info">Download your invoice (PDF)</button></a></p>
+                    <p class="details"><a href="/invoice/{{purchaseId}}"><button type="button" class="btn btn-info">Download your invoice (PDF)</button></a></p>
                 </div>
                 <div class="col-md-2">
-                    <button type="button" onclick="window.location.href='/product/{productId}/review'" class="btn btn-outline-success btn-lg mt-1">Leave a review</button> <!--Review button, I don't know if it will work given that the id is different from the one on the Purchase model-->
+                    {{#isCancelled}}
+                    <button type="button" class="btn btn-outline-secondary btn-lg mt-2" disabled>This order has been cancelled</button>
+                    {{/isCancelled}}
+                    {{^isCancelled}}
+                    <button type="button" onclick="window.location.href='/product/{{product.productId}}/review'" class="btn btn-outline-success btn-lg mt-1">Leave a review</button> <!--Review button, I don't know if it will work given that the id is different from the one on the Purchase model-->
                     <br>
                     <button type="button" onclick="window.location.href='/messages'" class="btn btn-outline-primary btn-lg mt-2">Contact support</button>
                     <br>
-                    <button type="button" onclick="window.location.href='/return/{purchaseId}'" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>
+                    <button type="button" onclick="window.location.href='/return/{{purchaseId}}'" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>
+                    {{/isCancelled}}
                 </div> <!--Price and invoice-->
             </div>
             {{/purchases}}
             {{^purchases}}
             <div class="col-md-12">
-                <h1>You haven't placed any order yet</h1>
+                <h1>You haven't placed any order yet - <a href="/">Start shopping now!</a></h1>
             </div>
             {{/purchases}}
             {{#hasMore}}
             <div class="row">
                 <div class="col-md-12">
-                    <!--Something to add on href-->
-                    <a href="" class="btn btn-primary">Load More</a> <!--Start keeps track of the results displayed, hasmore will return wether there are more contents to be displayed-->
+                    <button id="loadMore" class="btn btn-info">Load more</button>
+                    <input type="hidden" name="total" id="total" value="{{total}}"/>
                 </div>
             </div>
             {{/hasMore}}
         </div>
     </div>
+    {{> footer}}
 </body>
 </html>

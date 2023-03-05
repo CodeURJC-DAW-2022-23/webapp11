@@ -6,86 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bootstrap.min.css">
     <link rel="stylesheet" href="/searchresults.css">
+    <link rel="shortcut icon" href="/ranaemptyicon.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/ajaxsearch.js"></script>
-    <title>3TechMarket - Purchase history</title>
+    <title>3TechMarket - Search: {{product}}</title>
     <meta name="_csrf" content="{{token}}" />
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row header">
-            <div class="col-md-2">
-                <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
-            </div>
-            <div class="col-md-8">
-              <form action="/search" method="post">
-                <div class="input-group mb-4 searchbar">
-                  <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
-                    <input type="hidden" name="_csrf" value="{{token}}"/>
-                  <div class="input-group-append">
-                    <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </form>
-            </div>
-  
-            <!--Iconos del header-->
-            <div class="col-md-2 ">
-                {{#isLoggedIn}}
-                <div class="row">
-                    <div class="col-md-2 navigation">
-
-                        <div class="dropdown">
-                            <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
-                                <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                                <li><form action="/logout" method="post">
-                                    <button class="dropdown-item" type="submit">Logout</button>
-                                    <input type="hidden" name="_csrf" value="{{token}}"/>
-                                </form></li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-2 navigation">
-
-                        <a href="/wishlist">
-                            <i class="fa-solid fa-star"></i>
-                        </a>
-
-                    </div>
-
-                    <div class="col-md-2 navigation">
-
-                        <a href="/cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-
-                    </div>
-
-                    <div class="col-md-2 navigation ">
-
-                        <a href="#">
-                            <i class="fa-solid fa-bell"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-                {{/isLoggedIn}}
-                {{^isLoggedIn}}
-                <div class="row">
-                    <!-- Login or register button linked to /signin -->
-                    <a href="/signin" class="buttonlogin"><button class="btn btn-success">Login or register</button></a>
-                    {{/isLoggedIn}}
-                </div>
-            </div>
-        </div>
+        {{> header}}
         <div class="container-md">
           <h2>Search results for: {{product}}</h2>
           <br>
@@ -95,7 +26,7 @@
                   <a href="/product/{{productId}}">
                       <img src="/product/{{productId}}/image" alt="resultimage" width="120" height="120">
                       <p class="name">{{productName}}</p>
-                      <p>{{productPrice}} € <span class="badge text-bg-success">{{productStock}}</span></p>
+                      <p>{{productPrice}} € <span class="badge text-bg-success">Stock: {{productStock}}</span></p>
                   </a>
               </div>
               {{/results}}
@@ -116,5 +47,6 @@
           {{/hasMore}}
         </div>
         </div>
+    {{> footer}}
 </body>
 </html>

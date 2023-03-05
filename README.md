@@ -1,4 +1,4 @@
-<img src="assets/images/logo2.png" alt="3TechMarket Logo" width="200"/>
+<img src="backend/app/src/main/resources/static/logo2.png" alt="3TechMarket Logo" width="200"/>
 
 Our web app provides a online tech shop for users around the world to be able to buy the latest gear with the best reviews at the best prices. We aim to provide the best buying experience, with nice to have features such as support messages, PDF invoices, email confirmations, stock alerts and much more.
 
@@ -208,16 +208,139 @@ The algorithm used on our web app will be a simple recommendation algorithm, whi
 
 <br>
 
-# **Our Web app**
+# **Our Web app - Phase 2**
 ## New navigation diagram
-We'll add it here once we're done
+The navigation is as we established on the previous phase, with minor tweaks, for example, we figured agents should be able to use their
+account to buy products, and the admin shouldn't have access to the shopping cart, as it would be nonsense for him to buy products.
+We believe the roles are clear enough, we allow the users and agents to buy products, and the admin to manage the website. All the features in
+between are available for all of them, as long as they are not related to the purchase of products.
+The anonymous user will be able to access the home page, the login page, the sign-up page, the search results page, the product page, and he will
+need to log in to access the rest of the features.
+
+Our website has suffered some changes, without deviating too much from the design we initially proposed, our main pages now look like this:
+
+<details><summary><b>Home page</b></summary>
+
+![anonymoushomepage.png](Model%20screenshots%2FPhase%202%2Fanonymoushomepage.png)
+
+Anonymous home page, the user can access the login page, the sign-up page, the search results page, the product page, and he will need to log in to access the rest of the features.
+
+![homepage.png](Model%20screenshots%2FPhase%202%2Fhomepage.png)
+
+Logged-in user, his featured offers are tailored to the products he has bought in the past.
+
+</details>
+
+<details><summary><b>Search results page</b></summary>
+
+![searchresults.png](Model%20screenshots%2FPhase%202%2Fsearchresults.png)
+
+The search results page has been updated to include the load more button using AJAX.
+
+![searchresutsloading.png](Model%20screenshots%2FPhase%202%2Fsearchresutsloading.png)
+
+</details>
+
+<details><summary><b>Product page</b></summary>
+
+![loggedinproductview.png](Model%20screenshots%2FPhase%202%2Floggedinproductview.png)
+
+The product page has been updated to include the add to cart and wishlist button, and the reviews section.
+The logged-in user can now add products to his cart and wishlist, and he can also leave reviews to products he has bought.
+Logged-in users can see the profile picture of the user that left the review, as well as the images of it.
+Anonymous users can only see the email of the user that left the review, and the review itself.
+
+![anonymousproductview.png](Model%20screenshots%2FPhase%202%2Fanonymousproductview.png)
+
+</details>
+
+<details><summary><b>Shopping cart page</b></summary>
+
+![shoppingcart.png](Model%20screenshots%2FPhase%202%2Fshoppingcart.png)
+
+The shopping cart page has been updated to include the remove from cart button and the checkout button.
+
+</details>
+
+<details><summary><b>Wishlist page</b></summary>
+
+![wishlist.png](Model%20screenshots%2FPhase%202%2Fwishlist.png)
+
+The wishlist page has been updated to include the remove from wishlist and the add to cart button.
+
+</details>
+
+<details><summary><b>Recent orders page</b></summary>
+
+![recentorders.png](Model%20screenshots%2FPhase%202%2Frecentorders.png)
+
+The recent orders page now works, and lets you return products, add reviews, contact support and download the invoice in PDF format.
+
+</details>
+
+<details><summary><b>Invoice</b></summary>
+
+![invoice.png](Model%20screenshots%2FPhase%202%2Finvoice.png)
+
+The invoice is now available in PDF format, and it includes the product, the total price, the shipping address, the date of the order, and the order number.
+
+</details>
+
+<details><summary><b>Support chat</b></summary>
+
+![supportchat.png](Model%20screenshots%2FPhase%202%2Fsupportchat.png)
+
+The support chat now works, and lets you chat with the support agent, and leave a conversation opened.
+
+</details>
+
+<details><summary><b>Admin dashboard</b></summary>
+
+![admindashboard.png](Model%20screenshots%2FPhase%202%2Fadmindashboard.png)
+
+The admin dashboard is new, and includes a set of tools for the admin to take a look at the progress of the website, as well as edit and add products, check price history, and mod reviews.
+
+![admindashboardajax.png](Model%20screenshots%2FPhase%202%2Fadmindashboardajax.png)
+
+The admin dashboard uses AJAX to load more products.
+
+</details>
+
+<details><summary><b>Price history</b></summary>
+
+![pricehistorychart.png](Model%20screenshots%2FPhase%202%2Fpricehistorychart.png)
+
+The price history chart is new, and it shows the price history of a product, and it includes a button to download the chart in PNG format.
+For now, it is only available for the admin, but we plan to release it for the users and agents as well.
+
+</details>
+
+<details><summary><b>Profile</b></summary>
+
+![profile.png](Model%20screenshots%2FPhase%202%2Fprofile.png)
+
+The user can now change everything on his profile except for his email. He can't manually change his password from here, but can recover it using the forgot password feature.
+
+</details>
+
+<details><summary><b>Active support messages</b></summary>
+
+![activesupportchats.png](Model%20screenshots%2FPhase%202%2Factivesupportchats.png)
+
+The active support messages page is new, and it shows the people who have stared a conversation with the agents,
+any agent can access any conversation and reply to it. They are ordered by timestamp, and the most recent conversation is at the top.
+
+</details>
+
+
 
 ## Building and running our web app
 
 We provide instructions to build and run a complete .jar package including all the necessary dependencies, as well as running the web app from an IDE or from the command line.
 Note: We don't provide instructions to build a .war file, as we believe that the .jar file is more convenient for this project as we don't need to deploy it on a server, and we will use Docker when we deploy it on a server anyway.
 <br>
-For this guide to work, you need to have the following installed:
+
+**For this guide to work, you need to have the following installed:**
 - [Java 17](https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html) *(We use Corretto 17, but any other OpenJDK 17 distribution should work, we use Corretto because Amazon provides it, and it's a trusted source)*
 - [Maven](https://maven.apache.org/download.cgi) *(We recommend installing it from your package manager (brew, pacman, apt), or let your IDE do it for you)*
 - [Git](https://git-scm.com/downloads) *(You can also use the GitHub Desktop app)*
@@ -229,6 +352,30 @@ For this guide to work, you need to have the following installed:
 Optional:
 - [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/download/)
 - [VS Code](https://code.visualstudio.com/download)
+- [MySQL Server](https://dev.mysql.com/downloads/mysql/) *(We use an Azure MySQL database as it was more convenient for us, but it works on any MySQL server)*
+
+*We use Azure's MySQL database as it was more convenient for us than having to deploy lots of objects
+when testing the ajax buttons, or other features, plus it has allowed us to save time redeploying it
+each time we had to test, or adding lots of products, allowing us to store them indefinitely. This was free
+as part of our Microsoft Azure Subscription.*
+
+*Either way, we provide a SampleDataService.java file that creates 3 products, 3 users and a review,
+for basic testing it might come in handy, however, to test our web app and get a glimpse of what it looks like
+with more products, we highly recommend running it with our database. The credentials can be found
+under application.properties, and we can provide access to the IPs that will be running the app*
+
+<details><summary> <b> Setting up a database <i>(Not recommended)</i> </b> </summary>
+
+1. Install MySQL Server
+2. Create a database with a schema called `3techmarket`
+3. Change the commented lines in the `application.properties` file to match your database's credentials and comment the lines that connect the actual Azure database.
+
+    ![img_6.png](img_6.png)
+4. Uncomment the @PostConstruct method in the `SampleDataService.java` file
+
+    ![img_7.png](img_7.png)
+5. Run the web app, and it should create the tables and populate them with the sample data
+</details>
 
 <details><summary> <b> Building a .jar using mvn and running it from the command line <i>(recommended)</i> </b> </summary>
 
@@ -295,4 +442,140 @@ This steps assume you have the Java Extension Pack and the Spring Boot Extension
   - To run the web app on a different port, run `mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=XXXX` instead of step 3, where `XXXX` is the port you want to use, we use 8443 because it's the default port for HTTPS when using Spring Boot in development mode.
   - To stop the web app, run `kill $(lsof -t -i:XXXX)` on the terminal, where `XXXX` is the port you used to run the web app
 
+</details>
+
+## Diagrams
+<details><summary> <b> Entity Relationship Diagram (ERD) </b> </summary>
+Please bear in mind that many of the relationships represent lists, our database may
+appear like we have lots of entities, are actually just one entity with a list of objects. Some of the
+relationships overlap on the diagram, to read the diagram, please follow the arrows and read
+how the entities are related, comparing the diagram with the code will help you understand it.
+
+![ER Diagram](img_5.png)
+
+</details>
+
+<details><summary> <b> Class and templates diagram </b> </summary>
+
+![Class Diagram](img_6.jpg)
+
+</details>
+
+## Contributions
+
+All members have contributed to the project in a similar way, and all members have worked on all parts of the project, this table is just a rough estimate of the amount of work each member has done.
+
+| Member                                               | Contributions                                                                                                                                                                             |
+|------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Santiago Arias](https://github.com/4rius)           | Spring security - All AJAX request buttons - Cart - Purchase history - Image handling - Product search - Automatic emails - Support messages - Entities - Add reviews - Database Handling |
+| [Andreas Wolf](https://github.com/Andreas4122002)    | Checkout - Wishlist - Edit profile - Edit product - Admin dashboard - Entities - Spring Security -Database setup - Database Handling - Repositories                                       |
+| [Ignacio Canículo](https://github.com/nachocaniculo) | Add product - Price history chart - Email password recovery - Login - Signup                                                                                                              |
+| [Inés Alonso](https://github.com/tsukii14)           | Product details - Review handling - Image handling - Thorough testing                                                                                                                     |
+| [Ángel Covarrubias](https://github.com/angelcova)    | Recommendation algorithm - Home page - Thorough testing                                                                                                                                   |
+
+### 5 most important commits
+
+<details><summary> <b> Santiago Arias </b> </summary>
+
+- [Finished support chat](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/adbb2af3a1d2687c3d75ad596838626ce0b51691)
+- [Ajax button and cart controller](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/ddbf93d0da4b8249b3f8604d182d21388da7a4bf)
+- [Headers,pageable and AJAX with JSON](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/0f55370475d94e8f47ed2c345ea3ee146af542dc#diff-1cc9442bfbec310ff7a3a5005337b137a0e1c1dde0a3ffe08258b49b34aad16d)
+- [Database optimisation (reduced queries for the vast majority of tasks)](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/fd8278e475a8d64609f27dd5edb72e5dadb21f65)
+- [Email confirmation when signing up](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/5788d318549cb70423c3e8dd691a622316ae3238)
+
+</details>
+
+<details><summary> <b> Andreas Wolf </b> </summary>
+
+
+- [Finished checkout](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/4ebf78d6763c5b0ade3cf38028da24c025e8073a)
+- [Product editing fully functional](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/de0415e11d5cc12375cf38ef64f9e68cd1224538)
+- [Wishlist implementation](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/ed85e139feabc1700b725beaa1319ea99573db54)
+- [Profile editing fully functional](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/5b49934bf0dfd2f0cc044b49cc60ffdc1a5d63da#diff-e1d022fb9241e13ef063ac1c15b1714e02354a55079e730f0a85b8c82e83a75d)
+- [Admin dashboard](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/d0f5af0ca192512f97b1a8f424973a38b4ff35c0)
+
+
+</details>
+
+<details><summary> <b> Ignacio Canículo </b> </summary>
+
+- [Price History Graph](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/5107156ec558d060502da070371418fc04ed7274)
+- [Price History Graph](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/a7f0d2736882b010c2e886e5480ead8d5eb37fd5)
+- [Change password](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/c14da855068dd8039b1206e1311de1f65a02205f)
+- [Password toogle visibility and editproduct advances](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/44bb3ab5ddf7afda539096bc0a281bf7ee3764d8)
+- [Working version of admin product adder](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/11f1c736665ee4248172b2490a88a10039d98726)
+
+</details>
+
+<details><summary> <b> Inés Alonso </b> </summary>
+
+- [Review images](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/b9a463dfaeaf313ec42f03c4155c98268350e8b4)
+- [Product rating stars](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/1f995e3e1bb7d27a546ce9b20b84ae9df471c381)
+- [Show the other photos of the product](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/83830dcb1249a9954a3d012398d7d856c295aef3)
+- [Update product view](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/bec17b927cd416f2a37495ecd56b04f0257317ba)
+- [Error at product template](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/821876efd6ef75e625a28bd997efc273fb6a4124)
+
+</details>
+
+<details><summary> <b> Ángel Covarrubias </b> </summary>
+    
+- [Recommendations refactor](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/3ff044766d26450e162bbd2dd2493b13dc54fb1a)
+- [Recommended products](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/074fce6d60867cae65c9cf5276f001c665dae9ff#diff-82607adf4067143c3ecd7fa4eb43cff33b549f9293579f0a40ba5c9714b05e4d)
+- [Some algorithm errors fixed](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/2a2ec4012f0acfccc2147d117b9db2b794556c2b#diff-62d8fd2e53751f3d3cae52f82e0cd8f3ed87ab4ef25ce26f2c8d3be019c0a3e3)
+- [Recommendation algorithm fix](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/dbe953d2d766617f9f4b1e4730c428a548f4ea21#diff-8ee70ef5ad0b0383cd723ccf16bc5c27c4da071c7b63de1ff2458b06d62c1def)
+- [Update recommendation algorithm](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/fca38df21321509047d4fee5d88d5c1f5a6b539e)
+    
+</details>
+
+### 5 most edited files
+
+<details><summary> <b> Santiago Arias </b> </summary>
+
+- [ProductController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/ProductController.java)
+- [CartController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/CartController.java)
+- [ajaxsearch.js](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/resources/static/ajaxsearch.js)
+- [ChatController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/ChatController.java)
+- [SearchController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/SearchController.java)
+
+</details>
+
+<details><summary> <b> Andreas Wolf </b> </summary>
+
+- [DashboardController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/DashboardController.java)
+- [ProductController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/ProductController.java)
+- [CheckoutController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/CheckoutController.java)
+- [PrivateController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/PrivateController.java)
+- [Dashboard.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/resources/templates/dashboard.html)
+
+
+</details>
+
+<details><summary> <b> Ignacio Canículo </b> </summary>
+
+- [pricehistory.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/resources/templates/pricehistory.html)
+- [app.js](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/resources/static/app.js)
+- [ProductController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/ProductController.java)
+- [UserController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/UserController.java)
+- [recovery.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/resources/templates/recovery.html)
+
+</details>
+
+<details><summary> <b> Inés Alonso </b> </summary>
+
+- [ProductController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/ProductController.java)
+- [ImageController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/ImageController.java)
+- [product.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/resources/templates/product.html)
+- [ReviewRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/Repositories/ReviewRepository.java)
+- [productRate.js](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/resources/static/productRate.js)
+
+</details>
+
+<details><summary> <b> Ángel Covarrubias </b> </summary>
+
+- [HomeController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/HomeController.java)
+- [RecommendationService.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/service/RecommendationService.java)
+- [ProductRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/Repositories/ProductRepository.java)
+- [PurchaseRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/Repositories/PurchaseRepository.java)
+- [index.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/resources/templates/index.html)    
+    
 </details>

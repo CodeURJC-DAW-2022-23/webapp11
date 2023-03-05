@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -22,5 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByFirstNameAndLastName(String firstName, String lastName);
 
 
-
+    // Find user ids by their role
+    List<User> findByRoles(String role);
 }

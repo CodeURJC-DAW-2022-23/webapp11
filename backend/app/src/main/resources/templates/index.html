@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/ranaemptyicon.png">
     <link rel="stylesheet" href="/bootstrap.min.css">
     <link rel="stylesheet" href="/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
@@ -13,78 +14,7 @@
 </head>
 <body>
   <div class="container-fluid">
-      <div class="row header">
-          <div class="col-md-2">
-              <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
-          </div>
-          <div class="col-md-8">
-              <form action="/search" method="post">
-            <div class="input-group mb-4 searchbar">
-                    <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
-                    <input type="hidden" name="_csrf" value="{{token}}"/>
-                    <div class="input-group-append">
-                        <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
-                    </div>
-            </div>
-                </form>
-          </div>
-
-          <!--Header icons-->
-          <div class="col-md-2 ">
-              {{#isLoggedIn}}
-              <div class="row">
-                  <div class="col-md-2 navigation">
-
-                    <div class="dropdown">
-                      <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
-                        <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                        <li><form action="/logout" method="post">
-                            <button class="dropdown-item" type="submit">Logout</button>
-                            <input type="hidden" name="_csrf" value="{{token}}"/>
-                        </form></li>
-                      </ul>
-                    </div>
-                      
-                  </div>
-
-                  <div class="col-md-2 navigation">
-                      
-                    <a href="/wishlist">
-                      <i class="fa-solid fa-star"></i>
-                    </a>
-            
-                  </div>
-                  
-                  <div class="col-md-2 navigation">
-                      
-                        <a href="/cart">
-                          <i class="fa-solid fa-cart-shopping"></i>
-                        </a>
-                      
-                  </div>
-                  
-                  <div class="col-md-2 navigation ">
-                      
-                          <a href="#">
-                            <i class="fa-solid fa-bell"></i>
-                          </a>
-                        
-                  </div>
-                  
-              </div>
-                {{/isLoggedIn}}
-              {{^isLoggedIn}}
-              <div class="row">
-              <!-- Login or register button linked to /signin -->
-              <a href="/signin" class="buttonlogin"><button class="btn btn-success">Login or register</button></a>
-              {{/isLoggedIn}}
-              </div>
-          </div>
-      </div>
-
+      {{> header}}
       <div id="carouselExampleControls" class="carousel " data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -102,54 +32,16 @@
       <h2>Featured offers</h2>
       <!--Recommended products row-->
       <div class="row destacados">
-          {{#default}}
-        <div class="col-md-3">
-          <a href="#">
-            <img src="/assets/images/pc15.jpg" alt="destacado" width="100" height="100">
-            <p class="destacados">Product name  <span class="badge text-bg-success">500$</span></p>
-          </a>
-        </div>
-        <div class="col-md-3">
-          <a href="#">
-            <img src="/assets/images/pc17.jpg" alt="destacado" width="100" height="100">
-            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
-          </a>
-        </div>
-        <div class="col-md-3">
-          <a href="#">
-            <img src="/assets/images/pc19.jpg" alt="destacado" width="100" height="100">
-            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
-          </a>
-        </div>
-        <div class="col-md-3">
-          <a href="#">
-            <img src="/assets/images/pc2.jpg" alt="destacado" width="100" height="100">
-            <p class="destacados">Product name <span class="badge text-bg-success">500$</span></p>
-          </a>
-        </div>
-          {{/default}}
-      </div>
-      {{^default}}
+      {{#products}}
       <div class="col-md-3">
-          <a href="#">
-              <!--<img src="productImage" alt="destacado" width="100" height="100">-->
-              <p class="destacados">{{productName}}<span class="badge text-bg-success">{{productPrice}}$</span></p>
+          <a href="/product/{{productId}}">
+              <img src="/product/{{productId}}/image" alt="featured" width="100" height="100">
+              <p class="destacados">{{productName}} <span class="badge text-bg-warning">{{productPrice}}€</span></p>
           </a>
       </div>
-      {{/default}}
+      {{/products}}
+      </div>
   </div>
-    
-
-    <footer>
-        <p> &copy 3TechMarket Apache-2.0 license <br>
-            Inés Alonso Izquierdo - i.alonso.2020@alumnos.urjc.es - Github: tsukii14 <br>
-            Santiago Arias Paniagua - s.arias.2020@alumnos.urjc.es - Github: 4rius <br>
-            Ignacio Canículo Domínguez - i.caniculo.2020@alumnos.urjc.es - Github: nachocaniculo <br>
-            Ángel Covarrubias Roldán - a.covarrubias.2020@alumnos.urjc.es - Github: Angelcova <br>
-            Andreas Wolf Wolf - a.wolf.2020@alumnos.urjc.es - Github: Andreas4122002 <br>
-        </p>
-        </footer>
-    
-    
+  {{> footer}}
 </body>
 </html>

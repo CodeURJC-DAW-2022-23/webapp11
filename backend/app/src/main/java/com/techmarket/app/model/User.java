@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @EnableAutoConfiguration
 public class User {
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -48,7 +48,7 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Message> messages = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<Review> reviews = new ArrayList<>();
+    List<Product> reviews = new ArrayList<>();
 
 
 
@@ -76,7 +76,7 @@ public class User {
         this.passwordChangeToken = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
     }
 
-    protected User(){}
+    public User(){}
 
     public  String getEncodedPassword() {
         return this.encodedPassword;
@@ -233,11 +233,19 @@ public class User {
         this.roles.add(role);
     }
 
-    public List<Review> getReviews() {
+    public Long getPasswordChangeToken() {
+        return passwordChangeToken;
+    }
+
+    public void setPasswordChangeToken(Long passwordChangeToken) {
+        this.passwordChangeToken = passwordChangeToken;
+    }
+
+    public List<Product> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<Review> reviews) {
+    public void setReviews(List<Product> reviews) {
         this.reviews = reviews;
     }
 }

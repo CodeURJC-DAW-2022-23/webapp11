@@ -2,13 +2,19 @@ package com.techmarket.app.service;
 
 import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.Repositories.PurchaseRepository;
+import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Purchase;
+import com.techmarket.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -17,20 +23,38 @@ public class RecommendationService {
     private PurchaseRepository purchaseRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private UserRepository userRepository;
     public List<Product> getRecommendedProducts(){
         ArrayList<Purchase> purchases = getPurchases();
         List<Product> purchasedItems  = getProductsPurchased(purchases);
         List<String> tags = getTags(purchasedItems);
         List<Product> productsTag = getProductByTags(tags);
-        List<Product> recommendedProducts = new ArrayList<>();
+        List<Product> recommendedProducts = getAllProducts().stream()
+                // Filter out products that don't have any of the tags
+                .filter(product -> product.getTags().stream().anyMatch(tags::contains))
+                // Filter out products that have already been purchased
+                .filter(product -> !purchasedItems.contains(product))
+                .limit(4)
+                .collect(Collectors.toList());
 
-        int z = 0;
-        int number;
-        for(int i = 0; i<4; i++){
-            if (z < productsTag.size()){
-                number = (int)(Math.random()*productsTag.size());
-                recommendedProducts.add(productsTag.get(number));
-            }
+        if (recommendedProducts.size() < 4) {
+            // If we don't have enough products, fill the rest with random products
+            // Use a set because it is faster to check if an item is in the set
+            Set<Long> purchasedProductIds = purchasedItems.stream()
+                    // Get the product IDs of the purchased items, so we can filter them out
+                    .map(Product::getProductId)
+                    .collect(Collectors.toSet());
+
+            List<Product> remainingProducts = getAllProducts().stream()
+                    // Filter out products that have already been purchased
+                    .filter(product -> !purchasedProductIds.contains(product.getProductId()))
+                    // Filter out products that are already in the recommended list
+                    .filter(product -> !recommendedProducts.contains(product))
+                    .limit(4 - recommendedProducts.size())
+                    .toList();
+            // Add the remaining products to the list
+            recommendedProducts.addAll(remainingProducts);
         }
         return recommendedProducts;
     }
@@ -68,7 +92,9 @@ public class RecommendationService {
     }
     public ArrayList<Purchase> getPurchases (){
         ArrayList<Purchase> purchases;
-        purchases = purchaseRepository.findFirst10ByOrderByPurchaseIdDesc();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User cuarrentUser = userRepository.findByEmail(auth.getName());
+        purchases = purchaseRepository.findFirst10ByUserIdOrderByPurchaseIdDesc(cuarrentUser.getId());
         return purchases;
     }
 }
