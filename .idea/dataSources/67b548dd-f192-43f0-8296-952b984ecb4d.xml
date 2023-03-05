@@ -5814,7 +5814,7 @@ mysql&gt; SELECT VERSION(), sys.version_patch();
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="834" parent="317" name="reviews_review_id">
+    <column id="834" parent="317" name="reviews_product_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
@@ -5824,13 +5824,13 @@ mysql&gt; SELECT VERSION(), sys.version_patch();
       <RefColNames>id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <foreign-key id="836" parent="317" name="FKhkw76ni6xwhtgsq102mh4ywwv">
-      <ColNames>reviews_review_id</ColNames>
-      <RefColNames>review_id</RefColNames>
-      <RefTableName>review</RefTableName>
+    <foreign-key id="836" parent="317" name="FKmrmlbxbcwsgygqbcpnbg1n3a4">
+      <ColNames>reviews_product_id</ColNames>
+      <RefColNames>product_id</RefColNames>
+      <RefTableName>product</RefTableName>
     </foreign-key>
-    <index id="837" parent="317" name="UK_5i9tcyakdqnx91bd6ovycdw1w">
-      <ColNames>reviews_review_id</ColNames>
+    <index id="837" parent="317" name="UK_g5fdyuacovo3qd1fo97niw1xp">
+      <ColNames>reviews_product_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -5838,8 +5838,8 @@ mysql&gt; SELECT VERSION(), sys.version_patch();
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="839" parent="317" name="UK_5i9tcyakdqnx91bd6ovycdw1w">
-      <UnderlyingIndexName>UK_5i9tcyakdqnx91bd6ovycdw1w</UnderlyingIndexName>
+    <key id="839" parent="317" name="UK_g5fdyuacovo3qd1fo97niw1xp">
+      <UnderlyingIndexName>UK_g5fdyuacovo3qd1fo97niw1xp</UnderlyingIndexName>
     </key>
     <column id="840" parent="318" name="user_id">
       <DasType>bigint|0s</DasType>

@@ -3,6 +3,7 @@ package com.techmarket.app.Repositories;
 
 import com.techmarket.app.model.Purchase;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 public interface PurchaseRepository extends JpaRepository<Purchase, String> {
 
     Page<Purchase> findByUserId(Long userId, org.springframework.data.domain.Pageable pageable);
+    Page<Purchase> findByUserIdOrderByTimestampDesc(Long userId, Pageable pageable);
+
 
     Page<Purchase> findAll(org.springframework.data.domain.Pageable pageable);
 

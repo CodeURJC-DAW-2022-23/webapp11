@@ -80,7 +80,7 @@ public class ProductController {
 
     @Transactional
     @PostMapping("/addproduct-create")
-    public String createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam int amount, @RequestParam List<String> tags, @RequestParam MultipartFile mainImage, @RequestParam(required = false) MultipartFile[] moreImages) throws IOException, SQLException {
+    public String createproduct(@RequestParam String name, @RequestParam String description, @RequestParam double price, @RequestParam int amount, @RequestParam String tags, @RequestParam MultipartFile mainImage, @RequestParam(required = false) MultipartFile[] moreImages) throws IOException, SQLException {
         Product product = new Product();
         // Create the list of images
         List<Image> images = new ArrayList<>();
@@ -107,7 +107,10 @@ public class ProductController {
         product.setProductPrices(prices);
         product.setProductPrice(price);
         product.setProductStock(amount);
-        product.setTags(tags);
+        // Create the list of tags
+        String[] tagArray = tags.split(",");
+        List<String> tagList = new ArrayList<>(Arrays.asList(tagArray));
+        product.setTags(tagList);
         product.setMainImage(image);
         // Create new product
         productRepository.save(product);
@@ -265,7 +268,7 @@ public class ProductController {
         review.setUser(currentUser);
         reviewRepository.save(review);
         // Add review to user and product
-        currentUser.getReviews().add(review);
+        currentUser.getReviews().add(product.get());
         product.get().getReviews().add(review);
         userRepository.save(currentUser);
         productRepository.save(product.get());
