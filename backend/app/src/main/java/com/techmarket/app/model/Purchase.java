@@ -12,7 +12,7 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long purchaseId;
     // Instead of String ids, we use product and User to avoid having to query the database for the product and user
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
     @NotNull
     private Product product;
