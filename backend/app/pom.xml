@@ -108,7 +108,11 @@
 			<artifactId>html2pdf</artifactId>
 			<version>3.0.1</version>
 		</dependency>
-
+        <dependency>
+            <groupId>com.github.spullara.mustache.java</groupId>
+            <artifactId>compiler</artifactId>
+            <version>0.9.10</version>
+        </dependency>
 
 
     </dependencies>

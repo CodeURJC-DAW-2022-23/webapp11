@@ -23,8 +23,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 @Controller
@@ -91,12 +89,8 @@ public class PurchasesController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Purchase not found");
             return;
         }
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("purchase", purchase);
-
         // Generate the invoice
-        PDFService.generateInvoice(response, data);
+        PDFService.generateInvoice(response, purchase);
     }
 
 
