@@ -499,6 +499,12 @@ All members have contributed to the project in a similar way, and all members ha
 
 <details><summary> <b> Ignacio Canículo </b> </summary>
 
+- [Price History Graph](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/5107156ec558d060502da070371418fc04ed7274)
+- [Price History Graph](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/a7f0d2736882b010c2e886e5480ead8d5eb37fd5)
+- [Change password](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/c14da855068dd8039b1206e1311de1f65a02205f)
+- [Password toogle visibility and editproduct advances](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/44bb3ab5ddf7afda539096bc0a281bf7ee3764d8)
+- [Working version of admin product adder](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/11f1c736665ee4248172b2490a88a10039d98726)
+
 </details>
 
 <details><summary> <b> Inés Alonso </b> </summary>
@@ -546,6 +552,12 @@ All members have contributed to the project in a similar way, and all members ha
 
 <details><summary> <b> Ignacio Canículo </b> </summary>
 
+- [pricehistory.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/resources/templates/pricehistory.html)
+- [app.js](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/resources/static/app.js)
+- [ProductController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/ProductController.java)
+- [UserController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/UserController.java)
+- [recovery.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/resources/templates/recovery.html)
+
 </details>
 
 <details><summary> <b> Inés Alonso </b> </summary>
@@ -555,6 +567,7 @@ All members have contributed to the project in a similar way, and all members ha
 - [product.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/resources/templates/product.html)
 - [ReviewRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/Repositories/ReviewRepository.java)
 - [productRate.js](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/resources/static/productRate.js)
+
 </details>
 
 <details><summary> <b> Ángel Covarrubias </b> </summary>
