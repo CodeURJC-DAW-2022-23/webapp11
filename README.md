@@ -217,7 +217,122 @@ between are available for all of them, as long as they are not related to the pu
 The anonymous user will be able to access the home page, the login page, the sign-up page, the search results page, the product page, and he will
 need to log in to access the rest of the features.
 
-Our main pages have been minimally updated, and here are the results:
+Our website has suffered some changes, without deviating too much from the design we initially proposed, our main pages now look like this:
+
+<details><summary><b>Home page</b></summary>
+
+![anonymoushomepage.png](Model%20screenshots%2FPhase%202%2Fanonymoushomepage.png)
+
+Anonymous home page, the user can access the login page, the sign-up page, the search results page, the product page, and he will need to log in to access the rest of the features.
+
+![homepage.png](Model%20screenshots%2FPhase%202%2Fhomepage.png)
+
+Logged-in user, his featured offers are tailored to the products he has bought in the past.
+
+</details>
+
+<details><summary><b>Search results page</b></summary>
+
+![searchresults.png](Model%20screenshots%2FPhase%202%2Fsearchresults.png)
+
+The search results page has been updated to include the load more button using AJAX.
+
+![searchresutsloading.png](Model%20screenshots%2FPhase%202%2Fsearchresutsloading.png)
+
+</details>
+
+<details><summary><b>Product page</b></summary>
+
+![loggedinproductview.png](Model%20screenshots%2FPhase%202%2Floggedinproductview.png)
+
+The product page has been updated to include the add to cart and wishlist button, and the reviews section.
+The logged-in user can now add products to his cart and wishlist, and he can also leave reviews to products he has bought.
+Logged-in users can see the profile picture of the user that left the review, as well as the images of it.
+Anonymous users can only see the email of the user that left the review, and the review itself.
+
+![anonymousproductview.png](Model%20screenshots%2FPhase%202%2Fanonymousproductview.png)
+
+</details>
+
+<details><summary><b>Shopping cart page</b></summary>
+
+![shoppingcart.png](Model%20screenshots%2FPhase%202%2Fshoppingcart.png)
+
+The shopping cart page has been updated to include the remove from cart button and the checkout button.
+
+</details>
+
+<details><summary><b>Wishlist page</b></summary>
+
+![wishlist.png](Model%20screenshots%2FPhase%202%2Fwishlist.png)
+
+The wishlist page has been updated to include the remove from wishlist and the add to cart button.
+
+</details>
+
+<details><summary><b>Recent orders page</b></summary>
+
+![recentorders.png](Model%20screenshots%2FPhase%202%2Frecentorders.png)
+
+The recent orders page now works, and lets you return products, add reviews, contact support and download the invoice in PDF format.
+
+</details>
+
+<details><summary><b>Invoice</b></summary>
+
+![invoice.png](Model%20screenshots%2FPhase%202%2Finvoice.png)
+
+The invoice is now available in PDF format, and it includes the product, the total price, the shipping address, the date of the order, and the order number.
+
+</details>
+
+<details><summary><b>Support chat</b></summary>
+
+![supportchat.png](Model%20screenshots%2FPhase%202%2Fsupportchat.png)
+
+The support chat now works, and lets you chat with the support agent, and leave a conversation opened.
+
+</details>
+
+<details><summary><b>Admin dashboard</b></summary>
+
+![admindashboard.png](Model%20screenshots%2FPhase%202%2Fadmindashboard.png)
+
+The admin dashboard is new, and includes a set of tools for the admin to take a look at the progress of the website, as well as edit and add products, check price history, and mod reviews.
+
+![admindashboardajax.png](Model%20screenshots%2FPhase%202%2Fadmindashboardajax.png)
+
+The admin dashboard uses AJAX to load more products.
+
+</details>
+
+<details><summary><b>Price history</b></summary>
+
+![pricehistorychart.png](Model%20screenshots%2FPhase%202%2Fpricehistorychart.png)
+
+The price history chart is new, and it shows the price history of a product, and it includes a button to download the chart in PNG format.
+For now, it is only available for the admin, but we plan to release it for the users and agents as well.
+
+</details>
+
+<details><summary><b>Profile</b></summary>
+
+![profile.png](Model%20screenshots%2FPhase%202%2Fprofile.png)
+
+The user can now change everything on his profile except for his email. He can't manually change his password from here, but can recover it using the forgot password feature.
+
+</details>
+
+<details><summary><b>Active support messages</b></summary>
+
+![activesupportchats.png](Model%20screenshots%2FPhase%202%2Factivesupportchats.png)
+
+The active support messages page is new, and it shows the people who have stared a conversation with the agents,
+any agent can access any conversation and reply to it. They are ordered by timestamp, and the most recent conversation is at the top.
+
+</details>
+
+
 
 ## Building and running our web app
 
@@ -331,7 +446,7 @@ This steps assume you have the Java Extension Pack and the Spring Boot Extension
 
 ## Diagrams
 <details><summary> <b> Entity Relationship Diagram (ERD) </b> </summary>
-Please bear in mind that many of the relationships represent lists, and that sequences, which may
+Please bear in mind that many of the relationships represent lists, our database may
 appear like we have lots of entities, are actually just one entity with a list of objects. Some of the
 relationships overlap on the diagram, to read the diagram, please follow the arrows and read
 how the entities are related, comparing the diagram with the code will help you understand it.
