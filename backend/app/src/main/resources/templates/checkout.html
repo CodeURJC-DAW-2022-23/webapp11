@@ -27,22 +27,28 @@
     </div>
     {{/items}}
 
-    <div class="col-md-12 form" style="background-color: white">
-        <form action="/payout" method="post" style="color: white">
-            <label class="address" name="address" placeholder="Address"></label>
+    <div class="form" enctype="multipart/form-data">
+        <form action="/payout" method="post">
+            <div class="textBar">
+                <div class="col-md-12">
+                    <label class="label"></label>
+                    <input type="text" class="form-control"
+                           placeholder="Address" value=""
+                           name="address">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <p class="total" style="color: white">Total: {{totalPrice}} $
+
+                    <button class="btn btn-primary" type="submit">Payout</button>
+
+                </p>
+
+            </div>
+            <input type="hidden" name="_csrf" value="{{token}}"/>
         </form>
-
-
     </div>
 
-    <div class="col-md-12" >
-        <p class="total" style="color: white">Total: {{totalPrice}} $
-            <a href="/payout">
-                <button class="btn btn-primary" type="button">Payout</button>
-            </a>
-        </p>
-
-    </div>
 
 </div>
 
