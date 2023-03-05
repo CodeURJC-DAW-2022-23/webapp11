@@ -468,7 +468,7 @@ All members have contributed to the project in a similar way, and all members ha
 | Member                                               | Contributions                                                                                                                                                                             |
 |------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Santiago Arias](https://github.com/4rius)           | Spring security - All AJAX request buttons - Cart - Purchase history - Image handling - Product search - Automatic emails - Support messages - Entities - Add reviews - Database Handling |
-| [Andreas Wolf](https://github.com/Andreas4122002)    | Checkout - Wishlist - Edit profile - Edit product - Admin dashboard - Entities - Spring Security -Database setup - Database Handling                                                      |
+| [Andreas Wolf](https://github.com/Andreas4122002)    | Checkout - Wishlist - Edit profile - Edit product - Admin dashboard - Entities - Spring Security -Database setup - Database Handling - Repositories                                       |
 | [Ignacio Canículo](https://github.com/nachocaniculo) | Add product - Price history chart - Email password recovery - Login - Signup                                                                                                              |
 | [Inés Alonso](https://github.com/tsukii14)           | Product details - Review handling - Image handling - Thorough testing                                                                                                                     |
 | [Ángel Covarrubias](https://github.com/angelcova)    | Recommendation algorithm - Home page - Thorough testing                                                                                                                                   |
@@ -528,6 +528,13 @@ All members have contributed to the project in a similar way, and all members ha
 </details>
 
 <details><summary> <b> Andreas Wolf </b> </summary>
+
+- [DashboardController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/DashboardController.java)
+- [ProductController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/ProductController.java)
+- [CheckoutController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/CheckoutController.java)
+- [PrivateController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/PrivateController.java)
+- [Dashboard.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/resources/templates/dashboard.html)
+
 
 </details>
 
