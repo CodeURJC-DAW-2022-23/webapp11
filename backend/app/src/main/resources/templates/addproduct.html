@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bootstrap.min.css">
     <link rel="shortcut icon" href="/ranaemptyicon.png">
-    <link rel="stylesheet" href="/addproduct.css">
+    <link rel="stylesheet" href="/style.css">
     <script src="/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"
             crossorigin="anonymous"></script>
@@ -17,51 +17,7 @@
 
 <body>
 <div class="container-fluid">
-    <div class="row header">
-        <div class="col-md-2">
-            <div class="logoImage">
-                <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a>
-                </h1>
-            </div>
-        </div>
-
-
-        <div class="col-md-8">
-        </div>
-
-        <!--Header icons-->
-        <div class="col-md-2 ">
-            <div class="row">
-                <div class="col-md-2 navigation">
-                    <div class="dropdown">
-                        <a class="fa-solid fa-user" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/purchases">Recent orders</a></li>
-                            <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
-                            <li>
-                                <form action="/logout" method="post">
-                                    <button class="dropdown-item" type="submit">Logout</button>
-                                    <input type="hidden" name="_csrf" value="{{token}}"/>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3 navigation">
-                    <a href="/addproduct">
-                        <i class="fa-solid fa-circle-plus"></i>
-                    </a>
-                </div>
-                <div class="col-md-3 navigation">
-                    <a href="/statistics">
-                        <i class="fa-solid fa-chart-simple"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{> header}}
         <div class="form">
             <form action="/addproduct-create" enctype="multipart/form-data" method="POST">
                 <div style="text-align:center">

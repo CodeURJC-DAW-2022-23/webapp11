@@ -465,13 +465,13 @@ how the entities are related, comparing the diagram with the code will help you 
 
 All members have contributed to the project in a similar way, and all members have worked on all parts of the project, this table is just a rough estimate of the amount of work each member has done.
 
-| Member                                               | Contributions                                                                                                                                                         |
-|------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Santiago Arias](https://github.com/4rius)           | Spring security - All AJAX request buttons - Cart - Purchase history - Image handling - Product search - Automatic emails - Support messages - Entities - Add reviews |
-| [Andreas Wolf](https://github.com/Andreas4122002)    | Checkout - Wishlist - Edit profile - Edit product - Admin dashboard - Entities                                                                                        |
-| [Ignacio Canículo](https://github.com/nachocaniculo) | Add product - Price history chart - Email password recovery - Login - Signup                                                                                          |
-| [Inés Alonso](https://github.com/tsukii14)           | Product details - Review handling - Image handling - Thorough testing                                                                                                                 |
-| [Ángel Covarrubias](https://github.com/angelcova)    | Recommendation algorithm - Home page - Thorough testing                                                                                                               |
+| Member                                               | Contributions                                                                                                                                                                             |
+|------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Santiago Arias](https://github.com/4rius)           | Spring security - All AJAX request buttons - Cart - Purchase history - Image handling - Product search - Automatic emails - Support messages - Entities - Add reviews - Database Handling |
+| [Andreas Wolf](https://github.com/Andreas4122002)    | Checkout - Wishlist - Edit profile - Edit product - Admin dashboard - Entities - Spring Security -Database setup - Database Handling                                                      |
+| [Ignacio Canículo](https://github.com/nachocaniculo) | Add product - Price history chart - Email password recovery - Login - Signup                                                                                                              |
+| [Inés Alonso](https://github.com/tsukii14)           | Product details - Review handling - Image handling - Thorough testing                                                                                                                     |
+| [Ángel Covarrubias](https://github.com/angelcova)    | Recommendation algorithm - Home page - Thorough testing                                                                                                                                   |
 
 ### 5 most important commits
 
@@ -486,6 +486,14 @@ All members have contributed to the project in a similar way, and all members ha
 </details>
 
 <details><summary> <b> Andreas Wolf </b> </summary>
+
+
+- [Finished checkout](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/4ebf78d6763c5b0ade3cf38028da24c025e8073a)
+- [Product editing fully functional](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/de0415e11d5cc12375cf38ef64f9e68cd1224538)
+- [Wishlist implementation](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/ed85e139feabc1700b725beaa1319ea99573db54)
+- [Profile editing fully functional](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/5b49934bf0dfd2f0cc044b49cc60ffdc1a5d63da#diff-e1d022fb9241e13ef063ac1c15b1714e02354a55079e730f0a85b8c82e83a75d)
+- [Admin dashboard](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/d0f5af0ca192512f97b1a8f424973a38b4ff35c0)
+
 
 </details>
 
