@@ -503,6 +503,12 @@ All members have contributed to the project in a similar way, and all members ha
 
 <details><summary> <b> Inés Alonso </b> </summary>
 
+- [Review images](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/b9a463dfaeaf313ec42f03c4155c98268350e8b4)
+- [Product rating stars](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/1f995e3e1bb7d27a546ce9b20b84ae9df471c381)
+- [Show the other photos of the product](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/83830dcb1249a9954a3d012398d7d856c295aef3)
+- [Update product view](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/bec17b927cd416f2a37495ecd56b04f0257317ba)
+- [Error at product template](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/821876efd6ef75e625a28bd997efc273fb6a4124)
+
 </details>
 
 <details><summary> <b> Ángel Covarrubias </b> </summary>
@@ -544,6 +550,11 @@ All members have contributed to the project in a similar way, and all members ha
 
 <details><summary> <b> Inés Alonso </b> </summary>
 
+- [ProductController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/ProductController.java)
+- [ImageController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/ImageController.java)
+- [product.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/resources/templates/product.html)
+- [ReviewRepository.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/Repositories/ReviewRepository.java)
+- [productRate.js](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/resources/static/productRate.js)
 </details>
 
 <details><summary> <b> Ángel Covarrubias </b> </summary>
