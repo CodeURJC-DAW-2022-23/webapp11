@@ -52,7 +52,7 @@ public class Purchase {
         return product;
     }
 
-    public void setProduct(Product products) {
+    public void setProduct( Product product) {
         this.product = product;
     }
 

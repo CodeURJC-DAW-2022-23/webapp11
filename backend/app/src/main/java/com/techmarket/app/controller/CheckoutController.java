@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -59,30 +60,33 @@ public class CheckoutController {
             for (Product product : cart) {
                 if (!user.getPurchasedProducts().contains(product)) {
                     user.getPurchasedProducts().add(product);
-                    product.setProductStock(product.getProductStock() - 1);
 
-                    Date date = new Date();
-                    LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    int year = localDate.getYear();
-                    int month = localDate.getMonthValue();
-                    int day = localDate.getDayOfMonth();
-                    Purchase purchase = new Purchase();
-                    purchase.setProduct(product);
-                    purchase.setUser(user);
-                    purchase.setAddress(address);
-                    purchase.setCancelled(false);
-                    purchase.setPaymentMethod("Cash on delivery");
-                    purchase.setTimestamp(year + "-" + month + "-" + day);
-                    purchaseRepository.save(purchase);
                 }
+                product.setProductStock(product.getProductStock() - 1);
+                Date date = new Date();
+                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                int year = localDate.getYear();
+                int month = localDate.getMonthValue();
+                int day = localDate.getDayOfMonth();
+                Purchase purchase = new Purchase();
+                purchase.setProduct(product);
+                purchase.setUser(user);
+                purchase.setAddress(address);
+                purchase.setCancelled(false);
+                purchase.setPaymentMethod("Cash on delivery");
+                purchase.setTimestamp(year + "-" + month + "-" + day);
+                purchaseRepository.save(purchase);
             }
+
             user.getShoppingCart().clear();
+            userRepository.save(user);
+
 
         } else {
             return "redirect:/cart";
         }
 
-        return "/";
+        return "redirect:/purchases";
     }
 
 
