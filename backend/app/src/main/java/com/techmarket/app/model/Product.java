@@ -23,7 +23,7 @@ public class Product {
     @OneToOne
     private Image mainImage;  // This is the main image of the product, used for the product card on reviews, history, cart, etc.
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> tags;
+    private List<String> tags = new ArrayList<>();
     private int productStock;
     private String productName; // They have to use the same name as Mustache
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
