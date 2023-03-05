@@ -42,7 +42,7 @@ public class PurchasesController {
         User user = userRepository.findByEmail(auth.getName());
 
         // Get the purchases of the user
-        Page<Purchase> purchases = purchaseRepository.findByUserId(user.getId(), pageable);
+        Page<Purchase> purchases = purchaseRepository.findByUserIdOrderByTimestampDesc(user.getId(), pageable);
         // Check if the user has any purchases
         if (!purchases.isEmpty()) {
             model.addAttribute("purchases", purchases.getContent());
@@ -66,7 +66,7 @@ public class PurchasesController {
         User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         int pageSize = 10;
         Pageable pageable = PageRequest.of(start / pageSize, pageSize);
-        Page<Purchase> page = purchaseRepository.findByUserId(user.getId(), pageable);
+        Page<Purchase> page = purchaseRepository.findByUserIdOrderByTimestampDesc(user.getId(), pageable);
 
 
         return JSONService.getPurchaseStringResponseEntity(page);
