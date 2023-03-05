@@ -18,6 +18,6 @@ public interface PurchaseRepository extends JpaRepository<Purchase, String> {
     Page<Purchase> findAll(org.springframework.data.domain.Pageable pageable);
 
     // Get a purchase by its ID, used to generate an invoice
-    Purchase findByPurchaseId(String purchaseId);
+    Purchase findByPurchaseId(Long purchaseId);
     ArrayList<Purchase> findFirst10ByUserIdOrderByPurchaseIdDesc(Long id);
 }

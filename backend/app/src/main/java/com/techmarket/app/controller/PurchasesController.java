@@ -6,6 +6,8 @@ import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.Purchase;
 import com.techmarket.app.model.User;
 import com.techmarket.app.service.JSONService;
+import com.techmarket.app.service.PDFService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 @Controller
 public class PurchasesController {
@@ -69,16 +76,33 @@ public class PurchasesController {
 
     // Generate an invoice for a purchase in PDF format
     @GetMapping("/invoice/{PurchaseId}")
-    public String invoice(Model model, @RequestParam("purchaseId") String purchaseId) {  // Get the purchase id from the URL
+    public void generateInvoice(@PathVariable Long PurchaseId, HttpServletResponse response) throws IOException, IOException {
         // Get the purchase
-        Purchase purchase = purchaseRepository.findByPurchaseId(purchaseId);
-        model.addAttribute("purchase", purchase);  // Mustache will display the purchase details
-        return "invoice";  // Return the invoice template, it will be rendered as a PDF file by the browser because of the content type
+        Purchase purchase = purchaseRepository.findByPurchaseId(PurchaseId);
+        // Check if the user is the owner of the purchase
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByEmail(auth.getName());
+        if (!Objects.equals(purchase.getUser().getId(), user.getId())) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
+            return;
+        }
+        // Check if the purchase is cancelled
+        if (purchase.isCancelled()) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Purchase not found");
+            return;
+        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("purchase", purchase);
+
+        // Generate the invoice
+        PDFService.generateInvoice(response, data);
     }
+
 
     // Cancel a purchase
     @GetMapping("/return/{PurchaseId}")
-    public String cancelOrder(Model model, @PathVariable("PurchaseId") String purchaseId) {  // Get the purchase id from the URL
+    public String cancelOrder(Model model, @PathVariable("PurchaseId") Long purchaseId) {  // Get the purchase id from the URL
         // Get the purchase
         Purchase purchase = purchaseRepository.findByPurchaseId(purchaseId);
         // Set the status of the purchase to "Cancelled"
