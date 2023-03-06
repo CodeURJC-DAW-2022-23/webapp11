@@ -21,8 +21,7 @@ function load(a, b) {
 
     Highcharts.chart('container', {
         chart: {
-            type: 'line',
-            width: 500
+            type: 'line'
         },
         title: {
             text: "Price History for " + b
