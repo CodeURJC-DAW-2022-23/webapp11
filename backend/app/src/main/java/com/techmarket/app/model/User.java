@@ -39,9 +39,9 @@ public class User {
 
     // Cascade to eliminate some stuff when the user is deleted, fetch lazy to avoid loading all the products when we load the user.
     // Lists are initialized to an empty list, so we can add products to it later without having to check if it's null
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Product> wishlist = new ArrayList<>();
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Product> shoppingCart = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY)
     List<Product> purchasedProducts = new ArrayList<>();
