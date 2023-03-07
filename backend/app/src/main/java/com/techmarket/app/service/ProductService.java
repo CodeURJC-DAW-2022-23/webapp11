@@ -18,8 +18,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(Long id){
-        return productRepository.findById(id);
+    public Product getProductById(Long id){
+        return productRepository.findByProductId(id);
     }
 
     public void deleteByProductId(Long id) {
@@ -28,9 +28,4 @@ public class ProductService {
 
 
 
-
-
-    //public void deleteAllByProductId(Long id) {
-    //    productRepository.deleteAllById(String.valueOf(id));
-    //}
 }

@@ -53,20 +53,20 @@ public class ProductController {
 
     @GetMapping("/product/{id}")
     public String showProduct(@PathVariable Long id, Model model) {
-        Optional<Product> product = productService.getProductById(id);
+        Product product = productService.getProductById(id);
         // Get the reviews for the product
-        List<Review> reviews = reviewRepository.findAllByProduct(product.get());
-        model.addAttribute("name", product.get().getProductName());
-        model.addAttribute("product", product.get());
+        List<Review> reviews = reviewRepository.findAllByProduct(product);
+        model.addAttribute("name", product.getProductName());
+        model.addAttribute("product", product);
         model.addAttribute("reviews", reviews);
         return "product";
     }
 
     @GetMapping("/pricehistory/{id}")
     public String showPriceHistory(@PathVariable Long id, Model model) {
-        Optional<Product> product = productService.getProductById(id);
-        if (product.isPresent()) {
-            model.addAttribute("product", product.get());
+        Product product = productService.getProductById(id);
+        if (product != null) {
+            model.addAttribute("product", product);
             return "pricehistory";
         } else {
             return "/dashboard";
@@ -241,7 +241,7 @@ public class ProductController {
     @PostMapping("/product/{ProductId}/send-review")
     public String addReview(@PathVariable("ProductId") Long id, @RequestParam String reviewTitle, @RequestParam String reviewText, @RequestParam int rating, @RequestParam(required = false) MultipartFile[] images) throws IOException, SQLException {
         // Check if product exists
-        Optional<Product> product = productService.getProductById(id);
+        Product product = productService.getProductById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = userRepository.findByEmail(auth.getName());
         // Create review
@@ -264,14 +264,14 @@ public class ProductController {
         review.setReviewTitle(reviewTitle);
         review.setReviewText(reviewText);
         review.setRating(rating);
-        review.setProduct(product.get());
+        review.setProduct(product);
         review.setUser(currentUser);
         reviewRepository.save(review);
         // Add review to user and product
-        currentUser.getReviews().add(product.get());
-        product.get().getReviews().add(review);
+        currentUser.getReviews().add(product);
+        product.getReviews().add(review);
         userRepository.save(currentUser);
-        productRepository.save(product.get());
+        productRepository.save(product);
         return "redirect:/product/" + id;
     }
 }

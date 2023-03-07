@@ -1,10 +1,11 @@
 package com.techmarket.app.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.techmarket.app.Repositories.ProductRepository;
-import com.techmarket.app.Repositories.UserRepository;
+
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.User;
+import com.techmarket.app.service.ProductService;
+import com.techmarket.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -25,17 +26,17 @@ import static com.techmarket.app.service.JSONService.getStringResponseEntity;
 @Controller
 public class CartController {
 
-    @Autowired
-    private UserRepository UserRepository;
 
     @Autowired
-    private ProductRepository productRepository;
+    private UserService userService;
+
+    @Autowired ProductService productService;
 
     @GetMapping("/cart")
     public String cart(Model model, @PageableDefault(size = 10) Pageable pageable) {
-        // Access the user's cart using the session using the SecurityContext and user repository with the email
+        // Access the user's cart using the session using the SecurityContext and user service with the email
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = UserRepository.findByEmail(authentication.getName());
+        User user = userService.getUserName(authentication.getName());
 
         // Check if the cart is empty
         if (!user.getShoppingCart().isEmpty()) {
@@ -70,32 +71,32 @@ public class CartController {
     @GetMapping("/cart/loadmore")
     public ResponseEntity<String> loadMore(@RequestParam("start") int start) throws JsonProcessingException {
 
-        User user = UserRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        User user = userService.getUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         List<Product> productList = user.getShoppingCart();
         return getStringResponseEntity(start, productList);
     }
 
     @GetMapping("/add-to-cart/{id}")
     public String addToCart(@PathVariable Long id) {
-        // Access the user's cart using the session using the SecurityContext and user repository with the email
+        // Access the user's cart using the session using the SecurityContext and user service with the email
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = UserRepository.findByEmail(authentication.getName());
+        User user = userService.getUserName(authentication.getName());
         // Add the product to the cart (the product is identified by its id)
-        user.getShoppingCart().add(productRepository.findById(id).get());
+        user.getShoppingCart().add(productService.getProductById(id));
         // Save the changes to the database
-        UserRepository.save(user);  // This will update the user's cart as the cart is a list of products on the user model
+        userService.saveUser(user);  // This will update the user's cart as the cart is a list of products on the user model
         return "redirect:/cart";
     }
 
     @GetMapping("/remove-from-cart/{id}")
     public String removeFromCart(@PathVariable Long id) {
-        // Access the user's cart using the session using the SecurityContext and user repository with the email
+        // Access the user's cart using the session using the SecurityContext and user service with the email
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = UserRepository.findByEmail(authentication.getName());
+        User user = userService.getUserName(authentication.getName());
         // Remove the product from the cart (the product is identified by its id)
         user.getShoppingCart().removeIf(product -> Objects.equals(product.getProductId(), id));
         // Save the changes to the database
-        UserRepository.save(user);  // This will update the user's cart as the cart is a list of products on the user model
+        userService.saveUser(user);  // This will update the user's cart as the cart is a list of products on the user model
         return "redirect:/cart";
     }
 }
