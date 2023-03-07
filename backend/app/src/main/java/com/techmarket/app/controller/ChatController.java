@@ -6,6 +6,8 @@ import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.Message;
 import com.techmarket.app.model.User;
 import com.techmarket.app.service.JSONService;
+import com.techmarket.app.service.MessageService;
+import com.techmarket.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -35,12 +37,18 @@ public class ChatController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private MessageService messageService;
+
     @GetMapping("/messages")
     public String getMessages(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = userRepository.findByEmail(auth.getName());
+        User currentUser = userService.getUserName(auth.getName());
         // Get all messages associated with the current user
-        List<Message> messages = messageRepository.findByUserId(currentUser.getId());
+        List<Message> messages = messageService.getMessageById(currentUser.getId());
         // Show them by chronological order
         messages.sort(Comparator.comparing(Message::getTimestamp));
         model.addAttribute("messages", messages);
@@ -52,35 +60,35 @@ public class ChatController {
     @PostMapping("/send-message")
     public String sendMessage(Message message, @RequestParam String messageText) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = userRepository.findByEmail(auth.getName());
+        User currentUser = userService.getUserName(auth.getName());
         // Append "Name: " to the message
         messageText = currentUser.getFirstName() + ": " + messageText;
         message.setUser(currentUser);
         message.setMessage(messageText);
-        messageRepository.save(message);
+        messageService.saveMessage(message);
         return "redirect:/messages";
     }
 
     @PostMapping("/send-message/agent")
     public String sendMessageAgent(Message message, @RequestParam String messageText, @RequestParam("identification") Long userId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = userRepository.findByEmail(auth.getName());
+        User currentUser = userService.getUserName(auth.getName());
         // Append "Agent: " to the message
         messageText = "Agent: " + messageText;
         message.setAgent(currentUser);
         // Get the user associated with the message
-        User user = userRepository.findById(userId).orElse(null);
+        User user = userService.getUserById(userId);
         message.setUser(user);
         message.setMessage(messageText);
-        messageRepository.save(message);
+        messageService.saveMessage(message);
         return "redirect:/messages/" + userId;
     }
 
     @GetMapping("/chats")
     public String getChats(Model model, @PageableDefault(size = 10) Pageable pageable) {
         // Get the user ids that are the role user
-        List<User> userIds = userRepository.findByRoles("USER");
-        Page<Message> page = messageRepository.findAll(pageable);
+        List<User> userIds = userService.getUserByRole("USER");
+        Page<Message> page = messageService.getAllMessages(pageable);
         List<User> messages = new ArrayList<>();
         // Get the messages associated with the user ids
         page.forEach(message -> {
@@ -102,8 +110,8 @@ public class ChatController {
         int pageSize = 10;
         Pageable pageable = PageRequest.of(start / pageSize, pageSize);
         // Get the user ids that are the role user
-        List<User> userIds = userRepository.findByRoles("USER");
-        Page<Message> page = messageRepository.findAll(pageable);
+        List<User> userIds = userService.getUserByRole("USER");
+        Page<Message> page = messageService.getAllMessages(pageable);
         List<User> messages = new ArrayList<>();
         // Get the messages associated with the user ids
         page.forEach(message -> {
@@ -124,7 +132,7 @@ public class ChatController {
     @GetMapping("/messages/{id}")
     public String getMessages(Model model, @PathVariable("id") Long id) {
         // Get the messages associated with the chat
-        List<Message> messages = messageRepository.findByUserId(id);
+        List<Message> messages = messageService.getMessagesByUser(id);
         // Show them by chronological order
         messages.sort(Comparator.comparing(Message::getTimestamp));
         model.addAttribute("agent", "/agent");

@@ -5,6 +5,8 @@ import com.techmarket.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -16,6 +18,13 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    public List<User> getUserByRole(String role) {
+        return userRepository.findByRoles(role);
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id).get();
+    }
     public void saveUser(User user) {
         userRepository.save(user);
     }
