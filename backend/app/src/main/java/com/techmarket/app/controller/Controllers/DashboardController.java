@@ -1,4 +1,4 @@
-package com.techmarket.app.controller;
+package com.techmarket.app.controller.Controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.techmarket.app.Repositories.ProductRepository;
@@ -95,7 +95,6 @@ public class DashboardController {
     public String removeReview(@PathVariable("id") String id) {
         // We have to delete the review from the user's review list
         Review review = reviewRepository.findById(id).get();
-        review.getUser().getReviews().remove(review);
         reviewRepository.deleteById(id);
         return "redirect:/dashboard";
     }

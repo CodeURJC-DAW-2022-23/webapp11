@@ -1,4 +1,4 @@
-package com.techmarket.app.controller;
+package com.techmarket.app.controller.Controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.techmarket.app.Repositories.MessageRepository;

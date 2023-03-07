@@ -1,4 +1,4 @@
-package com.techmarket.app.controller;
+package com.techmarket.app.controller.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

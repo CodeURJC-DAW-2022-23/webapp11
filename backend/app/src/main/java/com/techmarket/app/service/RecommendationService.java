@@ -61,18 +61,18 @@ public class RecommendationService {
 
     public List<Product> getProductByTags(List<String> tags){
         List<Product> productsTag = new ArrayList<>();
-        for(int i = 0; i<tags.size();i++){
-            productsTag.addAll(productRepository.findAllByTags(tags.get(i)));
+        for (String tag : tags) {
+            productsTag.addAll(productRepository.findAllByTags(tag));
         }
         return productsTag;
     }
 
     public List<String> getTags(List<Product> purchasedItems){
         List<String> tags = new ArrayList<>();
-        for(int i = 0; i< purchasedItems.size(); i++){
-            for(int j = 0; j< purchasedItems.get(i).getTags().size(); j++){
-                if (!tags.contains(purchasedItems.get(i).getTags().get(j))){
-                    tags.add(purchasedItems.get(i).getTags().get(j));
+        for (Product purchasedItem : purchasedItems) {
+            for (int j = 0; j < purchasedItem.getTags().size(); j++) {
+                if (!tags.contains(purchasedItem.getTags().get(j))) {
+                    tags.add(purchasedItem.getTags().get(j));
                 }
             }
         }
@@ -85,8 +85,8 @@ public class RecommendationService {
     }
     public List<Product> getProductsPurchased(List<Purchase> purchases){
         List<Product> productsBought = new ArrayList<>();
-        for(int i = 0;i<purchases.size();i++){
-            productsBought.add(productRepository.findByProductId(purchases.get(i).getProduct().getProductId()));
+        for (Purchase purchase : purchases) {
+            productsBought.add(productRepository.findByProductId(purchase.getProduct().getProductId()));
         }
         return productsBought;
     }

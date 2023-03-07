@@ -1,4 +1,4 @@
-package com.techmarket.app.controller;
+package com.techmarket.app.controller.Controllers;
 
 import com.techmarket.app.Repositories.ImageRepository;
 import com.techmarket.app.Repositories.ProductRepository;
@@ -232,7 +232,7 @@ public class ProductController {
                 rate += product.getReviews().get(i).getRating();
             }
             rate = rate/product.getReviews().size();
-            return "/" + String.valueOf(rate) + ".png";
+            return "/" + rate + ".png";
         }
         return "/5.png";
     }

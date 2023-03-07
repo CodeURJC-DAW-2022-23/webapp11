@@ -1,4 +1,4 @@
-package com.techmarket.app.controller;
+package com.techmarket.app.controller.Controllers;
 
 import com.techmarket.app.Repositories.ImageRepository;
 import com.techmarket.app.Repositories.ProductRepository;
@@ -16,8 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class ImageController {
@@ -88,7 +86,7 @@ public class ImageController {
         }
     }
 
-    @GetMapping("/{reviewId}/{index}")  // Image from the image list of a product
+    @GetMapping("/review/{reviewId}/imagerev/{index}")  // Image from the image list of a product
     public ResponseEntity<Object> getImagesReview(@PathVariable int index, @PathVariable long reviewId) throws SQLException, IOException {
         if (reviewRepository.findById(String.valueOf(reviewId)).isPresent()) {
             index-=1;

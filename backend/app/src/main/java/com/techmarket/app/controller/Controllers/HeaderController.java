@@ -1,4 +1,4 @@
-package com.techmarket.app.controller;
+package com.techmarket.app.controller.Controllers;
 
 import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.User;

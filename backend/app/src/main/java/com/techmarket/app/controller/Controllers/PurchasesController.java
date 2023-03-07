@@ -1,4 +1,4 @@
-package com.techmarket.app.controller;
+package com.techmarket.app.controller.Controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.techmarket.app.Repositories.PurchaseRepository;
@@ -74,7 +74,7 @@ public class PurchasesController {
 
     // Generate an invoice for a purchase in PDF format
     @GetMapping("/invoice/{PurchaseId}")
-    public void generateInvoice(@PathVariable Long PurchaseId, HttpServletResponse response) throws IOException, IOException {
+    public void generateInvoice(@PathVariable Long PurchaseId, HttpServletResponse response) throws IOException {
         // Get the purchase
         Purchase purchase = purchaseRepository.findByPurchaseId(PurchaseId);
         // Check if the user is the owner of the purchase
