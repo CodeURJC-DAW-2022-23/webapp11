@@ -22,15 +22,6 @@ import java.sql.SQLException;
 @Controller
 public class ImageController {
 
-
-
-
-
-
-
-
-
-
     @Autowired
     private UserService userService;
 

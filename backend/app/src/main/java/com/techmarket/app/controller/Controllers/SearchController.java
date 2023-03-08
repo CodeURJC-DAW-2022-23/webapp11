@@ -1,9 +1,10 @@
 package com.techmarket.app.controller.Controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.techmarket.app.Repositories.ProductRepository;
+
 import com.techmarket.app.model.Product;
 import com.techmarket.app.service.JSONService;
+import com.techmarket.app.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,14 +19,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SearchController {
 
+
+
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
+
 
     @PostMapping("/search")
     public String search(Model model, @RequestParam("product") String product) {
         int pageSize = 10;
         Pageable pageable = PageRequest.of(0, pageSize);
-        Page<Product> page = productRepository.findByProductNameContaining(product, pageable);
+        Page<Product> page = productService.getByProductNameContaining(product, pageable);
 
         if (page.isEmpty()) {
             model.addAttribute("results", null);
@@ -44,7 +48,7 @@ public class SearchController {
                                            @RequestParam("start") int start) throws JsonProcessingException {
         int pageSize = 10;
         Pageable pageable = PageRequest.of(start / pageSize, pageSize);
-        Page<Product> page = productRepository.findByProductNameContaining(product, pageable);
+        Page<Product> page = productService.getByProductNameContaining(product, pageable);
 
         // Send the results to the ajax call
         return JSONService.getProductStringResponseEntity(page);

@@ -17,8 +17,7 @@ import java.util.List;
 @Transactional
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    //Product findByProductId(String productId);
-    //Not really sure if we need this one
+    // We will use the following methods to query the database
     
     List<Product> findByProductPrice(String price);
 

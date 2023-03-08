@@ -1,12 +1,13 @@
 package com.techmarket.app.controller.Controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.techmarket.app.Repositories.PurchaseRepository;
-import com.techmarket.app.Repositories.UserRepository;
+
 import com.techmarket.app.model.Purchase;
 import com.techmarket.app.model.User;
 import com.techmarket.app.service.JSONService;
 import com.techmarket.app.service.PDFService;
+import com.techmarket.app.service.PurchaseService;
+import com.techmarket.app.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,21 +29,23 @@ import java.util.Objects;
 @Controller
 public class PurchasesController {
 
-    @Autowired
-    private PurchaseRepository purchaseRepository;
+
 
     @Autowired
-    private UserRepository userRepository;
+    private PurchaseService purchaseService;
+
+    @Autowired
+    private UserService userService;
 
     // Get the purchases of a user
     @GetMapping("/purchases")
     public String purchases(Model model, @PageableDefault(size = 10) Pageable pageable) {
         // Get the current user
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByEmail(auth.getName());
+        User user = userService.getUserName(auth.getName());
 
         // Get the purchases of the user
-        Page<Purchase> purchases = purchaseRepository.findByUserIdOrderByTimestampDesc(user.getId(), pageable);
+        Page<Purchase> purchases = purchaseService.getByUserIdOrdered(user.getId(), pageable);
         // Check if the user has any purchases
         if (!purchases.isEmpty()) {
             model.addAttribute("purchases", purchases.getContent());
@@ -63,10 +66,10 @@ public class PurchasesController {
     @GetMapping("/purchases/loadmore")
     public ResponseEntity<String> loadMore(@RequestParam("start") int start) throws JsonProcessingException {
 
-        User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        User user = userService.getUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         int pageSize = 10;
         Pageable pageable = PageRequest.of(start / pageSize, pageSize);
-        Page<Purchase> page = purchaseRepository.findByUserIdOrderByTimestampDesc(user.getId(), pageable);
+        Page<Purchase> page = purchaseService.getByUserIdOrdered(user.getId(), pageable);
 
 
         return JSONService.getPurchaseStringResponseEntity(page);
@@ -76,10 +79,10 @@ public class PurchasesController {
     @GetMapping("/invoice/{PurchaseId}")
     public void generateInvoice(@PathVariable Long PurchaseId, HttpServletResponse response) throws IOException {
         // Get the purchase
-        Purchase purchase = purchaseRepository.findByPurchaseId(PurchaseId);
+        Purchase purchase = purchaseService.getPurchaseById(PurchaseId);
         // Check if the user is the owner of the purchase
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByEmail(auth.getName());
+        User user = userService.getUserName(auth.getName());
         if (!Objects.equals(purchase.getUser().getId(), user.getId())) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
             return;
@@ -98,10 +101,10 @@ public class PurchasesController {
     @GetMapping("/return/{PurchaseId}")
     public String cancelOrder(Model model, @PathVariable("PurchaseId") Long purchaseId) {  // Get the purchase id from the URL
         // Get the purchase
-        Purchase purchase = purchaseRepository.findByPurchaseId(purchaseId);
+        Purchase purchase = purchaseService.getPurchaseById(purchaseId);
         // Set the status of the purchase to "Cancelled"
         purchase.setCancelled(true);
-        purchaseRepository.save(purchase);
+        purchaseService.savePurchase(purchase);
         return "redirect:/purchases";
     }
 }
