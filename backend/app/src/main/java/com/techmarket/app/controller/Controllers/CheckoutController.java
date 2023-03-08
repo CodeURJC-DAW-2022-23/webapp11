@@ -5,6 +5,8 @@ import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Purchase;
 import com.techmarket.app.model.User;
 import com.techmarket.app.Repositories.UserRepository;
+import com.techmarket.app.service.PurchaseService;
+import com.techmarket.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -30,10 +32,17 @@ public class CheckoutController {
     @Autowired
     private PurchaseRepository purchaseRepository;
 
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private PurchaseService purchaseService;
+
     @GetMapping("/checkout")
     public String checkout(Model model, Principal principal) {
         Authentication authentication = (Authentication) principal;
-        User user = userRepository.findByEmail(authentication.getName());
+        User user = userService.getUserName(authentication.getName());
         List<Product> cart = user.getShoppingCart();
         model.addAttribute("items", cart);
 
@@ -52,7 +61,7 @@ public class CheckoutController {
     public String payout(@RequestParam String address, Principal principal) {
 
         Authentication authentication = (Authentication) principal;
-        User user = userRepository.findByEmail(authentication.getName());
+        User user = userService.getUserName(authentication.getName());
         List<Product> cart = user.getShoppingCart();
         if (cart.stream().allMatch(product -> product.getProductStock() > 0)) {
             for (Product product : cart) {
@@ -73,11 +82,11 @@ public class CheckoutController {
                 purchase.setCancelled(false);
                 purchase.setPaymentMethod("Cash on delivery");
                 purchase.setTimestamp(year + "-" + month + "-" + day);
-                purchaseRepository.save(purchase);
+                purchaseService.savePurchase(purchase);
             }
 
             user.getShoppingCart().clear();
-            userRepository.save(user);
+            userService.saveUser(user);
 
 
         } else {

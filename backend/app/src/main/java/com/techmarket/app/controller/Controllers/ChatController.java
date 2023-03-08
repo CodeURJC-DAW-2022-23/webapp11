@@ -1,8 +1,7 @@
 package com.techmarket.app.controller.Controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.techmarket.app.Repositories.MessageRepository;
-import com.techmarket.app.Repositories.UserRepository;
+
 import com.techmarket.app.model.Message;
 import com.techmarket.app.model.User;
 import com.techmarket.app.service.JSONService;
@@ -31,11 +30,7 @@ import java.util.List;
 @Controller
 public class ChatController {
 
-    @Autowired
-    private MessageRepository messageRepository;
 
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private UserService userService;
