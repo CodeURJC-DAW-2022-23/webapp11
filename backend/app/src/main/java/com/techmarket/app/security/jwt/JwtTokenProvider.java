@@ -72,7 +72,7 @@ public class JwtTokenProvider {
 
 		Claims claims = Jwts.claims().setSubject(user.getUsername());
 
-		claims.put("auth", user.getAuthorities().stream().map(s -> new SimpleGrantedAuthority("ROLE_"+s))
+		claims.put("auth", user.getAuthorities().stream().map(s -> new SimpleGrantedAuthority(""+s))
 				.filter(obj -> true).collect(Collectors.toList()));
 
 		Date now = new Date();
@@ -94,7 +94,7 @@ public class JwtTokenProvider {
 
 		Claims claims = Jwts.claims().setSubject(user.getUsername());
 
-		claims.put("auth", user.getAuthorities().stream().map(s -> new SimpleGrantedAuthority("ROLE_"+s))
+		claims.put("auth", user.getAuthorities().stream().map(s -> new SimpleGrantedAuthority(""+s))
 				.filter(obj -> true).collect(Collectors.toList()));
 		Date now = new Date();
 		Long duration = now.getTime() + REFRESH_TOKEN_EXPIRATION_MSEC;

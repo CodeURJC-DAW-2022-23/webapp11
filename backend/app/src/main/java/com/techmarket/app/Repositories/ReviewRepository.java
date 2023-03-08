@@ -20,7 +20,7 @@ public interface ReviewRepository extends JpaRepository<Review, String> {
 
     Review findByReviewId(long id);
 
-    Optional<Review> findById(Long id);
+    Optional<Review> findByReviewId(Long id);
 
 
     //List<Review> findByProductId(String product_id);
