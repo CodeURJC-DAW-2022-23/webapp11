@@ -1,9 +1,10 @@
 package com.techmarket.app.controller.Controllers;
 
-import com.techmarket.app.Repositories.ImageRepository;
-import com.techmarket.app.Repositories.UserRepository;
+
 import com.techmarket.app.model.Image;
 import com.techmarket.app.model.User;
+import com.techmarket.app.service.ImageService;
+import com.techmarket.app.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,14 +24,17 @@ import java.sql.SQLException;
 @Controller
 public class PrivateController {
 
-    @Autowired
-    private UserRepository userRepository;
+
+
+
 
     @Autowired
-    private ImageRepository imageRepository;
+    private UserService userService;
 
     @Autowired
-    private ImageController imageController;
+    private ImageService imageService;
+
+
 
     @PreAuthorize("hasAnyAuthority('USER','AGENT', 'ADMIN')")
     @GetMapping("/profile")
@@ -40,7 +44,7 @@ public class PrivateController {
         //Then we use the email to get the user's information from the database
         //Then we fill out the form with the user's information
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = userRepository.findByEmail(auth.getName());
+        User currentUser = userService.getUserName(auth.getName());
         // Get user information
         // Get his profile picture from the database, if it exists
         if (currentUser.getProfilePicture() != null) {
@@ -70,7 +74,7 @@ public class PrivateController {
     public String editProfile(@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName, @RequestParam(required = false) String phoneNumber, @RequestParam(required = false) String address, @RequestParam(required = false) String city, @RequestParam(required = false) String state, @RequestParam(required = false) String area, @RequestParam(required = false) String country, @RequestParam(required = false) String postcode) {
         // Basic edit profile functionality
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = userRepository.findByEmail(auth.getName());
+        User currentUser = userService.getUserName(auth.getName());
         // Check for null values
         if (firstName != null) {
             currentUser.setFirstName(firstName);
@@ -99,7 +103,7 @@ public class PrivateController {
         if (postcode != null) {
             currentUser.setPostcode(postcode);
         }
-        userRepository.save(currentUser);  // Save the changes to the database
+        userService.saveUser(currentUser);  // Save the changes to the database
         return "redirect:/profile";
         }
 
@@ -112,15 +116,15 @@ public class PrivateController {
             return "redirect:/profile";
         }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = userRepository.findByEmail(auth.getName());
+        User currentUser = userService.getUserName(auth.getName());
         // Check if the file is empty
         // We already checked the user can only upload jpg or png files, so we don't need to check the file type
         Image image = new Image();
         image.setFileName(pfp.getOriginalFilename());
         image.setImageBlob(new SerialBlob(pfp.getBytes()));
         currentUser.setProfilePicture(image);
-        imageRepository.save(image);
-        userRepository.save(currentUser);  // Save the changes to the database
+        imageService.saveImage(image);
+        userService.saveUser(currentUser);  // Save the changes to the database
         return "redirect:/profile";
     }
 

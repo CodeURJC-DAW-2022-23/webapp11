@@ -52,6 +52,11 @@ public class ProductService {
         productRepository.deleteByProductId(id);
     }
 
+    public  List<Product> getRandomProducts() {
+        return productRepository.findRandomProducts();
+    }
 
-
+    public Page<Product> getByProductNameContaining( String productName,Pageable pageable) {
+        return productRepository.findByProductNameContaining(productName, pageable);
+    }
 }

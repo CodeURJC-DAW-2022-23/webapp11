@@ -1,9 +1,10 @@
 package com.techmarket.app.controller.Controllers;
 
-import com.techmarket.app.Repositories.UserRepository;
+
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.EncoderConfiguration;
 import com.techmarket.app.service.EmailService;
+import com.techmarket.app.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,9 @@ import java.util.Objects;
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
+
+
+    private UserService userService;
 
     @Autowired
     private EncoderConfiguration passwordEncoder;
@@ -81,13 +83,13 @@ public class UserController {
         User user = new User( email,  firstName, lastName);
         user.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));
         // Set a default profile picture
-        if (userRepository.findByEmail(email) != null) {
+        if (userService.getUserName(email) != null) {
             // User already exists, 409 Conflict
             return "redirect:/signup?error=409";
         }
-        userRepository.save(user);
+        userService.saveUser(user);
         // Check if the user has successfully signed up by checking the response code to send them the confirmation email
-        if (userRepository.findByEmail(email) != null) {
+        if (userService.getUserName(email) != null) {
             // User created, 201 Created
             emailService.sendAccountConfirmationEmail(email, firstName);
             return "redirect:/signin?success=201";  // Redirect to sign in page
@@ -100,7 +102,7 @@ public class UserController {
     }
     @PostMapping("/recover-email")
     public String recover(@RequestParam String email, Model model) throws MessagingException {
-        User currentUser = userRepository.findByEmail(email);
+        User currentUser = userService.getUserName(email);
         if (currentUser != null) {
             // User created, 201 Created
             emailService.sendAccountRecoveryEmail(email, currentUser.getFirstName(), currentUser.getToken());
@@ -114,10 +116,10 @@ public class UserController {
     }
     @PostMapping("/verify-code")
     public String passwordChanger(@RequestParam String email, @RequestParam Long code, @RequestParam String password) throws MessagingException {
-        User currentUser = userRepository.findByEmail(email);
+        User currentUser = userService.getUserName(email);
         if (Objects.equals(code, currentUser.getToken())){
             currentUser.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));
-            userRepository.save(currentUser);
+            userService.saveUser(currentUser);
             return "redirect:/signin?success=201";  // Redirect to sign in page
         }else {
             return "redirect:/code?error=400";

@@ -4,7 +4,9 @@ import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.User;
+import com.techmarket.app.service.ProductService;
 import com.techmarket.app.service.RecommendationService;
+import com.techmarket.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,24 +20,28 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    @Autowired
-    private UserRepository userRepository;
+
     @Autowired
     private RecommendationService recommendationService;
 
+
+
     @Autowired
-    private ProductRepository productRepository;
+    private UserService userService;
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping("/")
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = userRepository.findByEmail(auth.getName());
+        User currentUser = userService.getUserName(auth.getName());
             // Check if user is logged in
         if (currentUser != null) {
             // Check if the user is an admin
             if (currentUser.getRoles().contains("ADMIN")) {
                 // Get 4 random products
-                List<Product> products = productRepository.findRandomProducts();
+                List<Product> products = productService.getRandomProducts();
                 model.addAttribute("products", products);
             } else {
                 List<Product> recommended = recommendationService.getRecommendedProducts();
@@ -43,14 +49,14 @@ public class HomeController {
                     model.addAttribute("products", recommended);
                 }
                 else {
-                    List<Product> products = productRepository.findRandomProducts();
+                    List<Product> products = productService.getRandomProducts();
                     model.addAttribute("products", products);
                 }
             }
 
         } else {
             // Get the first 4 products, not tailored to the user
-            List<Product> products = productRepository.findRandomProducts();
+            List<Product> products = productService.getRandomProducts();
             model.addAttribute("products", products);
         }
         return "index";

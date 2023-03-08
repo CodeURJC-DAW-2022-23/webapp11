@@ -1,7 +1,8 @@
 package com.techmarket.app.controller.Controllers;
 
-import com.techmarket.app.Repositories.UserRepository;
+
 import com.techmarket.app.model.User;
+import com.techmarket.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
@@ -11,14 +12,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @ControllerAdvice
 public class HeaderController {
 
+
+
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     // Get the header on every page
     @ModelAttribute("header")
     public String header(Model model) {
         // get user from session
-        User user = userRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        User user = userService.getUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         if (user != null) {
             model.addAttribute("isLoggedIn", true);
             if (user.getRoles().contains("ADMIN")) {

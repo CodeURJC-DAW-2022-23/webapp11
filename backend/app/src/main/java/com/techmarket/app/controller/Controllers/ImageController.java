@@ -1,10 +1,12 @@
 package com.techmarket.app.controller.Controllers;
 
-import com.techmarket.app.Repositories.ImageRepository;
-import com.techmarket.app.Repositories.ProductRepository;
-import com.techmarket.app.Repositories.ReviewRepository;
-import com.techmarket.app.Repositories.UserRepository;
+
+
+
 import com.techmarket.app.model.User;
+import com.techmarket.app.service.ProductService;
+import com.techmarket.app.service.ReviewService;
+import com.techmarket.app.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -20,17 +22,23 @@ import java.sql.SQLException;
 @Controller
 public class ImageController {
 
-    @Autowired
-    private ImageRepository imageRepository;
+
+
+
+
+
+
+
+
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @Autowired
-    private ReviewRepository reviewRepository;
+    private ReviewService reviewService;
 
     @PostMapping("/{id}/upload")
     public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile) throws IOException {
@@ -40,8 +48,8 @@ public class ImageController {
 
     @GetMapping("/{id}/userpfp")
     public ResponseEntity<Object> getImage(HttpServletResponse response, @PathVariable long id) throws SQLException, IOException {
-        if (userRepository.findById(id).isPresent()) {
-            User user = userRepository.findById(id).get();
+        if (userService.getUserById(id) != null) {
+            User user = userService.getUserById(id);
             if (user.getProfilePicture() != null) {
                 // Get the InputStreamResource from the database
                 InputStreamResource file = new InputStreamResource(user.getProfilePicture().getImageBlob().getBinaryStream());
@@ -59,12 +67,12 @@ public class ImageController {
 
     @GetMapping("/product/{productId}/image")  // Main image for a product
     public ResponseEntity<Object> getImage(@PathVariable long productId) throws SQLException, IOException {
-        if (productRepository.findById(productId).isPresent()) {
+        if (productService.getProductById(productId) != null) {
             // Get the InputStreamResource from the database
-            InputStreamResource file = new InputStreamResource(productRepository.findById(productId).get().getMainImage().getImageBlob().getBinaryStream());
+            InputStreamResource file = new InputStreamResource(productService.getProductById(productId).getMainImage().getImageBlob().getBinaryStream());
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_TYPE, "image/jpeg", "image/png")
-                    .contentLength(productRepository.findById(productId).get().getMainImage().getImageBlob().length())
+                    .contentLength(productService.getProductById(productId).getMainImage().getImageBlob().length())
                     .body(file);
         } else {
             return ResponseEntity.notFound().build();
@@ -73,12 +81,12 @@ public class ImageController {
 
     @GetMapping("/product/{productId}/images/{index}")  // Image from the image list of a product
     public ResponseEntity<Object> getImages(@PathVariable long productId, @PathVariable int index) throws SQLException, IOException {
-        if (productRepository.findById(productId).isPresent()) {
+        if (productService.getProductById(productId) != null) {
             index-=1;
-            InputStreamResource file = new InputStreamResource(productRepository.findById(productId).get().getImages().get(index).getImageBlob().getBinaryStream());
+            InputStreamResource file = new InputStreamResource(productService.getProductById(productId).getImages().get(index).getImageBlob().getBinaryStream());
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_TYPE, "image/jpeg", "image/png")
-                    .contentLength(productRepository.findById(productId).get().getImages().get(index).getImageBlob().length())
+                    .contentLength(productService.getProductById(productId).getImages().get(index).getImageBlob().length())
                     .body(file);
 
         } else {
@@ -88,12 +96,12 @@ public class ImageController {
 
     @GetMapping("/review/{reviewId}/imagerev/{index}")  // Image from the image list of a product
     public ResponseEntity<Object> getImagesReview(@PathVariable int index, @PathVariable long reviewId) throws SQLException, IOException {
-        if (reviewRepository.findById(String.valueOf(reviewId)).isPresent()) {
+        if (reviewService.getReviewById(reviewId) != null) {
             index-=1;
-            InputStreamResource file = new InputStreamResource(reviewRepository.findById(String.valueOf(reviewId)).get().getImages().get(index).getImageBlob().getBinaryStream());
+            InputStreamResource file = new InputStreamResource(reviewService.getReviewById(reviewId).getImages().get(index).getImageBlob().getBinaryStream());
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_TYPE, "image/jpeg", "image/png")
-                    .contentLength(reviewRepository.findById(String.valueOf(reviewId)).get().getImages().get(index).getImageBlob().length())
+                    .contentLength(reviewService.getReviewById(reviewId).getImages().get(index).getImageBlob().length())
                     .body(file);
 
         } else {
