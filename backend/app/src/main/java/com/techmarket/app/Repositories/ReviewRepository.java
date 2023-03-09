@@ -27,7 +27,7 @@ public interface ReviewRepository extends JpaRepository<Review, String> {
     List<Review> findByUserId(Long user_id);
     List<Review> findByRating(int rating);
 
-
+    long deleteByReviewId(long id);
     List<Review> findAllByProduct(Product product);
 
     Page<Review> findByProduct(Product product, Pageable pageable);

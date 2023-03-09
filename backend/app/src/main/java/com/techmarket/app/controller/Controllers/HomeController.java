@@ -1,7 +1,6 @@
 package com.techmarket.app.controller.Controllers;
 
-import com.techmarket.app.Repositories.UserRepository;
-import com.techmarket.app.Repositories.ProductRepository;
+
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.User;
 import com.techmarket.app.service.ProductService;
