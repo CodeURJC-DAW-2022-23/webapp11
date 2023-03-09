@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.DefaultSecurityFilterChain;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -62,18 +63,22 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
         registration.addUrlPatterns("/api/*");
         return registration;
     }
-    @Override
-    public void configure(HttpSecurity http) throws Exception
+    @Bean
+    SecurityFilterChain apiSecurityFilterChain(HttpSecurity http) throws Exception
     {
         http
             .authorizeHttpRequests()
-            .requestMatchers("/api/**").permitAll()
-            .anyRequest().authenticated()
+            .requestMatchers("/api/login").permitAll()
+            .requestMatchers("/api/register").permitAll()
+            .requestMatchers("/api/logout").permitAll()
+                .anyRequest().authenticated()
             .and()
             .csrf().disable()
             .httpBasic().disable()
             .formLogin().disable();
             http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
             http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+            http.csrf().ignoringRequestMatchers("/api/**");
+        return http.build();
     }
 }

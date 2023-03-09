@@ -2,6 +2,7 @@ package com.techmarket.app.service;
 
 import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.User;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -47,5 +48,14 @@ public class UserService implements UserDetailsService {
     }
     public void saveUser(User user) {
         userRepository.save(user);
+    }
+
+    public String getUser(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
+        String email = null;
+        if (token != null) {
+            email = token.substring(7);  // remove "Bearer "
+        }
+        return email;
     }
 }

@@ -40,7 +40,7 @@ public class ProductRestController {
     @GetMapping("/search/{product}")
     public ResponseEntity<Page<Product>> searchProducts(@RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "10") int size,
-                                                        @RequestParam String product) {
+                                                        @PathVariable String product) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Product> products = productService.searchProducts(pageable, product);
         return ResponseEntity.ok(products);
