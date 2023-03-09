@@ -59,4 +59,10 @@ public class ProductService {
     public Page<Product> getByProductNameContaining( String productName,Pageable pageable) {
         return productRepository.findByProductNameContaining(productName, pageable);
     }
+
+    public void saveProduct(Product product) {
+        productRepository.save(product);
+    }
+
+
 }

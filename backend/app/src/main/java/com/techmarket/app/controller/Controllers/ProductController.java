@@ -8,7 +8,10 @@ import com.techmarket.app.model.Image;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Review;
 import com.techmarket.app.model.User;
+import com.techmarket.app.service.ImageService;
 import com.techmarket.app.service.ProductService;
+import com.techmarket.app.service.ReviewService;
+import com.techmarket.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -33,6 +36,16 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ReviewService reviewService;
+
+    @Autowired
+    private ImageService imageService;
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -55,7 +68,7 @@ public class ProductController {
     public String showProduct(@PathVariable Long id, Model model) {
         Product product = productService.getProductById(id);
         // Get the reviews for the product
-        List<Review> reviews = reviewRepository.findAllByProduct(product);
+        List<Review> reviews = reviewService.getAllReviewsByProduct(product);
         model.addAttribute("name", product.getProductName());
         model.addAttribute("product", product);
         model.addAttribute("reviews", reviews);
@@ -91,7 +104,7 @@ public class ProductController {
                 image.setFileName(file.getOriginalFilename());
                 image.setImageBlob(new SerialBlob(file.getBytes()));
                 images.add(image);
-                imageRepository.save(image);
+                imageService.saveImage(image);
             } else {
                 return "redirect:/error";  // 400 Bad Request, user didn't upload an image, redirected to main error page
             }
@@ -99,7 +112,7 @@ public class ProductController {
         Image image = new Image();
         image.setFileName(mainImage.getOriginalFilename());
         image.setImageBlob(new SerialBlob(mainImage.getBytes()));
-        imageRepository.save(image);
+        imageService.saveImage(image);
         product.setProductName(name);
         product.setDescription(description);
         List<Double> prices = new ArrayList<>();
@@ -113,14 +126,14 @@ public class ProductController {
         product.setTags(tagList);
         product.setMainImage(image);
         // Create new product
-        productRepository.save(product);
+        productService.saveProduct(product);
         return "redirect:/dashboard";
 
     }
 
     @GetMapping("/product/{id}/editproduct")
     public String editproduct(@PathVariable long id, Model model) {
-        Product product = productRepository.findByProductId(id);
+        Product product = productService.getProductById(id);
         model.addAttribute("product", product);
         model.addAttribute("tagList", product.getTagList());
 
@@ -132,7 +145,7 @@ public class ProductController {
     @PostMapping("/editproduct-update/{id}")
     public String editproductupdate(@PathVariable long id, @RequestParam(required = false) String name, @RequestParam(required = false) String description, @RequestParam(required = false) double price, @RequestParam(required = false) int amount, @RequestParam List<String> tags, @RequestParam(required = false) MultipartFile mainImage, @RequestParam(required = false) MultipartFile[] moreImages) throws IOException, SQLException {
 
-        Product product = productRepository.findByProductId(id);
+        Product product = productService.getProductById(id);
 
 
         if (name != null) {
@@ -157,19 +170,19 @@ public class ProductController {
         }
         if (mainImage.getSize()>0) {
             //First we delete any existing Main image and then replace it with the new one
-            imageRepository.deleteByImageId(product.getMainImage().getImageId());
+            imageService.deleteImageById(product.getMainImage().getImageId());
             product.setMainImage(null);
             Image image = new Image();
             image.setFileName(mainImage.getOriginalFilename());
             image.setImageBlob(new SerialBlob(mainImage.getBytes()));
-            imageRepository.save(image);
+            imageService.saveImage(image);
             product.setMainImage(image);
         }
 
         if (Arrays.stream(moreImages).allMatch(element -> element.getSize() > 0)){ //Check if all the images are not empty
 
             if(product.getImages().isEmpty()) { //If there are images in the database, we delete them and update them with the new ones
-                imageRepository.deleteAll(product.getImages());
+                imageService.deleteAllImages(product.getImages());
             }
             product.setImages(null);
             List<Image> images = new ArrayList<>();
@@ -178,7 +191,7 @@ public class ProductController {
                     Image image = new Image();
                     image.setFileName(file.getOriginalFilename());
                     image.setImageBlob(new SerialBlob(file.getBytes()));
-                    imageRepository.save(image);
+                    imageService.saveImage(image);
                     images.add(image);
                     product.setImages(images);
 
@@ -190,7 +203,7 @@ public class ProductController {
             }
         }
 
-        productRepository.save(product);
+        productService.saveProduct(product);
         return "redirect:/dashboard";
     }
 
@@ -198,9 +211,9 @@ public class ProductController {
     @GetMapping("/product/{id}/removeFromStock")
     public String removeFromStock(@PathVariable("id") Long id) {
         //Get the product by its id and set stock to 0
-        Product product = productRepository.findByProductId(id);
+        Product product = productService.getProductById(id);
         product.setProductStock(0);
-        productRepository.save(product);
+        productService.saveProduct(product);
 
 
 
@@ -211,9 +224,9 @@ public class ProductController {
     @GetMapping("/product/{id}/review")
     public String reviewProduct(@PathVariable("id") Long id, Model model) {
         // Check if product exists
-        Product product = productRepository.findByProductId(id);
+        Product product = productService.getProductById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = userRepository.findByEmail(auth.getName());
+        User currentUser = userService.getUserName(auth.getName());
         // Check if the logged-in user has bought the product and not reviewed it yet, as well as if the product still exists
         if (product!=null && currentUser.getPurchasedProducts().contains(product) && !currentUser.getReviews().contains(product)) {
             model.addAttribute("product", product);
@@ -225,7 +238,7 @@ public class ProductController {
 
     @GetMapping("/product/{id}/rate")
     public String rateProduct(@PathVariable("id") Long id, Model model){
-        Product product = productRepository.findByProductId(id);
+        Product product = productService.getProductById(id);
         int rate = 0;
         if (product!=null && product.getReviews().size()!=0){
             for (int i = 0; i < product.getReviews().size(); i++) {
@@ -243,7 +256,7 @@ public class ProductController {
         // Check if product exists
         Product product = productService.getProductById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User currentUser = userRepository.findByEmail(auth.getName());
+        User currentUser = userService.getUserName(auth.getName());
         // Create review
         Review review = new Review();
         if (images != null) {
@@ -255,7 +268,7 @@ public class ProductController {
                     image.setFileName(file.getOriginalFilename());
                     image.setImageBlob(new SerialBlob(file.getBytes()));
                     imageList.add(image);
-                    imageRepository.save(image);
+                    imageService.saveImage(image);
                 } else {
                     return "redirect:/error";  // Error trying to upload an image
                 }
@@ -266,12 +279,12 @@ public class ProductController {
         review.setRating(rating);
         review.setProduct(product);
         review.setUser(currentUser);
-        reviewRepository.save(review);
+        reviewService.saveReview(review);
         // Add review to user and product
         currentUser.getReviews().add(product);
         product.getReviews().add(review);
-        userRepository.save(currentUser);
-        productRepository.save(product);
+        userService.saveUser(currentUser);
+        productService.saveProduct(product);
         return "redirect:/product/" + id;
     }
 }

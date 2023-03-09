@@ -1,10 +1,10 @@
 package com.techmarket.app.controller.Controllers;
 
-import com.techmarket.app.Repositories.PurchaseRepository;
+
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Purchase;
 import com.techmarket.app.model.User;
-import com.techmarket.app.Repositories.UserRepository;
+
 import com.techmarket.app.service.PurchaseService;
 import com.techmarket.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +26,7 @@ import java.util.List;
 @Controller
 public class CheckoutController {
 
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private PurchaseRepository purchaseRepository;
 
 
     @Autowired
