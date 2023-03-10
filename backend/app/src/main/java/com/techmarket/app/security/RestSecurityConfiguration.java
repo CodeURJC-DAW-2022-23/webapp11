@@ -68,9 +68,9 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
     {
         http
             .authorizeHttpRequests()
-            .requestMatchers("/api/login").permitAll()
-            .requestMatchers("/api/register").permitAll()
-            .requestMatchers("/api/logout").permitAll()
+            .requestMatchers("/api/auth/login").permitAll()
+            .requestMatchers("/api/auth/register").permitAll()
+            .requestMatchers("/api/auth/logout").permitAll()
                 .anyRequest().authenticated()
             .and()
             .csrf().disable()

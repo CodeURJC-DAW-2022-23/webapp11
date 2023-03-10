@@ -50,12 +50,8 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public String getUser(HttpServletRequest request) {
-        String token = request.getHeader("Authorization");
-        String email = null;
-        if (token != null) {
-            email = token.substring(7);  // remove "Bearer "
-        }
-        return email;
+    public User getCurrentUser(HttpServletRequest request) {
+        String email = request.getUserPrincipal().getName();
+        return getUserName(email);
     }
 }
