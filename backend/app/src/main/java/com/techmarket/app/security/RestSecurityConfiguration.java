@@ -21,7 +21,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@Order(1)
 public class RestSecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>
 {
 
@@ -64,6 +63,7 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
         return registration;
     }
     @Bean
+    @Order(1)
     SecurityFilterChain apiSecurityFilterChain(HttpSecurity http) throws Exception
     {
         http
@@ -71,14 +71,16 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
             .requestMatchers("/api/auth/login").permitAll()
             .requestMatchers("/api/auth/register").permitAll()
             .requestMatchers("/api/auth/logout").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers("/api/**").authenticated()
+                // The rest of the URLs are handled by the web app security filter chain
+                .anyRequest().permitAll()
             .and()
-            .csrf().disable()
             .httpBasic().disable()
             .formLogin().disable();
+            // Disable CSRF protection but only for the API
+            http.csrf().ignoringRequestMatchers("/api/**");
             http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
             http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-            http.csrf().ignoringRequestMatchers("/api/**");
         return http.build();
     }
 }
