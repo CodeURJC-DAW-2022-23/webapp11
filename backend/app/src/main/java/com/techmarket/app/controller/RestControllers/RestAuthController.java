@@ -9,10 +9,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -23,6 +23,9 @@ public class RestAuthController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(
@@ -37,20 +40,27 @@ public class RestAuthController {
         return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, userLoginService.logout(request, response)));
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<AuthResponse> getUser(HttpServletRequest request) {
-        // Get the current user
-        User user = userService.getCurrentUser(request);
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthResponse> refresh(
+            @CookieValue(name = "refreshToken", required = false) String refreshToken) {
+        return userLoginService.refresh(refreshToken);
+    }
 
-        // Create a map containing the user information
-        Map<String, Object> userInfo = new HashMap<>();
-        userInfo.put("id", user.getId());
-        userInfo.put("email", user.getEmail());
-        userInfo.put("name", user.getFirstName() + " " + user.getLastName());
-        userInfo.put("roles", user.getRoles());
+    @PostMapping("/signup")
+    // Request and email and a password, the rest of the information will be added later
+    public ResponseEntity<AuthResponse> signup(@RequestBody LoginRequest loginRequest){
+        // Create a new user
+        User user = new User();
+        user.setEmail(loginRequest.getUsername());
+        user.setEncodedPassword(passwordEncoder.encode(loginRequest.getPassword()));
+        // Set default role USER
+        user.setRoles(Collections.singletonList("USER"));
+
+        // Save the user
+        userService.saveUser(user);
 
         // Create a response object
-        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, userInfo.toString());
+        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "User created successfully, you can now login");
 
         // Return the response
         return ResponseEntity.ok(authResponse);

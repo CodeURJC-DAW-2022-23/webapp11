@@ -69,7 +69,7 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
         http
             .authorizeHttpRequests()
             .requestMatchers("/api/auth/login").permitAll()
-            .requestMatchers("/api/auth/register").permitAll()
+            .requestMatchers("/api/auth/signup").permitAll()
             .requestMatchers("/api/auth/logout").permitAll()
                 .requestMatchers("/api/**").authenticated()
                 // The rest of the URLs are handled by the web app security filter chain
