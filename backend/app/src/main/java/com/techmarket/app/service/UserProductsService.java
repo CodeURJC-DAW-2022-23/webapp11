@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CartService {
+public class UserProductsService {
 
     @Autowired
     private ProductRepository productRepository;
@@ -26,5 +26,15 @@ public class CartService {
 
         return new PageImpl<>(cartProducts, pageRequest, cartProducts.size());
     }
+
+    public Page<Product> getWishlistProducts(Pageable pageable, User user) {
+        PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+        List<Product> wishlistProducts = user.getWishlist();
+
+
+        return new PageImpl<>(wishlistProducts, pageRequest, pageable.getPageSize());
+    }
+
+
 
 }
