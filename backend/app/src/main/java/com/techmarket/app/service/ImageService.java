@@ -26,4 +26,8 @@ public class ImageService {
         imageRepository.deleteAll(images);
     }
 
+    public Image getImageById(Long imageId) {
+        return imageRepository.findByImageId(imageId);
+    }
+
 }
