@@ -3,6 +3,7 @@ package com.techmarket.app.controller.RestControllers;
 import com.techmarket.app.model.Message;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.jwt.AuthResponse;
+import com.techmarket.app.security.jwt.MessageRequest;
 import com.techmarket.app.service.MessageService;
 import com.techmarket.app.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -56,27 +57,26 @@ public class UserRestController {
     }
 
     @PostMapping("/send-message")
-    public ResponseEntity<AuthResponse> sendMessage(HttpServletRequest request, @RequestBody Message message, @RequestParam String messageText) {
+    public ResponseEntity<AuthResponse> sendMessage(HttpServletRequest request, @RequestBody String messageText, Message message) {
         User currentUser = userService.getCurrentUser(request);
         // Append "Name: " to the message
-        messageText = currentUser.getFirstName() + ": " + messageText;
+        message.setMessage(currentUser.getFirstName() + ": " + messageText);
         message.setUser(currentUser);
-        message.setMessage(messageText);
         messageService.saveMessage(message);
 
         // Create a response object
-        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "User information updated successfully");
+        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "Message posted successfully");
 
         // Return the response
         return ResponseEntity.ok(authResponse);
     }
 
     @PostMapping("/send-message/agent")
-    public ResponseEntity<AuthResponse> sendMessageAgent(HttpServletRequest request, @RequestBody Message message, @RequestParam String messageText,  @RequestParam("identification") Long userId) {
+    public ResponseEntity<AuthResponse> sendMessageAgent(HttpServletRequest request, Message message, @RequestBody MessageRequest messageRequest) {
         User currentUser = userService.getCurrentUser(request);
         // Append "Name: " to the message
-        messageText = "Agent: " + messageText;
-        User user = userService.getUserById(userId);
+        String messageText = "Agent: " + messageRequest.getMessage();
+        User user = userService.getUserById(messageRequest.getId());
         message.setAgent(currentUser);
         message.setUser(user);
         message.setMessage(messageText);
