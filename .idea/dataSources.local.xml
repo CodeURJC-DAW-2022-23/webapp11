@@ -3,6 +3,7 @@
   <component name="dataSourceStorageLocal" created-in="IU-223.8617.56">
     <data-source name="@localhost" uuid="24d698a8-0d8d-4077-8fe6-813b5a83fc2e">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <secret-storage>master_key</secret-storage>
       <user-name>ThreeTechRoot</user-name>
       <schema-mapping>
         <introspection-scope>
