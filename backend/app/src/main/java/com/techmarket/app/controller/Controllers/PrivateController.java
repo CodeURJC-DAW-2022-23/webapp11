@@ -38,7 +38,7 @@ public class PrivateController {
 
     @PreAuthorize("hasAnyAuthority('USER','AGENT', 'ADMIN')")
     @GetMapping("/profile")
-    public void profile(Model model) throws SQLException {
+    public void profile(Model model) {
         //We want to fill out the form with the user's information when we load the page
         //First we get the user's email with the auth method
         //Then we use the email to get the user's information from the database

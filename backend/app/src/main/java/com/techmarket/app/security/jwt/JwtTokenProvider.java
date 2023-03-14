@@ -27,8 +27,8 @@ public class JwtTokenProvider {
 	@Value("${jwt.secret}")
 	private String jwtSecret;
 	
-	private static long JWT_EXPIRATION_IN_MS = 5400000;
-	private static Long REFRESH_TOKEN_EXPIRATION_MSEC = 10800000l;
+	private static final long JWT_EXPIRATION_IN_MS = 5400000;
+	private static final Long REFRESH_TOKEN_EXPIRATION_MSEC = 10800000L;
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -45,7 +45,7 @@ public class JwtTokenProvider {
 	public String resolveToken(HttpServletRequest req) {
 		String bearerToken = req.getHeader("Authorization");
 		if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-			return bearerToken.substring(7, bearerToken.length());
+			return bearerToken.substring(7);
 		}
 		return null;
 	}

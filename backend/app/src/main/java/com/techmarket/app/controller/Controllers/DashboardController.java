@@ -71,7 +71,7 @@ public class DashboardController {
     }
 
     @GetMapping("/reviewhistory/{id}")
-    public String reviewHistory(Model model, @PathVariable("id") Long id, @PageableDefault(size = 10) Pageable pageable) {
+    public String reviewHistory(Model model, @PathVariable("id") Long id, @PageableDefault() Pageable pageable) {
 
         Product product = productService.getProductById(id);
         model.addAttribute("product", product);

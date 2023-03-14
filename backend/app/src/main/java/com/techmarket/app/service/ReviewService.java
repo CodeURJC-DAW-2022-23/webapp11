@@ -33,7 +33,7 @@ public class ReviewService {
         reviewRepository.save(review);
     }
 
-    public long deleteReviewById(long id) {
-        return reviewRepository.deleteByReviewId(id);
+    public void deleteReviewById(long id) {
+        reviewRepository.deleteByReviewId(id);
     }
 }

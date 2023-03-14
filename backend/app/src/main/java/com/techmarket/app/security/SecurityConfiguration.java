@@ -31,6 +31,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
     @Order(2)
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .securityMatcher("/**")
                 .exceptionHandling( exception -> exception
                         .accessDeniedPage("/access-denied")
                 )

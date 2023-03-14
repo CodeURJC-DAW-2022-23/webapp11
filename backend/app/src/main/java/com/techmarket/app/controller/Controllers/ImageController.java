@@ -1,8 +1,6 @@
 package com.techmarket.app.controller.Controllers;
 
 
-
-
 import com.techmarket.app.model.User;
 import com.techmarket.app.service.ProductService;
 import com.techmarket.app.service.ReviewService;
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 @Controller
@@ -32,13 +29,13 @@ public class ImageController {
     private ReviewService reviewService;
 
     @PostMapping("/{id}/upload")
-    public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile) throws IOException {
+    public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile) {
         // Upload image to database, last one should be a .save() method, then return the location of the image
         return ResponseEntity.created(null).build(); // Returns a 201 Created response, we will change null to the location of the image
     }
 
     @GetMapping("/{id}/userpfp")
-    public ResponseEntity<Object> getImage(HttpServletResponse response, @PathVariable long id) throws SQLException, IOException {
+    public ResponseEntity<Object> getImage(HttpServletResponse response, @PathVariable long id) throws SQLException {
         if (userService.getUserById(id) != null) {
             User user = userService.getUserById(id);
             if (user.getProfilePicture() != null) {
@@ -57,7 +54,7 @@ public class ImageController {
     }
 
     @GetMapping("/product/{productId}/image")  // Main image for a product
-    public ResponseEntity<Object> getImage(@PathVariable long productId) throws SQLException, IOException {
+    public ResponseEntity<Object> getImage(@PathVariable long productId) throws SQLException {
         if (productService.getProductById(productId) != null) {
             // Get the InputStreamResource from the database
             InputStreamResource file = new InputStreamResource(productService.getProductById(productId).getMainImage().getImageBlob().getBinaryStream());
@@ -71,7 +68,7 @@ public class ImageController {
     }
 
     @GetMapping("/product/{productId}/images/{index}")  // Image from the image list of a product
-    public ResponseEntity<Object> getImages(@PathVariable long productId, @PathVariable int index) throws SQLException, IOException {
+    public ResponseEntity<Object> getImages(@PathVariable long productId, @PathVariable int index) throws SQLException {
         if (productService.getProductById(productId) != null) {
             index-=1;
             InputStreamResource file = new InputStreamResource(productService.getProductById(productId).getImages().get(index).getImageBlob().getBinaryStream());
@@ -86,7 +83,7 @@ public class ImageController {
     }
 
     @GetMapping("/review/{reviewId}/imagerev/{index}")  // Image from the image list of a product
-    public ResponseEntity<Object> getImagesReview(@PathVariable int index, @PathVariable long reviewId) throws SQLException, IOException {
+    public ResponseEntity<Object> getImagesReview(@PathVariable int index, @PathVariable long reviewId) throws SQLException {
         if (reviewService.getReviewById(reviewId) != null) {
             index-=1;
             InputStreamResource file = new InputStreamResource(reviewService.getReviewById(reviewId).getImages().get(index).getImageBlob().getBinaryStream());

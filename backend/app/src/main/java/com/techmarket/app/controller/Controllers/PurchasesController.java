@@ -39,7 +39,7 @@ public class PurchasesController {
 
     // Get the purchases of a user
     @GetMapping("/purchases")
-    public String purchases(Model model, @PageableDefault(size = 10) Pageable pageable) {
+    public String purchases(Model model, @PageableDefault() Pageable pageable) {
         // Get the current user
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.getUserName(auth.getName());

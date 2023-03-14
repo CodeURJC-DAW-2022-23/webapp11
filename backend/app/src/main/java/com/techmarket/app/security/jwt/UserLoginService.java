@@ -46,7 +46,7 @@ public class UserLoginService {
 		UserDetails user = userDetailsService.loadUserByUsername(username);
 
 		Boolean accessTokenValid = jwtTokenProvider.validateToken(accessToken);
-		Boolean refreshTokenValid = jwtTokenProvider.validateToken(refreshToken);
+		boolean refreshTokenValid = jwtTokenProvider.validateToken(refreshToken);
 
 		HttpHeaders responseHeaders = new HttpHeaders();
 		Token newAccessToken;
@@ -79,7 +79,7 @@ public class UserLoginService {
 		
 		String refreshToken = SecurityCipher.decrypt(encryptedRefreshToken);
 		
-		Boolean refreshTokenValid = jwtTokenProvider.validateToken(refreshToken);
+		boolean refreshTokenValid = jwtTokenProvider.validateToken(refreshToken);
 		
 		if (!refreshTokenValid) {
 			AuthResponse loginResponse = new AuthResponse(AuthResponse.Status.FAILURE,

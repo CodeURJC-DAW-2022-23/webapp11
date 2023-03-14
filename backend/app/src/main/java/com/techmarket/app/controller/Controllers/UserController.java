@@ -115,7 +115,7 @@ public class UserController {
 
     }
     @PostMapping("/verify-code")
-    public String passwordChanger(@RequestParam String email, @RequestParam Long code, @RequestParam String password) throws MessagingException {
+    public String passwordChanger(@RequestParam String email, @RequestParam Long code, @RequestParam String password) {
         User currentUser = userService.getUserName(email);
         if (Objects.equals(code, currentUser.getToken())){
             currentUser.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));

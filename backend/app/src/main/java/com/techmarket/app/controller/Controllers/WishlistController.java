@@ -39,7 +39,7 @@ public class WishlistController {
 
 
     @GetMapping("/wishlist")
-    public String wishlist(Model model, @PageableDefault(size = 10) Pageable pageable){
+    public String wishlist(Model model, @PageableDefault() Pageable pageable){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.getUserName(authentication.getName());
         if (!user.getWishlist().isEmpty()) {

@@ -218,9 +218,6 @@ public class User {
         return this.messages;
     }
 
-    public void setMessages(List<Message> messages) {
-    }
-
     public List<String> getRoles() {
         return roles;
     }

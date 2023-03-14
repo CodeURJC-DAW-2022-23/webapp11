@@ -80,7 +80,7 @@ public class ChatController {
     }
 
     @GetMapping("/chats")
-    public String getChats(Model model, @PageableDefault(size = 10) Pageable pageable) {
+    public String getChats(Model model, @PageableDefault() Pageable pageable) {
         // Get the user ids that are the role user
         List<User> userIds = userService.getUserByRole("USER");
         Page<Message> page = messageService.getAllMessages(pageable);

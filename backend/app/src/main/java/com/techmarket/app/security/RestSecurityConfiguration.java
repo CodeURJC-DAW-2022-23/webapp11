@@ -5,7 +5,6 @@ import com.techmarket.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -14,25 +13,20 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Controller;
 
-@Configuration
+@Controller
 @EnableWebSecurity
-public class RestSecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>
-{
-
+public class RestSecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
     @Autowired
     private UserService userService;
-
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
+    private EncoderConfiguration passwordEncoder;
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
-
 
     //Expose AuthenticationManager as a Bean to be used in other services
     //@Bean
@@ -45,7 +39,7 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
         authProvider.setUserDetailsService(userService);
-        authProvider.setPasswordEncoder(passwordEncoder);
+        authProvider.setPasswordEncoder(passwordEncoder.passwordEncoder());
 
         return authProvider;
     }
@@ -67,20 +61,19 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
     SecurityFilterChain apiSecurityFilterChain(HttpSecurity http) throws Exception
     {
         http
-            .authorizeHttpRequests()
-            .requestMatchers("/api/auth/login").permitAll()
-            .requestMatchers("/api/auth/signup").permitAll()
-            .requestMatchers("/api/auth/logout").permitAll()
-                .requestMatchers("/api/**").authenticated()
-                // The rest of the URLs are handled by the web app security filter chain
-                .anyRequest().permitAll()
-            .and()
-            .httpBasic().disable()
-            .formLogin().disable();
-            // Disable CSRF protection but only for the API
-            http.csrf().ignoringRequestMatchers("/api/**");
-            http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-            http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                .securityMatcher("/api/**")
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/auth/signup").permitAll()
+                        .requestMatchers("/api/auth/logout").permitAll()
+                        .requestMatchers("/api/**").authenticated()
+                )
+                .httpBasic().disable()
+                .formLogin().disable();
+        // Disable csrf only for the api
+        http.csrf().disable();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

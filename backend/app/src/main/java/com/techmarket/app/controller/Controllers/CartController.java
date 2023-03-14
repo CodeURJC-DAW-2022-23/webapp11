@@ -33,7 +33,7 @@ public class CartController {
     @Autowired ProductService productService;
 
     @GetMapping("/cart")
-    public String cart(Model model, @PageableDefault(size = 10) Pageable pageable) {
+    public String cart(Model model, @PageableDefault() Pageable pageable) {
         // Access the user's cart using the session using the SecurityContext and user service with the email
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.getUserName(authentication.getName());
