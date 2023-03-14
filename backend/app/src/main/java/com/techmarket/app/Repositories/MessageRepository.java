@@ -20,6 +20,8 @@ public interface MessageRepository extends JpaRepository<Message, String> {
 
     List<Message> findByUserId(Long userId);
 
+    List<Message> findByMessageId(Long messageId);
+
     // List<Message> findByStatus(boolean status);
     // Not really sure if we need this one
 }
