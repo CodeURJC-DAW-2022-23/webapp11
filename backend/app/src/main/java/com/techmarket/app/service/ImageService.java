@@ -30,4 +30,7 @@ public class ImageService {
         return imageRepository.findByImageId(imageId);
     }
 
+    public void deleteImage(Long imageId) {
+        imageRepository.deleteByImageId(imageId);
+    }
 }
