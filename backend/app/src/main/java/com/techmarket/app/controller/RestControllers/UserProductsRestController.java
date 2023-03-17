@@ -59,6 +59,7 @@ public class UserProductsRestController{
     public ResponseEntity<Void> addProductToCart(@PathVariable Long id,HttpServletRequest request) {
        User user = userService.getCurrentUser(request);
        user.getShoppingCart().add(productService.getProductById(id));
+       userService.saveUser(user);
         return ResponseEntity.noContent().build();
 
     }
@@ -67,6 +68,7 @@ public class UserProductsRestController{
     public ResponseEntity<Void> removeProductFromCart(@PathVariable Long id, HttpServletRequest request) {
         User user = userService.getCurrentUser(request);
         user.getShoppingCart().remove(productService.getProductById(id));
+       userService.saveUser(user);
         return ResponseEntity.noContent().build();
     }
 
@@ -74,6 +76,7 @@ public class UserProductsRestController{
     public ResponseEntity<Void> addProductToWishlist(@PathVariable Long id, HttpServletRequest request) {
         User user  = userService.getCurrentUser(request);
         user.getWishlist().add(productService.getProductById(id));
+        userService.saveUser(user);
         return ResponseEntity.noContent().build();
 
     }
@@ -82,6 +85,7 @@ public class UserProductsRestController{
     public ResponseEntity<Void> removeProductFromWishlist(@PathVariable Long id, HttpServletRequest request) {
         User user = userService.getCurrentUser(request);
         user.getWishlist().remove(productService.getProductById(id));
+        userService.saveUser(user); 
         return ResponseEntity.noContent().build();
     }
 
