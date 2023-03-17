@@ -55,15 +55,11 @@ public class UserProductsRestController{
     }
 
 
-    @PostMapping(value="/cart/addProduct")
-    public ResponseEntity<Void> addProductToCart(@RequestBody Product product, HttpServletResponse response, HttpServletRequest request) {
-        Product newProduct = productService.createProduct(product);
-        User user = userService.getCurrentUser(request);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")  // get the current request and add the id to the end
-                .buildAndExpand(newProduct.getProductId()).toUri();  // get the id of the new product and expand it to the uri, so it can be used
-        response.setHeader("Location", location.toString());
-        user.getShoppingCart().add(newProduct);
-        return ResponseEntity.created(location).build();
+    @PostMapping(value="/cart/addProduct/{id}")
+    public ResponseEntity<Void> addProductToCart(@PathVariable Long id,HttpServletRequest request) {
+       User user = userService.getCurrentUser(request);
+       user.getShoppingCart().add(productService.getProductById(id));
+        return ResponseEntity.noContent().build();
 
     }
 
@@ -74,15 +70,11 @@ public class UserProductsRestController{
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(value="/wishlist/addProduct")
-    public ResponseEntity<Void> addProductToWishlist(@RequestBody Product product, HttpServletResponse response, HttpServletRequest request) {
-        Product newProduct = productService.createProduct(product);
-        User user = userService.getCurrentUser(request);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")  // get the current request and add the id to the end
-                .buildAndExpand(newProduct.getProductId()).toUri();  // get the id of the new product and expand it to the uri, so it can be used
-        response.setHeader("Location", location.toString());
-        user.getWishlist().add(newProduct);
-        return ResponseEntity.created(location).build();
+    @PostMapping(value="/wishlist/addProduct/{id}")
+    public ResponseEntity<Void> addProductToWishlist(@PathVariable Long id, HttpServletRequest request) {
+        User user  = userService.getCurrentUser(request);
+        user.getWishlist().add(productService.getProductById(id));
+        return ResponseEntity.noContent().build();
 
     }
 
