@@ -1,4 +1,4 @@
-# To be run using docker-compose -f docker/docker_compose.yml up -d
+# To be run using docker-compose -f docker/docker-compose-azure.yml up -d
 # -f is the file path -d is to run in the background
 version: "3.9"
 services:
@@ -12,5 +12,4 @@ services:
       - SPRING_DATASOURCE_USERNAME=ThreeTechRoot
       - SPRING_DATASOURCE_PASSWORD=ZgzYw9cGVDePJ82
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-      - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.MySQL8Dialect
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
