@@ -12,14 +12,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 
-    //<User> findById(Long id);
-    //Not really sure if we need this one
-
-    List<User> findByFirstName(String firstName);
-    List<User> findByLastName(String lastName);
     User findByEmail(String email);
-    User findByFirstNameAndLastName(String firstName, String lastName);
-
 
     // Find user ids by their role
     List<User> findByRoles(String role);

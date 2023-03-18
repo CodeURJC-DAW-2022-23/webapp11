@@ -23,3 +23,6 @@ docker build -t "${IMAGE_NAME}:${IMAGE_VERSION}" -f "${DOCKERFILE_DIR}/${DOCKERF
 
 # Tag the image
 docker tag "${IMAGE_NAME}:${IMAGE_VERSION}" "${IMAGE_NAME}:latest"
+
+# When we finish testing, we can push the image to Docker Hub
+# docker push "${IMAGE_NAME}:${IMAGE_VERSION}"
