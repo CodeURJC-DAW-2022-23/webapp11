@@ -579,3 +579,72 @@ All members have contributed to the project in a similar way, and all members ha
 - [index.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/resources/templates/index.html)    
     
 </details>
+
+# Phase 3: API REST, Docker and Railway
+
+## Run the dockerized application
+*We provide 2 `docker_compose.yml` files, one of them connects with our Azure database and contains lots of sample data the other one connects with a local database using the MySQL official Docker image. You can choose the one you want to use. You can add some sample data using the `SampleDataService.java` file.*
+
+<details><summary> <b> Using a local database (MySQL Docker image) </b> </summary>
+
+1. Install Docker and Docker Compose
+2. Navigate to the `docker` folder
+3. Run `docker-compose up -d` to start the containers (they are configured to wait for the database to be ready)
+
+If you want to stop the containers run `docker-compose down` and if you want to remove the containers run `docker-compose down --rmi all`
+
+You can also stop a container with `docker stop <container_id>` and remove it with `docker rm <container_id>` where container_id can be either threetechmarket or 3techmarket_db
+
+You can also run `docker-compose up` to see the logs of the containers
+
+You can check the status of the containers with `docker ps`
+
+If everything is ok you should see 2 containers running (database and application):
+
+![img_8.png](img_8.png)
+
+</details>
+
+<details><summary> <b> Using our Azure database</i> </b> </summary>
+
+1. Install Docker and Docker Compose
+2. Navigate to the `docker` folder
+3. Run `docker-compose -f docker-compose-azure.yml up -d` to start the containers (only one container is needed)
+
+If you want to stop the containers run `docker-compose -f docker-compose-azure.yml down` and if you want to remove the containers run `docker-compose -f docker-compose-azure.yml down --rmi all`
+
+You can also stop a container with `docker stop threetechmarket` and remove it with `docker rm threetechmarket`
+
+You can also run `docker-compose -f docker-compose-azure.yml up` to see the logs of the containers
+
+You can check the status of the containers with `docker ps`
+
+If everything is ok you should see 1 container running:
+
+![img_9.png](img_9.png)
+
+</details>
+
+## Create the Docker image
+
+*We provide a handy shell script to easily build and image of our app and be able to run them, however, you can manually create the image as well, but you won't be using dockerized Maven or JDK, so you will need to have them installed on your machine.*
+
+*The provided shell script has been tested on Apple Silicon Macs and x86 Linux*
+
+1. Clone the repository `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
+2. Navigate to the `docker` folder `cd webapp11/docker`
+3. Run `./build.sh` to build the image
+4. Refer to the instructions above to run the image
+
+The image name is `sdaw/threetechmarket` and the version is `1.0.0`
+
+If the bash script fails to run you may need to give it execution permissions with `chmod +x build.sh`
+
+## Deploy the application to Railway through the command line (needs to be tested)
+
+1. Install the Railway CLI with your package manager of choice (brew, apt, etc.) (Example for macOS: `brew install railway`)
+2. Login to Railway with `railway login`
+3. Navigate to the `railway` folder
+4. Run `railway run` to deploy the application
+5. Run `railway open` to open the application in your browser
+6. Run `railway logs` to see the logs of the application
