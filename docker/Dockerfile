@@ -5,8 +5,7 @@ FROM maven:3.8.1-openjdk-17-slim AS builder
 WORKDIR /usr/src/threetechmarket
 
 # Copy the source code, just the essential files (located in backend/app)
-COPY backend/app/pom.xml .
-COPY backend/app/src ./src
+COPY backend/app .
 
 # Build the application using Maven
 RUN mvn clean package
@@ -23,7 +22,7 @@ WORKDIR /usr/src/threetechmarket
 # Copy the JAR file from the compilation container
 COPY --from=builder /usr/src/threetechmarket/target/app-0.0.1-SNAPSHOT.jar .
 
-# Set the port to 8443
+# Indicate the port the application should be binded to
 EXPOSE 8443
 
 # Run the JAR file
