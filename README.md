@@ -591,7 +591,7 @@ All members have contributed to the project in a similar way, and all members ha
 2. Navigate to the `docker` folder
 3. Run `docker-compose up -d` to start the containers (they are configured to wait for the database to be ready)
 
-If you want to stop the containers run `docker-compose down` and if you want to remove the containers run `docker-compose down --rmi all`
+If you want to stop the containers run `docker-compose down` and if you want to remove the images run `docker-compose down --rmi all` and if you want to remove the containers run `docker rm -f $(docker ps -aq)` (this will remove all the containers)
 
 You can also stop a container with `docker stop <container_id>` and remove it with `docker rm <container_id>` where container_id can be either threetechmarket or 3techmarket_db
 
@@ -611,9 +611,9 @@ If everything is ok you should see 2 containers running (database and applicatio
 2. Navigate to the `docker` folder
 3. Run `docker-compose -f docker-compose-azure.yml up -d` to start the containers (only one container is needed)
 
-If you want to stop the containers run `docker-compose -f docker-compose-azure.yml down` and if you want to remove the containers run `docker-compose -f docker-compose-azure.yml down --rmi all`
+If you want to stop the containers run `docker-compose -f docker-compose-azure.yml down` and if you want to remove the image run `docker-compose -f docker-compose-azure.yml down --rmi all`
 
-You can also stop a container with `docker stop threetechmarket` and remove it with `docker rm threetechmarket`
+You can also stop the container with `docker stop threetechmarket` and remove it with `docker rm threetechmarket`
 
 You can also run `docker-compose -f docker-compose-azure.yml up` to see the logs of the containers
 
