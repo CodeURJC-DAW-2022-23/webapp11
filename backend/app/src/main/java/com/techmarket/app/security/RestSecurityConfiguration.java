@@ -66,7 +66,16 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/api/auth/signup").permitAll()
                         .requestMatchers("/api/auth/logout").permitAll()
-                        .requestMatchers("/api/**").authenticated()
+                        .requestMatchers("/api/images/**").permitAll()
+                        .requestMatchers("/api/products/**").permitAll()
+                        .requestMatchers("/api/cart/**").hasAnyAuthority("USER","AGENT")
+                        .requestMatchers("/api/wishlist/**").hasAnyAuthority("USER","AGENT")
+                        .requestMatchers("/api/recommendations").hasAnyAuthority("USER","AGENT")
+
+
+
+
+
                 )
                 .httpBasic().disable()
                 .formLogin().disable();
