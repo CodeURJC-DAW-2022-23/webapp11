@@ -3,7 +3,9 @@ package com.techmarket.app.controller.RestControllers;
 
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.User;
+import com.techmarket.app.security.jwt.AuthResponse;
 import com.techmarket.app.service.ProductService;
+import com.techmarket.app.service.RecommendationService;
 import com.techmarket.app.service.UserProductsService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +19,7 @@ import com.techmarket.app.service.UserService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -30,6 +33,9 @@ public class UserProductsRestController{
     private UserProductsService userProductsService;
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private RecommendationService recommendationService;
 
     @GetMapping(value="/cart" ,params = {"page", "size"})
     public ResponseEntity<Page<Product>> getCartProducts(@RequestParam(defaultValue = "0") int page,
@@ -55,42 +61,48 @@ public class UserProductsRestController{
     }
 
 
-    @PostMapping(value="/cart/addProduct")
-    public ResponseEntity<Void> addProductToCart(@RequestBody Product product, HttpServletResponse response, HttpServletRequest request) {
-        Product newProduct = productService.createProduct(product);
-        User user = userService.getCurrentUser(request);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")  // get the current request and add the id to the end
-                .buildAndExpand(newProduct.getProductId()).toUri();  // get the id of the new product and expand it to the uri, so it can be used
-        response.setHeader("Location", location.toString());
-        user.getShoppingCart().add(newProduct);
-        return ResponseEntity.created(location).build();
+    @PostMapping(value="/cart/addProduct/{id}")
+    public ResponseEntity<AuthResponse> addProductToCart(@PathVariable Long id,HttpServletRequest request) {
+       User user = userService.getCurrentUser(request);
+       user.getShoppingCart().add(productService.getProductById(id));
+       userService.saveUser(user);
+        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "Product added to cart");
+        return ResponseEntity.ok(authResponse);
 
     }
 
    @DeleteMapping(value="/cart/removeProduct/{id}")
-    public ResponseEntity<Void> removeProductFromCart(@PathVariable Long id, HttpServletRequest request) {
+    public ResponseEntity<AuthResponse> removeProductFromCart(@PathVariable Long id, HttpServletRequest request) {
         User user = userService.getCurrentUser(request);
         user.getShoppingCart().remove(productService.getProductById(id));
-        return ResponseEntity.noContent().build();
+       userService.saveUser(user);
+        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "Product removed from cart");
+        return ResponseEntity.ok(authResponse);
     }
 
-    @PostMapping(value="/wishlist/addProduct")
-    public ResponseEntity<Void> addProductToWishlist(@RequestBody Product product, HttpServletResponse response, HttpServletRequest request) {
-        Product newProduct = productService.createProduct(product);
-        User user = userService.getCurrentUser(request);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")  // get the current request and add the id to the end
-                .buildAndExpand(newProduct.getProductId()).toUri();  // get the id of the new product and expand it to the uri, so it can be used
-        response.setHeader("Location", location.toString());
-        user.getWishlist().add(newProduct);
-        return ResponseEntity.created(location).build();
+    @PostMapping(value="/wishlist/addProduct/{id}")
+    public ResponseEntity<AuthResponse> addProductToWishlist(@PathVariable Long id, HttpServletRequest request) {
+        User user  = userService.getCurrentUser(request);
+        user.getWishlist().add(productService.getProductById(id));
+        userService.saveUser(user);
+        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "Product added to wishlist");
+        return ResponseEntity.ok(authResponse);
 
     }
 
     @DeleteMapping(value="/wishlist/removeProduct/{id}")
-    public ResponseEntity<Void> removeProductFromWishlist(@PathVariable Long id, HttpServletRequest request) {
+    public ResponseEntity<AuthResponse> removeProductFromWishlist(@PathVariable Long id, HttpServletRequest request) {
         User user = userService.getCurrentUser(request);
         user.getWishlist().remove(productService.getProductById(id));
-        return ResponseEntity.noContent().build();
+        userService.saveUser(user);
+        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "Product removed from wishlist");
+        return ResponseEntity.ok(authResponse);
+    }
+
+    @GetMapping("/recommendations")
+    public ResponseEntity<List<Product>> getRecommendations() {
+        List<Product> recommendations = recommendationService.getRecommendedProducts();
+        return ResponseEntity.ok(recommendations);
     }
 
 

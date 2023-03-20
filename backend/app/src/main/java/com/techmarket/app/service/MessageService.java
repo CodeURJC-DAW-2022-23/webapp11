@@ -19,7 +19,7 @@ public class MessageService {
 
 
     public List<Message> getMessageById(Long id) {
-        return messageRepository.findByMessageId(id);
+        return messageRepository.findByUserId(id);
     }
 
     public Page<Message> getAllMessages(Pageable pageable) {
