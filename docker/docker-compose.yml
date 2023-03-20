@@ -12,12 +12,6 @@ services:
     depends_on:
       - db
     environment:
-      # Wait for the database to be ready before starting the application
-      - WAIT_HOSTS=db:3306
-      - WAIT_HOSTS_TIMEOUT=300
-      - WAIT_SLEEP_INTERVAL=5
-      - WAIT_HOST_CONNECT_TIMEOUT=5
-      - WAIT_FOR_DB=true
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/3techmarket
       - SPRING_DATASOURCE_USERNAME=ThreeTechRoot
       - SPRING_DATASOURCE_PASSWORD=password

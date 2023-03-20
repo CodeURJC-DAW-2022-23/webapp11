@@ -81,7 +81,7 @@ public class UserRestController {
         messageService.saveMessage(message);
 
         // Create a response object
-        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "User information updated successfully");
+        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "Message sent successfully");
 
         // Return the response
         return ResponseEntity.ok(authResponse);

@@ -51,7 +51,7 @@ docker build -t "${IMAGE_NAME}:${IMAGE_VERSION}" -f "${DOCKERFILE_DIR}/${DOCKERF
 # Tag the image
 docker tag "${IMAGE_NAME}:${IMAGE_VERSION}" "${IMAGE_NAME}:latest"
 
-# Ask the user if they want to test the image
+# Fancy script
 echo "Would you like to test the image (needs docker-compose)? [Y/n]"
 read -r answer
 if [[ "$answer" == "n" ]]; then
