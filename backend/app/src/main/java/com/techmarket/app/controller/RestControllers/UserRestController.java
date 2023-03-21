@@ -3,7 +3,6 @@ package com.techmarket.app.controller.RestControllers;
 import com.techmarket.app.model.Message;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.jwt.AuthResponse;
-import com.techmarket.app.security.jwt.MessageRequest;
 import com.techmarket.app.service.MessageService;
 import com.techmarket.app.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,11 +27,9 @@ public class UserRestController {
         // Get the current user
         User user = userService.getCurrentUser(request);
         List<Message> messages = messageService.getMessageById(user.getId());
-        List<String> finalMessageList = Collections.emptyList();
-
-        for (int cont = 0; cont < messages.size(); cont++){
-            Message temp = messages.get(cont);
-            finalMessageList.add(temp.getMessage());
+        List<String> finalMessageList = new ArrayList<>(Collections.emptyList());
+        for (Message message : messages) {
+            finalMessageList.add(message.getMessage());
         }
 
         // Return the response
@@ -49,22 +46,17 @@ public class UserRestController {
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<AuthResponse> getUser(HttpServletRequest request) {
+    public ResponseEntity<User> getUser(HttpServletRequest request) {
         // Get the current user
         User user = userService.getCurrentUser(request);
 
-        // Create a map containing the user information
-        Map<String, Object> userInfo = new HashMap<>();
-        userInfo.put("id", user.getId());
-        userInfo.put("email", user.getEmail());
-        userInfo.put("name", user.getFirstName() + " " + user.getLastName());
-        userInfo.put("roles", user.getRoles());
-
-        // Create a response object
-        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, userInfo.toString());
+        // Remove the encoded password from the response
+        user.setEncodedPassword("Redacted for security reasons");
+        user.setPasswordChangeToken(null);
+        user.setToken(null);
 
         // Return the response
-        return ResponseEntity.ok(authResponse);
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/send-message")
