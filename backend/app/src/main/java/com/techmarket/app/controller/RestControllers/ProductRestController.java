@@ -2,14 +2,12 @@ package com.techmarket.app.controller.RestControllers;
 
 import com.techmarket.app.model.Product;
 import com.techmarket.app.service.ProductService;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
@@ -46,13 +44,12 @@ public class ProductRestController {
         return ResponseEntity.ok(products);
     }
 
+    // Create a new product
     @PostMapping
-    public ResponseEntity<Void> createProduct(@RequestBody Product product, HttpServletResponse response) {
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         Product newProduct = productService.createProduct(product);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")  // get the current request and add the id to the end
-                .buildAndExpand(newProduct.getProductId()).toUri();  // get the id of the new product and expand it to the uri, so it can be used
-        response.setHeader("Location", location.toString());  // set the location of the new product
-        return ResponseEntity.created(location).build();  // return the created status and the location of the new product
+        // Return the URI of the new product
+        return ResponseEntity.created(URI.create("/api/products/" + newProduct.getId())).body(newProduct);
     }
 
     @DeleteMapping("/{id}")
