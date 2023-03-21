@@ -71,7 +71,12 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
                         .requestMatchers("/api/cart/**").hasAnyAuthority("USER","AGENT")
                         .requestMatchers("/api/wishlist/**").hasAnyAuthority("USER","AGENT")
                         .requestMatchers("/api/recommendations").hasAnyAuthority("USER","AGENT")
+<<<<<<< Updated upstream
                         .requestMatchers("/api/reviews").hasAnyAuthority("ADMIN")
+=======
+                        .requestMatchers("/api/user/messages").hasAnyAuthority("USER","AGENT")
+                        .requestMatchers("/api/user/profile").hasAnyAuthority("USER","AGENT", "ADMIN")
+>>>>>>> Stashed changes
 
 
 
