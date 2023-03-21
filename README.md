@@ -644,7 +644,11 @@ If the bash script fails to run you may need to give it execution permissions wi
 
 1. Install the Railway CLI with your package manager of choice (brew, apt, etc.) (Example for macOS: `brew install railway`)
 2. Login to Railway with `railway login`
-3. Navigate to the `railway` folder
-4. Run `railway run` to deploy the application
-5. Run `railway open` to open the application in your browser
-6. Run `railway logs` to see the logs of the application
+3. Clone the repository `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
+4. Navigate to the project folder `cd webapp11`
+5. Create a new project with `railway init`
+6. Link the project with the current folder with `railway link`
+7. Add the MySQL plugin with `railway add` and select the MySQL plugin
+8. Run `railway up` to deploy the application
+
+Note: This worked once and never worked again, and since it became optional we decided to not spend more time on it.
