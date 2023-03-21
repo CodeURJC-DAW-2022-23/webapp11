@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-223.8617.56">
+  <component name="dataSourceStorageLocal" created-in="IU-223.8836.41">
     <data-source name="@localhost" uuid="24d698a8-0d8d-4077-8fe6-813b5a83fc2e">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
       <secret-storage>master_key</secret-storage>
@@ -10,6 +10,10 @@
           <node kind="schema" qname="3techmarket" />
         </introspection-scope>
       </schema-mapping>
+    </data-source>
+    <data-source name="app/Hibernate" uuid="bf7a724f-f7e2-4e92-8605-a89241874c53">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <schema-mapping />
     </data-source>
   </component>
 </project>

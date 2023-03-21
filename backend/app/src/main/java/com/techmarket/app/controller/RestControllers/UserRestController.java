@@ -1,3 +1,4 @@
+
 package com.techmarket.app.controller.RestControllers;
 
 import com.techmarket.app.model.Message;
@@ -11,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -26,13 +25,30 @@ public class UserRestController {
 
 
     @GetMapping("/messages")
-    public ResponseEntity<List<Message>> getMessages(HttpServletRequest request) {
+    public List<String> getMessages(HttpServletRequest request) {
         // Get the current user
         User user = userService.getCurrentUser(request);
-        List<Message> messages = messageService.getMessagesByUser(user.getId());
-
+        List<Message> messages = messageService.getMessageById(user.getId());
+        List<String> finalMessageList = new ArrayList<>();
+        for (Message temp : messages) {
+            finalMessageList.add(temp.getMessage());
+        }
         // Return the response
-        return ResponseEntity.ok(messages);
+        return finalMessageList;
+    }
+
+    @GetMapping("/messages/agent/{id}")
+    public List<String> getAgentMessages(HttpServletRequest request, @PathVariable Long id) {
+        // Get the current user
+        User user = userService.getCurrentUser(request);
+
+        List<Message> messages = messageService.getMessageById(id);
+        List<String> finalMessageList = new ArrayList<>();
+        for (Message temp : messages) {
+            finalMessageList.add(temp.getMessage());
+        }
+        // Return the response
+        return finalMessageList;
     }
 
     @GetMapping("/profile")
@@ -55,7 +71,8 @@ public class UserRestController {
     }
 
     @PostMapping("/send-message")
-    public ResponseEntity<AuthResponse> sendMessage(HttpServletRequest request, @RequestBody String messageText, Message message) {
+    public ResponseEntity<AuthResponse> sendMessage(HttpServletRequest request, @RequestBody String
+            messageText, Message message) {
         User currentUser = userService.getCurrentUser(request);
         // Append "Name: " to the message
         message.setMessage(currentUser.getFirstName() + ": " + messageText);
@@ -69,15 +86,15 @@ public class UserRestController {
         return ResponseEntity.ok(authResponse);
     }
 
-    @PostMapping("/send-message/agent")
-    public ResponseEntity<AuthResponse> sendMessageAgent(HttpServletRequest request, Message message, @RequestBody MessageRequest messageRequest) {
+    @PostMapping("/send-message/agent/{id}")
+    public ResponseEntity<AuthResponse> sendMessageAgent(HttpServletRequest request, Message
+            message, @RequestBody String messageText, @PathVariable Long id) {
         User currentUser = userService.getCurrentUser(request);
         // Append "Name: " to the message
-        String messageText = "Agent: " + messageRequest.getMessage();
-        User user = userService.getUserById(messageRequest.getId());
+        User user = userService.getUserById(id);
         message.setAgent(currentUser);
         message.setUser(user);
-        message.setMessage(messageText);
+        message.setMessage("Agent: " + messageText);
         messageService.saveMessage(message);
 
         // Create a response object
