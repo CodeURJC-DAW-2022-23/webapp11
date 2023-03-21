@@ -25,9 +25,12 @@ public class ReviewService {
     public Page<Review> getReviewsByProduct(Product product, Pageable pageable) {
         return reviewRepository.findByProduct(product, pageable);
     }
-
-    public List<Review> getAllReviewsByProduct(Product product) {
+    public List<Review> getAllReviewsByProduct(Product product){
         return reviewRepository.findAllByProduct(product);
+    }
+
+    public List<Review> getAllReviewsByProductId(Long id) {
+        return reviewRepository.findByProductId(id);
     }
      public void saveReview(Review review) {
         reviewRepository.save(review);
