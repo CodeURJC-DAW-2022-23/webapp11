@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,19 +35,4 @@ public class MessageService {
     public List<Message> getMessagesByUser(Long id) {
         return messageRepository.findByUserId(id);
     }
-    public List<Message> getMessagesByUserAndAgent(Long agentId, Long userId) {
-        List<Message> messages = messageRepository.findByUserId(agentId);
-        List<Message> finalMessageList = null;
-        for (int cont = 0; cont < messages.size(); cont++){
-            Message temp = messages.get(cont);
-            if (Objects.equals(temp.getUser().toString(), userId.toString())){
-                assert false;
-                finalMessageList.add(temp);
-            }
-        }
-        return finalMessageList;
-    }
-
-
-
 }

@@ -1,8 +1,10 @@
+
 package com.techmarket.app.controller.RestControllers;
 
 import com.techmarket.app.model.Message;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.jwt.AuthResponse;
+import com.techmarket.app.security.jwt.MessageRequest;
 import com.techmarket.app.service.MessageService;
 import com.techmarket.app.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,40 +29,50 @@ public class UserRestController {
         // Get the current user
         User user = userService.getCurrentUser(request);
         List<Message> messages = messageService.getMessageById(user.getId());
-        List<String> finalMessageList = new ArrayList<>(Collections.emptyList());
-        for (Message message : messages) {
-            finalMessageList.add(message.getMessage());
+        List<String> finalMessageList = new ArrayList<>();
+        for (Message temp : messages) {
+            finalMessageList.add(temp.getMessage());
         }
-
         // Return the response
         return finalMessageList;
     }
+
     @GetMapping("/messages/agent/{id}")
-    public ResponseEntity<List<Message>> getAgentMessages(HttpServletRequest request, @PathVariable Long id) {
+    public List<String> getAgentMessages(HttpServletRequest request, @PathVariable Long id) {
         // Get the current user
         User user = userService.getCurrentUser(request);
-        List<Message> messages = messageService.getMessagesByUserAndAgent(user.getId(), id);
 
+        List<Message> messages = messageService.getMessageById(id);
+        List<String> finalMessageList = new ArrayList<>();
+        for (Message temp : messages) {
+            finalMessageList.add(temp.getMessage());
+        }
         // Return the response
-        return ResponseEntity.ok(messages);
+        return finalMessageList;
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<User> getUser(HttpServletRequest request) {
+    public ResponseEntity<AuthResponse> getUser(HttpServletRequest request) {
         // Get the current user
         User user = userService.getCurrentUser(request);
 
-        // Remove the encoded password from the response
-        user.setEncodedPassword("Redacted for security reasons");
-        user.setPasswordChangeToken(null);
-        user.setToken(null);
+        // Create a map containing the user information
+        Map<String, Object> userInfo = new HashMap<>();
+        userInfo.put("id", user.getId());
+        userInfo.put("email", user.getEmail());
+        userInfo.put("name", user.getFirstName() + " " + user.getLastName());
+        userInfo.put("roles", user.getRoles());
+
+        // Create a response object
+        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, userInfo.toString());
 
         // Return the response
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(authResponse);
     }
 
     @PostMapping("/send-message")
-    public ResponseEntity<AuthResponse> sendMessage(HttpServletRequest request, @RequestBody String messageText, Message message) {
+    public ResponseEntity<AuthResponse> sendMessage(HttpServletRequest request, @RequestBody String
+            messageText, Message message) {
         User currentUser = userService.getCurrentUser(request);
         // Append "Name: " to the message
         message.setMessage(currentUser.getFirstName() + ": " + messageText);
@@ -75,7 +87,8 @@ public class UserRestController {
     }
 
     @PostMapping("/send-message/agent/{id}")
-    public ResponseEntity<AuthResponse> sendMessageAgent(HttpServletRequest request, Message message, @RequestBody String messageText, @PathVariable Long id) {
+    public ResponseEntity<AuthResponse> sendMessageAgent(HttpServletRequest request, Message
+            message, @RequestBody String messageText, @PathVariable Long id) {
         User currentUser = userService.getCurrentUser(request);
         // Append "Name: " to the message
         User user = userService.getUserById(id);
