@@ -1,5 +1,6 @@
 package com.techmarket.app.service;
 
+import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.Repositories.ReviewRepository;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Review;
@@ -14,6 +15,8 @@ import java.util.List;
 public class ReviewService {
 
 
+    @Autowired
+    private ProductRepository productRepository;
     @Autowired
     private ReviewRepository reviewRepository;
 
@@ -30,7 +33,9 @@ public class ReviewService {
     }
 
     public List<Review> getAllReviewsByProductId(Long id) {
-        return reviewRepository.findByProductId(id);
+        Product product = productRepository.findByProductId(id);
+
+        return reviewRepository.findAllByProduct(product);
     }
      public void saveReview(Review review) {
         reviewRepository.save(review);
