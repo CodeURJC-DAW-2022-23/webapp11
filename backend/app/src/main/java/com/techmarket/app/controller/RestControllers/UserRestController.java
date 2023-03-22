@@ -2,22 +2,32 @@
 package com.techmarket.app.controller.RestControllers;
 
 import com.techmarket.app.model.Message;
+
 import com.techmarket.app.model.Product;
+
 import com.techmarket.app.model.Purchase;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.jwt.AuthResponse;
-import com.techmarket.app.security.jwt.MessageRequest;
 import com.techmarket.app.service.MessageService;
 import com.techmarket.app.service.PurchaseService;
 import com.techmarket.app.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/user")
@@ -60,22 +70,21 @@ public class UserRestController {
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<AuthResponse> getUser(HttpServletRequest request) {
+    @Operation(summary = "Get the current user's profile")
+    @ApiResponse(responseCode = "200", description = "User profile retrieved")
+    public ResponseEntity<User> getUser(HttpServletRequest request) {
         // Get the current user
         User user = userService.getCurrentUser(request);
 
-        // Create a map containing the user information
-        Map<String, Object> userInfo = new HashMap<>();
-        userInfo.put("id", user.getId());
-        userInfo.put("email", user.getEmail());
-        userInfo.put("name", user.getFirstName() + " " + user.getLastName());
-        userInfo.put("roles", user.getRoles());
-
-        // Create a response object
-        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, userInfo.toString());
+        user.setEncodedPassword("Redacted for security reasons");
+        user.setToken(null);
+        user.setPasswordChangeToken(null);
+        user.setWishlist(Collections.emptyList());
+        user.setShoppingCart(Collections.emptyList());
+        user.setPurchasedProducts(Collections.emptyList());
 
         // Return the response
-        return ResponseEntity.ok(authResponse);
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/send-message")
@@ -113,7 +122,9 @@ public class UserRestController {
     }
 
     @PutMapping("/profile")
-    public ResponseEntity<AuthResponse> updateUser(HttpServletRequest request, @RequestBody User user) {
+    @Operation(summary = "Update the current user's profile")
+    @ApiResponse(responseCode = "200", description = "User profile updated")
+    public ResponseEntity<User> updateUser(HttpServletRequest request, @RequestBody User user) {
         // Get the current user
         User currentUser = userService.getCurrentUser(request);
 
@@ -131,11 +142,29 @@ public class UserRestController {
         // Save the user
         userService.saveUser(currentUser);
 
-        // Create a response object
-        AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "User information updated successfully");
+        currentUser.setEncodedPassword("Redacted for security reasons");
+        currentUser.setToken(null);
+        currentUser.setPasswordChangeToken(null);
+        user.setWishlist(Collections.emptyList());
+        user.setShoppingCart(Collections.emptyList());
+        user.setPurchasedProducts(Collections.emptyList());
 
         // Return the response
-        return ResponseEntity.ok(authResponse);
+        return ResponseEntity.ok(currentUser);
+    }
+
+    @GetMapping("/purchase-history")
+    @Operation(summary = "Get the current user's purchase history")
+    @ApiResponse(responseCode = "200", description = "User purchase history retrieved")
+    public ResponseEntity<Page<Purchase>> getPurchaseHistory(HttpServletRequest request, @RequestParam(defaultValue = "0") int page) {
+        // Get the current user
+        User user = userService.getCurrentUser(request);
+
+        // Get the user's purchase history
+        Page<Purchase> purchaseHistory = userService.getPurchaseHistory(user, page);
+
+        // Return the response
+        return ResponseEntity.ok(purchaseHistory);
     }
 
 

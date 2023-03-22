@@ -8,6 +8,8 @@ import com.techmarket.app.service.ImageService;
 import com.techmarket.app.service.ProductService;
 import com.techmarket.app.service.ReviewService;
 import com.techmarket.app.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -39,6 +41,9 @@ public class ImageRestController {
 
     // Get the user's profile picture
     @GetMapping("/profile-picture")
+    @Operation(summary = "Get the user's profile picture")
+    @ApiResponse(responseCode = "200", description = "Profile picture retrieved")
+    @ApiResponse(responseCode = "400", description = "User not found")
     public ResponseEntity<Object> downloadProfilePicture(HttpServletRequest request) throws SQLException {
         // Get the current user
         User user = userService.getCurrentUser(request);
@@ -53,6 +58,9 @@ public class ImageRestController {
 
     // Update the user's profile picture
     @PostMapping("/profile-picture")
+    @Operation(summary = "Update the user's profile picture")
+    @ApiResponse(responseCode = "200", description = "Profile picture updated")
+    @ApiResponse(responseCode = "400", description = "Please upload a file")
     public ResponseEntity<Object> uploadProfilePicture(@RequestParam("image") MultipartFile image, HttpServletRequest request) throws SQLException, IOException {
         User user = userService.getCurrentUser(request);
         if (image.isEmpty()) {
@@ -73,6 +81,9 @@ public class ImageRestController {
 
     // Delete the user's profile picture
     @DeleteMapping("/profile-picture")
+    @Operation(summary = "Delete the user's profile picture")
+    @ApiResponse(responseCode = "200", description = "Profile picture deleted")
+    @ApiResponse(responseCode = "400", description = "User not found")
     public ResponseEntity<Object> deleteProfilePicture(HttpServletRequest request) throws SQLException {
         User user = userService.getCurrentUser(request);
         Long imageId = user.getProfilePicture().getImageId();
