@@ -2,11 +2,14 @@ package com.techmarket.app.controller.RestControllers;
 
 
 import com.techmarket.app.model.Product;
+import com.techmarket.app.model.Purchase;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.jwt.AuthResponse;
 import com.techmarket.app.service.ProductService;
 import com.techmarket.app.service.RecommendationService;
 import com.techmarket.app.service.UserProductsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +108,19 @@ public class UserProductsRestController{
         return ResponseEntity.ok(recommendations);
     }
 
+    @GetMapping("/purchase-history")
+    @Operation(summary = "Get the current user's purchase history")
+    @ApiResponse(responseCode = "200", description = "User purchase history retrieved")
+    public ResponseEntity<Page<Purchase>> getPurchaseHistory(HttpServletRequest request, @RequestParam(defaultValue = "0") int page) {
+        // Get the current user
+        User user = userService.getCurrentUser(request);
+
+        // Get the user's purchase history
+        Page<Purchase> purchaseHistory = userService.getPurchaseHistory(user, page);
+
+        // Return the response
+        return ResponseEntity.ok(purchaseHistory);
+    }
 
 
 

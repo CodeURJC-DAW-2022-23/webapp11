@@ -153,19 +153,6 @@ public class UserRestController {
         return ResponseEntity.ok(currentUser);
     }
 
-    @GetMapping("/purchase-history")
-    @Operation(summary = "Get the current user's purchase history")
-    @ApiResponse(responseCode = "200", description = "User purchase history retrieved")
-    public ResponseEntity<Page<Purchase>> getPurchaseHistory(HttpServletRequest request, @RequestParam(defaultValue = "0") int page) {
-        // Get the current user
-        User user = userService.getCurrentUser(request);
-
-        // Get the user's purchase history
-        Page<Purchase> purchaseHistory = userService.getPurchaseHistory(user, page);
-
-        // Return the response
-        return ResponseEntity.ok(purchaseHistory);
-    }
 
 
     @PostMapping("/checkout")
@@ -205,4 +192,22 @@ public class UserRestController {
         }
 
     }
+
+    @PostMapping("/return-purchase/{purchaseId}")
+    public ResponseEntity<AuthResponse> returnPurchase(HttpServletRequest request, @PathVariable Long purchaseId) {
+        // Get the current user
+        User currentUser = userService.getCurrentUser(request);
+        Purchase purchase = purchaseService.getPurchaseById(purchaseId);
+        if(purchase.getUser().getId() == currentUser.getId() && !purchase.isCancelled()){
+            purchase.setCancelled(true);
+            purchaseService.savePurchase(purchase);
+            AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "Purchase returned successfully");
+            return ResponseEntity.ok(authResponse);
+        }
+        else {
+            AuthResponse authResponse = new AuthResponse(AuthResponse.Status.FAILURE, "Purchase return failed");
+            return ResponseEntity.ok(authResponse);
+        }
+    }
+
 }
