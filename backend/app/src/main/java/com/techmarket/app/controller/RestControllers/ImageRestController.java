@@ -2,9 +2,11 @@ package com.techmarket.app.controller.RestControllers;
 
 import com.techmarket.app.model.Image;
 import com.techmarket.app.model.Product;
+import com.techmarket.app.model.Review;
 import com.techmarket.app.model.User;
 import com.techmarket.app.service.ImageService;
 import com.techmarket.app.service.ProductService;
+import com.techmarket.app.service.ReviewService;
 import com.techmarket.app.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class ImageRestController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ReviewService reviewService;
 
     // Get the user's profile picture
     @GetMapping("/profile-picture")
@@ -79,7 +84,7 @@ public class ImageRestController {
         return ResponseEntity.ok().body("Profile picture deleted");
     }
 
-    @GetMapping("/product-main-image")
+    @PostMapping("/product-main-image")
     public ResponseEntity<Object> uploadProductMainImage(@RequestParam("image") MultipartFile image,HttpServletRequest request, @PathVariable long id) throws SQLException, IOException{
         Product product = productService.getProductById(id);
         if (image.isEmpty()) {
@@ -97,7 +102,7 @@ public class ImageRestController {
         return  ResponseEntity.ok().body("Product main Image updated");
     }
 
-    @GetMapping("/product-image")
+    @PostMapping("/product-image")
     public ResponseEntity<Object> uploadProductImage(@RequestParam("image") MultipartFile image,HttpServletRequest request, @PathVariable long id) throws SQLException, IOException{
         Product product = productService.getProductById(id);
         if (image.isEmpty()) {
@@ -115,5 +120,23 @@ public class ImageRestController {
         return ResponseEntity.ok().body("Product images updated");
     }
 
+    @PostMapping("/review-image")
+    public ResponseEntity<Object> uploadReviewImage(@RequestParam("image") MultipartFile image,HttpServletRequest request, @PathVariable long id) throws SQLException, IOException{
+        Review review = reviewService.getReviewById(id);
+        if (image.isEmpty()) {
+            return ResponseEntity.badRequest().body("Please upload a file");
+        }
+        Image img = new Image();
+        img.setFileName(image.getOriginalFilename());
+        Blob blob = new SerialBlob(image.getBytes());
+        img.setImageBlob(blob);
+        review.getImages().add(img);
 
+        imageService.saveImage(img);
+        reviewService.saveReview(review);
+
+        return ResponseEntity.ok().body("Review images updated");
+    }
+
+    
 }
