@@ -2,16 +2,21 @@
 package com.techmarket.app.controller.RestControllers;
 
 import com.techmarket.app.model.Message;
+import com.techmarket.app.model.Product;
+import com.techmarket.app.model.Purchase;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.jwt.AuthResponse;
 import com.techmarket.app.security.jwt.MessageRequest;
 import com.techmarket.app.service.MessageService;
+import com.techmarket.app.service.PurchaseService;
 import com.techmarket.app.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 @RestController
@@ -22,6 +27,9 @@ public class UserRestController {
     private UserService userService;
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private PurchaseService purchaseService;
 
 
     @GetMapping("/messages")
@@ -128,5 +136,44 @@ public class UserRestController {
 
         // Return the response
         return ResponseEntity.ok(authResponse);
+    }
+
+
+    @PostMapping("/checkout")
+    public ResponseEntity<AuthResponse> checkout(HttpServletRequest request, @RequestBody String address) {
+        // Get the current user
+        User currentUser = userService.getCurrentUser(request);
+        List<Product> cart = currentUser.getShoppingCart();
+        if(cart.size() > 0 && cart.stream().allMatch(product -> product.getProductStock() > 0)){
+            for (Product product : cart) {
+                product.setProductStock(product.getProductStock() - 1);
+                if(!currentUser.getPurchasedProducts().contains(product)) {
+                    currentUser.getPurchasedProducts().add(product);
+                }
+                Date date = new Date();
+                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                int year = localDate.getYear();
+                int month = localDate.getMonthValue();
+                int day = localDate.getDayOfMonth();
+
+                Purchase purchase = new Purchase();
+                purchase.setProduct(product);
+                purchase.setUser(currentUser);
+                purchase.setCancelled(false);
+                purchase.setPaymentMethod("Cash on delivery");
+                purchase.setTimestamp(year + "-" + month + "-" + day);
+                purchase.setTimestamp(address);
+                purchaseService.savePurchase(purchase);
+            }
+            currentUser.getShoppingCart().clear();
+            userService.saveUser(currentUser);
+           AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "Checkout successful");
+           return ResponseEntity.ok(authResponse);
+        }
+        else {
+            AuthResponse authResponse = new AuthResponse(AuthResponse.Status.FAILURE, "Checkout failed");
+            return ResponseEntity.ok(authResponse);
+        }
+
     }
 }
