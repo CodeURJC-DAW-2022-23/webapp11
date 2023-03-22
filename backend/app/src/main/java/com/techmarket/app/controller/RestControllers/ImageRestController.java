@@ -20,6 +20,7 @@ import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/images")
@@ -84,8 +85,8 @@ public class ImageRestController {
         return ResponseEntity.ok().body("Profile picture deleted");
     }
 
-    @PostMapping("/product-main-image")
-    public ResponseEntity<Object> uploadProductMainImage(@RequestParam("image") MultipartFile image,HttpServletRequest request, @PathVariable long id) throws SQLException, IOException{
+    @PostMapping("/{id}/main-image")
+    public ResponseEntity<Object> uploadProductMainImage(@RequestParam("image") MultipartFile image, @PathVariable long id) throws SQLException, IOException {
         Product product = productService.getProductById(id);
         if (image.isEmpty()) {
             return ResponseEntity.badRequest().body("Please upload a file");
@@ -99,11 +100,11 @@ public class ImageRestController {
         imageService.saveImage(mainImage);
         productService.saveProduct(product);
 
-        return  ResponseEntity.ok().body("Product main Image updated");
+        return ResponseEntity.ok().body("Product main Image updated");
     }
 
-    @PostMapping("/product-image")
-    public ResponseEntity<Object> uploadProductImage(@RequestParam("image") MultipartFile image,HttpServletRequest request, @PathVariable long id) throws SQLException, IOException{
+    @PostMapping("/{id}/product-image")
+    public ResponseEntity<Object> uploadProductImage(@RequestParam("image") MultipartFile image, @PathVariable long id) throws SQLException, IOException {
         Product product = productService.getProductById(id);
         if (image.isEmpty()) {
             return ResponseEntity.badRequest().body("Please upload a file");
@@ -120,8 +121,8 @@ public class ImageRestController {
         return ResponseEntity.ok().body("Product images updated");
     }
 
-    @PostMapping("/review-image")
-    public ResponseEntity<Object> uploadReviewImage(@RequestParam("image") MultipartFile image,HttpServletRequest request, @PathVariable long id) throws SQLException, IOException{
+    @PostMapping("/{id}/review-image")
+    public ResponseEntity<Object> uploadReviewImage(@RequestParam("image") MultipartFile image, @PathVariable long id) throws SQLException, IOException {
         Review review = reviewService.getReviewById(id);
         if (image.isEmpty()) {
             return ResponseEntity.badRequest().body("Please upload a file");
@@ -138,5 +139,38 @@ public class ImageRestController {
         return ResponseEntity.ok().body("Review images updated");
     }
 
-    
+    @DeleteMapping("/{id}/main-image")
+    public ResponseEntity<Object> deleteProductMainImage(@PathVariable long id) throws SQLException{
+        Product product =productService.getProductById(id);
+        Long imageId = product.getMainImage().getImageId();
+        product.setMainImage(null);
+        productService.saveProduct(product);
+        imageService.deleteImageById(imageId);
+
+        return ResponseEntity.ok().body("Product main image deleted");
+    }
+
+    @DeleteMapping("/{id}/images")
+    public ResponseEntity<Object> deleteProductImages(@PathVariable long id) throws SQLException{
+        Product product = productService.getProductById(id);
+        List<Image> imageList = product.getImages();
+        product.setImages(null);
+        productService.saveProduct(product);
+        imageService.deleteAllImages(imageList);
+
+        return ResponseEntity.ok().body("Product images deleted");
+    }
+
+    @DeleteMapping("/{id}/review-image")
+    public ResponseEntity<Object> deleteReviewImage(@PathVariable long id){
+        Review review = reviewService.getReviewById(id);
+        List<Image> imageList = review.getImages();
+        review.setImages(null);
+        reviewService.saveReview(review);
+        imageService.deleteAllImages(imageList);
+
+        return ResponseEntity.ok().body("Review images deleted");
+    }
+
+
 }
