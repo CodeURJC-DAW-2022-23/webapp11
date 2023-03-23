@@ -198,7 +198,7 @@ public class UserRestController {
         // Get the current user
         User currentUser = userService.getCurrentUser(request);
         Purchase purchase = purchaseService.getPurchaseById(purchaseId);
-        if(purchase.getUser().getId() == currentUser.getId() && !purchase.isCancelled()){
+        if(Objects.equals(purchase.getUser().getId(), currentUser.getId()) && !purchase.isCancelled()){
             purchase.setCancelled(true);
             purchaseService.savePurchase(purchase);
             AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "Purchase returned successfully");
