@@ -4,7 +4,7 @@
 		"name": "3TechMarket API",
 		"description": "3TechMarket API, fancyyyyyyy\n\nWe rely mostly on pathvariables, so to try out our collection, you shall change the numbers on the requests to the ones on your database.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25834704"
+		"_exporter_id": "26290180"
 	},
 	"item": [
 		{
@@ -651,6 +651,28 @@
 									"key": "size",
 									"value": null
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel purchase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/user/return-purchase/352",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"user",
+								"return-purchase",
+								"352"
 							]
 						}
 					},

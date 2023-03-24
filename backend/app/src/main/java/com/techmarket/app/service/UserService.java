@@ -77,6 +77,8 @@ public class UserService implements UserDetailsService {
             filteredPurchase.setPurchaseId(purchase.getPurchaseId());
             filteredPurchase.setTimestamp(purchase.getTimestamp());
             filteredPurchase.setPaymentMethod(purchase.getPaymentMethod());
+            filteredPurchase.setCancelled(purchase.isCancelled());
+            filteredPurchase.setAddress(purchase.getAddress());
             return filteredPurchase;
         });
     }
