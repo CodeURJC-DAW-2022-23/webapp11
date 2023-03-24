@@ -663,7 +663,7 @@ If everything is ok you should see 1 container running:
 3. Run `./build.sh` to build the image
 4. Refer to the instructions above to run the image
 
-The image name is `sdaw/threetechmarket` and the version is `1.0.0`
+The image name is `4rius/threetechmarket` and the version is `1.0.0`
 
 If the bash script fails to run you may need to give it execution permissions with `chmod +x build.sh`
 

@@ -3,7 +3,7 @@
 version: "3.9"
 services:
   web:
-    image: sdaw/threetechmarket
+    image: 4rius/threetechmarket
     container_name: threetechmarket
     ports:
       - "8443:8443"
