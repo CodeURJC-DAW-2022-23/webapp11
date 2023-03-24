@@ -61,7 +61,7 @@ public class ProductRestController {
     @ApiResponse(responseCode = "403", description = "User not authorized")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         Product newProduct = productService.createProduct(product);
-        // Return the URI of the new product
+        // Return the location of the new product
         return ResponseEntity.created(URI.create("/api/products/" + newProduct.getId())).body(newProduct);
     }
 

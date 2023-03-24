@@ -2,7 +2,6 @@ package com.techmarket.app.controller.RestControllers;
 
 import com.techmarket.app.model.Review;
 import com.techmarket.app.model.User;
-import com.techmarket.app.security.jwt.AuthResponse;
 import com.techmarket.app.service.ProductService;
 import com.techmarket.app.service.ReviewService;
 import com.techmarket.app.service.UserService;
@@ -15,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/reviews")
@@ -51,7 +51,7 @@ public class ReviewRestController {
     @Operation(summary = "Create a review", description = "Create a review", tags = {"reviews"})
     @ApiResponse(responseCode = "200", description = "Review created")
     @ApiResponse(responseCode = "404", description = "Product not found")
-    public ResponseEntity<AuthResponse> createReview(@PathVariable Long productId, @RequestBody Review review, HttpServletRequest request) {
+    public ResponseEntity<Object> createReview(@PathVariable Long productId, @RequestBody Review review, HttpServletRequest request) {
         User user = userService.getCurrentUser(request);
         if (user.getPurchasedProducts().contains(productService.getProductById(productId)) && !productService.getProductById(productId).getReviews().contains(user)) {
             Review newReview = ReviewService.createReview(review);
@@ -60,14 +60,23 @@ public class ReviewRestController {
             ReviewService.saveReview(newReview);
             productService.getProductById(productId).getReviews().add(newReview);
             productService.saveProduct(productService.getProductById(productId));
-            AuthResponse authResponse = new AuthResponse(AuthResponse.Status.SUCCESS,newReview.getReviewId().toString());
-            return ResponseEntity.ok(authResponse);
+            user.getReviews().add(newReview.getProduct());
+            userService.saveUser(user);
+            // Return the location of the new resource on the response header
+            return ResponseEntity.ok().header("Location", "/api/reviews/get/" + newReview.getReviewId()).body(newReview);
         }
         else{
-            AuthResponse authResponse =  new AuthResponse(AuthResponse.Status.FAILURE,"Error");
-            return ResponseEntity.ok(authResponse); //change the return with AuthResponse
-
+            return ResponseEntity.badRequest().body(Map.of("message", "You can't review this product"));
         }
+    }
+
+    @GetMapping("{id}")
+    @Operation(summary = "Get a review", description = "Get a review", tags = {"reviews"})
+    @ApiResponse(responseCode = "200", description = "Review found")
+    @ApiResponse(responseCode = "404", description = "Review not found")
+    public ResponseEntity<Review> getReview(@PathVariable Long id) {
+        Review review = ReviewService.getReviewById(id);
+        return ResponseEntity.ok(review);
     }
 
 }
