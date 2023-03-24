@@ -2,9 +2,7 @@
 package com.techmarket.app.controller.RestControllers;
 
 import com.techmarket.app.model.Message;
-
 import com.techmarket.app.model.Product;
-
 import com.techmarket.app.model.Purchase;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.jwt.AuthResponse;
@@ -15,18 +13,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 
 @RestController
@@ -43,6 +35,8 @@ public class UserRestController {
 
 
     @GetMapping("/messages")
+    @Operation(summary = "Get the current user's messages")
+    @ApiResponse(responseCode = "200", description = "User messages retrieved")
     public List<String> getMessages(HttpServletRequest request) {
         // Get the current user
         User user = userService.getCurrentUser(request);
@@ -56,6 +50,9 @@ public class UserRestController {
     }
 
     @GetMapping("/messages/agent/{id}")
+    @Operation(summary = "Get the current agent's messages that are associated with the id of the user he is talking to")
+    @ApiResponse(responseCode = "200", description = "Agent messages retrieved")
+    @ApiResponse(responseCode = "400", description = "User not found")
     public List<String> getAgentMessages(HttpServletRequest request, @PathVariable Long id) {
         // Get the current user
         User user = userService.getCurrentUser(request);
@@ -88,6 +85,8 @@ public class UserRestController {
     }
 
     @PostMapping("/send-message")
+    @Operation(summary = "Send a message from the current user")
+    @ApiResponse(responseCode = "200", description = "Message sent")
     public ResponseEntity<AuthResponse> sendMessage(HttpServletRequest request, @RequestBody String
             messageText, Message message) {
         User currentUser = userService.getCurrentUser(request);
@@ -104,6 +103,9 @@ public class UserRestController {
     }
 
     @PostMapping("/send-message/agent/{id}")
+    @Operation(summary = "Send a message from the current agent to the id of the user he is talking to")
+    @ApiResponse(responseCode = "200", description = "Message sent")
+    @ApiResponse(responseCode = "400", description = "User not found")
     public ResponseEntity<AuthResponse> sendMessageAgent(HttpServletRequest request, Message
             message, @RequestBody String messageText, @PathVariable Long id) {
         User currentUser = userService.getCurrentUser(request);
@@ -156,6 +158,8 @@ public class UserRestController {
 
 
     @PostMapping("/checkout")
+    @Operation(summary = "Checkout the current user's shopping cart")
+    @ApiResponse(responseCode = "200", description = "User checked out")
     public ResponseEntity<AuthResponse> checkout(HttpServletRequest request, @RequestBody String address) {
         // Get the current user
         User currentUser = userService.getCurrentUser(request);
@@ -194,6 +198,9 @@ public class UserRestController {
     }
 
     @PostMapping("/return-purchase/{purchaseId}")
+    @Operation(summary = "Return a purchase")
+    @ApiResponse(responseCode = "200", description = "Purchase returned")
+    @ApiResponse(responseCode = "400", description = "Purchase not found")
     public ResponseEntity<AuthResponse> returnPurchase(HttpServletRequest request, @PathVariable Long purchaseId) {
         // Get the current user
         User currentUser = userService.getCurrentUser(request);

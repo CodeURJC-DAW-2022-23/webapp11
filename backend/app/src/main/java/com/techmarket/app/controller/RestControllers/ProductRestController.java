@@ -30,7 +30,7 @@ public class ProductRestController {
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/info/{id}")
     @Operation(summary = "Get a product by id")
     @ApiResponse(responseCode = "200", description = "Product retrieved")
     @ApiResponse(responseCode = "404", description = "Product not found")
@@ -54,10 +54,11 @@ public class ProductRestController {
     }
 
     // Create a new product
-    @PostMapping
+    @PostMapping("/add-product")
     @Operation(summary = "Create a new product")
     @ApiResponse(responseCode = "201", description = "Product created")
     @ApiResponse(responseCode = "400", description = "Product not created")
+    @ApiResponse(responseCode = "403", description = "User not authorized")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         Product newProduct = productService.createProduct(product);
         // Return the URI of the new product

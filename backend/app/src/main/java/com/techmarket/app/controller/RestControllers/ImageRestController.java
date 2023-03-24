@@ -97,6 +97,10 @@ public class ImageRestController {
     }
 
     @PostMapping("/{id}/main-image")
+    @Operation(summary = "Update the product's main image")
+    @ApiResponse(responseCode = "200", description = "Product main image updated")
+    @ApiResponse(responseCode = "400", description = "Please upload a file")
+    @ApiResponse(responseCode = "404", description = "Product not found")
     public ResponseEntity<Object> uploadProductMainImage(@RequestParam("image") MultipartFile image, @PathVariable long id) throws SQLException, IOException {
         Product product = productService.getProductById(id);
         if (image.isEmpty()) {

@@ -8,20 +8,17 @@ import com.techmarket.app.security.jwt.AuthResponse;
 import com.techmarket.app.service.ProductService;
 import com.techmarket.app.service.RecommendationService;
 import com.techmarket.app.service.UserProductsService;
+import com.techmarket.app.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Page;
-import com.techmarket.app.service.UserService;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -41,6 +38,8 @@ public class UserProductsRestController{
     private RecommendationService recommendationService;
 
     @GetMapping(value="/cart" ,params = {"page", "size"})
+    @Operation(summary = "Get all products in cart")
+    @ApiResponse(responseCode = "200", description = "Products retrieved")
     public ResponseEntity<Page<Product>> getCartProducts(@RequestParam(defaultValue = "0") int page,
                                                          @RequestParam(defaultValue = "10") int size,
                                                          HttpServletRequest request) {
@@ -53,6 +52,8 @@ public class UserProductsRestController{
     }
 
     @GetMapping(value="/wishlist" ,params = {"page", "size"})
+    @Operation(summary = "Get all products in wishlist")
+    @ApiResponse(responseCode = "200", description = "Products retrieved")
     public ResponseEntity<Page<Product>> getWishlistProducts(@RequestParam(defaultValue = "0") int page,
                                                          @RequestParam(defaultValue = "10") int size,
                                                              HttpServletRequest request) {
@@ -65,6 +66,9 @@ public class UserProductsRestController{
 
 
     @PostMapping(value="/cart/addProduct/{id}")
+    @Operation(summary = "Add a product to the current user's cart")
+    @ApiResponse(responseCode = "200", description = "Product added to cart")
+    @ApiResponse(responseCode = "400", description = "Product not found")
     public ResponseEntity<AuthResponse> addProductToCart(@PathVariable Long id,HttpServletRequest request) {
        User user = userService.getCurrentUser(request);
        user.getShoppingCart().add(productService.getProductById(id));
@@ -74,7 +78,10 @@ public class UserProductsRestController{
 
     }
 
-   @DeleteMapping(value="/cart/removeProduct/{id}")
+    @DeleteMapping(value="/cart/removeProduct/{id}")
+    @Operation(summary = "Remove a product from the current user's cart")
+    @ApiResponse(responseCode = "200", description = "Product removed from cart")
+    @ApiResponse(responseCode = "400", description = "Product not found")
     public ResponseEntity<AuthResponse> removeProductFromCart(@PathVariable Long id, HttpServletRequest request) {
         User user = userService.getCurrentUser(request);
         user.getShoppingCart().remove(productService.getProductById(id));
@@ -84,6 +91,9 @@ public class UserProductsRestController{
     }
 
     @PostMapping(value="/wishlist/addProduct/{id}")
+    @Operation(summary = "Add a product to the current user's wishlist")
+    @ApiResponse(responseCode = "200", description = "Product added to wishlist")
+    @ApiResponse(responseCode = "400", description = "Product not found")
     public ResponseEntity<AuthResponse> addProductToWishlist(@PathVariable Long id, HttpServletRequest request) {
         User user  = userService.getCurrentUser(request);
         user.getWishlist().add(productService.getProductById(id));
@@ -94,6 +104,9 @@ public class UserProductsRestController{
     }
 
     @DeleteMapping(value="/wishlist/removeProduct/{id}")
+    @Operation(summary = "Remove a product from the current user's wishlist")
+    @ApiResponse(responseCode = "200", description = "Product removed from wishlist")
+    @ApiResponse(responseCode = "400", description = "Product not found")
     public ResponseEntity<AuthResponse> removeProductFromWishlist(@PathVariable Long id, HttpServletRequest request) {
         User user = userService.getCurrentUser(request);
         user.getWishlist().remove(productService.getProductById(id));
@@ -103,6 +116,8 @@ public class UserProductsRestController{
     }
 
     @GetMapping("/recommendations")
+    @Operation(summary = "Get the current user's recommendations")
+    @ApiResponse(responseCode = "200", description = "User recommendations retrieved")
     public ResponseEntity<List<Product>> getRecommendations() {
         List<Product> recommendations = recommendationService.getRecommendedProducts();
         return ResponseEntity.ok(recommendations);
