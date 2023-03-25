@@ -584,9 +584,9 @@ All members have contributed to the project in a similar way, and all members ha
 
 ## API REST Documentation
 
-As we are using SpringBoot 3, we need to use need to use [springdoc-openapi v2.0.4](https://springdoc.org/v2/) to generate the documentation. The documentation is available at `/api-docs` and `/v3/api-docs` endpoints. We also created a [Postman collection](LINK HERE) to test the API.
+As we are using SpringBoot 3, we need to use need to use [springdoc-openapi v2.0.4](https://springdoc.org/v2/) to generate the documentation. The documentation is available at `/api-docs` and `/v3/api-docs` endpoints. We also created a [Postman collection](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/de2ef54da2f5fe4f8d0e69a3b8000231a4db722d/3TechMarket%20API.postman_collection.json) to test the API.
 
-We provide a Yaml file with the API documentation, and a html file with the generated documentation. You can find them on this raw [YAML](https://raw.githubusercontent.com/CodeURJC-DAW-2022-23/webapp11/main/backend/app/src/main/resources/static/api-docs.yaml) and [HTML](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/56603d8e277f86885c17805ecf38619d557f1476/backend/app/api-docs/api-docs.html).
+We provide a Yaml file with the API documentation, and a html file with the generated documentation that were made using springdoc-openapi-maven-plugin 1.4 to get the Yaml file and openapi-generator-maven-plugin to generate the HTML. You can find them on this raw [YAML file](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/de2ef54da2f5fe4f8d0e69a3b8000231a4db722d/backend/app/api-docs/api-docs.yaml) and [HTML file](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/de2ef54da2f5fe4f8d0e69a3b8000231a4db722d/backend/app/api-docs/index.html).
 
 You can also access and test the API using the built-in Swagger UI provided as part of the dependency at `https://localhost:8443/api-docs`, as well as the YAML file at `https://localhost:8443/v3/api-docs.yaml`.
 
@@ -681,6 +681,18 @@ If the bash script fails to run you may need to give it execution permissions wi
 Note: This worked once and never worked again, and since it became optional we decided to not spend more time on it.
 
 ## Member participation
+
+## Contributions
+
+All members have contributed on this phase of the project, the following table shows the contributions of each member:
+
+| Member                                               | Contributions                                                                                                       |
+|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| [Santiago Arias](https://github.com/4rius)           | API security - Product Rest controller - API Login and signup - API User images - All the Docker stuff - Springdoc  |
+| [Andreas Wolf](https://github.com/Andreas4122002)    | Repository to service switch - Cart and wishlist rest controllers - API checkout - Filters - Review rest controller |
+| [Ignacio Canículo](https://github.com/nachocaniculo) | API support chat (messages) - Message service optimization - Postman collection                                     |
+| [Inés Alonso](https://github.com/tsukii14)           | Review rest controller - Filters - Postman collection                                                               |
+| [Ángel Covarrubias](https://github.com/angelcova)    | API product images - API review images - Filters                                                                    |
 
 ### 5 most important commits
 
