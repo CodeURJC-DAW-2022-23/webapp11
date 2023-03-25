@@ -691,8 +691,8 @@ All members have contributed on this phase of the project, the following table s
 | [Santiago Arias](https://github.com/4rius)           | API security - Product Rest controller - API Login and signup - API User images - All the Docker stuff - Springdoc  |
 | [Andreas Wolf](https://github.com/Andreas4122002)    | Repository to service switch - Cart and wishlist rest controllers - API checkout - Filters - Review rest controller |
 | [Ignacio Canículo](https://github.com/nachocaniculo) | API support chat (messages) - Message service optimization - Postman collection                                     |
-| [Inés Alonso](https://github.com/tsukii14)           | Review rest controller - Filters - Postman collection                                                               |
-| [Ángel Covarrubias](https://github.com/angelcova)    | API product images - API review images - Filters                                                                    |
+| [Inés Alonso](https://github.com/tsukii14)           | API product images - API review images - Filters                                                                    |
+| [Ángel Covarrubias](https://github.com/angelcova)    | Review rest controller - Filters - Postman collection                                                               |
 
 ### 5 most important commits
 
