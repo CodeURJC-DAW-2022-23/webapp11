@@ -686,11 +686,11 @@ Note: This worked once and never worked again, and since it became optional we d
 
 <details><summary> <b> Santiago Arias </b> </summary>
 
-- 
-- 
-- 
-- 
-- 
+- [Dockerized the application](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/96bb579cfd63ec7499d2bff0e73edef1f6d377d4)
+- [Profile picture images through the API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/db538d85a19ddd46a2696d7032ec35ee85b9ed39)
+- [API Security](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/9938af6b77574ac99498a8991a2bbb78bf172254)
+- [Springdoc OpenAPI](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/3e12f37bf22a3fab076bf37e6e0c35d7ea7688fb)
+- [ProductRestController](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/15a8448d22774c6ff34934f8c7ce41e48a452d49)
 
 </details>
 
@@ -737,7 +737,11 @@ Note: This worked once and never worked again, and since it became optional we d
 
 <details><summary> <b> Santiago Arias </b> </summary>
 
-- 
+- [RestSecurityConfiguration.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/security/RestSecurityConfiguration.java)
+- [ProductRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ProductRestController.java)
+- [ImageRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ImageRestController.java)
+- [RestAuthController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/RestAuthController.java)
+- [docker-compose.yml](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/docker/docker-compose.yml)
 
 </details>
 

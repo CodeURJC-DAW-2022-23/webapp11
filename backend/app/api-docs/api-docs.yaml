@@ -39,31 +39,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
   /api/products/{id}:
-    get:
-      tags:
-      - product-rest-controller
-      summary: Get a product by id
-      operationId: getProductById
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: Product retrieved
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Product'
-        "404":
-          description: Product not found
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Product'
     put:
       tags:
       - product-rest-controller
@@ -116,6 +91,7 @@ paths:
     post:
       tags:
       - user-products-rest-controller
+      summary: Add a product to the current user's wishlist
       operationId: addProductToWishlist
       parameters:
       - name: id
@@ -126,7 +102,13 @@ paths:
           format: int64
       responses:
         "200":
-          description: OK
+          description: Product added to wishlist
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        "400":
+          description: Product not found
           content:
             '*/*':
               schema:
@@ -135,6 +117,7 @@ paths:
     post:
       tags:
       - user-rest-controller
+      summary: Send a message from the current user
       operationId: sendMessage
       parameters:
       - name: message
@@ -150,7 +133,7 @@ paths:
         required: true
       responses:
         "200":
-          description: OK
+          description: Message sent
           content:
             '*/*':
               schema:
@@ -159,6 +142,8 @@ paths:
     post:
       tags:
       - user-rest-controller
+      summary: Send a message from the current agent to the id of the user he is talking
+        to
       operationId: sendMessageAgent
       parameters:
       - name: message
@@ -180,7 +165,13 @@ paths:
         required: true
       responses:
         "200":
-          description: OK
+          description: Message sent
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        "400":
+          description: User not found
           content:
             '*/*':
               schema:
@@ -189,6 +180,7 @@ paths:
     post:
       tags:
       - user-rest-controller
+      summary: Return a purchase
       operationId: returnPurchase
       parameters:
       - name: purchaseId
@@ -198,8 +190,14 @@ paths:
           type: integer
           format: int64
       responses:
+        "400":
+          description: Purchase not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
         "200":
-          description: OK
+          description: Purchase returned
           content:
             '*/*':
               schema:
@@ -208,6 +206,7 @@ paths:
     post:
       tags:
       - user-rest-controller
+      summary: Checkout the current user's shopping cart
       operationId: checkout
       requestBody:
         content:
@@ -217,7 +216,7 @@ paths:
         required: true
       responses:
         "200":
-          description: OK
+          description: User checked out
           content:
             '*/*':
               schema:
@@ -225,7 +224,9 @@ paths:
   /api/reviews/create/{productId}:
     post:
       tags:
-      - review-rest-controller
+      - reviews
+      summary: Create a review
+      description: Create a review
       operationId: createReview
       parameters:
       - name: productId
@@ -241,40 +242,19 @@ paths:
               $ref: '#/components/schemas/Review'
         required: true
       responses:
-        "200":
-          description: OK
+        "404":
+          description: Product not found
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/AuthResponse'
-  /api/products:
-    get:
-      tags:
-      - product-rest-controller
-      summary: Get all products
-      operationId: getAllProducts
-      parameters:
-      - name: page
-        in: query
-        required: false
-        schema:
-          type: integer
-          format: int32
-          default: 0
-      - name: size
-        in: query
-        required: false
-        schema:
-          type: integer
-          format: int32
-          default: 10
-      responses:
+                type: object
         "200":
-          description: Products retrieved
+          description: Review created
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/PageProduct'
+                type: object
+  /api/products/add-product:
     post:
       tags:
       - product-rest-controller
@@ -299,10 +279,17 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/Product'
+        "403":
+          description: User not authorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Product'
   /api/images/{id}/review-image:
     post:
       tags:
       - image-rest-controller
+      summary: Update the review's images (add new images)
       operationId: uploadReviewImage
       parameters:
       - name: id
@@ -323,16 +310,24 @@ paths:
                   type: string
                   format: binary
       responses:
-        "200":
-          description: OK
+        "400":
+          description: Review not found
           content:
             '*/*':
               schema:
                 type: object
-    delete:
+        "200":
+          description: Review image added
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/images/{id}/product-image:
+    get:
       tags:
       - image-rest-controller
-      operationId: deleteReviewImage
+      summary: Get the product's images
+      operationId: getProductImages
       parameters:
       - name: id
         in: path
@@ -342,15 +337,21 @@ paths:
           format: int64
       responses:
         "200":
-          description: OK
+          description: Product images retrieved
           content:
             '*/*':
               schema:
                 type: object
-  /api/images/{id}/product-image:
+        "400":
+          description: Product not found
+          content:
+            '*/*':
+              schema:
+                type: object
     post:
       tags:
       - image-rest-controller
+      summary: Update the product's images (add new images)
       operationId: uploadProductImage
       parameters:
       - name: id
@@ -371,16 +372,48 @@ paths:
                   type: string
                   format: binary
       responses:
+        "400":
+          description: Product not found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
-          description: OK
+          description: Product image added
           content:
             '*/*':
               schema:
                 type: object
   /api/images/{id}/main-image:
+    get:
+      tags:
+      - image-rest-controller
+      summary: Get the product's main image
+      operationId: getProductMainImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Main image retrieved
+          content:
+            '*/*':
+              schema:
+                type: object
+        "400":
+          description: Product not found
+          content:
+            '*/*':
+              schema:
+                type: object
     post:
       tags:
       - image-rest-controller
+      summary: Update the product's main image
       operationId: uploadProductMainImage
       parameters:
       - name: id
@@ -402,25 +435,13 @@ paths:
                   format: binary
       responses:
         "200":
-          description: OK
+          description: Main image updated
           content:
             '*/*':
               schema:
                 type: object
-    delete:
-      tags:
-      - image-rest-controller
-      operationId: deleteProductMainImage
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: OK
+        "400":
+          description: Product not found
           content:
             '*/*':
               schema:
@@ -479,12 +500,6 @@ paths:
       summary: Delete the user's profile picture
       operationId: deleteProfilePicture
       responses:
-        "400":
-          description: User not found
-          content:
-            '*/*':
-              schema:
-                type: object
         "200":
           description: Profile picture deleted
           content:
@@ -495,6 +510,7 @@ paths:
     post:
       tags:
       - user-products-rest-controller
+      summary: Add a product to the current user's cart
       operationId: addProductToCart
       parameters:
       - name: id
@@ -505,7 +521,13 @@ paths:
           format: int64
       responses:
         "200":
-          description: OK
+          description: Product added to cart
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        "400":
+          description: Product not found
           content:
             '*/*':
               schema:
@@ -607,6 +629,7 @@ paths:
     get:
       tags:
       - user-products-rest-controller
+      summary: Get all products in wishlist
       operationId: getWishlistProducts
       parameters:
       - name: page
@@ -625,7 +648,7 @@ paths:
           default: 10
       responses:
         "200":
-          description: OK
+          description: Products retrieved
           content:
             '*/*':
               schema:
@@ -634,10 +657,11 @@ paths:
     get:
       tags:
       - user-rest-controller
+      summary: Get the current user's messages
       operationId: getMessages
       responses:
         "200":
-          description: OK
+          description: User messages retrieved
           content:
             '*/*':
               schema:
@@ -648,6 +672,8 @@ paths:
     get:
       tags:
       - user-rest-controller
+      summary: Get the current agent's messages that are associated with the id of
+        the user he is talking to
       operationId: getAgentMessages
       parameters:
       - name: id
@@ -657,18 +683,55 @@ paths:
           type: integer
           format: int64
       responses:
-        "200":
-          description: OK
+        "400":
+          description: User not found
           content:
             '*/*':
               schema:
                 type: array
                 items:
                   type: string
+        "200":
+          description: Agent messages retrieved
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+  /api/reviews/{id}:
+    get:
+      tags:
+      - reviews
+      summary: Get a review
+      description: Get a review
+      operationId: getReview
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Review not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Review'
+        "200":
+          description: Review found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Review'
   /api/reviews/get/{id}:
     get:
       tags:
-      - review-rest-controller
+      - reviews
+      summary: Get all reviews of a product
+      description: Get all reviews of a product
       operationId: getProductReviews
       parameters:
       - name: id
@@ -679,7 +742,15 @@ paths:
           format: int64
       responses:
         "200":
-          description: OK
+          description: successful operation
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        "404":
+          description: Product not found
           content:
             '*/*':
               schema:
@@ -690,10 +761,11 @@ paths:
     get:
       tags:
       - user-products-rest-controller
+      summary: Get the current user's recommendations
       operationId: getRecommendations
       responses:
         "200":
-          description: OK
+          description: User recommendations retrieved
           content:
             '*/*':
               schema:
@@ -721,6 +793,34 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PagePurchase'
+  /api/products:
+    get:
+      tags:
+      - product-rest-controller
+      summary: Get all products
+      operationId: getAllProducts
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      responses:
+        "200":
+          description: Products retrieved
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageProduct'
   /api/products/search/{product}:
     get:
       tags:
@@ -754,10 +854,63 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PageProduct'
+  /api/products/info/{id}:
+    get:
+      tags:
+      - product-rest-controller
+      summary: Get a product by id
+      operationId: getProductById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Product retrieved
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Product'
+        "404":
+          description: Product not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Product'
+  /api/images/{imageId}:
+    get:
+      tags:
+      - image-rest-controller
+      summary: Get the image by id
+      operationId: getImageById
+      parameters:
+      - name: imageId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Image not found
+          content:
+            '*/*':
+              schema:
+                type: object
+        "200":
+          description: Image retrieved
+          content:
+            '*/*':
+              schema:
+                type: object
   /api/cart:
     get:
       tags:
       - user-products-rest-controller
+      summary: Get all products in cart
       operationId: getCartProducts
       parameters:
       - name: page
@@ -776,7 +929,7 @@ paths:
           default: 10
       responses:
         "200":
-          description: OK
+          description: Products retrieved
           content:
             '*/*':
               schema:
@@ -785,6 +938,7 @@ paths:
     delete:
       tags:
       - user-products-rest-controller
+      summary: Remove a product from the current user's wishlist
       operationId: removeProductFromWishlist
       parameters:
       - name: id
@@ -795,7 +949,13 @@ paths:
           format: int64
       responses:
         "200":
-          description: OK
+          description: Product removed from wishlist
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        "400":
+          description: Product not found
           content:
             '*/*':
               schema:
@@ -803,7 +963,9 @@ paths:
   /api/reviews/delete/{id}:
     delete:
       tags:
-      - review-rest-controller
+      - reviews
+      summary: Delete a review
+      description: Delete a review
       operationId: deleteProductReview
       parameters:
       - name: id
@@ -813,12 +975,67 @@ paths:
           type: integer
           format: int64
       responses:
-        "200":
-          description: OK
-  /api/images/{id}/images:
+        "204":
+          description: Review removed
+        "404":
+          description: Review not found
+  /api/images/d/{id}/review-image:
     delete:
       tags:
       - image-rest-controller
+      summary: Delete the review's images
+      operationId: deleteReviewImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Review images deleted
+          content:
+            '*/*':
+              schema:
+                type: object
+        "400":
+          description: Review not found
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/images/d/{id}/main-image:
+    delete:
+      tags:
+      - image-rest-controller
+      summary: Delete the product's main image
+      operationId: deleteProductMainImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Main image deleted
+          content:
+            '*/*':
+              schema:
+                type: object
+        "400":
+          description: Product not found
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/images/d/{id}/images:
+    delete:
+      tags:
+      - image-rest-controller
+      summary: Delete the product's images
       operationId: deleteProductImages
       parameters:
       - name: id
@@ -829,7 +1046,13 @@ paths:
           format: int64
       responses:
         "200":
-          description: OK
+          description: Product images deleted
+          content:
+            '*/*':
+              schema:
+                type: object
+        "400":
+          description: Product not found
           content:
             '*/*':
               schema:
@@ -838,6 +1061,7 @@ paths:
     delete:
       tags:
       - user-products-rest-controller
+      summary: Remove a product from the current user's cart
       operationId: removeProductFromCart
       parameters:
       - name: id
@@ -848,7 +1072,13 @@ paths:
           format: int64
       responses:
         "200":
-          description: OK
+          description: Product removed from cart
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        "400":
+          description: Product not found
           content:
             '*/*':
               schema:
@@ -911,13 +1141,13 @@ components:
         id:
           type: integer
           format: int64
-        tagList:
-          type: string
         productPrices:
           type: array
           items:
             type: number
             format: double
+        tagList:
+          type: string
     Review:
       type: object
       properties:
@@ -1017,12 +1247,12 @@ components:
     PageProduct:
       type: object
       properties:
-        totalPages:
-          type: integer
-          format: int32
         totalElements:
           type: integer
           format: int64
+        totalPages:
+          type: integer
+          format: int32
         first:
           type: boolean
         last:
@@ -1039,11 +1269,11 @@ components:
           format: int32
         sort:
           $ref: '#/components/schemas/SortObject'
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
         numberOfElements:
           type: integer
           format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
         empty:
           type: boolean
     PageableObject:
@@ -1054,16 +1284,16 @@ components:
           format: int64
         sort:
           $ref: '#/components/schemas/SortObject'
-        paged:
-          type: boolean
-        unpaged:
-          type: boolean
         pageNumber:
           type: integer
           format: int32
         pageSize:
           type: integer
           format: int32
+        paged:
+          type: boolean
+        unpaged:
+          type: boolean
     SortObject:
       type: object
       properties:
@@ -1076,12 +1306,12 @@ components:
     PagePurchase:
       type: object
       properties:
-        totalPages:
-          type: integer
-          format: int32
         totalElements:
           type: integer
           format: int64
+        totalPages:
+          type: integer
+          format: int32
         first:
           type: boolean
         last:
@@ -1098,11 +1328,11 @@ components:
           format: int32
         sort:
           $ref: '#/components/schemas/SortObject'
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
         numberOfElements:
           type: integer
           format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
         empty:
           type: boolean
     Purchase:
