@@ -660,12 +660,12 @@ If everything is ok you should see 1 container running:
 
 1. Clone the repository `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
 2. Navigate to the `docker` folder `cd webapp11/docker`
-3. Run `./build.sh` to build the image
+3. Run `./create_image.sh` to build the image
 4. Refer to the instructions above to run the image
 
 The image name is `4rius/threetechmarket` and the version is `1.0.0`
 
-If the bash script fails to run you may need to give it execution permissions with `chmod +x build.sh`
+If the bash script fails to run you may need to give it execution permissions with `chmod +x create_image.sh`
 
 ## Deploy the application to Railway through the command line (NOT WORKING / NOT TESTED / NOT REQUIRED)
 
