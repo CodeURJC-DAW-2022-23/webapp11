@@ -1,5 +1,6 @@
 package com.techmarket.app.service;
 
+import com.techmarket.app.Repositories.ProductRepository;
 import com.techmarket.app.Repositories.ReviewRepository;
 import com.techmarket.app.model.Product;
 import com.techmarket.app.model.Review;
@@ -15,6 +16,8 @@ public class ReviewService {
 
 
     @Autowired
+    private ProductRepository productRepository;
+    @Autowired
     private ReviewRepository reviewRepository;
 
     public Review getReviewById(long id) {
@@ -25,12 +28,22 @@ public class ReviewService {
     public Page<Review> getReviewsByProduct(Product product, Pageable pageable) {
         return reviewRepository.findByProduct(product, pageable);
     }
+    public List<Review> getAllReviewsByProduct(Product product){
+        return reviewRepository.findAllByProduct(product);
+    }
 
-    public List<Review> getAllReviewsByProduct(Product product) {
+    public List<Review> getAllReviewsByProductId(Long id) {
+        Product product = productRepository.findByProductId(id);
+
         return reviewRepository.findAllByProduct(product);
     }
      public void saveReview(Review review) {
         reviewRepository.save(review);
+    }
+
+    public Review createReview(Review review) {
+        reviewRepository.save(review);
+        return review;
     }
 
     public void deleteReviewById(long id) {

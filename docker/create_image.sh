@@ -28,7 +28,7 @@ fi
 
 # Name of the image to create
 # shellcheck disable=SC2034
-IMAGE_NAME="sdaw/threetechmarket"
+IMAGE_NAME="4rius/threetechmarket"
 
 # Docker's image version
 IMAGE_VERSION="1.0.0"

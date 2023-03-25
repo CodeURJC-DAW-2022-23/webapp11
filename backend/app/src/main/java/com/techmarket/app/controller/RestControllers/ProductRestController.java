@@ -2,14 +2,14 @@ package com.techmarket.app.controller.RestControllers;
 
 import com.techmarket.app.model.Product;
 import com.techmarket.app.service.ProductService;
-import jakarta.servlet.http.HttpServletResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
@@ -21,6 +21,8 @@ public class ProductRestController {
     private ProductService productService;
 
     @GetMapping(params = {"page", "size"})
+    @Operation(summary = "Get all products")
+    @ApiResponse(responseCode = "200", description = "Products retrieved")
     public ResponseEntity<Page<Product>> getAllProducts(@RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
@@ -28,7 +30,10 @@ public class ProductRestController {
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/info/{id}")
+    @Operation(summary = "Get a product by id")
+    @ApiResponse(responseCode = "200", description = "Product retrieved")
+    @ApiResponse(responseCode = "404", description = "Product not found")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);
         if (product == null) {
@@ -38,6 +43,8 @@ public class ProductRestController {
     }
 
     @GetMapping("/search/{product}")
+    @Operation(summary = "Search products by name")
+    @ApiResponse(responseCode = "200", description = "Products retrieved")
     public ResponseEntity<Page<Product>> searchProducts(@RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "10") int size,
                                                         @PathVariable String product) {
@@ -46,22 +53,31 @@ public class ProductRestController {
         return ResponseEntity.ok(products);
     }
 
-    @PostMapping
-    public ResponseEntity<Void> createProduct(@RequestBody Product product, HttpServletResponse response) {
+    // Create a new product
+    @PostMapping("/add-product")
+    @Operation(summary = "Create a new product")
+    @ApiResponse(responseCode = "201", description = "Product created")
+    @ApiResponse(responseCode = "400", description = "Product not created")
+    @ApiResponse(responseCode = "403", description = "User not authorized")
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         Product newProduct = productService.createProduct(product);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")  // get the current request and add the id to the end
-                .buildAndExpand(newProduct.getProductId()).toUri();  // get the id of the new product and expand it to the uri, so it can be used
-        response.setHeader("Location", location.toString());  // set the location of the new product
-        return ResponseEntity.created(location).build();  // return the created status and the location of the new product
+        // Return the location of the new product
+        return ResponseEntity.created(URI.create("/api/products/" + newProduct.getId())).body(newProduct);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Delete a product by id")
+    @ApiResponse(responseCode = "204", description = "Product deleted")
+    @ApiResponse(responseCode = "404", description = "Product not found")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteByProductId(id);
         return ResponseEntity.noContent().build();  // return the no content status
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Update a product by id")
+    @ApiResponse(responseCode = "200", description = "Product updated")
+    @ApiResponse(responseCode = "404", description = "Product not found")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
         Product updatedProduct = productService.updateProduct(id, product);
         if (updatedProduct == null) {

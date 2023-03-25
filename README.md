@@ -582,6 +582,33 @@ All members have contributed to the project in a similar way, and all members ha
 
 # Phase 3: API REST, Docker and Railway
 
+## API REST Documentation
+
+As we are using SpringBoot 3, we need to use need to use [springdoc-openapi v2.0.4](https://springdoc.org/v2/) to generate the documentation. The documentation is available at `/api-docs` and `/v3/api-docs` endpoints. We also created a [Postman collection](LINK HERE) to test the API.
+
+We provide a Yaml file with the API documentation, and a html file with the generated documentation. You can find them on this raw [YAML](https://raw.githubusercontent.com/CodeURJC-DAW-2022-23/webapp11/main/backend/app/src/main/resources/static/api-docs.yaml) and [HTML](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/56603d8e277f86885c17805ecf38619d557f1476/backend/app/api-docs/api-docs.html).
+
+You can also access and test the API using the built-in Swagger UI provided as part of the dependency at `https://localhost:8443/api-docs`, as well as the YAML file at `https://localhost:8443/v3/api-docs.yaml`.
+
+To create the documentation yourself you can expand the following section.
+
+<details><summary> <b> How to generate the documentation </b> </summary>
+
+1. Disable anything that has to do with https in the `application.properties` file (uncomment the following lines):
+
+    ![img_10.png](img_10.png)
+
+    This will make the app start in http instead of https.
+
+2. Uncomment the following lines in the `pom.xml` file (both plugins):
+
+    ![img_11.png](img_11.png)
+3. Run `mvn verify` to generate the documentation
+
+Notes: You should run the command from the root folder of the project -> `app`. If you run it from the `backend` folder it will not work. The provided documentation is already up-to-date, so you don't need to generate it again. Remember to comment the lines you uncommented in the `pom.xml` file and uncomment the lines you commented on the `application.properties` file.
+
+</details>
+
 ## Run the dockerized application
 *We provide 2 `docker_compose.yml` files, one of them connects with our Azure database and contains lots of sample data the other one connects with a local database using the MySQL official Docker image. You can choose the one you want to use. You can add some sample data using the `SampleDataService.java` file.*
 
@@ -636,15 +663,108 @@ If everything is ok you should see 1 container running:
 3. Run `./build.sh` to build the image
 4. Refer to the instructions above to run the image
 
-The image name is `sdaw/threetechmarket` and the version is `1.0.0`
+The image name is `4rius/threetechmarket` and the version is `1.0.0`
 
 If the bash script fails to run you may need to give it execution permissions with `chmod +x build.sh`
 
-## Deploy the application to Railway through the command line (needs to be tested)
+## Deploy the application to Railway through the command line (NOT WORKING / NOT TESTED / NOT REQUIRED)
 
 1. Install the Railway CLI with your package manager of choice (brew, apt, etc.) (Example for macOS: `brew install railway`)
 2. Login to Railway with `railway login`
-3. Navigate to the `railway` folder
-4. Run `railway run` to deploy the application
-5. Run `railway open` to open the application in your browser
-6. Run `railway logs` to see the logs of the application
+3. Clone the repository `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
+4. Navigate to the project folder `cd webapp11`
+5. Create a new project with `railway init`
+6. Link the project with the current folder with `railway link`
+7. Add the MySQL plugin with `railway add` and select the MySQL plugin
+8. Run `railway up` to deploy the application
+
+Note: This worked once and never worked again, and since it became optional we decided to not spend more time on it.
+
+## Member participation
+
+### 5 most important commits
+
+<details><summary> <b> Santiago Arias </b> </summary>
+
+- [Dockerized the application](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/96bb579cfd63ec7499d2bff0e73edef1f6d377d4)
+- [Profile picture images through the API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/db538d85a19ddd46a2696d7032ec35ee85b9ed39)
+- [API Security](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/9938af6b77574ac99498a8991a2bbb78bf172254)
+- [Springdoc OpenAPI](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/3e12f37bf22a3fab076bf37e6e0c35d7ea7688fb)
+- [ProductRestController](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/15a8448d22774c6ff34934f8c7ce41e48a452d49)
+
+</details>
+
+<details><summary> <b> Andreas Wolf </b> </summary>
+
+
+- 
+- 
+- 
+- 
+- 
+
+
+</details>
+
+<details><summary> <b> Ignacio Canículo </b> </summary>
+
+- 
+- 
+- 
+- 
+- 
+
+</details>
+
+<details><summary> <b> Inés Alonso </b> </summary>
+
+- 
+- 
+- 
+- 
+- 
+
+</details>
+
+<details><summary> <b> Ángel Covarrubias </b> </summary>
+
+- 
+
+
+</details>
+
+### 5 most edited files
+
+<details><summary> <b> Santiago Arias </b> </summary>
+
+- [RestSecurityConfiguration.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/security/RestSecurityConfiguration.java)
+- [ProductRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ProductRestController.java)
+- [ImageRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ImageRestController.java)
+- [RestAuthController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/RestAuthController.java)
+- [docker-compose.yml](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/docker/docker-compose.yml)
+
+</details>
+
+<details><summary> <b> Andreas Wolf </b> </summary>
+
+- 
+
+</details>
+
+<details><summary> <b> Ignacio Canículo </b> </summary>
+
+- 
+
+</details>
+
+<details><summary> <b> Inés Alonso </b> </summary>
+
+- 
+
+</details>
+
+<details><summary> <b> Ángel Covarrubias </b> </summary>
+
+- 
+
+</details>

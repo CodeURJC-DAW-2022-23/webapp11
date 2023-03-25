@@ -8,7 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class MessageService {
@@ -33,7 +35,4 @@ public class MessageService {
     public List<Message> getMessagesByUser(Long id) {
         return messageRepository.findByUserId(id);
     }
-
-
-
 }

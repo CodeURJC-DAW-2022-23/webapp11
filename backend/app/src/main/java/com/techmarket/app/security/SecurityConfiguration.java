@@ -53,6 +53,8 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .requestMatchers("/reviewhistory/**").hasAnyAuthority("ADMIN")
                         .requestMatchers("/add-to-cart/**").hasAnyAuthority("USER", "AGENT")
                         .requestMatchers("/add-to-wishlist/**").hasAnyAuthority("USER", "AGENT")
+                        // Access to all OpenAPI endpoints
+                        .requestMatchers(request -> request.getServletPath().startsWith("/v3/api-docs") || request.getServletPath().startsWith("/swagger-ui") || request.getServletPath().startsWith("/swagger-ui.html") || request.getServletPath().startsWith("/swagger-ui/") || request.getServletPath().startsWith("/api-docs")).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin( form -> form
