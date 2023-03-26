@@ -582,6 +582,24 @@ All members have contributed to the project in a similar way, and all members ha
 
 # Phase 3: API REST, Docker and Railway
 
+## Sample credentials
+
+<details><summary> <b> If you use our database you can use the following credentials to log in </b> </summary>
+
+- ADMIN: santi.ari.pani+admin@pm.me / 12345678
+- USER: santiaripani@pm.me / 12345678
+- AGENT: santi.ari.pani+agent@pm.me / 12345678
+
+</details>
+
+<details><summary> <b> If you use the SampleDataService </b> </summary>
+
+- ADMIN: admin@example.com / admin123456
+- USER: user@example.com / user123456
+- AGENT: agent@example.com / agent123456
+
+</details>
+
 ## API REST Documentation
 
 As we are using SpringBoot 3, we need to use need to use [springdoc-openapi v2.0.4](https://springdoc.org/v2/) to generate the documentation. The documentation is available at `/api-docs` and `/v3/api-docs` endpoints. We also created a [Postman collection](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/de2ef54da2f5fe4f8d0e69a3b8000231a4db722d/3TechMarket%20API.postman_collection.json) to test the API.
@@ -596,21 +614,27 @@ To create the documentation yourself you can expand the following section.
 
 1. Disable anything that has to do with https in the `application.properties` file (uncomment the following lines):
 
-    ![img_10.png](img_10.png)
+    ![img_10.png](Model%20screenshots/Phase%203/img_10.png)
 
     This will make the app start in http instead of https.
 
 2. Uncomment the following lines in the `pom.xml` file (both plugins):
 
-    ![img_11.png](img_11.png)
+    ![img_11.png](Model%20screenshots/Phase%203/img_11.png)
 3. Run `mvn verify` to generate the documentation
 
 Notes: You should run the command from the root folder of the project -> `app`. If you run it from the `backend` folder it will not work. The provided documentation is already up-to-date, so you don't need to generate it again. Remember to comment the lines you uncommented in the `pom.xml` file and uncomment the lines you commented on the `application.properties` file.
 
 </details>
 
+## Updated class diagram
+
+![classdiagram.jpg](Model%20screenshots%2FPhase%203%2Fclassdiagram.jpg)
+
 ## Run the dockerized application
 *We provide 2 `docker_compose.yml` files, one of them connects with our Azure database and contains lots of sample data the other one connects with a local database using the MySQL official Docker image. You can choose the one you want to use. You can add some sample data using the `SampleDataService.java` file.*
+
+*If you don't have the image created, it will automatically be pulled from Docker Hub (it will pull the version tagged `latest`). The image is available at [https://hub.docker.com/r/4rius/threetechmarket](https://hub.docker.com/r/4rius/threetechmarket). This image was built on OS linux/arm64/v8 (Apple Silicon), so it might not work on other OS, you can create your own image using the `Dockerfile` provided in the root folder of the project, or using the `create_image.sh` script for convenience.*
 
 <details><summary> <b> Using a local database (MySQL Docker image) </b> </summary>
 
@@ -628,7 +652,7 @@ You can check the status of the containers with `docker ps`
 
 If everything is ok you should see 2 containers running (database and application):
 
-![img_8.png](img_8.png)
+![img_8.png](Model%20screenshots/Phase%203/img_8.png)
 
 </details>
 
@@ -648,7 +672,7 @@ You can check the status of the containers with `docker ps`
 
 If everything is ok you should see 1 container running:
 
-![img_9.png](img_9.png)
+![img_9.png](Model%20screenshots/Phase%203/img_9.png)
 
 </details>
 
@@ -663,7 +687,7 @@ If everything is ok you should see 1 container running:
 3. Run `./create_image.sh` to build the image
 4. Refer to the instructions above to run the image
 
-The image name is `4rius/threetechmarket` and the version is `1.0.0`
+The image name is `4rius/threetechmarket` and the version is `1.0.0` (also tagged as `latest`)
 
 If the bash script fails to run you may need to give it execution permissions with `chmod +x create_image.sh`
 
