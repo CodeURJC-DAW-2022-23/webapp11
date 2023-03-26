@@ -740,7 +740,11 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Ángel Covarrubias </b> </summary>
 
-- 
+- [ReviewRestController](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/d88ff2554b3bfb4e0c411dd337a3d6c91cb0da31)
+- [Update ReviewRestController](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/d5bbf409ee02f85277a0d8e6aabcb1c3a3033f6e)
+- [API finished](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/5afd5d517f6ac7456a66b9ef47dab5378e2218ff)
+- [API review changes](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/d40c1a763f5354202ef644ffaeace5f401602e8c)
+- [Additions ReviewRestController](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/fcbf190e1e89ccbc512f9d9530aa42d99e6239d2)
 
 
 </details>
@@ -777,6 +781,10 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Ángel Covarrubias </b> </summary>
 
-- 
+- [ReviewRestContoller](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ReviewRestController.java)
+- [ReviewService](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/service/ReviewService.java)
+- [ReviewRepository](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/Repositories/ReviewRepository.java)
+- [RestSecurityConfiguration](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/security/RestSecurityConfiguration.java)
+- [ProductRestController](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ProductRestController.java)
 
 </details>
