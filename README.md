@@ -709,11 +709,11 @@ All members have contributed on this phase of the project, the following table s
 <details><summary> <b> Andreas Wolf </b> </summary>
 
 
-- 
-- 
-- 
-- 
-- 
+- [Wishlist implementation for the API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/9ab2b14ce7683cfa708a1709b3d45583c5fa2534)
+- [Cart implementation for the API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/b8c81304cd7180c419eec7c210b8d8fa6aa1c3b2#diff-03f48cf821b3ddde992abf5985b1e56498d4e9562d65fb363ac4167a48d6e004)
+- [Checkout implementation for the API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/ded258d81ab563d47ee8f212954fd59f46dbd0be)
+- [Product Recommendation Service for the API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/ca027d6d55f0d666aa8106424a7a2b30b9d6c5e6)
+- [Purchase return implementation fdr the API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/28e416139b8e269fd8d81b5dddc0924f9664e6c7)
 
 
 </details>
@@ -763,7 +763,13 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Andreas Wolf </b> </summary>
 
-- 
+- [ProductRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ProductRestController.java)
+- [ReviewRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ReviewRestController.java)
+- [UserProductsRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/UserProductsRestController.java)
+- [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/UserRestController.java)
+- [UserProductService.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/service/UserProductsService.java)
+
+
 
 </details>
 
