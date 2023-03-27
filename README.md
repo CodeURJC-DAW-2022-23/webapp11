@@ -744,11 +744,10 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Ignacio Canículo </b> </summary>
 
-- 
-- 
-- 
-- 
-- 
+- [Working Messages API :)](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/1d5e02a9e8471f2a29f41524925633e6183d4a17)
+- [No Working Messages API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/b7fbdeaa8fe9b5ce94a3393521e7cc2b661f79f9)
+- [Working messages API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/d2637a2348bff53370b229780ccd650f73ef199b)
+- [Messages via API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/27a75a01a5e8f13179579c9705f0fc4a159072d5)
 
 </details>
 
@@ -799,8 +798,11 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Ignacio Canículo </b> </summary>
 
-- 
-
+- [UserRestController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/UserRestController.java)
+- [MessageService.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/UserRestController.java)
+- [RestSecurityConfiguration.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/backend/app/src/main/java/com/techmarket/app/security/RestSecurityConfiguration.java)
+- [MessageRequest.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/security/jwt/MessageRequest.java)
+    
 </details>
 
 <details><summary> <b> Inés Alonso </b> </summary>
