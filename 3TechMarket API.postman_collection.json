@@ -4,7 +4,7 @@
 		"name": "3TechMarket API",
 		"description": "3TechMarket API, fancyyyyyyy\n\nWe rely mostly on pathvariables, so to try out our collection, you shall change the numbers on the requests to the ones on your database.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26290180"
+		"_exporter_id": "25834704"
 	},
 	"item": [
 		{
@@ -448,6 +448,28 @@
 						"description": "Add a product providing a JSON body with the information"
 					},
 					"response": []
+				},
+				{
+					"name": "Product price history",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/products/price-history/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"products",
+								"price-history",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"description": "# Products\n\nAll things product-related"
@@ -673,6 +695,29 @@
 								"user",
 								"return-purchase",
 								"352"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate purchase pdf",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/user/purchase/generate-pdf/502",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"user",
+								"purchase",
+								"generate-pdf",
+								"502"
 							]
 						}
 					},

@@ -254,6 +254,32 @@ paths:
             '*/*':
               schema:
                 type: object
+  /api/products/price-history/{id}:
+    post:
+      tags:
+      - product-rest-controller
+      summary: Get a product's price history
+      operationId: getProductPriceHistory
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Product's price history retrieved
+          content:
+            '*/*':
+              schema:
+                type: object
+        "404":
+          description: Product not found
+          content:
+            '*/*':
+              schema:
+                type: object
   /api/products/add-product:
     post:
       tags:
@@ -653,6 +679,32 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PageProduct'
+  /api/user/purchase/generate-pdf/{purchaseId}:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Generate a pdf for a purchase
+      operationId: generatePDF
+      parameters:
+      - name: purchaseId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Purchase not found
+          content:
+            '*/*':
+              schema:
+                type: object
+        "200":
+          description: Purchase returned
+          content:
+            '*/*':
+              schema:
+                type: object
   /api/user/messages:
     get:
       tags:

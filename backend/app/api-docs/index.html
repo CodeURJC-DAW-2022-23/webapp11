@@ -1345,6 +1345,9 @@ ul.nav-tabs {
                     <li data-group="ProductRestController" data-name="getProductById" class="">
                       <a href="#api-ProductRestController-getProductById">getProductById</a>
                     </li>
+                    <li data-group="ProductRestController" data-name="getProductPriceHistory" class="">
+                      <a href="#api-ProductRestController-getProductPriceHistory">getProductPriceHistory</a>
+                    </li>
                     <li data-group="ProductRestController" data-name="searchProducts" class="">
                       <a href="#api-ProductRestController-searchProducts">searchProducts</a>
                     </li>
@@ -1405,6 +1408,9 @@ ul.nav-tabs {
                   <li class="nav-header" data-group="UserRestController"><a href="#api-UserRestController">API Methods - UserRestController</a></li>
                     <li data-group="UserRestController" data-name="checkout" class="">
                       <a href="#api-UserRestController-checkout">checkout</a>
+                    </li>
+                    <li data-group="UserRestController" data-name="generatePDF" class="">
+                      <a href="#api-UserRestController-generatePDF">generatePDF</a>
                     </li>
                     <li data-group="UserRestController" data-name="getAgentMessages" class="">
                       <a href="#api-UserRestController-getAgentMessages">getAgentMessages</a>
@@ -8005,6 +8011,413 @@ pub fn main() {
                                     </script>
                                   </div>
                                   <input id='responses-ProductRestController-getProductById-404-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-ProductRestController-getProductPriceHistory">
+                      <article id="api-ProductRestController-getProductPriceHistory-0" data-group="User" data-name="getProductPriceHistory" data-version="0">
+                        <div class="pull-left">
+                          <h1>getProductPriceHistory</h1>
+                          <p>Get a product&#39;s price history</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/api/products/price-history/{id}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-ProductRestController-getProductPriceHistory-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-java">Java</a></li>
+                          <li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-python">Python</a></li>
+                          <li class=""><a href="#examples-ProductRestController-getProductPriceHistory-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-ProductRestController-getProductPriceHistory-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST \
+ -H "Accept: */*" \
+ "http://localhost:8080/api/products/price-history/{id}"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.ProductRestControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class ProductRestControllerApiExample {
+    public static void main(String[] args) {
+
+        // Create an instance of the API class
+        ProductRestControllerApi apiInstance = new ProductRestControllerApi();
+        Long id = 789; // Long | 
+
+        try {
+            Object result = apiInstance.getProductPriceHistory(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ProductRestControllerApi#getProductPriceHistory");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.ProductRestControllerApi;
+
+public class ProductRestControllerApiExample {
+    public static void main(String[] args) {
+        ProductRestControllerApi apiInstance = new ProductRestControllerApi();
+        Long id = 789; // Long | 
+
+        try {
+            Object result = apiInstance.getProductPriceHistory(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ProductRestControllerApi#getProductPriceHistory");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+ProductRestControllerApi *apiInstance = [[ProductRestControllerApi alloc] init];
+Long *id = 789; //  (default to null)
+
+// Get a product's price history
+[apiInstance getProductPriceHistoryWith:id
+              completionHandler: ^(Object output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var 3TechMarketApi = require('3_tech_market_api');
+
+// Create an instance of the API class
+var api = new 3TechMarketApi.ProductRestControllerApi()
+var id = 789; // {Long} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getProductPriceHistory(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class getProductPriceHistoryExample
+    {
+        public void main()
+        {
+
+            // Create an instance of the API class
+            var apiInstance = new ProductRestControllerApi();
+            var id = 789;  // Long |  (default to null)
+
+            try {
+                // Get a product's price history
+                Object result = apiInstance.getProductPriceHistory(id);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling ProductRestControllerApi.getProductPriceHistory: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\ProductRestControllerApi();
+$id = 789; // Long | 
+
+try {
+    $result = $api_instance->getProductPriceHistory($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ProductRestControllerApi->getProductPriceHistory: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::ProductRestControllerApi;
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::ProductRestControllerApi->new();
+my $id = 789; # Long | 
+
+eval {
+    my $result = $api_instance->getProductPriceHistory(id => $id);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling ProductRestControllerApi->getProductPriceHistory: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Create an instance of the API class
+api_instance = openapi_client.ProductRestControllerApi()
+id = 789 # Long |  (default to null)
+
+try:
+    # Get a product's price history
+    api_response = api_instance.get_product_price_history(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling ProductRestControllerApi->getProductPriceHistory: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-ProductRestController-getProductPriceHistory-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate ProductRestControllerApi;
+
+pub fn main() {
+    let id = 789; // Long
+
+    let mut context = ProductRestControllerApi::Context::default();
+    let result = client.getProductPriceHistory(id, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_getProductPriceHistory_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-ProductRestController-getProductPriceHistory-title-200"></h3>
+                            <p id="examples-ProductRestController-getProductPriceHistory-description-200" class="marked"></p>
+                            <script>
+                              var responseProductRestController200_description = `Product's price history retrieved`;
+                              var responseProductRestController200_description_break = responseProductRestController200_description.indexOf('\n');
+                              if (responseProductRestController200_description_break == -1) {
+                                $("#examples-ProductRestController-getProductPriceHistory-title-200").text("Status: 200 - " + responseProductRestController200_description);
+                              } else {
+                                $("#examples-ProductRestController-getProductPriceHistory-title-200").text("Status: 200 - " + responseProductRestController200_description.substring(0, responseProductRestController200_description_break));
+                                $("#examples-ProductRestController-getProductPriceHistory-description-200").html(responseProductRestController200_description.substring(responseProductRestController200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-ProductRestController-getProductPriceHistory-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-ProductRestController-getProductPriceHistory-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-ProductRestController-getProductPriceHistory-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-ProductRestController-getProductPriceHistory-200-schema">
+                                  <div id="responses-ProductRestController-getProductPriceHistory-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Product's price history retrieved",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "object"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-ProductRestController-getProductPriceHistory-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-ProductRestController-getProductPriceHistory-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-ProductRestController-getProductPriceHistory-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-ProductRestController-getProductPriceHistory-title-404"></h3>
+                            <p id="examples-ProductRestController-getProductPriceHistory-description-404" class="marked"></p>
+                            <script>
+                              var responseProductRestController404_description = `Product not found`;
+                              var responseProductRestController404_description_break = responseProductRestController404_description.indexOf('\n');
+                              if (responseProductRestController404_description_break == -1) {
+                                $("#examples-ProductRestController-getProductPriceHistory-title-404").text("Status: 404 - " + responseProductRestController404_description);
+                              } else {
+                                $("#examples-ProductRestController-getProductPriceHistory-title-404").text("Status: 404 - " + responseProductRestController404_description.substring(0, responseProductRestController404_description_break));
+                                $("#examples-ProductRestController-getProductPriceHistory-description-404").html(responseProductRestController404_description.substring(responseProductRestController404_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-ProductRestController-getProductPriceHistory-404" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-ProductRestController-getProductPriceHistory-404-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-ProductRestController-getProductPriceHistory-404-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-ProductRestController-getProductPriceHistory-404-schema">
+                                  <div id="responses-ProductRestController-getProductPriceHistory-schema-404" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Product not found",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "object"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-ProductRestController-getProductPriceHistory-404-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-ProductRestController-getProductPriceHistory-schema-404');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-ProductRestController-getProductPriceHistory-404-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
                         </article>
@@ -15404,6 +15817,413 @@ $(document).ready(function() {
                                     </script>
                                   </div>
                                   <input id='responses-UserRestController-checkout-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-UserRestController-generatePDF">
+                      <article id="api-UserRestController-generatePDF-0" data-group="User" data-name="generatePDF" data-version="0">
+                        <div class="pull-left">
+                          <h1>generatePDF</h1>
+                          <p>Generate a pdf for a purchase</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked"></p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/api/user/purchase/generate-pdf/{purchaseId}</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-UserRestController-generatePDF-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-UserRestController-generatePDF-0-java">Java</a></li>
+                          <li class=""><a href="#examples-UserRestController-generatePDF-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-UserRestController-generatePDF-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-UserRestController-generatePDF-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-UserRestController-generatePDF-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-UserRestController-generatePDF-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-UserRestController-generatePDF-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-UserRestController-generatePDF-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-UserRestController-generatePDF-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-UserRestController-generatePDF-0-python">Python</a></li>
+                          <li class=""><a href="#examples-UserRestController-generatePDF-0-rust">Rust</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-UserRestController-generatePDF-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET \
+ -H "Accept: */*" \
+ "http://localhost:8080/api/user/purchase/generate-pdf/{purchaseId}"
+</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-UserRestController-generatePDF-0-java">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.UserRestControllerApi;
+
+import java.io.File;
+import java.util.*;
+
+public class UserRestControllerApiExample {
+    public static void main(String[] args) {
+
+        // Create an instance of the API class
+        UserRestControllerApi apiInstance = new UserRestControllerApi();
+        Long purchaseId = 789; // Long | 
+
+        try {
+            Object result = apiInstance.generatePDF(purchaseId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserRestControllerApi#generatePDF");
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-UserRestController-generatePDF-0-android">
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.UserRestControllerApi;
+
+public class UserRestControllerApiExample {
+    public static void main(String[] args) {
+        UserRestControllerApi apiInstance = new UserRestControllerApi();
+        Long purchaseId = 789; // Long | 
+
+        try {
+            Object result = apiInstance.generatePDF(purchaseId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UserRestControllerApi#generatePDF");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-UserRestController-generatePDF-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-UserRestController-generatePDF-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+
+// Create an instance of the API class
+UserRestControllerApi *apiInstance = [[UserRestControllerApi alloc] init];
+Long *purchaseId = 789; //  (default to null)
+
+// Generate a pdf for a purchase
+[apiInstance generatePDFWith:purchaseId
+              completionHandler: ^(Object output, NSError* error) {
+    if (output) {
+        NSLog(@"%@", output);
+    }
+    if (error) {
+        NSLog(@"Error: %@", error);
+    }
+}];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-generatePDF-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var 3TechMarketApi = require('3_tech_market_api');
+
+// Create an instance of the API class
+var api = new 3TechMarketApi.UserRestControllerApi()
+var purchaseId = 789; // {Long} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.generatePDF(purchaseId, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-UserRestController-generatePDF-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-UserRestController-generatePDF-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
+using Org.OpenAPITools.Model;
+
+namespace Example
+{
+    public class generatePDFExample
+    {
+        public void main()
+        {
+
+            // Create an instance of the API class
+            var apiInstance = new UserRestControllerApi();
+            var purchaseId = 789;  // Long |  (default to null)
+
+            try {
+                // Generate a pdf for a purchase
+                Object result = apiInstance.generatePDF(purchaseId);
+                Debug.WriteLine(result);
+            } catch (Exception e) {
+                Debug.Print("Exception when calling UserRestControllerApi.generatePDF: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-generatePDF-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Create an instance of the API class
+$api_instance = new OpenAPITools\Client\Api\UserRestControllerApi();
+$purchaseId = 789; // Long | 
+
+try {
+    $result = $api_instance->generatePDF($purchaseId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserRestControllerApi->generatePDF: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-generatePDF-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::UserRestControllerApi;
+
+# Create an instance of the API class
+my $api_instance = WWW::OPenAPIClient::UserRestControllerApi->new();
+my $purchaseId = 789; # Long | 
+
+eval {
+    my $result = $api_instance->generatePDF(purchaseId => $purchaseId);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling UserRestControllerApi->generatePDF: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-generatePDF-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import openapi_client
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Create an instance of the API class
+api_instance = openapi_client.UserRestControllerApi()
+purchaseId = 789 # Long |  (default to null)
+
+try:
+    # Generate a pdf for a purchase
+    api_response = api_instance.generate_pdf(purchaseId)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UserRestControllerApi->generatePDF: %s\n" % e)</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-UserRestController-generatePDF-0-rust">
+                              <pre class="prettyprint"><code class="language-rust">extern crate UserRestControllerApi;
+
+pub fn main() {
+    let purchaseId = 789; // Long
+
+    let mut context = UserRestControllerApi::Context::default();
+    let result = client.generatePDF(purchaseId, &context).wait();
+
+    println!("{:?}", result);
+}
+</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Scopes</h2>
+                          <table>
+                            
+                          </table>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">purchaseId*</td>
+<td>
+
+
+    <div id="d2e199_generatePDF_purchaseId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Long
+                </span>
+                    <span class="format">
+                        (int64)
+                    </span>
+
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3 id="examples-UserRestController-generatePDF-title-400"></h3>
+                            <p id="examples-UserRestController-generatePDF-description-400" class="marked"></p>
+                            <script>
+                              var responseUserRestController400_description = `Purchase not found`;
+                              var responseUserRestController400_description_break = responseUserRestController400_description.indexOf('\n');
+                              if (responseUserRestController400_description_break == -1) {
+                                $("#examples-UserRestController-generatePDF-title-400").text("Status: 400 - " + responseUserRestController400_description);
+                              } else {
+                                $("#examples-UserRestController-generatePDF-title-400").text("Status: 400 - " + responseUserRestController400_description.substring(0, responseUserRestController400_description_break));
+                                $("#examples-UserRestController-generatePDF-description-400").html(responseUserRestController400_description.substring(responseUserRestController400_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-generatePDF-400" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-UserRestController-generatePDF-400-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-generatePDF-400-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-UserRestController-generatePDF-400-schema">
+                                  <div id="responses-UserRestController-generatePDF-schema-400" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Purchase not found",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "object"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-UserRestController-generatePDF-400-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-UserRestController-generatePDF-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-UserRestController-generatePDF-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+                            <h3 id="examples-UserRestController-generatePDF-title-200"></h3>
+                            <p id="examples-UserRestController-generatePDF-description-200" class="marked"></p>
+                            <script>
+                              var responseUserRestController200_description = `Purchase returned`;
+                              var responseUserRestController200_description_break = responseUserRestController200_description.indexOf('\n');
+                              if (responseUserRestController200_description_break == -1) {
+                                $("#examples-UserRestController-generatePDF-title-200").text("Status: 200 - " + responseUserRestController200_description);
+                              } else {
+                                $("#examples-UserRestController-generatePDF-title-200").text("Status: 200 - " + responseUserRestController200_description.substring(0, responseUserRestController200_description_break));
+                                $("#examples-UserRestController-generatePDF-description-200").html(responseUserRestController200_description.substring(responseUserRestController200_description_break));
+                              }
+                            </script>
+
+
+                            <ul id="responses-detail-UserRestController-generatePDF-200" class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-UserRestController-generatePDF-200-schema">Schema</a>
+                                </li>
+
+
+
+
+                            </ul>
+
+
+                            <div class="tab-content" id="responses-UserRestController-generatePDF-200-wrapper" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-UserRestController-generatePDF-200-schema">
+                                  <div id="responses-UserRestController-generatePDF-schema-200" class="exampleStyle">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Purchase returned",
+  "content" : {
+    "*/*" : {
+      "schema" : {
+        "type" : "object"
+      }
+    }
+  }
+};
+                                        var schema = findNode('schema',schemaWrapper).schema;
+                                        if (!schema) {
+                                          schema = schemaWrapper.schema;
+                                        }
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else if (schema.items != null && schema.items.$ref != null) {
+                                            schema.items = defsParser.$refs.get(schema.items.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-UserRestController-generatePDF-200-schema-data').val(JSON.stringify(schema));
+                                        var result = $('#responses-UserRestController-generatePDF-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-UserRestController-generatePDF-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
                         </article>
