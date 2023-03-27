@@ -748,16 +748,17 @@ All members have contributed on this phase of the project, the following table s
 - [No Working Messages API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/b7fbdeaa8fe9b5ce94a3393521e7cc2b661f79f9)
 - [Working messages API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/d2637a2348bff53370b229780ccd650f73ef199b)
 - [Messages via API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/27a75a01a5e8f13179579c9705f0fc4a159072d5)
+- [Last changes of the API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/faa2bc92ef700c6911071aa1780abffef9c3ffa5)
 
 </details>
 
 <details><summary> <b> Inés Alonso </b> </summary>
 
-- 
-- 
-- 
-- 
-- 
+- [Upload product images](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/32b20ecaf9b4427733975085a8d7f721b8528fce)
+- [Update ImageRestController](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/6a76dfecaeba883e3c197e04ef482f75769bbb46)
+- [Delete images](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/1806c9b15c7f8c4930a62ecd069ac120f90d8103)
+- [API finished](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/5afd5d517f6ac7456a66b9ef47dab5378e2218ff)
+- [Last changes of the API](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/faa2bc92ef700c6911071aa1780abffef9c3ffa5)
 
 </details>
 
@@ -807,7 +808,10 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Inés Alonso </b> </summary>
 
-- 
+- [ImageRestController](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ImageRestController.java)
+- [ImageService](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/service/ImageService.java)
+- [ProductRestController](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ProductRestController.java)
+- [ProductRepository](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/Repositories/ProductRepository.java)
 
 </details>
 
