@@ -86,6 +86,8 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
                         .requestMatchers("/api/user/messages/agent/**").hasAnyAuthority("AGENT")
                         .requestMatchers("/api/purchase-history").hasAnyAuthority("USER", "AGENT")
                         .requestMatchers("/api/user/return-purchase/**").hasAnyAuthority("USER","AGENT")
+                        .requestMatchers("/api/products/price-history/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/api/user/purchase/generate-pdf/**").hasAnyAuthority("USER","AGENT")
 
                 )
                 .httpBasic().disable()

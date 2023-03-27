@@ -86,5 +86,12 @@ public class ProductRestController {
         return ResponseEntity.ok(updatedProduct);
     }
 
+    @PostMapping("/price-history/{id}")
+    @Operation(summary = "Get a product's price history")
+    @ApiResponse(responseCode = "200", description = "Product's price history retrieved")
+    @ApiResponse(responseCode = "404", description = "Product not found")
+    public ResponseEntity<?> getProductPriceHistory(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.getProductById(id).getProductPrices());
+    }
 
 }

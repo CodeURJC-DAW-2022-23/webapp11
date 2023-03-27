@@ -7,15 +7,18 @@ import com.techmarket.app.model.Purchase;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.jwt.AuthResponse;
 import com.techmarket.app.service.MessageService;
+import com.techmarket.app.service.PDFService;
 import com.techmarket.app.service.PurchaseService;
 import com.techmarket.app.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -32,6 +35,9 @@ public class UserRestController {
 
     @Autowired
     private PurchaseService purchaseService;
+
+    @Autowired
+    private PDFService pdfService;
 
 
     @GetMapping("/messages")
@@ -215,6 +221,22 @@ public class UserRestController {
             AuthResponse authResponse = new AuthResponse(AuthResponse.Status.FAILURE, "Purchase return failed");
             return ResponseEntity.ok(authResponse);
         }
+    }
+
+    @GetMapping("/purchase/generate-pdf/{purchaseId}")
+    @Operation(summary = "Generate a pdf for a purchase")
+    @ApiResponse(responseCode = "200", description = "Purchase returned")
+    @ApiResponse(responseCode = "400", description = "Purchase not found")
+    public ResponseEntity<?> generatePDF(HttpServletRequest request, @PathVariable long purchaseId, HttpServletResponse
+            response) throws IOException {
+        User currentUser = userService.getCurrentUser(request);
+        Purchase purchase = purchaseService.getPurchaseById(purchaseId);
+        if (currentUser.getPurchasedProducts().contains(purchase.getProduct()) && !purchase.isCancelled()) {
+            PDFService.generateInvoice(response,purchase);
+            return ResponseEntity.ok("PDF generated successfully");
+        }
+
+        return ResponseEntity.ok("PDF generation failed");
     }
 
 }
