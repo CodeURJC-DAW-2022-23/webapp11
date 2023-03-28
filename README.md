@@ -602,9 +602,9 @@ All members have contributed to the project in a similar way, and all members ha
 
 ## API REST Documentation
 
-As we are using SpringBoot 3, we need to use need to use [springdoc-openapi v2.0.4](https://springdoc.org/v2/) to generate the documentation. The documentation is available at `/api-docs` and `/v3/api-docs` endpoints. We also created a [Postman collection](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/de2ef54da2f5fe4f8d0e69a3b8000231a4db722d/3TechMarket%20API.postman_collection.json) to test the API.
+As we are using SpringBoot 3, we need to use need to use [springdoc-openapi v2.0.4](https://springdoc.org/v2/) to generate the documentation. The documentation is available at `/api-docs` and `/v3/api-docs` endpoints. We also created a [Postman collection](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/f9cff813b1c2e29476acf1277ebf638527f2fd00/3TechMarket%20API.postman_collection.json) to test the API.
 
-We provide a Yaml file with the API documentation, and a html file with the generated documentation that were made using springdoc-openapi-maven-plugin 1.4 to get the Yaml file and openapi-generator-maven-plugin to generate the HTML. You can find them on this raw [YAML file](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/bef8bb975a8e578d353a1caa3a4f1c8d936f6f18/backend/app/api-docs/api-docs.yaml) and [HTML file](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/bef8bb975a8e578d353a1caa3a4f1c8d936f6f18/backend/app/api-docs/index.html).
+We provide a Yaml file with the API documentation, and a html file with the generated documentation that were made using springdoc-openapi-maven-plugin 1.4 to get the Yaml file and openapi-generator-maven-plugin to generate the HTML. You can find them on this raw [YAML file](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/f9cff813b1c2e29476acf1277ebf638527f2fd00/backend/app/api-docs/api-docs.yaml) and [HTML file](https://rawcdn.githack.com/CodeURJC-DAW-2022-23/webapp11/f9cff813b1c2e29476acf1277ebf638527f2fd00/backend/app/api-docs/index.html).
 
 You can also access and test the API using the built-in Swagger UI provided as part of the dependency at `https://localhost:8443/api-docs`, as well as the YAML file at `https://localhost:8443/v3/api-docs.yaml`.
 
