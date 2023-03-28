@@ -43,7 +43,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": []
+									"src": "/Users/santi/Downloads/1DD5E300-20FD-4B33-8702-54AD2B0BE3B7_1_105_c.jpeg"
 								}
 							]
 						},
@@ -97,12 +97,12 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/Users/santi/Downloads/2ldsf9-2177080966.jpg"
+									"src": "/Users/santi/Downloads/IyQbro-Z2tAe_OFy4Xue1TBtYy6SPe_WdHiOQzSTWuM-1737419801.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/images/1/main-image",
+							"raw": "https://localhost:8443/api/images/902/main-image",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -111,7 +111,7 @@
 							"path": [
 								"api",
 								"images",
-								"1",
+								"902",
 								"main-image"
 							]
 						},
@@ -135,7 +135,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/images/1/product-image",
+							"raw": "https://localhost:8443/api/images/902/product-image",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -144,7 +144,7 @@
 							"path": [
 								"api",
 								"images",
-								"1",
+								"902",
 								"product-image"
 							]
 						},
@@ -163,7 +163,7 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/Users/santi/Downloads/Glock17_Left-e1552244239247-342401687.jpg"
+									"src": "/Users/santi/Downloads/alien-negro.png"
 								}
 							]
 						},
@@ -191,7 +191,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/images/1/main-image",
+							"raw": "https://localhost:8443/api/images/902/main-image",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -200,7 +200,7 @@
 							"path": [
 								"api",
 								"images",
-								"1",
+								"902",
 								"main-image"
 							]
 						},
@@ -214,7 +214,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/images/1/product-image",
+							"raw": "https://localhost:8443/api/images/902/product-image",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -223,7 +223,7 @@
 							"path": [
 								"api",
 								"images",
-								"1",
+								"902",
 								"product-image"
 							]
 						},
@@ -237,7 +237,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/images/1202",
+							"raw": "https://localhost:8443/api/images/1402",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -246,7 +246,7 @@
 							"path": [
 								"api",
 								"images",
-								"1202"
+								"1402"
 							]
 						},
 						"description": "Get a product using its id, useful to use with the list that the previous response returns"
@@ -337,7 +337,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/products?page=0&size=10",
+							"raw": "https://localhost:8443/api/products?page=1&size=10",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -350,7 +350,7 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "0"
+									"value": "1"
 								},
 								{
 									"key": "size",
@@ -391,7 +391,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/products/search/msi?page=0&size=10",
+							"raw": "https://localhost:8443/api/products/search/?page=0&size=10&product=msi",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -401,7 +401,7 @@
 								"api",
 								"products",
 								"search",
-								"msi"
+								""
 							],
 							"query": [
 								{
@@ -411,6 +411,10 @@
 								{
 									"key": "size",
 									"value": "10"
+								},
+								{
+									"key": "product",
+									"value": "msi"
 								}
 							]
 						},
@@ -933,7 +937,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/user/messages/agent/{id}",
+							"raw": "https://localhost:8443/api/user/messages/agent/52",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -944,7 +948,7 @@
 								"user",
 								"messages",
 								"agent",
-								"{id}"
+								"52"
 							]
 						}
 					},
@@ -1015,7 +1019,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/reviews/get/153",
+							"raw": "https://localhost:8443/api/reviews/get/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1025,7 +1029,7 @@
 								"api",
 								"reviews",
 								"get",
-								"153"
+								"1"
 							]
 						}
 					},
@@ -1037,7 +1041,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/reviews/delete/202",
+							"raw": "https://localhost:8443/api/reviews/delete/252",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -1047,7 +1051,7 @@
 								"api",
 								"reviews",
 								"delete",
-								"202"
+								"252"
 							]
 						}
 					},

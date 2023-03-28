@@ -42,12 +42,12 @@ public class ProductRestController {
         return ResponseEntity.ok(product);
     }
 
-    @GetMapping("/search/{product}")
+    @GetMapping("/search/")
     @Operation(summary = "Search products by name")
     @ApiResponse(responseCode = "200", description = "Products retrieved")
     public ResponseEntity<Page<Product>> searchProducts(@RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "10") int size,
-                                                        @PathVariable String product) {
+                                                        @RequestParam String product) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Product> products = productService.searchProducts(pageable, product);
         return ResponseEntity.ok(products);

@@ -14,6 +14,12 @@ paths:
       summary: Get the current user's profile
       operationId: getUser
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: User profile retrieved
           content:
@@ -32,6 +38,12 @@ paths:
               $ref: '#/components/schemas/User'
         required: true
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: User profile updated
           content:
@@ -58,14 +70,14 @@ paths:
               $ref: '#/components/schemas/Product'
         required: true
       responses:
-        "200":
-          description: Product updated
+        "404":
+          description: Product not found
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/Product'
-        "404":
-          description: Product not found
+                type: object
+        "200":
+          description: Product updated
           content:
             '*/*':
               schema:
@@ -83,10 +95,14 @@ paths:
           type: integer
           format: int64
       responses:
-        "204":
-          description: Product deleted
         "404":
           description: Product not found
+          content:
+            '*/*':
+              schema:
+                type: object
+        "204":
+          description: Product deleted
   /api/wishlist/addProduct/{id}:
     post:
       tags:
@@ -101,6 +117,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Product added to wishlist
           content:
@@ -132,6 +154,12 @@ paths:
               type: string
         required: true
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Message sent
           content:
@@ -164,6 +192,12 @@ paths:
               type: string
         required: true
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Message sent
           content:
@@ -190,6 +224,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "400":
           description: Purchase not found
           content:
@@ -215,6 +255,12 @@ paths:
               type: string
         required: true
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: User checked out
           content:
@@ -268,14 +314,14 @@ paths:
           type: integer
           format: int64
       responses:
-        "200":
-          description: Product's price history retrieved
+        "404":
+          description: Product not found
           content:
             '*/*':
               schema:
                 type: object
-        "404":
-          description: Product not found
+        "200":
+          description: Product's price history retrieved
           content:
             '*/*':
               schema:
@@ -293,6 +339,12 @@ paths:
               $ref: '#/components/schemas/Product'
         required: true
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "400":
           description: Product not created
           content:
@@ -336,6 +388,12 @@ paths:
                   type: string
                   format: binary
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "400":
           description: Review not found
           content:
@@ -362,6 +420,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Product images retrieved
           content:
@@ -398,6 +462,12 @@ paths:
                   type: string
                   format: binary
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "400":
           description: Product not found
           content:
@@ -424,6 +494,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Main image retrieved
           content:
@@ -460,6 +536,12 @@ paths:
                   type: string
                   format: binary
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Main image updated
           content:
@@ -479,6 +561,12 @@ paths:
       summary: Get the user's profile picture
       operationId: downloadProfilePicture
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "400":
           description: User not found
           content:
@@ -508,6 +596,12 @@ paths:
                   type: string
                   format: binary
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "400":
           description: Please upload a file
           content:
@@ -526,6 +620,12 @@ paths:
       summary: Delete the user's profile picture
       operationId: deleteProfilePicture
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Profile picture deleted
           content:
@@ -546,6 +646,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Product added to cart
           content:
@@ -571,6 +677,12 @@ paths:
               $ref: '#/components/schemas/LoginRequest'
         required: true
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Signup successful
           content:
@@ -596,6 +708,12 @@ paths:
         schema:
           type: string
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Access token refreshed
           content:
@@ -609,6 +727,12 @@ paths:
       summary: Logout
       operationId: logout
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Logout successful
           content:
@@ -639,6 +763,12 @@ paths:
               $ref: '#/components/schemas/LoginRequest'
         required: true
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Login successful
           content:
@@ -673,6 +803,12 @@ paths:
           format: int32
           default: 10
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Products retrieved
           content:
@@ -693,6 +829,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "400":
           description: Purchase not found
           content:
@@ -712,6 +854,12 @@ paths:
       summary: Get the current user's messages
       operationId: getMessages
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: User messages retrieved
           content:
@@ -735,6 +883,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "400":
           description: User not found
           content:
@@ -771,7 +925,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/Review'
+                type: object
         "200":
           description: Review found
           content:
@@ -793,16 +947,14 @@ paths:
           type: integer
           format: int64
       responses:
-        "200":
-          description: successful operation
+        "404":
+          description: Product not found
           content:
             '*/*':
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Review'
-        "404":
-          description: Product not found
+                type: object
+        "200":
+          description: successful operation
           content:
             '*/*':
               schema:
@@ -816,6 +968,12 @@ paths:
       summary: Get the current user's recommendations
       operationId: getRecommendations
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: User recommendations retrieved
           content:
@@ -839,6 +997,12 @@ paths:
           format: int32
           default: 0
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: User purchase history retrieved
           content:
@@ -867,13 +1031,19 @@ paths:
           format: int32
           default: 10
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Products retrieved
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PageProduct'
-  /api/products/search/{product}:
+  /api/products/search/:
     get:
       tags:
       - product-rest-controller
@@ -895,11 +1065,17 @@ paths:
           format: int32
           default: 10
       - name: product
-        in: path
+        in: query
         required: true
         schema:
           type: string
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Products retrieved
           content:
@@ -920,14 +1096,14 @@ paths:
           type: integer
           format: int64
       responses:
-        "200":
-          description: Product retrieved
+        "404":
+          description: Product not found
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/Product'
-        "404":
-          description: Product not found
+                type: object
+        "200":
+          description: Product retrieved
           content:
             '*/*':
               schema:
@@ -946,6 +1122,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "400":
           description: Image not found
           content:
@@ -980,6 +1162,12 @@ paths:
           format: int32
           default: 10
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Products retrieved
           content:
@@ -1000,6 +1188,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Product removed from wishlist
           content:
@@ -1027,10 +1221,14 @@ paths:
           type: integer
           format: int64
       responses:
-        "204":
-          description: Review removed
         "404":
           description: Review not found
+          content:
+            '*/*':
+              schema:
+                type: object
+        "204":
+          description: Review removed
   /api/images/d/{id}/review-image:
     delete:
       tags:
@@ -1045,6 +1243,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Review images deleted
           content:
@@ -1071,6 +1275,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Main image deleted
           content:
@@ -1097,6 +1307,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Product images deleted
           content:
@@ -1123,6 +1339,12 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                type: object
         "200":
           description: Product removed from cart
           content:
@@ -1299,12 +1521,12 @@ components:
     PageProduct:
       type: object
       properties:
-        totalElements:
-          type: integer
-          format: int64
         totalPages:
           type: integer
           format: int32
+        totalElements:
+          type: integer
+          format: int64
         first:
           type: boolean
         last:
@@ -1351,19 +1573,19 @@ components:
       properties:
         empty:
           type: boolean
-        unsorted:
-          type: boolean
         sorted:
+          type: boolean
+        unsorted:
           type: boolean
     PagePurchase:
       type: object
       properties:
-        totalElements:
-          type: integer
-          format: int64
         totalPages:
           type: integer
           format: int32
+        totalElements:
+          type: integer
+          format: int64
         first:
           type: boolean
         last:
