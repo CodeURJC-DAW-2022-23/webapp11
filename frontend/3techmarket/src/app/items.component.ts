@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -9,23 +9,15 @@ import { HttpClient } from '@angular/common/http';
 
 
 
-export class ItemsComponent {
-
-
-  constructor(private httpClient: HttpClient){}
-
-
-  getRecommendedproducts(){
-    let url = 'https://localhost:8443/api/recommendations'
-    this.httpClient.get(url).subscribe(
-      response => {
-          let data : any = response;
-          console.log(data)
-
-
-      })
+export class ItemsComponent implements OnInit{
+name = 'Santiago';
+  constructor(private httpClient: HttpClient) { }
+  ngOnInit() {
+    this.httpClient.get('https://localhost:8443/api/products?page=1&size=4').subscribe(response => {
+      console.log(response);
+      
+    });
   }
-  
 
 
 }
