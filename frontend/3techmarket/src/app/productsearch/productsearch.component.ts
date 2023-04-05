@@ -25,6 +25,7 @@ export class ProductSearchComponent implements OnInit {
 
   searchProducts() {
     this.page = 0;
+    this.total = 0;
     this.productService.searchProducts(this.product, this.page, this.size)
       .subscribe((response: any) => {
         this.total = response.totalElements;

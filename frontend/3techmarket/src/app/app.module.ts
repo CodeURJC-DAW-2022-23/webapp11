@@ -11,6 +11,7 @@ import {ProductService} from "./services/productsearch.service";
 import { ProductSearchComponent } from './productsearch/productsearch.component';
 import {routing} from './routing/routing.component';
 import {NgOptimizedImage} from "@angular/common";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {NgOptimizedImage} from "@angular/common";
     HttpClientModule,
     FormsModule,
     NgOptimizedImage,
-    routing
+    routing,
+    NgbModule
   ],
   providers: [
     ProductService

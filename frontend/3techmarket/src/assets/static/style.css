@@ -10,7 +10,7 @@ body {
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   /*background-color: white; */
-  background-color: #181A1B;
+  background-color: #181A1B !important;
   margin: 0;
   padding: 0;
   height: 75%;
