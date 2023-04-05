@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {ProductService} from "../services/product.service";
+
 
 @Component({
   selector: 'items-root',
-  templateUrl: './items.component.html',
+  templateUrl: 'items.component.html',
+  providers:[ProductService]
 
 })
 
@@ -11,13 +13,26 @@ import { HttpClient } from '@angular/common/http';
 
 export class ItemsComponent implements OnInit{
 name = 'Santiago';
-  constructor(private httpClient: HttpClient) { }
+products = [];
+  constructor(private productService: ProductService) { }
   ngOnInit() {
-    this.httpClient.get('https://localhost:8443/api/products?page=1&size=4').subscribe(response => {
-      console.log(response);
-      
-    });
-  }
+    let products : any = []
+     this.productService.getProducts().subscribe(
+       response => {
+         let data : any = response;
+         for(let i = 0; i < data.content.length; i++){
+           products.push(data.content[i]);
+         }
+
+       }
+     );
+    console.log(products);
+
+
+  };
+
+
+
 
 
 }
