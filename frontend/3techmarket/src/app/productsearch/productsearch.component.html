@@ -2,15 +2,16 @@
   <h2>Search results for: {{product}}</h2>
   <br>
   <div class="row results" id="results">
-    <ng-container *ngIf="results.length > 0; else noResults">
-      <div class="col-md-2" *ngFor="let product of results">
-        <a href="/product/{{product.productId}}">
-          <img src="/product/{{product.productId}}/image" alt="resultimage" width="120" height="120">
-          <p class="name">{{product.productName}}</p>
-          <p>{{product.productPrice}} € <span class="badge text-bg-success">Stock: {{product.productStock}}</span></p>
+    <ng-container *ngIf="total > 0; else noResults">
+    <div class="col-md-2" *ngFor="let result of results">
+        <a href="/product/{{result.productId}}">
+          <img src="https://localhost:8443/product/{{result.productId}}/image" alt="resultimage" width="120" height="120">
+          <p class="name">{{result.productName}}</p>
+          <p>{{result.productPrice}} € <span class="badge text-bg-success">Stock: {{result.productStock}}</span></p>
         </a>
       </div>
-      <div class="row" *ngIf="total > results.length">
+      <br>
+      <div class="row" *ngIf="total > size*page">
         <div class="col-md-12">
           <button id="loadMore" class="btn btn-success" (click)="loadMore()">Load more</button>
           <input type="hidden" name="total" id="total" value="{{total}}"/>
@@ -20,13 +21,11 @@
     </ng-container>
     <ng-template #noResults>
       <div class="col-md-12">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
         <h1>No results found</h1>
       </div>
     </ng-template>
   </div>
 </div>
-
-<form class="form-inline my-2 my-lg-0">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search" [(ngModel)]="product" name="product">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="searchProducts()">Search</button>
-</form>

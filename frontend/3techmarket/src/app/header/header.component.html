@@ -4,11 +4,11 @@
     <h1><a href="/"><img src="assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
   </div>
   <div class="col-md-8">
-    <form action="/search" method="post">
+    <form>
       <div class="input-group mb-4 searchbar">
-        <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success">
+        <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success" [(ngModel)]="searchTerm">
         <div class="input-group-append">
-          <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+          <button id="button-addon7" type="submit" class="btn btn-success" (click)="search()"><i class="fa fa-search"></i></button>
         </div>
       </div>
     </form>
@@ -22,6 +22,9 @@
       <a href="/signin" class="buttonlogin" style="padding-top: 30px;"><button class="btn btn-success">Login or register</button></a>
     </div>
   </div>
+</div>
+<div *ngIf="showSearchResults">
+  <app-product-search [product]="searchTerm"></app-product-search>
 </div>
 
 

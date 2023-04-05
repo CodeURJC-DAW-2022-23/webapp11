@@ -1,29 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ProductService } from '../services/productsearch.service';
 
 @Component({
   selector: 'app-product-search',
-  templateUrl: './product-search.component.html',
-  styleUrls: ['./product-search.component.css']
+  templateUrl: './productsearch.component.html',
+  styleUrls: ['./productsearch.component.css']
 })
-export class ProductSearchComponent implements OnInit {
+export class ProductSearchComponent implements OnInit{
+  @Input() product: string = '';
   results: any[] = [];
-  product: string = '';
   page: number = 0;
   size: number = 10;
   total: number = 0;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.searchProducts();
   }
 
   searchProducts() {
     this.page = 0;
     this.productService.searchProducts(this.product, this.page, this.size)
-      .subscribe((response: any) => {  // Use subscribe() to get the response because searchProducts() returns an Observable
-        this.results = response.results;
-        this.total = response.total;
+      .subscribe((response: any) => {
+        this.total = response.totalElements;
+        // The contents are inside a content object
+        this.results = response.content;
       });
   }
 
@@ -31,11 +33,8 @@ export class ProductSearchComponent implements OnInit {
     this.page++;
     this.productService.searchProducts(this.product, this.page, this.size)
       .subscribe((response: any) => {
-        this.results = this.results.concat(response.results);
-        this.total = response.total;
+        this.results = this.results.concat(response.content);
+        this.total = response.totalElements;
       });
   }
-}
-
-export class ProductsearchComponent {
 }
