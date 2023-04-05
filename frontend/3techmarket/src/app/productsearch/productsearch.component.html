@@ -1,0 +1,32 @@
+<div class="container-md">
+  <h2>Search results for: {{product}}</h2>
+  <br>
+  <div class="row results" id="results">
+    <ng-container *ngIf="results.length > 0; else noResults">
+      <div class="col-md-2" *ngFor="let product of results">
+        <a href="/product/{{product.productId}}">
+          <img src="/product/{{product.productId}}/image" alt="resultimage" width="120" height="120">
+          <p class="name">{{product.productName}}</p>
+          <p>{{product.productPrice}} € <span class="badge text-bg-success">Stock: {{product.productStock}}</span></p>
+        </a>
+      </div>
+      <div class="row" *ngIf="total > results.length">
+        <div class="col-md-12">
+          <button id="loadMore" class="btn btn-success" (click)="loadMore()">Load more</button>
+          <input type="hidden" name="total" id="total" value="{{total}}"/>
+          <input type="hidden" name="product" id="product" value="{{product}}"/>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noResults>
+      <div class="col-md-12">
+        <h1>No results found</h1>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<form class="form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" [(ngModel)]="product" name="product">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="searchProducts()">Search</button>
+</form>
