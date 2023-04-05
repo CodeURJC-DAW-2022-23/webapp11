@@ -5,7 +5,7 @@
     <ng-container *ngIf="total > 0; else loading">
       <div class="col-md-2" *ngFor="let result of results">
         <a [routerLink]="['/product', result.productId]">
-          <img [src]="'https://localhost:8443/api/images/' + result.productId + '/main-image'" alt="resultimage" width="120" height="120">
+          <img [src]="'api/images/' + result.productId + '/main-image'" alt="resultimage" width="120" height="120">
           <p class="name">{{result.productName}}</p>
           <p>{{result.productPrice}} € <span class="badge bg-success text-white">Stock: {{result.productStock}}</span></p>
         </a>

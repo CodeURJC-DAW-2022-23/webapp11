@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row header">
+    <div class="logoCentered">
+      <h1><a href="/"><img src="/logo2.png" alt="logo" width="180" height="76"></a></h1>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="col-md-12">
+    <h1 class="loginText">Login</h1>
+  </div>
+  <form #loginForm="ngForm" (ngSubmit)="login(email, password)">
+    <div class="col-md-12">
+      <div class="container">
+        <input type="email" id="email" placeholder="Email" name="email" class="loginBox" [(ngModel)]="email" required>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="container">
+        <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" placeholder="Password" class="loginBox"
+               [(ngModel)]="password" minlength="8" required>
+        <span>
+          <i class="fa-solid fa-eye" id="togglePassword" [ngbTooltip]="showPassword ? 'Hide Password' : 'Show Password'"
+             (click)="showPassword = !showPassword" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+    <div *ngIf="error" class="col-md-12">
+      <div class="container">
+        <!--Show a bootstrap alert-->
+        <div class="alert alert-danger" role="alert">
+          Email or password is incorrect!
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="buttonMargin">
+        <button type="submit" class="btn btn-primary">Sign In</button>
+      </div>
+    </div>
+  </form>
+  <div class="col-md-12">
+    <h1 class="noAccountText"><a href="/signup">Don't have an account? Sign Up!</a></h1> <!--TODO: Add link to sign up page-->
+  </div>
+  <div class="col-md-12">
+    <h1 class="noAccountText"><a href="/recovery">Forgot password? Click here!</a></h1> <!--TODO: Add link to recovery page-->
+  </div>
+</div>

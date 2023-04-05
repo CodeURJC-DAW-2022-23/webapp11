@@ -14,4 +14,10 @@ export class HeaderComponent {
   search() {
     this.router.navigate(['/search', this.searchTerm]);
   }
+
+  login() {
+    this.router.navigate(['/login']);
+  }
+
+  protected readonly Component = Component;
 }

@@ -12,6 +12,7 @@ import { ProductSearchComponent } from './productsearch/productsearch.component'
 import {routing} from './routing/routing.component';
 import {NgOptimizedImage} from "@angular/common";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HeaderComponent,
     FooterComponent,
     ProductSearchComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
