@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'header-root',
@@ -8,9 +9,9 @@ export class HeaderComponent {
   searchTerm = '';
   showSearchResults = false;
 
-  search() {
-    this.showSearchResults = true;
-  }
+  constructor(private router: Router) {}
 
-  protected readonly Component = Component;
+  search() {
+    this.router.navigate(['/search', this.searchTerm]);
+  }
 }

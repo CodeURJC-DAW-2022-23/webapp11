@@ -41,6 +41,16 @@ h3 {
   text-transform: uppercase;
 }
 
+h4 {
+  align-items: center;
+  font-size: small;
+  text-align: center;
+  font-weight: 600;
+  color: whitesmoke;
+  text-transform: uppercase;
+  animation: opacityOn 5s normal forwards;
+}
+
 .details {
   align-items: flex-start;
   font-size: medium;
@@ -115,6 +125,24 @@ footer {
 @keyframes blinker {
   50% {
     opacity: 0;
+  }
+}
+
+@keyframes opacityOn {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

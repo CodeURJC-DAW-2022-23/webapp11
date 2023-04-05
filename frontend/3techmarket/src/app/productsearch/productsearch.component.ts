@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/productsearch.service';
 
 @Component({
@@ -6,17 +7,20 @@ import { ProductService } from '../services/productsearch.service';
   templateUrl: './productsearch.component.html',
   styleUrls: ['./productsearch.component.css']
 })
-export class ProductSearchComponent implements OnInit{
-  @Input() product: string = '';
+export class ProductSearchComponent implements OnInit {
+  product: string = '';
   results: any[] = [];
   page: number = 0;
   size: number = 10;
   total: number = 0;
 
-  constructor(private productService: ProductService) {}
+  constructor(private route: ActivatedRoute, private productService: ProductService) {}
 
   ngOnInit() {
-    this.searchProducts();
+    this.route.paramMap.subscribe(params => {
+      this.product = params.get('product') || '';
+      this.searchProducts();
+    });
   }
 
   searchProducts() {
@@ -24,7 +28,6 @@ export class ProductSearchComponent implements OnInit{
     this.productService.searchProducts(this.product, this.page, this.size)
       .subscribe((response: any) => {
         this.total = response.totalElements;
-        // The contents are inside a content object
         this.results = response.content;
       });
   }

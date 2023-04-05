@@ -9,19 +9,23 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
 import {ProductService} from "./services/productsearch.service";
 import { ProductSearchComponent } from './productsearch/productsearch.component';
+import {routing} from './routing/routing.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgOptimizedImage,
+    routing
   ],
   providers: [
     ProductService

@@ -2,10 +2,10 @@
   <h2>Search results for: {{product}}</h2>
   <br>
   <div class="row results" id="results">
-    <ng-container *ngIf="total > 0; else noResults">
+    <ng-container *ngIf="total > 0; else loading">
     <div class="col-md-2" *ngFor="let result of results">
         <a href="/product/{{result.productId}}">
-          <img src="https://localhost:8443/product/{{result.productId}}/image" alt="resultimage" width="120" height="120">
+          <img src="https://localhost:8443/api/images/{{result.productId}}/main-image" alt="resultimage" width="120" height="120">
           <p class="name">{{result.productName}}</p>
           <p>{{result.productPrice}} € <span class="badge text-bg-success">Stock: {{result.productStock}}</span></p>
         </a>
@@ -19,12 +19,13 @@
         </div>
       </div>
     </ng-container>
-    <ng-template #noResults>
+    <ng-template #loading>
       <div class="col-md-12">
-        <div class="spinner-border text-success" role="status">
+        <div class="spinner-border text-success" style="width: 5rem; height: 5rem;" role="status">
           <span class="sr-only">Loading...</span>
         </div>
-        <h1>No results found</h1>
+        <br>
+        <h4>Taking too long? We may not have any results for your search :(</h4>
       </div>
     </ng-template>
   </div>
