@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
     });
   }
+
   login(email: string, password: string) {
     this.auth.login(email, password).subscribe((response: any) => {
       this.redirect();
