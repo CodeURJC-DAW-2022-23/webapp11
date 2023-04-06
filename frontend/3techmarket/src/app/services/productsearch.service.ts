@@ -13,6 +13,10 @@ export class ProductService {
     const url = `${this.baseUrl}/search/?product=${product}&page=${page}&size=${size}`;
     return this.http.get(url);
   }
+  getProducts(page:number,size:number) {
+    const url = `${this.baseUrl}?page=${page}&size=${size}`;
+    return this.http.get(url);
+  }
 }
 
 export class ProductsearchService {

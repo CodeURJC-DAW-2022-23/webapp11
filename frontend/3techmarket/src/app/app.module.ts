@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     ProductSearchComponent,
     LoginComponent,
     HomeComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
