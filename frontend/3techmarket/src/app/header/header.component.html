@@ -1,6 +1,6 @@
 <div class="row header">
   <div class="col-md-2">
-    <h1><a href="/"><img src="assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
+    <h1><a href="/"><img ngSrc="assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
   </div>
   <div class="col-md-8">
     <form>
@@ -13,23 +13,72 @@
     </form>
   </div>
 
+  <div *ngIf="authenticating" class="col-md-2" style="padding-top: 30px;">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!--Header icons-->
-  <div class="col-md-2 ">
+  <div *ngIf="anonymous" class="col-md-2">
     <div class="row">
       <!-- Login or register button linked to /signin -->
       <a (click)="login()" class="buttonlogin" style="padding-top: 30px;"><button class="btn btn-success">Login or register</button></a>
     </div>
   </div>
-</div>
-
-<div *ngIf="!showSearchResults">
-  <ngb-carousel [interval]="5000" [wrap]="false" [showNavigationArrows]="false" [showNavigationIndicators]="false">
-    <ng-template ngbSlide>
-      <img src="/assets/images/offers1.png" width="1300px" height="350px" alt="offer1">
-    </ng-template>
-    <ng-template ngbSlide>
-      <img src="/assets/images/offers2.png" width="1300px" height="350px" alt="offer2">
-    </ng-template>
-  </ngb-carousel>
-</div>
-
+  <div class="col-md-2 ">
+    <div *ngIf="admin" class="row" style="padding-top: 30px;">
+      <div class="col-md-2 navigation">
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-outline-success" id="dropdownBasic1" ngbDropdownToggle>
+            Admin: {{username}}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem routerLink="/profile">Profile</button>
+            <button ngbDropdownItem routerLink="/addproduct">Add product</button>
+            <button ngbDropdownItem routerLink="/dashboard">Dashboard</button>
+            <button ngbDropdownItem (click)="logout()" style="color: brown;">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="agent" class="row" style="padding-top: 30px;">
+      <div class="col-md-2 navigation">
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-outline-success" id="dropdownBasic2" ngbDropdownToggle>
+            Agent: {{username}}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+            <button ngbDropdownItem routerLink="/profile">Profile</button>
+            <button ngbDropdownItem routerLink="/purchases">Recent orders</button>
+            <button ngbDropdownItem routerLink="/cart">Cart</button>
+            <button ngbDropdownItem routerLink="/wishlist">Wishlist</button>
+            <button ngbDropdownItem routerLink="/wishlist">Messages</button>
+            <button ngbDropdownItem (click)="logout()" style="color: brown;">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div *ngIf="user" class="row" style="padding-top: 30px;">
+    <div class="col-md-2 navigation">
+      <div ngbDropdown class="d-inline-block">
+        <button type="button" class="btn btn-outline-success" id="dropdownBasic3" ngbDropdownToggle>
+          Hello, {{username}}
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
+          <button ngbDropdownItem routerLink="/profile">Profile</button>
+          <button ngbDropdownItem routerLink="/purchases">Recent orders</button>
+          <button ngbDropdownItem routerLink="/cart">Cart</button>
+          <button ngbDropdownItem routerLink="/wishlist">Wishlist</button>
+          <button ngbDropdownItem routerLink="/wishlist">Messages</button>
+          <button ngbDropdownItem (click)="logout()" style="color: brown;">Logout</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>

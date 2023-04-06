@@ -13,6 +13,8 @@ import {routing} from './routing/routing.component';
 import {NgOptimizedImage} from "@angular/common";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { LoginComponent } from './login/login.component';
     FooterComponent,
     ProductSearchComponent,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     NgOptimizedImage,
     routing,
-    NgbModule
+    NgbModule,
+    NgbDropdownModule
   ],
   providers: [
     ProductService

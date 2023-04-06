@@ -8,6 +8,6 @@ public class SPAController {
     // Map the /new and /new/** paths to the SPA index.html
     @GetMapping({"/new", "/new/**"})
     public String index() {
-        return "forward:/index.html";
+        return "forward:/new/index.html";
     }
 }
