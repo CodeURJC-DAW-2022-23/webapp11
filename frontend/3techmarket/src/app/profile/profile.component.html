@@ -2,22 +2,31 @@
   <div class="row">
     <div class="col-md-3 border-right">
       <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <div *ngIf="loading" class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
         <div *ngIf="haspfp">
-        <img class="rounded-circle mt-5" width="150" [src]="'/api/images/profile-picture'">
+          <!--Reload the image if it is updated-->
+          <img class="rounded-circle mt-5" width="150" [src]="'api/images/' + data.profilePicture.imageId" alt="Profile Picture">
         </div>
         <div *ngIf="!haspfp">
-        <img class="rounded-circle mt-5" width="150" ngSrc="https://i.imgur.com/FSW2P4r.jpg">
+          <div *ngIf="!loading">
+            <img class="rounded-circle mt-5" width="150" src="https://i.imgur.com/FSW2P4r.jpg" alt="Profile Picture">
+          </div>
         </div>
         <br>
         <span class="font-weight-bold">{{data.firstName}}</span>
         <span class="text-black-50">{{data.email}}</span>
         <span> </span>
-        <form>
+        <form (ngSubmit)="savepfp()">
           <br>
-          <input class="pfp" type="file" placeholder="Upload a new profile picture" name="pfp" id="pfp" accept="image/jpeg, image/png">
+          <input class="pfp" type="file" placeholder="Upload a new profile picture" name="pfp" id="pfp" accept="image/jpeg, image/png" #pfp>
           <br>
-          <input value="Save new profile picture" class="btn btn-outline-primary" (click)="savepfp()">
+          <button class="btn btn-outline-primary" type="submit">Upload</button>
         </form>
+        <br>
+        <button class="btn btn-outline-danger" (click)="deletepfp()">Delete Profile Picture</button>
+
       </div>
     </div>
     <div class="col-md-8 border-right">
@@ -25,24 +34,25 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h4 class="text-right">Profile Settings</h4>
         </div>
-        <form>
+        <form #loginForm="ngForm" (ngSubmit)="save(firstName, lastName, phoneNumber, address, postcode, statee, country, city, area)">
           <div class="row mt-2">
-            <div class="col-md-6"><label class="labels"></label><input type="text" id="firstName" name="firstName" class="form-control" value="{{data.firstName}}" placeholder="First Name" ></div>
-            <div class="col-md-6"><label class="labels"></label><input type="text" id="lastName" name="lastName" class="form-control" value="{{data.lastName}}" placeholder="Last Name" ></div>
+            <div class="col-md-6"><label class="labels"></label><input type="text" id="firstName" name="firstName" class="form-control"
+                                                                       [(ngModel)]="data.firstName" placeholder="First Name">
+            </div>
+            <div class="col-md-6"><label class="labels"></label><input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="data.lastName" placeholder="Last Name" ></div>
           </div>
-
           <div class="row mt-3" >
-            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{data.email}}" placeholder="Email" readonly></div>
-            <div class="col-md-12"><label class="labels"></label><input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="{{data.phoneNumber}}" placeholder="Phone Number"  ></div>
-            <div class="col-md-12"><label class="labels"></label><input type="text" id="address" name="address" class="form-control" value="{{data.address}}" placeholder="Address" ></div>
-            <div class="col-md-12"><label class="labels"></label><input type="text" id="postcode" name="postcode" class="form-control" value="{{data.postcode}}" placeholder="Postcode" ></div>
-            <div class="col-md-12"><label class="labels"></label><input type="text" id="state" name="state" class="form-control" value="{{data.state}}" placeholder="State" ></div>
-            <div class="col-md-12"><label class="labels"></label><input type="text" id="country" name="country" class="form-control" value="{{data.country}}" placeholder="Country" ></div>
-            <div class="col-md-12"><label class="labels"></label><input type="text" id="city" name="city" class="form-control" value="{{data.city}}" placeholder="City" ></div>
-            <div class="col-md-12"><label class="labels"></label><input type="text" id="area" name="area" class="form-control" value="{{data.area}}" placeholder="Area" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="email" name="email" [(ngModel)]="data.email" placeholder="Email" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="phoneNumber" name="phoneNumber" class="form-control" [(ngModel)]="data.phoneNumber" placeholder="Phone Number" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="address" name="address" class="form-control" [(ngModel)]="data.address" placeholder="Address" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="postcode" name="postcode" class="form-control" [(ngModel)]="data.postcode" placeholder="Postcode" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="state" name="state" class="form-control" [(ngModel)]="data.state" placeholder="State" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="country" name="country" class="form-control" [(ngModel)]="data.country" placeholder="Country" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="city" name="city" class="form-control" [(ngModel)]="data.city" placeholder="City" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="area" name="area" class="form-control" [(ngModel)]="data.area" placeholder="Area" ></div>
           </div>
           <br>
-          <button class="btn btn-primary" (click)="save()">Save</button>
+          <button class="btn btn-primary" type="submit">Save Profile</button>
         </form>
       </div>
     </div>

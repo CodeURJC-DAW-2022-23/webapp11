@@ -13,6 +13,7 @@ export class ProductSearchComponent implements OnInit {
   page: number = 0;
   size: number = 10;
   total: number = 0;
+  loadingMore: boolean = false;
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}
 
@@ -34,11 +35,12 @@ export class ProductSearchComponent implements OnInit {
   }
 
   loadMore() {
+    this.loadingMore = true;
     this.page++;
     this.productService.searchProducts(this.product, this.page, this.size)
       .subscribe((response: any) => {
         this.results = this.results.concat(response.content);
-        this.total = response.totalElements;
+        this.loadingMore = false;
       });
   }
 }

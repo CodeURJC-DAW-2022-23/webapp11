@@ -145,7 +145,6 @@ public class UserRestController {
         currentUser.setCountry(user.getCountry());
         currentUser.setPostcode(user.getPostcode());
         currentUser.setPhoneNumber(user.getPhoneNumber());
-        currentUser.setProfilePicture(user.getProfilePicture()); // I still have to figure out how to handle the images
 
         // Save the user
         userService.saveUser(currentUser);
