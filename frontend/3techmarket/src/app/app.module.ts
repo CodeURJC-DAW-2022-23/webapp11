@@ -17,7 +17,6 @@ import { HomeComponent } from './home/home.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ErrorhandlingComponent } from './errorhandling/errorhandling.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
@@ -30,7 +29,6 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     HomeComponent,
     DashboardComponent,
     ProfileComponent,
-    ErrorhandlingComponent,
     ForbiddenComponent,
   ],
   imports: [
