@@ -1,0 +1,50 @@
+<div class="container rounded bg-white mt-1 mb-5">
+  <div class="row">
+    <div class="col-md-3 border-right">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <div *ngIf="haspfp">
+        <img class="rounded-circle mt-5" width="150" [src]="'/api/images/profile-picture'">
+        </div>
+        <div *ngIf="!haspfp">
+        <img class="rounded-circle mt-5" width="150" ngSrc="https://i.imgur.com/FSW2P4r.jpg">
+        </div>
+        <br>
+        <span class="font-weight-bold">{{data.firstName}}</span>
+        <span class="text-black-50">{{data.email}}</span>
+        <span> </span>
+        <form>
+          <br>
+          <input class="pfp" type="file" placeholder="Upload a new profile picture" name="pfp" id="pfp" accept="image/jpeg, image/png">
+          <br>
+          <input value="Save new profile picture" class="btn btn-outline-primary" (click)="savepfp()">
+        </form>
+      </div>
+    </div>
+    <div class="col-md-8 border-right">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right">Profile Settings</h4>
+        </div>
+        <form>
+          <div class="row mt-2">
+            <div class="col-md-6"><label class="labels"></label><input type="text" id="firstName" name="firstName" class="form-control" value="{{data.firstName}}" placeholder="First Name" ></div>
+            <div class="col-md-6"><label class="labels"></label><input type="text" id="lastName" name="lastName" class="form-control" value="{{data.lastName}}" placeholder="Last Name" ></div>
+          </div>
+
+          <div class="row mt-3" >
+            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" value="{{data.email}}" placeholder="Email" readonly></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="{{data.phoneNumber}}" placeholder="Phone Number"  ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="address" name="address" class="form-control" value="{{data.address}}" placeholder="Address" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="postcode" name="postcode" class="form-control" value="{{data.postcode}}" placeholder="Postcode" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="state" name="state" class="form-control" value="{{data.state}}" placeholder="State" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="country" name="country" class="form-control" value="{{data.country}}" placeholder="Country" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="city" name="city" class="form-control" value="{{data.city}}" placeholder="City" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" id="area" name="area" class="form-control" value="{{data.area}}" placeholder="Area" ></div>
+          </div>
+          <br>
+          <button class="btn btn-primary" (click)="save()">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
