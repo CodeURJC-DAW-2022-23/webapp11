@@ -20,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ChatsComponent } from './chats/chats.component';
+import { RecentordersComponent } from './recentorders/recentorders.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ChatsComponent } from './chats/chats.component';
     ForbiddenComponent,
     MessagesComponent,
     ChatsComponent,
+    RecentordersComponent,
   ],
   imports: [
     BrowserModule,

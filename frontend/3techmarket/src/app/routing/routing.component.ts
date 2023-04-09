@@ -8,6 +8,7 @@ import { ProfileComponent } from "../profile/profile.component";
 import { ForbiddenComponent } from "../forbidden/forbidden.component";
 import { MessagesComponent} from "../messages/messages.component";
 import { ChatsComponent} from "../chats/chats.component";
+import { RecentordersComponent } from "../recentorders/recentorders.component";
 
 const routes: Routes = [
   { path: 'search/:product', component: ProductSearchComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'messages', component: MessagesComponent},
   { path: 'chats', component: ChatsComponent},
   { path: 'messages/:id', component: MessagesComponent},
+  { path: 'purchases', component: RecentordersComponent},
 ];
 
 export const routing = RouterModule.forRoot(routes);
