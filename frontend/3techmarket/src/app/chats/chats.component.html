@@ -1,0 +1,39 @@
+<h1>Support chats</h1>
+<br><br>
+<!--Wishlist -->
+<div class="container-md" id="chats">
+  <!--Using ngFor to generate the items-->
+  <ng-container *ngIf="chats; else noChats">
+    <div class="row item" *ngFor="let user of users">
+      <div class="col-md-4">
+        <!--User profile image-->
+        <img [src]="'api/images/' + user.profilePicture.imageId" alt="User profile image" class="img-fluid" width="150" height="150">
+      </div>
+      <div class="col-md-4">
+        <!--User name-->
+        <h3>{{user.firstName}}</h3>
+        <!--User email-->
+        <h4>{{user.email}}</h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-outline-primary" [routerLink]="['/messages', user.id]">Access chat</button>
+        <br><br>
+      </div>
+    </div>
+    <hr>
+  </ng-container>
+  <ng-template #noChats>
+    <div class="col-md-12">
+      <div *ngIf="loading">
+        <div class="col-md-12">
+          <div class="spinner-border text-success" style="width: 5rem; height: 5rem;" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!loading">
+        <h2>There are no chats yet</h2>
+      </div>
+    </div>
+  </ng-template>
+</div>

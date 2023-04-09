@@ -6,6 +6,8 @@ import { HomeComponent} from "../home/home.component";
 import {DashboardComponent} from "../dashboard/dashboard.component";
 import { ProfileComponent } from "../profile/profile.component";
 import { ForbiddenComponent } from "../forbidden/forbidden.component";
+import { MessagesComponent} from "../messages/messages.component";
+import { ChatsComponent} from "../chats/chats.component";
 
 const routes: Routes = [
   { path: 'search/:product', component: ProductSearchComponent },
@@ -14,6 +16,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'forbidden', component: ForbiddenComponent},
+  { path: 'messages', component: MessagesComponent},
+  { path: 'chats', component: ChatsComponent},
+  { path: 'messages/:id', component: MessagesComponent},
 ];
 
 export const routing = RouterModule.forRoot(routes);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -33,5 +33,9 @@ export class AuthService {
 
   deletepfp(): Observable<any> {
     return this.http.delete('/api/images/profile-picture');
+  }
+
+  getUserById(id: string): Observable<any> {
+    return this.http.get(`/api/user/${id}`);
   }
 }

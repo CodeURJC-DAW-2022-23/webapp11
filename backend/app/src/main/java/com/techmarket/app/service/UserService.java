@@ -82,4 +82,8 @@ public class UserService implements UserDetailsService {
             return filteredPurchase;
         });
     }
+
+    public List<User> getUsersByRole(String user) {
+        return userRepository.findByRoles(user);
+    }
 }

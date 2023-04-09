@@ -38,9 +38,9 @@ export class HeaderComponent implements OnInit {
       this.authenticating = false;
       this.anonymous = false;
       this.username = response.firstName;
-      if (response.role === 'admin') {
+      if (response.roles.includes('ADMIN')) {
         this.admin = true;
-      } else if (response.role === 'agent') {
+      } else if (response.roles.includes('AGENT')) {
         this.agent = true;
       } else {
         this.user = true;

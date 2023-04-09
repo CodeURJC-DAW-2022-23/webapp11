@@ -18,6 +18,8 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ChatsComponent } from './chats/chats.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     DashboardComponent,
     ProfileComponent,
     ForbiddenComponent,
+    MessagesComponent,
+    ChatsComponent,
   ],
   imports: [
     BrowserModule,

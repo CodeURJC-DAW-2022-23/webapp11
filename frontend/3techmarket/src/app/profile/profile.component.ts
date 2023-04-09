@@ -3,7 +3,6 @@ import { AuthService } from "../services/auth.service";
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import {state} from "@angular/animations";
 
 @Component({
   selector: 'app-profile',
