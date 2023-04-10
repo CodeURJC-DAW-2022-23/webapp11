@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-223.8836.41">
+  <component name="dataSourceStorageLocal" created-in="IU-231.8109.175">
     <data-source name="@localhost" uuid="24d698a8-0d8d-4077-8fe6-813b5a83fc2e">
       <database-info product="MySQL" version="8.0.31" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.31" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
@@ -16,6 +16,10 @@
       </schema-mapping>
     </data-source>
     <data-source name="app/Hibernate" uuid="bf7a724f-f7e2-4e92-8605-a89241874c53">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <schema-mapping />
+    </data-source>
+    <data-source name="@3techmarket.mysql.database.azure.com" uuid="6b42ee5e-4583-4eed-94e3-7b0501e91083">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
       <schema-mapping />
     </data-source>

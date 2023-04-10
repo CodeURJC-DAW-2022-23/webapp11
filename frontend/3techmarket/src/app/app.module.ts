@@ -16,6 +16,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ChatsComponent } from './chats/chats.component';
+import { RecentordersComponent } from './recentorders/recentorders.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +32,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent,
     HomeComponent,
     DashboardComponent,
+    ProfileComponent,
+    ForbiddenComponent,
+    MessagesComponent,
+    ChatsComponent,
+    RecentordersComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

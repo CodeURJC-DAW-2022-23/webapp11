@@ -4,18 +4,21 @@
   <div class="row results" id="results">
     <ng-container *ngIf="total > 0; else loading">
       <div class="col-md-2" *ngFor="let result of results">
-        <a [routerLink]="['/product', result.productId]">
-          <img [src]="'api/images/' + result.productId + '/main-image'" alt="resultimage" width="120" height="120">
+        <a routerLink="/product/{{result.productId}}" class="result">
+          <img [ngSrc]="'api/images/' + result.productId + '/main-image'" width="120" height="120" alt="Result image">
           <p class="name">{{result.productName}}</p>
           <p>{{result.productPrice}} € <span class="badge bg-success text-white">Stock: {{result.productStock}}</span></p>
         </a>
       </div>
+
       <br>
       <div class="row" *ngIf="total > size*page">
         <div class="col-md-12">
-          <button class="btn btn-success" (click)="loadMore()">Load more</button>
-          <input type="hidden" name="total" id="total" [value]="total"/>
-          <input type="hidden" name="product" id="product" [value]="product"/>
+          <button class="btn btn-success" *ngIf="!loadingMore" (click)="loadMore()">Load more</button>
+          <button class="btn btn-success" *ngIf="loadingMore" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
         </div>
       </div>
     </ng-container>

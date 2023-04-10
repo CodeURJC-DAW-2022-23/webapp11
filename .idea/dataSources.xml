@@ -17,5 +17,12 @@
       <jdbc-url>jdbc:mysql://3techmarket.mysql.database.azure.com:3306/3techmarket?useSSL=true&amp;requireSSL=true</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="@3techmarket.mysql.database.azure.com" uuid="6b42ee5e-4583-4eed-94e3-7b0501e91083">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://3techmarket.mysql.database.azure.com:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

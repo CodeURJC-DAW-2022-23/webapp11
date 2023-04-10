@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="header">
+    <h3>SUPPORT CHAT</h3>
+  </div>
+  <div class="body">
+    <ng-container *ngFor="let message of messages">
+      <p class="message">{{message}}</p>
+    </ng-container>
+  </div>
+  <div class="footer">
+    <form *ngIf="isUser" (ngSubmit)="sendMessageUser()">
+      <input type="text" [(ngModel)]="messageText" name="messageText" placeholder="Type your message here...">
+      <button type="submit" class="formbutton">Send</button>
+    </form>
+    <form *ngIf="!isUser" (ngSubmit)="sendMessageAgent()">
+      <input type="text" [(ngModel)]="messageText" name="messageText" placeholder="Type your message here...">
+      <button type="submit" class="formbutton">Send</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<h2>Your recent orders</h2>
+<br>
+<div class="container-md" id="items">
+  <div *ngIf="loading" class="spinner-border text-success" style="width: 5rem; height: 5rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div *ngFor="let purchase of purchases" class="row purchasedetails">
+    <div class="col-md-4"> <!--Thumbnail-->
+      <img [src]="'api/images/' + purchase.product.productId + '/main-image'" alt="thumbnail" width="200" height="200">
+    </div>
+    <div class="col-md-2">
+      <h3>{{purchase.product.productName}}</h3>
+      <p class="details">Date: <span class="badge bg-info text-white">{{purchase.timestamp}}</span></p>
+      <p class="details">{{purchase.product.productPrice}}€</p>
+    </div> <!--Purchase details-->
+    <div class="col-md-4">
+      <h3>Shipping address and payment method</h3>
+      <p class="details">Address: <b>{{purchase.address}}</b></p>
+      <p class="details">Payment method: <b>{{purchase.paymentMethod}}</b></p>
+      <p class="details"><button type="button" (click)="getPDF(purchase.purchaseId)" class="btn btn-info">Download your invoice (PDF)</button></p>
+    </div>
+    <div class="col-md-2">
+      <div *ngIf="purchase.cancelled; else notCancelled">
+        <button type="button" class="btn btn-outline-secondary btn-lg mt-2" disabled>This order has been cancelled</button>
+      </div>
+      <ng-template #notCancelled>
+        <button type="button" [routerLink]="'/product/' + purchase.product.productId + '/review'" class="btn btn-outline-success btn-lg mt-1">Leave a review</button> <!--Review button, I don't know if it will work given that the id is different from the one on the Purchase model-->
+        <br>
+        <button type="button" [routerLink]="'/messages'" class="btn btn-outline-primary btn-lg mt-2">Contact support</button>
+        <br>
+        <button *ngIf="deletingPurchaseId !== purchase.purchaseId" type="button" (click)="returnProduct(purchase.purchaseId)" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>
+        <button *ngIf="deletingPurchaseId === purchase.purchaseId" type="button" class="btn btn-outline-secondary btn-lg mt-2" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Returning product...</button>
+      </ng-template>
+    </div> <!--Price and invoice-->
+  </div>
+  <div *ngIf="purchases.length == 0" class="col-md-12">
+      <h1>You haven't placed any order yet - <a routerLink="/">Start shopping now!</a></h1>
+  </div>
+</div>

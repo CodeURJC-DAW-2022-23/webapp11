@@ -108,6 +108,23 @@ public class UserRestController {
         return ResponseEntity.ok(authResponse);
     }
 
+    @GetMapping("/hassentmessage")
+    @Operation(summary = "Return the ids of the users that have sent a support message")
+    @ApiResponse(responseCode = "200", description = "User ids retrieved")
+    public List<Long> hasSentMessage() {
+        // Get all users with the role of "USER"
+        List<User> users = userService.getUsersByRole("USER");
+        List<Long> userIds = new ArrayList<>();
+        for (User user : users) {
+            List<Message> messages = messageService.getMessageById(user.getId());
+            if (messages.size() > 0) {
+                userIds.add(user.getId());
+            }
+        }
+        // Return the response
+        return userIds;
+    }
+
     @PostMapping("/send-message/agent/{id}")
     @Operation(summary = "Send a message from the current agent to the id of the user he is talking to")
     @ApiResponse(responseCode = "200", description = "Message sent")
@@ -145,7 +162,6 @@ public class UserRestController {
         currentUser.setCountry(user.getCountry());
         currentUser.setPostcode(user.getPostcode());
         currentUser.setPhoneNumber(user.getPhoneNumber());
-        currentUser.setProfilePicture(user.getProfilePicture()); // I still have to figure out how to handle the images
 
         // Save the user
         userService.saveUser(currentUser);
@@ -237,6 +253,21 @@ public class UserRestController {
         }
 
         return ResponseEntity.ok("PDF generation failed");
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get a user by id")
+    @ApiResponse(responseCode = "200", description = "User found")
+    @ApiResponse(responseCode = "400", description = "User not found")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+        user.setEncodedPassword("Redacted for security reasons");
+        user.setToken(null);
+        user.setPasswordChangeToken(null);
+        user.setWishlist(Collections.emptyList());
+        user.setShoppingCart(Collections.emptyList());
+        user.setPurchasedProducts(Collections.emptyList());
+        return ResponseEntity.ok(user);
     }
 
 }

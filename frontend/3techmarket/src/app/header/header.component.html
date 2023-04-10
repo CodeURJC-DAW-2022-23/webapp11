@@ -1,13 +1,13 @@
 <div class="row header">
   <div class="col-md-2">
-    <h1><a href="/"><img ngSrc="assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
+    <h1><a routerLink=""><img ngSrc="assets/images/logo2.png" alt="logo" width="180" height="76"></a></h1>
   </div>
   <div class="col-md-8">
-    <form>
+    <form (submit)="search()">
       <div class="input-group mb-4 searchbar">
         <input type="search" name="product" placeholder="Search 3TechMarket" aria-describedby="button-addon5" class="form-control border-success" [(ngModel)]="searchTerm">
         <div class="input-group-append">
-          <button id="button-addon7" type="button" class="btn btn-success" (click)="search()"><i class="fa fa-search"></i></button>
+          <button id="button-addon7" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
         </div>
       </div>
     </form>
@@ -57,7 +57,7 @@
             <button ngbDropdownItem routerLink="/purchases">Recent orders</button>
             <button ngbDropdownItem routerLink="/cart">Cart</button>
             <button ngbDropdownItem routerLink="/wishlist">Wishlist</button>
-            <button ngbDropdownItem routerLink="/wishlist">Messages</button>
+            <button ngbDropdownItem routerLink="/chats" style="color: deepskyblue;">Chats</button>
             <button ngbDropdownItem (click)="logout()" style="color: brown;">Logout</button>
           </div>
         </div>
@@ -74,7 +74,7 @@
           <button ngbDropdownItem routerLink="/purchases">Recent orders</button>
           <button ngbDropdownItem routerLink="/cart">Cart</button>
           <button ngbDropdownItem routerLink="/wishlist">Wishlist</button>
-          <button ngbDropdownItem routerLink="/wishlist">Messages</button>
+          <button ngbDropdownItem routerLink="/messages">Messages</button>
           <button ngbDropdownItem (click)="logout()" style="color: brown;">Logout</button>
         </div>
       </div>

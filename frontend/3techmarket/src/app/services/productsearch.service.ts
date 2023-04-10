@@ -17,6 +17,16 @@ export class ProductService {
     const url = `${this.baseUrl}?page=${page}&size=${size}`;
     return this.http.get(url);
   }
+
+  getCart(page: number, size: number) {
+    const url = `/api/cart?page=${page}&size=${size}`;
+    return this.http.get(url);
+  }
+
+  removeFromCart(productId: string) {
+    const url = `/api/cart/removeProduct/${productId}`;
+    return this.http.delete(url);
+  }
 }
 
 export class ProductsearchService {
