@@ -2,12 +2,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProductSearchComponent } from '../productsearch/productsearch.component';
 import { LoginComponent } from '../login/login.component';
-import { HomeComponent} from "../home/home.component";
-import {DashboardComponent} from "../dashboard/dashboard.component";
+import { HomeComponent } from "../home/home.component";
+import { DashboardComponent } from "../dashboard/dashboard.component";
 import { ProfileComponent } from "../profile/profile.component";
 import { ForbiddenComponent } from "../forbidden/forbidden.component";
-import { MessagesComponent} from "../messages/messages.component";
-import { ChatsComponent} from "../chats/chats.component";
+import { MessagesComponent } from "../messages/messages.component";
+import { ChatsComponent } from "../chats/chats.component";
 import { RecentordersComponent } from "../recentorders/recentorders.component";
 import { CartComponent } from "../cart/cart.component";
 

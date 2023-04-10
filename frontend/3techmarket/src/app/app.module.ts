@@ -23,6 +23,8 @@ import { ChatsComponent } from './chats/chats.component';
 import { RecentordersComponent } from './recentorders/recentorders.component';
 import { CartComponent } from './cart/cart.component';
 
+// @ts-ignore
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,4 +56,5 @@ import { CartComponent } from './cart/cart.component';
   ],
   bootstrap: [AppComponent]
 })
+// @ts-ignore
 export class AppModule { }
