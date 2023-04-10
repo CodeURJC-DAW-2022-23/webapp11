@@ -94,6 +94,7 @@ export class ProfileComponent implements OnInit {
 
     this.authService.updateProfile(firstName, lastName, phoneNumber, address, postcode, statee, country, city, area).subscribe((response: any) => {
       this.ngOnInit();
+      this.authService.savedProfile();
     });
   }
 }

@@ -21,8 +21,6 @@
     </data-source>
     <data-source name="@3techmarket.mysql.database.azure.com" uuid="6b42ee5e-4583-4eed-94e3-7b0501e91083">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
-      <secret-storage>master_key</secret-storage>
-      <user-name>ThreeTechRoot</user-name>
       <schema-mapping />
     </data-source>
   </component>

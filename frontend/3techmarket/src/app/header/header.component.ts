@@ -28,6 +28,12 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.profileSaved$.subscribe(() => {
+      this.admin = false;
+      this.agent = false;
+      this.user = false;
+      this.getUserProfile();
+    });
     this.getUserProfile();
   }
 

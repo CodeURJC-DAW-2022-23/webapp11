@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private profileSaved = new Subject<void>();
+  profileSaved$ = this.profileSaved.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -37,5 +39,9 @@ export class AuthService {
 
   getUserById(id: string): Observable<any> {
     return this.http.get(`/api/user/${id}`);
+  }
+
+  savedProfile() {
+    this.profileSaved.next();
   }
 }

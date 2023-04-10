@@ -13,7 +13,7 @@ import {throwError} from "rxjs";
 export class RecentordersComponent implements OnInit {
   purchases: any;
   loading: boolean = true;
-  loadingbtns: boolean = true;
+  deletingPurchaseId: string = '';
 
   constructor(private purchaseService: PurchaseService, private authService: AuthService, private router: Router) { }
 
@@ -30,18 +30,16 @@ export class RecentordersComponent implements OnInit {
       this.purchaseService.getRecentOrders().subscribe((data: any) => {
         this.purchases = data.content;
         this.loading = false;
-        this.loadingbtns = false;
       });
     });
   }
 
   returnProduct(id: string) {
-    this.loadingbtns = true;
+    this.deletingPurchaseId = id;
     this.purchaseService.returnProduct(id).subscribe((data) => {
       this.purchaseService.getRecentOrders().subscribe((data: any) => {
         this.purchases = data.content;
       });
-      this.loadingbtns = false;
     });
   }
 

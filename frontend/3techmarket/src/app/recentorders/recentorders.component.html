@@ -28,7 +28,8 @@
         <br>
         <button type="button" [routerLink]="'/messages'" class="btn btn-outline-primary btn-lg mt-2">Contact support</button>
         <br>
-        <button type="button" (click)="returnProduct(purchase.purchaseId); purchase.cancelled = true" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>
+        <button *ngIf="deletingPurchaseId !== purchase.purchaseId" type="button" (click)="returnProduct(purchase.purchaseId)" class="btn btn-outline-secondary btn-lg mt-2">Return product</button>
+        <button *ngIf="deletingPurchaseId === purchase.purchaseId" type="button" class="btn btn-outline-secondary btn-lg mt-2" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Returning product...</button>
       </ng-template>
     </div> <!--Price and invoice-->
   </div>
