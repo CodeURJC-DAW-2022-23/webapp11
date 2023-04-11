@@ -10,7 +10,7 @@ import { MessagesComponent } from "../messages/messages.component";
 import { ChatsComponent } from "../chats/chats.component";
 import { RecentordersComponent } from "../recentorders/recentorders.component";
 import { CartComponent } from "../cart/cart.component";
-import {ReviewHistoryComponent} from "../reviewHistory/review-history/review-history.component";
+import {ReviewHistoryComponent} from "../reviewHistory/review-history.component";
 
 const routes: Routes = [
   { path: 'search/:product', component: ProductSearchComponent },
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'messages/:id', component: MessagesComponent},
   { path: 'purchases', component: RecentordersComponent},
   { path: 'cart', component: CartComponent},
-  {path: 'review-history/**',component: ReviewHistoryComponent}
+  {path: 'review-history/:id',component: ReviewHistoryComponent}
 ];
 
 export const routing = RouterModule.forRoot(routes);

@@ -22,7 +22,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { ChatsComponent } from './chats/chats.component';
 import { RecentordersComponent } from './recentorders/recentorders.component';
 import { CartComponent } from './cart/cart.component';
-import { ReviewHistoryComponent } from './reviewHistory/review-history/review-history.component';
+import { ReviewHistoryComponent } from './reviewHistory/review-history.component';
 
 // @ts-ignore
 // @ts-ignore
