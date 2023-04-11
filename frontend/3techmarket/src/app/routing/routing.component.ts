@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProductSearchComponent } from '../productsearch/productsearch.component';
 import { LoginComponent } from '../login/login.component';
+import { RegisterComponent } from '../register/register.component';
 import { HomeComponent } from "../home/home.component";
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { ProfileComponent } from "../profile/profile.component";
@@ -15,6 +16,7 @@ import {ReviewHistoryComponent} from "../reviewHistory/review-history.component"
 const routes: Routes = [
   { path: 'search/:product', component: ProductSearchComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent},
   { path: 'profile', component: ProfileComponent},

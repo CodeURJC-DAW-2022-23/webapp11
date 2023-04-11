@@ -23,6 +23,7 @@ import { ChatsComponent } from './chats/chats.component';
 import { RecentordersComponent } from './recentorders/recentorders.component';
 import { CartComponent } from './cart/cart.component';
 import { ReviewHistoryComponent } from './reviewHistory/review-history.component';
+import { RegisterComponent } from './register/register.component';
 
 // @ts-ignore
 // @ts-ignore
@@ -42,6 +43,7 @@ import { ReviewHistoryComponent } from './reviewHistory/review-history.component
     RecentordersComponent,
     CartComponent,
     ReviewHistoryComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

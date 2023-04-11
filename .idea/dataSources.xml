@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="24d698a8-0d8d-4077-8fe6-813b5a83fc2e">
+    <data-source source="LOCAL" name="@3techmarket.mysql.database.azure.com" uuid="74850b0e-a13e-4da3-9343-ff27dd8ade7c">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://3techmarket.mysql.database.azure.com:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="app/Hibernate" uuid="bf7a724f-f7e2-4e92-8605-a89241874c53">
+    <data-source source="LOCAL" name="app/Hibernate" uuid="3ad20650-d86d-4576-a38d-e6a12dd0c790">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>Hibernate</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://3techmarket.mysql.database.azure.com:3306/3techmarket?useSSL=true&amp;requireSSL=true</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="@3techmarket.mysql.database.azure.com" uuid="6b42ee5e-4583-4eed-94e3-7b0501e91083">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://3techmarket.mysql.database.azure.com:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-231.8109.175">
-    <data-source name="@localhost" uuid="24d698a8-0d8d-4077-8fe6-813b5a83fc2e">
+  <component name="dataSourceStorageLocal" created-in="IU-223.8836.41">
+    <data-source name="@3techmarket.mysql.database.azure.com" uuid="74850b0e-a13e-4da3-9343-ff27dd8ade7c">
       <database-info product="MySQL" version="8.0.31" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.31" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -11,15 +11,18 @@
       <user-name>ThreeTechRoot</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema" qname="3techmarket" />
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="3techmarket" />
+          </node>
         </introspection-scope>
       </schema-mapping>
+      <ssl-config>
+        <enabled>true</enabled>
+        <mode>REQUIRE</mode>
+      </ssl-config>
     </data-source>
-    <data-source name="app/Hibernate" uuid="bf7a724f-f7e2-4e92-8605-a89241874c53">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
-      <schema-mapping />
-    </data-source>
-    <data-source name="@3techmarket.mysql.database.azure.com" uuid="6b42ee5e-4583-4eed-94e3-7b0501e91083">
+    <data-source name="app/Hibernate" uuid="3ad20650-d86d-4576-a38d-e6a12dd0c790">
       <database-info product="MySQL" version="8.0.31" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.31" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -29,7 +32,7 @@
       <user-name>ThreeTechRoot</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema" qname="3techmarket" />
+          <node kind="schema" qname="@" />
         </introspection-scope>
       </schema-mapping>
     </data-source>

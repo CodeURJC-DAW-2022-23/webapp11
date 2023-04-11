@@ -12,6 +12,9 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     return this.http.post('/api/auth/login', { username, password });
   }
+  register(username: string, password: string, firstName: string, lastName: string): Observable<any> {
+    return this.http.post('/api/auth/signup', { username, password, firstName, lastName });
+  }
 
   logout() {
     this.http.post('/api/auth/logout', {}).subscribe(() => {
