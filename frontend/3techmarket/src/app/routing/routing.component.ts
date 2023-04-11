@@ -12,6 +12,7 @@ import { ChatsComponent } from "../chats/chats.component";
 import { RecentordersComponent } from "../recentorders/recentorders.component";
 import { CartComponent } from "../cart/cart.component";
 import {ReviewHistoryComponent} from "../reviewHistory/review-history.component";
+import {RecoverpasswordComponent} from "../recoverpassword/recoverpassword.component";
 
 const routes: Routes = [
   { path: 'search/:product', component: ProductSearchComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'messages/:id', component: MessagesComponent},
   { path: 'purchases', component: RecentordersComponent},
   { path: 'cart', component: CartComponent},
+  { path: 'recoverpassword', component: RecoverpasswordComponent},
   {path: 'review-history/:id',component: ReviewHistoryComponent}
 ];
 
