@@ -1,1 +1,16 @@
-<p style="color: red">review-history works!</p>
+<div class="container">
+  <div class="row reviews" id="reviews">
+    <ng-container *ngIf="total>0;else noReviews">
+      <div class="row" *ngFor="let review of reviews">
+        <div>
+          {{review.content}}
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noReviews>
+      <div class="col-12">
+        <h3 class="text-center">This item has no reviews yet</h3>
+      </div>
+    </ng-template>
+  </div>
+</div>
