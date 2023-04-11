@@ -79,4 +79,18 @@ public class ReviewRestController {
         return ResponseEntity.ok(review);
     }
 
+
+    @GetMapping("{id}/user-email")
+    @Operation(summary = "Get the user of a review", description = "Get the user of a review", tags = {"reviews"})
+    @ApiResponse(responseCode = "200", description = "User found")
+    @ApiResponse(responseCode = "404", description = "User not found")
+    public ResponseEntity<String> getReviewUser(@PathVariable Long id) {
+        Review review = ReviewService.getReviewById(id);
+        return ResponseEntity.ok(review.getUser().getEmail());
+    }
+
+
+
+
+
 }

@@ -27,13 +27,18 @@ export class ReviewHistoryComponent implements OnInit {
         for(let i=0;i<response.length;i++){
           this.total += 1;
           this.reviews.push(response[i]);
-
-
         }
         console.log(this.reviews)
-
-
       });
+  }
+
+  getEmail(reviewId:string) {
+    this.reviewsService.getEmailbyReviewId(reviewId)
+      .subscribe((response: any) => {
+        console.log(response.content)
+      });
+
+
 
   }
 

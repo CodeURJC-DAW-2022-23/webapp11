@@ -2,8 +2,22 @@
   <div class="row reviews" id="reviews">
     <ng-container *ngIf="total>0;else noReviews">
       <div class="row" *ngFor="let review of reviews">
-        <div>
-          {{review.content}}
+        <div class="row item">
+          <div class="col-md-4">
+            Imagen
+          </div>
+          <div class="col-md-6">
+            <h4>{{getEmail(review.reviewId)}}</h4>
+            <br>
+            <h5>{{review.reviewTitle}}</h5>
+            <p class="description">Stars: {{review.rating}}</p>
+            <p class="description">{{review.reviewText}}</p>
+
+
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-outline-danger">Remove</button>
+          </div>
         </div>
       </div>
     </ng-container>
