@@ -44,5 +44,5 @@ export class RegisterComponent implements OnInit {
     this.appComponent.showHeader = true;
     this.router.navigate(['/']);
   }
-
+  protected readonly Component = Component;
 }

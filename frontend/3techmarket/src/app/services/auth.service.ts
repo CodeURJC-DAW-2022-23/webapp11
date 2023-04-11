@@ -44,6 +44,10 @@ export class AuthService {
     return this.http.get(`/api/user/${id}`);
   }
 
+  recover(email: string): Observable<any> {
+    return this.http.put(`/api/user/recovery`, {email});
+  }
+
   savedProfile() {
     this.profileSaved.next();
   }
