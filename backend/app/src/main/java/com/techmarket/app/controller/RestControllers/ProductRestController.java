@@ -94,4 +94,19 @@ public class ProductRestController {
         return ResponseEntity.ok(productService.getProductById(id).getProductPrices());
     }
 
+    @GetMapping("remove-from-stock/{id}")
+    @Operation(summary = "Remove a product from stock")
+    @ApiResponse(responseCode = "200", description = "Product removed from stock")
+    @ApiResponse(responseCode = "404", description = "Product not found")
+    public ResponseEntity<Product> removeFromStock(@PathVariable Long id) {
+        Product product = productService.getProductById(id);
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        }
+        product.setProductStock(0);
+
+        productService.saveProduct(product);
+        return ResponseEntity.ok(product);
+    }
+
 }

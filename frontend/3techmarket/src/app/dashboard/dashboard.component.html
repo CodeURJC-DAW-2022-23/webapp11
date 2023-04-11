@@ -1,1 +1,46 @@
-<p>dashboard works!</p>
+<div class="container">
+  <h2>Admin Dashboard</h2>
+  <br>
+  <div class="row results" id="results">
+    <ng-container *ngIf="total > 0; else loading">
+      <div class="col-md-2" *ngFor="let result of results">
+        <a routerLink="/product/{{result.productId}}" class="result">
+          <img [ngSrc]="'api/images/' + result.productId + '/main-image'" width="120" height="120" alt="Result image">
+          <p class="name">{{result.productName}}</p>
+          <p>{{result.productPrice}} € <span class="badge bg-success text-white">Stock: {{result.productStock}}</span></p>
+          <p><a  class="btn btn-primary">Edit</a>
+
+            <a *ngIf="removingProductId !== result.productId" class="btn btn-danger" (click)="removeFromStock(result.productId)">Remove</a>
+            <a *ngIf="removingProductId === result.productId" class="btn btn-danger" disabled>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Removing...</a>
+            <a  class="btn btn-dark">Review history</a>
+            <a  class="btn btn-dark">Price history</a>
+          </p>
+
+        </a>
+
+      </div>
+
+      <br>
+      <div class="row" *ngIf="total > size*page">
+        <div class="col-md-12">
+          <button class="btn btn-success" *ngIf="!loadingMore" (click)="loadMore()">Load more</button>
+          <button class="btn btn-success" *ngIf="loadingMore" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      <div class="col-md-12">
+        <div class="spinner-border text-success" style="width: 5rem; height: 5rem;" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <br>
+
+      </div>
+    </ng-template>
+  </div>
+</div>

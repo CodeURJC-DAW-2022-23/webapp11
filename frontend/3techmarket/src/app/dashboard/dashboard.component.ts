@@ -12,6 +12,9 @@ export class DashboardComponent implements OnInit {
   page: number = 0;
   size: number = 10;
   total: number = 0;
+  loadingMore : boolean = false;
+
+  removingProductId: string = '';
   constructor(private productService: ProductService) {
   }
 
@@ -20,6 +23,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getProducts() {
+
     this.productService.getProducts(this.page, this.size)
       .subscribe((response: any) => {
         this.total = response.totalElements;
@@ -30,11 +34,23 @@ export class DashboardComponent implements OnInit {
   }
   loadMore() {
     this.page++;
+    this.loadingMore = true;
     this.productService.getProducts(this.page, this.size)
       .subscribe((response: any) => {
         this.results = this.results.concat(response.content);
-        this.total = response.totalElements;
+        this.loadingMore = false;
       });
+  }
+
+  removeFromStock(productId: string) {
+    this.removingProductId = productId;
+    this.productService.removeFromStock(productId)
+      .subscribe((response: any) => {
+        this.getProducts();
+        this.removingProductId = '';
+
+      });
+
   }
 
 }
