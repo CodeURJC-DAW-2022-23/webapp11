@@ -15,6 +15,9 @@ export class AuthService {
   register(username: string, password: string, firstName: string, lastName: string): Observable<any> {
     return this.http.post('/api/auth/signup', { username, password, firstName, lastName });
   }
+  verify(email: string, code: number, password: string): Observable<any> {
+    return this.http.post('/api/auth/code', { email, code, password });
+  }
 
   logout() {
     this.http.post('/api/auth/logout', {}).subscribe(() => {
@@ -45,7 +48,7 @@ export class AuthService {
   }
 
   recover(email: string): Observable<any> {
-    return this.http.put(`/api/user/recovery`, {email});
+    return this.http.post(`/api/user/recovery`, {email});
   }
 
   savedProfile() {

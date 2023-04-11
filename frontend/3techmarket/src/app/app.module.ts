@@ -25,6 +25,7 @@ import { CartComponent } from './cart/cart.component';
 import { ReviewHistoryComponent } from './reviewHistory/review-history.component';
 import { RegisterComponent } from './register/register.component';
 import { RecoverpasswordComponent } from './recoverpassword/recoverpassword.component';
+import { CodeComponent } from './code/code.component';
 
 // @ts-ignore
 // @ts-ignore
@@ -46,6 +47,7 @@ import { RecoverpasswordComponent } from './recoverpassword/recoverpassword.comp
     ReviewHistoryComponent,
     RegisterComponent,
     RecoverpasswordComponent,
+    CodeComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,10 +13,12 @@ import { RecentordersComponent } from "../recentorders/recentorders.component";
 import { CartComponent } from "../cart/cart.component";
 import {ReviewHistoryComponent} from "../reviewHistory/review-history.component";
 import {RecoverpasswordComponent} from "../recoverpassword/recoverpassword.component";
+import {CodeComponent} from "../code/code.component";
 
 const routes: Routes = [
   { path: 'search/:product', component: ProductSearchComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'code', component: CodeComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent},
