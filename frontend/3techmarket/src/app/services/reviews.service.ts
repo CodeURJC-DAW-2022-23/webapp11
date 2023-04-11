@@ -17,6 +17,6 @@ export class ReviewsService {
 
   getEmailbyReviewId(reviewId: string) {
     const url = `${this.baseUrl}/${reviewId}/user-email`;
-    return this.http.get(url);
+    return this.http.get(url, { responseType: 'text' });
   }
 }

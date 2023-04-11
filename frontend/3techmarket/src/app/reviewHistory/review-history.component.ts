@@ -13,33 +13,27 @@ export class ReviewHistoryComponent implements OnInit {
   constructor(private reviewsService: ReviewsService,private activatedRoute: ActivatedRoute) {
   }
   reviews: any[] = [];
+  loading: boolean = true;
+  emails: string[] = [];
 
   ngOnInit(): void {
     let id = this.activatedRoute.snapshot.paramMap.get('id') || ''
     this.getProductReviews(id);
-
-
+    this.loading = false;
   }
 
   getProductReviews(productId: string) {
     this.reviewsService.getProductReviews(productId)
       .subscribe((response: any) => {
-        for(let i=0;i<response.length;i++){
-          this.total += 1;
-          this.reviews.push(response[i]);
-        }
-        console.log(this.reviews)
+        this.reviews = response;
+        this.total = response.length;
+        this.reviews.forEach((review: any) => {
+          this.reviewsService.getEmailbyReviewId(review.reviewId)
+            .subscribe((response: any) => {
+              this.emails.push(response);
+            });
+        });
       });
-  }
-
-  getEmail(reviewId:string) {
-    this.reviewsService.getEmailbyReviewId(reviewId)
-      .subscribe((response: any) => {
-        console.log(response.content)
-      });
-
-
-
   }
 
 }
