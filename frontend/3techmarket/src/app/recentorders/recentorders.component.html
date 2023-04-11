@@ -17,7 +17,8 @@
       <h3>Shipping address and payment method</h3>
       <p class="details">Address: <b>{{purchase.address}}</b></p>
       <p class="details">Payment method: <b>{{purchase.paymentMethod}}</b></p>
-      <p class="details"><button type="button" (click)="getPDF(purchase.purchaseId)" class="btn btn-info">Download your invoice (PDF)</button></p>
+      <p *ngIf="!purchase.cancelled" class="details"><button type="button" (click)="getPDF(purchase.purchaseId)" class="btn btn-info">Download your invoice (PDF)</button></p>
+      <p *ngIf="purchase.cancelled" class="details"><button type="button" class="btn btn-info" disabled>PDF invoice not available</button></p>
     </div>
     <div class="col-md-2">
       <div *ngIf="purchase.cancelled; else notCancelled">
