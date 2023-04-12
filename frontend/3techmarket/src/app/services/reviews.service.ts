@@ -19,4 +19,11 @@ export class ReviewsService {
     const url = `${this.baseUrl}/${reviewId}/user-email`;
     return this.http.get(url, { responseType: 'text' });
   }
+
+  removeReview(reviewId: string) {
+    const url = `${this.baseUrl}/delete/${reviewId}`;
+    return this.http.delete(url);
+  }
+
+
 }

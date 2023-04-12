@@ -16,8 +16,15 @@
 
           </div>
           <div class="col-md-2">
-            <button class="btn btn-outline-danger">Remove</button>
+            <a class="btn btn-outline-danger " *ngIf="removingReviewId !== review.reviewId"  (click)="removeReview(review.reviewId)">
+              Remove
+            </a>
+            <a *ngIf="removingReviewId === review.reviewId" class="btn btn-outline-danger " disabled >
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Removing...
+            </a>
           </div>
+
         </div>
       </div>
     </ng-container>
