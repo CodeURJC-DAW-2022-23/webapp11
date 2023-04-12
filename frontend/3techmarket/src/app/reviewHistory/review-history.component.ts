@@ -20,6 +20,8 @@ export class ReviewHistoryComponent implements OnInit {
   loading: boolean = true;
   emails: string[] = [];
   removingReviewId: string = '';
+  pfps : any[] = [];
+
 
   ngOnInit(): void {
     this.authService.authdetails().pipe(
@@ -32,6 +34,7 @@ export class ReviewHistoryComponent implements OnInit {
         let id = this.activatedRoute.snapshot.paramMap.get('id') || ''
         this.getProductReviews(id);
         this.loading = false;
+
       }
     });
 
@@ -49,7 +52,14 @@ export class ReviewHistoryComponent implements OnInit {
             .subscribe((response: any) => {
               this.emails.push(response);
             });
+          this.reviewsService.getPfpId(review.reviewId)
+            .subscribe((response: any) => {
+              this.pfps.push(response);
+
+
+            });
         });
+
       });
   }
 
@@ -62,5 +72,7 @@ export class ReviewHistoryComponent implements OnInit {
 
     });
   }
+
+
 
 }

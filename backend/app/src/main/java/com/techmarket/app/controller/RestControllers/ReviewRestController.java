@@ -1,5 +1,6 @@
 package com.techmarket.app.controller.RestControllers;
 
+import com.techmarket.app.model.Image;
 import com.techmarket.app.model.Review;
 import com.techmarket.app.model.User;
 import com.techmarket.app.service.ProductService;
@@ -10,9 +11,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -88,7 +92,35 @@ public class ReviewRestController {
         Review review = ReviewService.getReviewById(id);
         return ResponseEntity.ok(review.getUser().getEmail());
     }
+    @GetMapping("/pfp/{email}")
+    @Operation(summary = "Get the user's profile picture")
+    @ApiResponse(responseCode = "200", description = "Profile picture retrieved")
+    @ApiResponse(responseCode = "400", description = "User not found")
+    public ResponseEntity<Object> getUserProfilePicture(@PathVariable String email) throws SQLException {
+        User user = userService.getUserName(email);
+        Image image = user.getProfilePicture();
+        InputStreamResource resource = new InputStreamResource(image.getImageBlob().getBinaryStream());
 
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + image.getFileName() + "\"")
+                .body(resource);
+    }
+
+
+    @GetMapping("/{reviewId}/user/pfp")
+    @Operation(summary = "Get the user's profile picture")
+    @ApiResponse(responseCode = "200", description = "Profile picture retrieved")
+    @ApiResponse(responseCode = "400", description = "User not found")
+    public ResponseEntity<?> getUserProfilePictureFromReview(HttpServletRequest request,@PathVariable long reviewId) throws SQLException {
+        Review review = ReviewService.getReviewById(reviewId);
+        User user = review.getUser();
+        Image image = user.getProfilePicture();
+        long id = image.getImageId();
+
+        return ResponseEntity.ok(id);
+
+    }
 
 
 

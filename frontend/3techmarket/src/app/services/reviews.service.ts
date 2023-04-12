@@ -25,5 +25,8 @@ export class ReviewsService {
     return this.http.delete(url);
   }
 
-
+  getPfpId(reviewId: string) {
+    const url = `${this.baseUrl}/${reviewId}/user/pfp`;
+    return this.http.get(url, { responseType: 'text' });
+  }
 }

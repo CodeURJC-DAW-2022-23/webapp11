@@ -4,7 +4,8 @@
       <div class="row" *ngFor="let review of reviews; let i = index">
         <div class="row item">
           <div class="col-md-4">
-            Imagen
+            <img class="img-fluid" src='/api/images/ + {{pfps[i]}}' alt="review image" height="200" width="200">
+
           </div>
           <div class="col-md-6">
             <h4>{{emails[i]}}</h4>
