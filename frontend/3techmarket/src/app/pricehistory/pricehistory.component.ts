@@ -36,8 +36,18 @@ export class PricehistoryComponent implements OnInit {
     title: {
       text: 'Loading...'
     },
+    xAxis: {
+      title: {
+        text: 'Changes'
+      }
+    },
+    yAxis: {
+      title: {
+        text: 'Prices'
+      }
+    },
     series: [{
-      name: 'Prices',
+      name: 'Price',
       type: 'line',
       data: [0, 0, 0]
     }]
@@ -46,6 +56,7 @@ export class PricehistoryComponent implements OnInit {
   prices: any[] = [];
   priceHistory: number[] = [];
   changes: number[] = [];
+  name: string = "";
   loading: boolean = true;
 
   ngOnInit(): void {
@@ -58,25 +69,22 @@ export class PricehistoryComponent implements OnInit {
       if (response.roles.includes('ADMIN')) {
         let id = this.activatedRoute.snapshot.paramMap.get('id') || ''
         this.getProductPrices(id);
-        const message = `Price history for: ${id}!`;
+        const message = `Price history for id: ${id}`;
         this.loading = false;
         setTimeout(() => {
-        this.chartOptions = {
-          chart: {
-            type: 'line'
-          },
-          title: {
-            text: message
-          },
-          series: [{
-            name: 'Jane',
-            type: 'line',
-            data: this.priceHistory
-          }]
-        };
-        Highcharts.chart('app-line-chart', this.chartOptions);
+          this.chartOptions = {
+            title: {
+              text: message
+            },
+            series: [{
+              name: 'Price',
+              type: 'line',
+              data: this.priceHistory
+            }]
+          };
+          Highcharts.chart('app-line-chart', this.chartOptions);
 
-      },1000)
+        }, 1000)
       }
     });
   }
@@ -84,7 +92,6 @@ export class PricehistoryComponent implements OnInit {
   getProductPrices(productId: string) {
     this.pricesService.getPrices(productId)
       .subscribe((response: any) => {
-        console.log("Response" + response);
         this.prices = response
         this.prices.forEach((price: any) => {
           this.priceHistory.push(parseInt(price.toString()));

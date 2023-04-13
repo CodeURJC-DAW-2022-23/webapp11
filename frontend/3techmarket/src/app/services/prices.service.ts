@@ -7,10 +7,11 @@ import {Observable} from "rxjs";
 })
 export class PricesService {
   private baseUrl = '/api/products/price-history';
+  private baseUrl2 = '/api/products/product-name';
 
   constructor(private http: HttpClient) { }
 
-  getPrices(productId: string) : Observable<any>{
+  getPrices(productId: string) : Observable<any> {
     const url = `${this.baseUrl}/${productId}`;
     return this.http.get(url);
   }
