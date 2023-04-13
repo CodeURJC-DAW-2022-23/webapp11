@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   recover(email: string): Observable<any> {
-    return this.http.post(`/api/user/recovery`, {email});
+    return this.http.post(`/api/auth/recover`, {email});
   }
 
   savedProfile() {

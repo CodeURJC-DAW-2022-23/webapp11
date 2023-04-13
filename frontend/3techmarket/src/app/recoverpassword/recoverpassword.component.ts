@@ -37,7 +37,7 @@ export class RecoverpasswordComponent implements OnInit {
   // Redirect to the home page
   redirect() {
     this.appComponent.showHeader = true;
-    this.router.navigate(['/']);
+    this.router.navigate(['/code']);
   }
 
   protected readonly Component = Component;
