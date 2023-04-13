@@ -26,6 +26,7 @@ import { ReviewHistoryComponent } from './reviewHistory/review-history.component
 import { RegisterComponent } from './register/register.component';
 import { RecoverpasswordComponent } from './recoverpassword/recoverpassword.component';
 import { CodeComponent } from './code/code.component';
+import { PricehistoryComponent } from './pricehistory/pricehistory.component';
 
 // @ts-ignore
 // @ts-ignore
@@ -48,6 +49,7 @@ import { CodeComponent } from './code/code.component';
     RegisterComponent,
     RecoverpasswordComponent,
     CodeComponent,
+    PricehistoryComponent,
   ],
   imports: [
     BrowserModule,
