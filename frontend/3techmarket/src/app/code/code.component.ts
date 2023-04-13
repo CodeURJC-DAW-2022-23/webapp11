@@ -13,7 +13,7 @@ export class CodeComponent implements OnInit {
   email: string = '';
   password: string = '';
 
-  code: number = 0;
+  code: string = "";
   showPassword: boolean = false;
 
   constructor(private auth: AuthService, private route: ActivatedRoute, private router: Router, private appComponent: AppComponent) { }
@@ -26,8 +26,8 @@ export class CodeComponent implements OnInit {
     });
   }
 
-  verify(email: string, code: number, password: string) {
-    this.auth.verify(email, code, password).subscribe((response: any) => {
+  verify(email: string, code: string, password: string) {
+    this.auth.verify(email, code, password, "", "").subscribe((response: any) => {
 
       this.redirect();
     }, () => {

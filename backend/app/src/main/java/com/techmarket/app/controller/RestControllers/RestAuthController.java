@@ -1,5 +1,6 @@
 package com.techmarket.app.controller.RestControllers;
 
+import com.techmarket.app.Repositories.UserRepository;
 import com.techmarket.app.model.User;
 import com.techmarket.app.security.jwt.AuthResponse;
 import com.techmarket.app.security.jwt.LoginRequest;
@@ -15,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -28,6 +31,9 @@ public class RestAuthController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/login")
     @Operation(summary = "Login")
@@ -53,6 +59,33 @@ public class RestAuthController {
     public ResponseEntity<AuthResponse> refresh(
             @CookieValue(name = "refreshToken", required = false) String refreshToken) {
         return userLoginService.refresh(refreshToken);
+    }
+
+    @PostMapping("/code")
+    @Operation(summary = "Change the password with the token")
+    @ApiResponse(responseCode = "200", description = "Change successful")
+    @ApiResponse(responseCode = "400", description = "Code and email doesnt match")
+    public ResponseEntity<AuthResponse> code(@RequestBody Map<String, String> requestBody){
+        String userToken = requestBody.get("code");
+        String email = requestBody.get("email");
+        String password = requestBody.get("password");
+        User user;
+        String userRealToken = userService.getPasswordToken(email).toString();
+        user = userService.getUserName(email);
+        AuthResponse authResponse = null;
+        if (Objects.equals(userToken, userRealToken)){
+            user.setEncodedPassword(passwordEncoder.encode(password));
+            userService.saveUser(user);
+            authResponse = new AuthResponse(AuthResponse.Status.SUCCESS, "User created successfully, you can now login");
+
+            // Return the response
+            return ResponseEntity.ok(authResponse);
+
+        }
+        else {
+            authResponse = new AuthResponse(AuthResponse.Status.FAILURE, "Code and email doesnt match");
+            return ResponseEntity.badRequest().body(authResponse);
+        }
     }
 
     @PostMapping("/signup")

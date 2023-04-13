@@ -47,6 +47,9 @@ public class UserService implements UserDetailsService {
     public User getUserName(String email) {
         return userRepository.findByEmail(email);
     }
+    public Long getPasswordToken(String email) {
+        return userRepository.findByEmail(email).getPasswordChangeToken();
+    }
 
     public List<User> getUserByRole(String role) {
         return userRepository.findByRoles(role);
