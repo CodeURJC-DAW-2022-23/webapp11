@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
@@ -86,11 +87,11 @@ public class ProductRestController {
         return ResponseEntity.ok(updatedProduct);
     }
 
-    @PostMapping("/price-history/{id}")
+    @GetMapping("/price-history/{id}")
     @Operation(summary = "Get a product's price history")
     @ApiResponse(responseCode = "200", description = "Product's price history retrieved")
     @ApiResponse(responseCode = "404", description = "Product not found")
-    public ResponseEntity<?> getProductPriceHistory(@PathVariable Long id) {
+    public ResponseEntity<List<Double>> getProductPriceHistory(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getProductById(id).getProductPrices());
     }
 

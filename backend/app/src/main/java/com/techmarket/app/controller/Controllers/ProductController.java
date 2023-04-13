@@ -86,6 +86,18 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/price-history/{id}")
+    public String getPriceHistory(@PathVariable Long id, Model model) {
+        Product product = productService.getProductById(id);
+        if (product != null) {
+            List<Double> prices = product.getProductPrices();
+            model.addAttribute("product", prices);
+            return "pricehistory";
+        } else {
+            return "/dashboard";
+        }
+    }
+
     @GetMapping("/addproduct")
     public String addproduct() {
         return "addproduct";

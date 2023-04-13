@@ -27,6 +27,7 @@ import { RegisterComponent } from './register/register.component';
 import { RecoverpasswordComponent } from './recoverpassword/recoverpassword.component';
 import { CodeComponent } from './code/code.component';
 import { PricehistoryComponent } from './pricehistory/pricehistory.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 // @ts-ignore
 // @ts-ignore
@@ -59,7 +60,8 @@ import { PricehistoryComponent } from './pricehistory/pricehistory.component';
     NgOptimizedImage,
     routing,
     NgbModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    HighchartsChartModule
   ],
   providers: [
     ProductService
