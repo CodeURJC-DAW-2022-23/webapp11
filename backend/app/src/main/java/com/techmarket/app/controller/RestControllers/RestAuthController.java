@@ -67,6 +67,12 @@ public class RestAuthController {
         user.setEncodedPassword(passwordEncoder.encode(loginRequest.getPassword()));
         // Set default role USER
         user.setRoles(Collections.singletonList("USER"));
+        user.setFirstName(loginRequest.getFirstName());
+        user.setLastName(loginRequest.getLastName());
+        user.setLastName(loginRequest.getLastName());
+        long leftLimit = 10000L;
+        long rightLimit = 99999L;
+        user.setPasswordChangeToken(leftLimit + (long) (Math.random() * (rightLimit - leftLimit)));
 
         // Save the user
         userService.saveUser(user);
