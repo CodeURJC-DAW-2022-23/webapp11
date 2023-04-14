@@ -38,12 +38,19 @@ DOCKERFILE="Dockerfile"
 
 # The Dockerfile's directory (docker/)
 DOCKERFILE_DIR="docker"
+ANGULAR_DIR="frontend/3techmarket"
 
 # Set the current directory to the root of the project because Docker will set
 # the context to the directory where we run the command
 # shellcheck disable=SC2164
 cd "$(dirname "$0")/.." || exit 1
 
+# Use dockerized Node.js to run npm install and ng build, rm the container when it's done using node:lts-slim
+docker run --rm -v "$(pwd)/${ANGULAR_DIR}:/app" -w /app node:lts-slim npm install
+docker run --rm -v "$(pwd)/${ANGULAR_DIR}:/app" -w /app node:lts-slim npm run build --configuration=production
+
+# Copy the result of the build to the Spring Boot project
+cp -r "${ANGULAR_DIR}/dist/3techmarket" "src/main/resources/static/spa"
 
 # Build the image
 docker build -t "${IMAGE_NAME}:${IMAGE_VERSION}" -f "${DOCKERFILE_DIR}/${DOCKERFILE}" .
