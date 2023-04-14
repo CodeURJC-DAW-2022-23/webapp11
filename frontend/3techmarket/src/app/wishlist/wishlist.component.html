@@ -1,1 +1,38 @@
-<p>wishlist works!</p>
+<h1>Wishlist</h1>
+<br><br>
+
+<div class="container-md" id="items">
+  <div *ngIf="hasItems">
+    <div class="row item" *ngFor="let item of items">
+      <div class="col-md-4">
+        <img [ngSrc]="'/api/images/' + item.productId + '/main-image'" class="center" alt="item" width="200" height="200">
+      </div>
+      <div class="col-md-4">
+        <a routerLink="/product/{{item.productId}}"><h3>{{item.productName}}</h3></a>
+        <p class="description">{{item.description}}</p>
+      </div>
+      <div class="col-md-2">
+        <h3>Price</h3>
+        <p class="price">€{{item.productPrice}}</p>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-outline-primary" >Add to cart</button>
+        <button *ngIf="deletingItemId !== item.productId" class="btn btn-outline-danger" (click)="removeFromWishlist(item.productId)">Remove</button>
+        <br><br>
+        <button *ngIf="deletingItemId === item.productId" class="btn btn-outline-danger" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Removing...
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!hasItems">
+    <h3>Your wishlist is empty</h3>
+  </div>
+
+
+
+</div>
+
+

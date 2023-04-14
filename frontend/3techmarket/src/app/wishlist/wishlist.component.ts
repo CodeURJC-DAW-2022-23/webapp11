@@ -46,7 +46,9 @@ export class WishlistComponent implements OnInit {
       this.total = response.totalElements;
       this.hasMore = response.last === false;  // If it's not the last page, there are more items
       this.hasItems = this.total > 0; // If there are items, show them
-
+      console.log(this.items);
+      console.log(this.total);
+      console.log(this.hasItems);
 
     });
   }
