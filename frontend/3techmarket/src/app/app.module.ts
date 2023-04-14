@@ -28,6 +28,9 @@ import { RecoverpasswordComponent } from './recoverpassword/recoverpassword.comp
 import { CodeComponent } from './code/code.component';
 import { PricehistoryComponent } from './pricehistory/pricehistory.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 // @ts-ignore
 // @ts-ignore
@@ -51,6 +54,9 @@ import { HighchartsChartModule } from 'highcharts-angular';
     RecoverpasswordComponent,
     CodeComponent,
     PricehistoryComponent,
+    WishlistComponent,
+    AddProductComponent,
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,

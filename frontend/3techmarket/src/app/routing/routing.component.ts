@@ -15,6 +15,7 @@ import {ReviewHistoryComponent} from "../reviewHistory/review-history.component"
 import {RecoverpasswordComponent} from "../recoverpassword/recoverpassword.component";
 import {CodeComponent} from "../code/code.component";
 import {PricehistoryComponent} from "../pricehistory/pricehistory.component";
+import {WishlistComponent} from "../wishlist/wishlist.component";
 
 const routes: Routes = [
   { path: 'search/:product', component: ProductSearchComponent },
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent},
   { path: 'recoverpassword', component: RecoverpasswordComponent},
   {path: 'review-history/:id',component: ReviewHistoryComponent},
-  {path: 'pricehistory/:id',component: PricehistoryComponent}
+  {path: 'pricehistory/:id',component: PricehistoryComponent},
+  {path: 'wishlist',component: WishlistComponent}
 ];
 
 export const routing = RouterModule.forRoot(routes);

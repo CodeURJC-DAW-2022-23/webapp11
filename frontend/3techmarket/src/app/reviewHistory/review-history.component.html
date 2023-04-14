@@ -2,9 +2,9 @@
   <div class="row reviews" id="reviews">
     <ng-container *ngIf="total>0;else noReviews">
       <div class="row" *ngFor="let review of reviews; let i = index">
-        <div class="row item">
+        <div class="row item" style="padding-bottom: 10px">
           <div class="col-md-4">
-            <img class="img-fluid" src='/api/images/ + {{pfps[i]}}' alt="review image" height="200" width="200">
+            <img class="img-fluid" src='/api/images/ + {{pfps[i]}}' alt="review image" height="200" width="200" style="border-radius: 50% ser">
 
           </div>
           <div class="col-md-6">
