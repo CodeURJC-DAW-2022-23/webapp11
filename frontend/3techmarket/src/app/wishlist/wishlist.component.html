@@ -2,7 +2,6 @@
 <br><br>
 
 <div class="container-md" id="items">
-  <div *ngIf="hasItems">
     <div class="row item" *ngFor="let item of items">
       <div class="col-md-4">
         <img [ngSrc]="'/api/images/' + item.productId + '/main-image'" class="center" alt="item" width="200" height="200">
@@ -25,14 +24,28 @@
         </button>
       </div>
     </div>
+      <div class="row" *ngIf="total > size*page">
+        <div class="col-md-12">
+          <button class="btn btn-success" *ngIf="!loadingMore" (click)="loadMore()">Load more</button>
+          <button class="btn btn-success" *ngIf="loadingMore" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
+        </div>
+      </div>
+  <div class="col-md-12" *ngIf="items.length === 0">
+    <div *ngIf="loading" class="spinner-border text-success" style="width: 5rem; height: 5rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div *ngIf="!loading">
+      <h2>There are no items in your wihslist, <a routerLink="/">START SHOPPING NOW!</a></h2>
+    </div>
   </div>
 
-  <div *ngIf="!hasItems">
-    <h3>Your wishlist is empty</h3>
-  </div>
 
 
 
 </div>
+
 
 

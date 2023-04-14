@@ -16,11 +16,10 @@ export class WishlistComponent implements OnInit {
   total: number = 0;
   page: number = 0;
   size: number = 10;
-  hasItems: boolean = false;
   hasMore: boolean = false;
   loadingMore: boolean = false;
-  loading: boolean = true;
   deletingItemId: string = '';
+  loading: boolean = true;
 
   constructor(private authService: AuthService, private router: Router, private productService: ProductService) { }
   ngOnInit() {
@@ -41,16 +40,14 @@ export class WishlistComponent implements OnInit {
   }
 
   getWishlist() {
+    this.page=0;
+    this.total=0;
     this.productService.getWishlist(this.page, this.size).subscribe((response: any) => {
-      this.items = response.content;
       this.total = response.totalElements;
-      this.hasMore = response.last === false;  // If it's not the last page, there are more items
-      this.hasItems = this.total > 0; // If there are items, show them
-      console.log(this.items);
-      console.log(this.total);
-      console.log(this.hasItems);
-
+      this.items = response.content;
+      this.loading = false;
     });
+
   }
 
 

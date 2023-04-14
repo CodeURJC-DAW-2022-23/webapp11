@@ -14,6 +14,7 @@ export class ProductSearchComponent implements OnInit {
   size: number = 10;
   total: number = 0;
   loadingMore: boolean = false;
+  hasMore: boolean = false;
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}
 
@@ -31,6 +32,8 @@ export class ProductSearchComponent implements OnInit {
       .subscribe((response: any) => {
         this.total = response.totalElements;
         this.results = response.content;
+        console.log(this.total)
+
       });
   }
 
@@ -40,6 +43,7 @@ export class ProductSearchComponent implements OnInit {
     this.productService.searchProducts(this.product, this.page, this.size)
       .subscribe((response: any) => {
         this.results = this.results.concat(response.content);
+        this.hasMore = response.last === false;
         this.loadingMore = false;
       });
   }
