@@ -25,8 +25,18 @@ export class ProductService {
     return this.http.get(url);
   }
 
+  getWishlist(page: number, size: number) {
+    const url = `/api/wishlist?page=${page}&size=${size}`;
+    return this.http.get(url);
+  }
+
   removeFromCart(productId: string) {
     const url = `/api/cart/removeProduct/${productId}`;
+    return this.http.delete(url);
+  }
+
+  removeFromWishlist(productId: string) {
+    const url = `/api/wishlist/removeProduct/${productId}`;
     return this.http.delete(url);
   }
 
