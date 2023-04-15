@@ -31,6 +31,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 // @ts-ignore
 // @ts-ignore
@@ -57,6 +58,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     WishlistComponent,
     AddProductComponent,
     EditProductComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

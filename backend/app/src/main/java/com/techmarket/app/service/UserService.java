@@ -89,4 +89,22 @@ public class UserService implements UserDetailsService {
     public List<User> getUsersByRole(String user) {
         return userRepository.findByRoles(user);
     }
+
+    public void checkoutCart(User user, String address) {
+        // Put the items that are in the cart into the purchase history
+        user.getShoppingCart().forEach(product -> {
+            Purchase purchase = new Purchase();
+            purchase.setProduct(product);
+            purchase.setUser(user);
+            // If the product is not already on the purchasesproduct list, add it
+            if (!user.getPurchasedProducts().contains(product)) {
+                user.getPurchasedProducts().add(product);
+            }
+            purchase.setAddress(address);
+            purchaseRepository.save(purchase);
+        });
+        // Clear the cart
+        user.getShoppingCart().clear();
+        userRepository.save(user);
+    }
 }
