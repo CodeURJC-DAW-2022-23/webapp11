@@ -51,6 +51,7 @@ export class CartComponent implements OnInit {
       for (let item of this.items) {
         this.totalPrice += item.productPrice;
       }
+      parseFloat(this.totalPrice.toFixed(2));
       this.loading = false;
     });
   }

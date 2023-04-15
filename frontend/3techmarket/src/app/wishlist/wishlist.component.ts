@@ -73,9 +73,10 @@ export class WishlistComponent implements OnInit {
   addToCart(id: string) {
     this.addingToCartItemId = id;
     this.productService.addToCart(id).subscribe((response: any) => {
-
+      this.addingToCartItemId = '';
+      this.getWishlist();
     });
-    this.getWishlist();
+
   }
 
 
