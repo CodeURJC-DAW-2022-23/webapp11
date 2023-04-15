@@ -55,4 +55,24 @@ export class ProductService {
     const url = `/api/cart/addProduct/${productId}`;
     return this.http.post(url, null);
   }
+
+  addProduct(productName:string,description:string,price:number,amount:number,tags:string[],image:File | undefined,images:FileList | undefined){
+    const url = `/api/products/add-product`;
+    const formData = new FormData();
+    formData.append('productName', productName);
+    formData.append('description', description);
+    formData.append('price', price.toString());
+    formData.append('amount', amount.toString());
+    formData.append('tags', tags.toString());
+    if (image) {
+      formData.append('image', image);
+    }
+    if (images) {
+      for (let i = 0; i < images.length; i++) {
+        formData.append('images', images[i]);
+      }
+
+    }
+    return this.http.post(url, formData);
+  }
 }
