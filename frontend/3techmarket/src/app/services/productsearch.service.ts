@@ -50,10 +50,9 @@ export class ProductService {
     const url = `/api/checkout`;
     return this.http.post(url, address);
   }
-  
+
   addToCart(productId: string) {
     const url = `/api/cart/addProduct/${productId}`;
     return this.http.post(url, null);
   }
-export class ProductsearchService {
 }
