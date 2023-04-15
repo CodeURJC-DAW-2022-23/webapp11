@@ -2,7 +2,7 @@
   <h2>Search results for: {{product}}</h2>
   <br>
   <div class="row results" id="results">
-    <ng-container *ngIf="total > 0; else loading">
+    <ng-container *ngIf="total > 0; else stillloading">
       <div class="col-md-2" *ngFor="let result of results">
         <a routerLink="/product/{{result.productId}}" class="result">
           <img [ngSrc]="'api/images/' + result.productId + '/main-image'" width="120" height="120" alt="Result image">
@@ -22,14 +22,14 @@
         </div>
       </div>
     </ng-container>
-    <ng-template #loading>
-      <div class="col-md-12">
+    <ng-template #stillloading>
+      <div *ngIf="loading" class="col-md-12">
         <div class="spinner-border text-success" style="width: 5rem; height: 5rem;" role="status">
           <span class="sr-only">Loading...</span>
         </div>
         <br>
-        <h4>Taking too long? We may not have any results for your search :(</h4>
       </div>
+      <h2 *ngIf="!loading">Your search didn't return any results :(</h2>
     </ng-template>
   </div>
 </div>

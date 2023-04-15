@@ -15,6 +15,7 @@ export class ProductSearchComponent implements OnInit {
   total: number = 0;
   loadingMore: boolean = false;
   hasMore: boolean = false;
+  loading: boolean = true;
 
   constructor(private route: ActivatedRoute, private productService: ProductService) {}
 
@@ -26,14 +27,15 @@ export class ProductSearchComponent implements OnInit {
   }
 
   searchProducts() {
+    this.loading = true;
     this.page = 0;
     this.total = 0;
     this.productService.searchProducts(this.product, this.page, this.size)
       .subscribe((response: any) => {
         this.total = response.totalElements;
         this.results = response.content;
-        console.log(this.total)
-
+        this.hasMore = response.last === false;  // If it is not the last page, there are more results
+        this.loading = false;
       });
   }
 
