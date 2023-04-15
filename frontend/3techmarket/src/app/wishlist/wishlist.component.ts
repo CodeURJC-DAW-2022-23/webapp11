@@ -19,6 +19,7 @@ export class WishlistComponent implements OnInit {
   hasMore: boolean = false;
   loadingMore: boolean = false;
   deletingItemId: string = '';
+  addingToCartItemId: string = '';
   loading: boolean = true;
 
   constructor(private authService: AuthService, private router: Router, private productService: ProductService) { }
@@ -68,4 +69,14 @@ export class WishlistComponent implements OnInit {
     });
 
   }
+
+  addToCart(id: string) {
+    this.addingToCartItemId = id;
+    this.productService.addToCart(id).subscribe((response: any) => {
+
+    });
+    this.getWishlist();
+  }
+
+
 }

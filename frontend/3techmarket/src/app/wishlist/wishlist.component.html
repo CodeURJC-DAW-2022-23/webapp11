@@ -15,7 +15,12 @@
         <p class="price">€{{item.productPrice}}</p>
       </div>
       <div class="col-md-2">
-        <button class="btn btn-outline-primary" >Add to cart</button>
+        <button *ngIf="addingToCartItemId !== item.productId" class="btn btn-outline-primary" (click)="addToCart(item.productId)">Add to cart</button>
+        <br><br>
+        <button *ngIf="addingToCartItemId === item.productId" class="btn btn-outline-primary" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Adding...
+        </button>
         <button *ngIf="deletingItemId !== item.productId" class="btn btn-outline-danger" (click)="removeFromWishlist(item.productId)">Remove</button>
         <br><br>
         <button *ngIf="deletingItemId === item.productId" class="btn btn-outline-danger" disabled>

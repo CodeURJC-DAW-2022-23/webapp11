@@ -45,6 +45,11 @@ export class ProductService {
     const url = `/api/products/remove-from-stock/${productId}`;
     return this.http.get(url);
   }
+
+  addToCart(productId: string) {
+    const url = `/api/cart/addProduct/${productId}`;
+    return this.http.post(url, null);
+  }
 }
 
 export class ProductsearchService {
