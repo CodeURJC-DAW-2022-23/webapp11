@@ -101,6 +101,8 @@ public class UserService implements UserDetailsService {
                 user.getPurchasedProducts().add(product);
             }
             purchase.setAddress(address);
+            purchase.setPaymentMethod("Cash on delivery");
+            purchase.setTimestamp(new java.util.Date().toString());
             purchaseRepository.save(purchase);
         });
         // Clear the cart
