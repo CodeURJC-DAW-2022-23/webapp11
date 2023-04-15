@@ -7,7 +7,7 @@ import {FooterComponent} from "./footer/footer.component";
 import {HeaderComponent} from "./header/header.component";
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
-import {ProductService} from "./services/productsearch.service";
+import {ProductService} from "./services/product.service";
 import { ProductSearchComponent } from './productsearch/productsearch.component';
 import {routing} from './routing/routing.component';
 import {NgOptimizedImage} from "@angular/common";
