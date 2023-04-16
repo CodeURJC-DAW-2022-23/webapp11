@@ -16,11 +16,9 @@ export class AddProductComponent implements OnInit{
 
   productName:string ='';
   description:string ='';
-  price:number = 0;
-  amount:number = 0
-  tags:string[] = [];
-  image:File | undefined;
-  images: FileList | undefined;
+  price:string = "";
+  amount:string = "";
+  tags:string = "";
   loading:boolean = true;
 
   constructor(private http:HttpClient, private router:Router,private authService:AuthService,
@@ -37,14 +35,14 @@ export class AddProductComponent implements OnInit{
 
     });
   }
-  addProduct(productName:string,description:string,price:number,amount:number,tags:string[],image:File | undefined,images:FileList | undefined){
-      console.log(productName,description,price,amount,tags,image,images)
-      this.productService.addProduct(productName,description,price,amount,tags,image,images).subscribe((response:any)=>{
+  addProduct(productName:string,description:string,price:string,amount:string,tags:string){
+      this.productService.addNewProduct(productName,description,price,amount,tags).subscribe((response:any)=>{
         this.router.navigate(['/dashboard']);
       });
 
 
   }
+
 
 }
 

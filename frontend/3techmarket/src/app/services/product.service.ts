@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -56,23 +57,17 @@ export class ProductService {
     return this.http.post(url, null);
   }
 
-  addProduct(productName:string,description:string,price:number,amount:number,tags:string[],image:File | undefined,images:FileList | undefined){
+  addNewProduct(productName:string,description:string,price:string,amount:string,tags:string) {
     const url = `/api/products/add-product`;
     const formData = new FormData();
     formData.append('productName', productName);
     formData.append('description', description);
-    formData.append('price', price.toString());
-    formData.append('amount', amount.toString());
-    formData.append('tags', tags.toString());
-    if (image) {
-      formData.append('image', image);
-    }
-    if (images) {
-      for (let i = 0; i < images.length; i++) {
-        formData.append('images', images[i]);
-      }
-
-    }
+    formData.append('price', price);
+    formData.append('amount', amount);
+    formData.append('tags', tags);
     return this.http.post(url, formData);
+
+
   }
+
 }

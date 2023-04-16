@@ -1,17 +1,26 @@
 package com.techmarket.app.controller.RestControllers;
 
+import com.techmarket.app.model.Image;
 import com.techmarket.app.model.Product;
+import com.techmarket.app.service.ImageService;
 import com.techmarket.app.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
 import java.net.URI;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -20,6 +29,9 @@ public class ProductRestController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ImageService imageService;
 
     @GetMapping(params = {"page", "size"})
     @Operation(summary = "Get all products")
@@ -60,8 +72,25 @@ public class ProductRestController {
     @ApiResponse(responseCode = "201", description = "Product created")
     @ApiResponse(responseCode = "400", description = "Product not created")
     @ApiResponse(responseCode = "403", description = "User not authorized")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        Product newProduct = productService.createProduct(product);
+    public ResponseEntity<Product> createProduct(@RequestParam("productName") String productName, @RequestParam("description")  String description,@RequestParam("price") String price, @RequestParam("amount") String amount, @RequestParam("tags") String tags) throws IOException, SQLException {
+        Product newProduct = new Product();
+        newProduct.setProductPrices(new ArrayList<>());
+        newProduct.setImages(new ArrayList<>());
+        newProduct.setProductName(productName);
+        newProduct.setDescription(description);
+        newProduct.setProductPrice(Double.parseDouble(price));
+        newProduct.setProductStock(Integer.parseInt(amount));
+        newProduct.setTags(Arrays.asList(tags));
+        newProduct.setReviews(new ArrayList<>());
+
+        newProduct.setReviews(new ArrayList<>());
+
+        productService.saveProduct(newProduct);
+
+
+
+
+
         // Return the location of the new product
         return ResponseEntity.created(URI.create("/api/products/" + newProduct.getId())).body(newProduct);
     }
