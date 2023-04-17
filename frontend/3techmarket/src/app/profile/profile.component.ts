@@ -101,4 +101,3 @@ export class ProfileComponent implements OnInit {
 
   protected readonly environment = environment;
 }
-
