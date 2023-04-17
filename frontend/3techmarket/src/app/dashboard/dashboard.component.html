@@ -8,7 +8,7 @@
           <img [ngSrc]="'api/images/' + result.productId + '/main-image'" width="120" height="120" alt="Result image">
           <p class="name">{{result.productName}}</p>
           <p>{{result.productPrice}} € <span class="badge bg-success text-white">Stock: {{result.productStock}}</span></p>
-          <p><a  class="btn btn-primary">Edit</a>
+          <p><a  routerLink="/editProduct/{{result.productId}}"  class="btn btn-primary">Edit</a>
 
             <a *ngIf="removingProductId !== result.productId" class="btn btn-danger" (click)="removeFromStock(result.productId)">Remove</a>
             <a *ngIf="removingProductId === result.productId" class="btn btn-danger" disabled>

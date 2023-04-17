@@ -32,6 +32,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductComponent } from './product/product.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     AddProductComponent,
     EditProductComponent,
     CheckoutComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

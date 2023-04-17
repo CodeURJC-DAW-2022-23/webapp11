@@ -19,6 +19,11 @@ import {WishlistComponent} from "../wishlist/wishlist.component";
 import { CheckoutComponent } from "../checkout/checkout.component";
 import {AddProductComponent} from "../add-product/add-product.component";
 
+import {EditProductComponent} from "../edit-product/edit-product.component";
+
+import {ProductComponent} from "../product/product.component";
+
+
 const routes: Routes = [
   { path: 'search/:product', component: ProductSearchComponent },
   { path: 'login', component: LoginComponent },
@@ -38,7 +43,12 @@ const routes: Routes = [
   {path: 'pricehistory/:id',component: PricehistoryComponent},
   {path: 'wishlist',component: WishlistComponent},
   {path: 'checkout',component: CheckoutComponent},
-  {path: 'addProduct',component: AddProductComponent}
+  {path: 'addProduct',component: AddProductComponent},
+
+  {path: 'editProduct/:id',component: EditProductComponent},
+
+  {path:'product/:id', component: ProductComponent}
+
 ];
 
 export const routing = RouterModule.forRoot(routes);
