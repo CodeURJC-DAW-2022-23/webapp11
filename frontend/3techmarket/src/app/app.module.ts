@@ -33,8 +33,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
-// @ts-ignore
-// @ts-ignore
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,5 +75,5 @@ import { CheckoutComponent } from './checkout/checkout.component';
   ],
   bootstrap: [AppComponent]
 })
-// @ts-ignore
+
 export class AppModule { }

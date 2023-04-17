@@ -45,12 +45,19 @@ ANGULAR_DIR="frontend/3techmarket"
 # shellcheck disable=SC2164
 cd "$(dirname "$0")/.." || exit 1
 
-# Use dockerized Node.js to run npm install and ng build, rm the container when it's done using node:lts-slim
-docker run --rm -v "$(pwd)/${ANGULAR_DIR}:/app" -w /app node:lts-slim npm install
-docker run --rm -v "$(pwd)/${ANGULAR_DIR}:/app" -w /app node:lts-slim npm run build --configuration=production
+# Build the Angular project
+cd "${ANGULAR_DIR}" || exit 1
+npm install
+ng build --configuration production
+
+# Change the base to /new on the index.html file
+sed -i 's|<base href="/">|<base href="/new">|g' dist/3techmarket/index.html
+
+# Go back to the root of the project
+cd ../.. || exit 1
 
 # Copy the result of the build to the Spring Boot project
-cp -r "${ANGULAR_DIR}/dist/3techmarket" "src/main/resources/static/spa"
+cp -r "${ANGULAR_DIR}/dist/3techmarket" "backend/app/src/main/resources/static"
 
 # Build the image
 docker build -t "${IMAGE_NAME}:${IMAGE_VERSION}" -f "${DOCKERFILE_DIR}/${DOCKERFILE}" .

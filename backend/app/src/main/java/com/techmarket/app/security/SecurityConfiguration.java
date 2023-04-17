@@ -36,7 +36,8 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         .accessDeniedPage("/access-denied")
                 )
                 .authorizeHttpRequests( auth -> auth
-                        .requestMatchers(request -> request.getServletPath().startsWith("/new")).permitAll()
+                        // Allow all spa requests on /new
+                        .requestMatchers("/new", "/new/**").permitAll()
                         .requestMatchers("/signup", "/signin", "/signin-user", "/signup-user", "/", "/product/**", "/search/**", "/error", "access-denied", "/recovery", "/recover-email", "/code", "/verify-code").permitAll()
                         // Access to the assets so the frontend can load correctly
                         .requestMatchers(request -> request.getServletPath().endsWith(".css") || request.getServletPath().endsWith(".js") || request.getServletPath().endsWith(".jpg") || request.getServletPath().endsWith(".png")).permitAll()
