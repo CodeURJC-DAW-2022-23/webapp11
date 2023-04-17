@@ -51,13 +51,13 @@ npm install
 ng build --configuration production
 
 # Change the base to /new on the index.html file
-sed -i 's|<base href="/">|<base href="/new">|g' dist/3techmarket/index.html
+sed -i 's|<base href="/">|<base href="/new/">|g' dist/3techmarket/index.html
 
 # Go back to the root of the project
 cd ../.. || exit 1
 
 # Copy the result of the build to the Spring Boot project
-cp -r "${ANGULAR_DIR}/dist/3techmarket" "backend/app/src/main/resources/static"
+cp -r "${ANGULAR_DIR}/dist/3techmarket/." backend/app/src/main/resources/static/spa
 
 # Build the image
 docker build -t "${IMAGE_NAME}:${IMAGE_VERSION}" -f "${DOCKERFILE_DIR}/${DOCKERFILE}" .
