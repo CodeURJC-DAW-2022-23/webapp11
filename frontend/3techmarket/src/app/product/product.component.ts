@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
 import {AuthService} from "../services/auth.service";
-import {environment} from "@ng-bootstrap/ng-bootstrap/environment";
+import {environment} from "../../environments/environment"
 
 @Component({
   selector: 'app-product',
