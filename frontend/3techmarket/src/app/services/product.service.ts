@@ -84,6 +84,27 @@ export class ProductService {
 
   }
 
+  editProductService(productName:string,description:string,productPrice:string,productStock:string,tags:string,image:File | undefined,images:File[] | undefined) {
+    const url = `${this.baseUrl}`;
+    const formData = new FormData();
+    formData.append('productName', productName);
+    formData.append('description', description);
+    formData.append('productPrice', productPrice);
+    formData.append('productStock', productStock);
+    formData.append('tags', tags);
+    if (image !== undefined){
+      formData.append('image', image);
+
+    }
+    if (images !== undefined){
+    for (let i = 0; i < images.length; i++) {
+      formData.append('images', images[i]);
+      }
+    }
+
+    return this.http.put(url, formData);
+  }
+
 
 
 }

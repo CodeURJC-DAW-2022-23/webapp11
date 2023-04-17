@@ -21,7 +21,7 @@ export class EditProductComponent implements OnInit{
   mainImage: File| undefined;
   images: File[] | undefined;
   productName: string = '';
-  produtPrice: string = '';
+  productPrice: string = '';
   productStock: string = '';
   tags: string = '';
 
@@ -37,25 +37,37 @@ export class EditProductComponent implements OnInit{
         let id = this.router.snapshot.paramMap.get('id') || '';
         this.getproduct(id);
 
+
       }
     })
-
-
   }
-
 
   getproduct(id:string){
     this.productService.getProduct(id).subscribe((response:any)=>{
       this.productId=response.productId;
       this.description=response.description;
       this.productName=response.productName;
-      this.produtPrice=response.productPrice;
+      this.productPrice=response.productPrice;
       this.productStock=response.productStock;
       this.tags=response.tags;
 
 
     })
 
+  }
+
+  editProduct(productName:string,description:string,productPrice:string,productStock:string,tags:string,mainImage:File | undefined,images:File[] | undefined){
+    this.productService.editProductService(productName,description,productPrice,productStock,tags,mainImage,images).subscribe((response:any)=>{
+      this.ngOnInit();
+    })
+
+  }
+
+  onImageChange(event: any) {
+    this.mainImage = event.target.files[0];
+  }
+  onImagesChange(event: any) {
+    this.images = event.target.files;
   }
 
 }
