@@ -72,7 +72,7 @@ public class ProductRestController {
     @ApiResponse(responseCode = "201", description = "Product created")
     @ApiResponse(responseCode = "400", description = "Product not created")
     @ApiResponse(responseCode = "403", description = "User not authorized")
-    public ResponseEntity<Product> createProduct(@RequestParam("productName") String productName, @RequestParam("description")  String description,@RequestParam("price") String price, @RequestParam("amount") String amount, @RequestParam("tags") String tags) throws IOException, SQLException {
+    public ResponseEntity<Product> createProduct(@RequestParam("productName") String productName, @RequestParam("description")  String description,@RequestParam("price") String price, @RequestParam("amount") String amount, @RequestParam("tags") String tags, @RequestParam("image") MultipartFile image,@RequestParam("images") MultipartFile[] images) throws IOException, SQLException {
         Product newProduct = new Product();
         newProduct.setProductPrices(new ArrayList<>());
         newProduct.setImages(new ArrayList<>());
@@ -82,11 +82,22 @@ public class ProductRestController {
         newProduct.setProductStock(Integer.parseInt(amount));
         newProduct.setTags(Arrays.asList(tags));
         newProduct.setReviews(new ArrayList<>());
-
         newProduct.setReviews(new ArrayList<>());
+        Image mainImage = new Image();
+        mainImage.setFileName(image.getOriginalFilename());
+        mainImage.setImageBlob(new SerialBlob(image.getBytes()));
+        imageService.saveImage(mainImage);
+        newProduct.setMainImage(mainImage);
+        //do the same with the images array
+        for (MultipartFile img : images) {
+            Image newImage = new Image();
+            newImage.setFileName(img.getOriginalFilename());
+            newImage.setImageBlob(new SerialBlob(img.getBytes()));
+            imageService.saveImage(newImage);
+            newProduct.getImages().add(newImage);
+        }
 
         productService.saveProduct(newProduct);
-
 
 
 

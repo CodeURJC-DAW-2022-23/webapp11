@@ -57,7 +57,7 @@ export class ProductService {
     return this.http.post(url, null);
   }
 
-  addNewProduct(productName:string,description:string,price:string,amount:string,tags:string) {
+  addNewProduct(productName:string,description:string,price:string,amount:string,tags:string,image:File | undefined,images:File[] | undefined) {
     const url = `/api/products/add-product`;
     const formData = new FormData();
     formData.append('productName', productName);
@@ -65,6 +65,15 @@ export class ProductService {
     formData.append('price', price);
     formData.append('amount', amount);
     formData.append('tags', tags);
+    if (image !== undefined){
+      formData.append('image', image);
+    }
+    if (images !== undefined){
+    for (let i = 0; i < images.length; i++) {
+      formData.append('images', images[i]);
+      }
+    }
+    console.log(formData);
     return this.http.post(url, formData);
 
 
