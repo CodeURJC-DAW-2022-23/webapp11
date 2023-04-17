@@ -115,16 +115,13 @@ public class ProductRestController {
         return ResponseEntity.noContent().build();  // return the no content status
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/edit/{id}")
     @Operation(summary = "Update a product by id")
     @ApiResponse(responseCode = "200", description = "Product updated")
     @ApiResponse(responseCode = "404", description = "Product not found")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        Product updatedProduct = productService.updateProduct(id, product);
-        if (updatedProduct == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(updatedProduct);
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestParam("productName") String productName, @RequestParam("description")  String description,@RequestParam("productPrice") String productPrice, @RequestParam("productStock") String productstock, @RequestParam("tags") String tags, @RequestParam("mainImage") MultipartFile mainImage,@RequestParam("images") MultipartFile[] images) throws Exception {
+
+        return ResponseEntity.ok(null);
     }
 
     @GetMapping("/price-history/{id}")

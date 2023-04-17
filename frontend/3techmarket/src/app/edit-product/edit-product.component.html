@@ -1,5 +1,5 @@
 <div class="container-md">
-  <form #editproduct="ngForm" (ngSubmit)="editProduct(productName,description,productPrice,productStock,tags,mainImage,images)">
+  <form #editproduct="ngForm" (ngSubmit)="editProduct(productId,productName,description,productPrice,productStock,tags,mainImage,images)">
     <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="productName" name="productName" placeholder="Product Name" [(ngModel)]="productName"></div>
     <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="description" name="description" placeholder="Description "[(ngModel)]="description"></div>
     <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="price" name="price" placeholder="Price" [(ngModel)]="productPrice"></div>

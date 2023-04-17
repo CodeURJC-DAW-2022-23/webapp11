@@ -74,6 +74,7 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
                         .requestMatchers("/api/products/info/**").permitAll()
                         .requestMatchers("/api/products/search/**").permitAll()
                         .requestMatchers("/api/products/add-product").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/api/products/edit/**").hasAnyAuthority("ADMIN")
                         .requestMatchers("/api/checkout").hasAnyAuthority("USER","AGENT")
                         .requestMatchers("/api/cart/**").hasAnyAuthority("USER","AGENT")
                         .requestMatchers("/api/wishlist/**").hasAnyAuthority("USER","AGENT")

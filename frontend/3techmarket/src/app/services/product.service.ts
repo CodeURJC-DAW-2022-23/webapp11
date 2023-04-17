@@ -84,16 +84,16 @@ export class ProductService {
 
   }
 
-  editProductService(productName:string,description:string,productPrice:string,productStock:string,tags:string,image:File | undefined,images:File[] | undefined) {
-    const url = `${this.baseUrl}`;
+  editProductService(productId :string,productName:string,description:string,productPrice:string,productStock:string,tags:string,mainImage:File | undefined,images:File[] | undefined) {
+    const url = `${this.baseUrl}/edit/${productId}`;
     const formData = new FormData();
     formData.append('productName', productName);
     formData.append('description', description);
     formData.append('productPrice', productPrice);
     formData.append('productStock', productStock);
     formData.append('tags', tags);
-    if (image !== undefined){
-      formData.append('image', image);
+    if (mainImage !== undefined){
+      formData.append('mainImage', mainImage);
 
     }
     if (images !== undefined){
