@@ -1,0 +1,102 @@
+<div *ngIf = "data" class="row" style="padding-top: 30px;">
+  <div class="container">
+    <div class="single-product">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="product-image">
+            <div class="main-image">
+              <img [ngSrc]="'api/images/' + data.productId + '/main-image'" alt="" width="460px">
+            </div>
+            <div *ngFor="let image of images" class="image-slider">
+              <img [ngSrc]="'api/images/' + image.imageId" alt="" width="110px" class="image-list">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="product-info d-flex flex-column">
+            <div class="product-name">
+              <h3>{{data.productName}}</h3>
+            </div>
+            <div class="product-price d-flex justify-content-between">
+              <span class="sale-price">{{data.productPrice}}</span>
+              <div class="product-rate">
+                <div class="d-flex align-items-center gap-3">
+                  <img src="/product/{{data.productId}}/rate" width="130px">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-purchase">
+            <div class="product-btn-group">
+              <a class="button add-cart" href="/add-to-cart/{{productId}}"><i class='bx bx-cart-download'></i></i> Add to cart</a>
+              <a class="button star" href="/add-to-wishlist/{{productId}}"><i class='bx bxs-star'></i> Save</a>
+            </div>
+          </div>
+
+          <div class="purchase-info d-flex flex-column">
+            <div class="delivery d-flex justify-content-between">
+              <span> Shipping: </span>
+              <span class="delivery-type"> FREE shipping </span>
+            </div>
+
+            <div class="refund d-flex justify-content-between">
+              <span> Returns: </span>
+              <span class="refund-type"> FREE returns </span>
+            </div>
+
+            <div class="home-delivery d-flex justify-content-between">
+              <span> Stock: </span>
+              <span *ngIf= "data.productStock" class="stock"> Units available!</span>
+              <span *ngIf != "data.productStock"class="stock"> Out of stock</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="features d-flex justify-content-start">
+        <div class="row">
+          <h5>Features</h5>
+          <div class="info-features">
+            <p>{{data.description}}</p>
+          </div>
+
+          <h5>Reviews</h5>
+          {{#reviews}}
+          <div class="conteiner-opinion d-flex justify-content-start">
+            <div class="opinion d-flex justify-content-between gap-3">
+              <img src="/{{user.id}}/userpfp" alt="Profile Picture" width="90px" onerror="this.src='https://i.imgur.com/FSW2P4r.jpg'">
+              <div class="user-info d-flex justify-content-between gap-5">
+                <span class="user-name">{{user.email}}</span>
+                <div class="product-rate">
+                  <div class="d-flex align-items-center gap-3">
+                    <img src="/1.png" id="starRating" width="130px">
+                    <span class="d-none" id="rate">{{rating}}</span>
+                  </div>
+                  <div class="row">
+                    <b>{{reviewTitle}}</b>
+                    <span class="text-op">{{reviewText}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="image-slider">
+                  {{#images}}
+                  <img src="/review/{{reviewId}}/imagerev/{{-index}}" alt="" width="200px">
+                  {{/images}}
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/reviews}}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div *ngIf !="data">
+
+</div>
+

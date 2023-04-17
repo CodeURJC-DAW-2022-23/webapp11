@@ -79,4 +79,8 @@ export class ProductService {
 
   }
 
+  getProduct(id: string) {
+    const url = `${this.baseUrl}/info/${id}`;
+    return this.http.get(url);
+  }
 }
