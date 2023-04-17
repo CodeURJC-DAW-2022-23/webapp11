@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { ProductService } from '../services/product.service';
 import {environment} from "../../environments/environment";
+import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
+import {catchError} from "rxjs/operators";
+import {throwError} from "rxjs";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,11 +20,20 @@ export class DashboardComponent implements OnInit {
   loadingMore : boolean = false;
 
   removingProductId: string = '';
-  constructor(private productService: ProductService) {
-  }
+  constructor(private productService: ProductService,private authService:AuthService,private router:Router) { }
+
 
   ngOnInit() {
-    this.getProducts()
+    this.authService.authdetails().pipe(
+      catchError((error) => {
+        this.router.navigate(['/forbidden']);
+        return throwError(error);
+
+      })
+    ).subscribe((response: any) => {
+      this.getProducts()
+    })
+
   }
 
   getProducts() {

@@ -11,6 +11,11 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
+  getProduct(id: string) {
+    const url = `${this.baseUrl}/info/${id}`;
+    return this.http.get(url);
+  }
+
   searchProducts(product: string, page: number, size: number) {  // We don't need to specify the Observable type because it's inferred
     const url = `${this.baseUrl}/search/?product=${product}&page=${page}&size=${size}`;
     return this.http.get(url);
@@ -73,14 +78,33 @@ export class ProductService {
       formData.append('images', images[i]);
       }
     }
-    console.log(formData);
+
     return this.http.post(url, formData);
 
 
   }
 
-  getProduct(id: string) {
-    const url = `${this.baseUrl}/info/${id}`;
-    return this.http.get(url);
+  editProductService(productName:string,description:string,productPrice:string,productStock:string,tags:string,image:File | undefined,images:File[] | undefined) {
+    const url = `${this.baseUrl}`;
+    const formData = new FormData();
+    formData.append('productName', productName);
+    formData.append('description', description);
+    formData.append('productPrice', productPrice);
+    formData.append('productStock', productStock);
+    formData.append('tags', tags);
+    if (image !== undefined){
+      formData.append('image', image);
+
+    }
+    if (images !== undefined){
+    for (let i = 0; i < images.length; i++) {
+      formData.append('images', images[i]);
+      }
+    }
+
+    return this.http.put(url, formData);
   }
+
+
+
 }

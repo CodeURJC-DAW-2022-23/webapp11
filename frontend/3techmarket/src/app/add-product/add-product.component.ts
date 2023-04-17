@@ -33,7 +33,9 @@ export class AddProductComponent implements OnInit{
         return throwError(error);
       })
     ).subscribe((response: any) => {
-      this.loading=false;
+      if(response.roles.includes('ADMIN')) {
+        this.loading = false;
+      }
 
     });
   }

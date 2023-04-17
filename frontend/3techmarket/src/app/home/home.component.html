@@ -10,3 +10,12 @@
 </div>
 
 <!--Recommendations go here-->
+<h2>Featured offers</h2>
+<div class="row">
+  <div class="col-md-3" *ngFor="let item of recommendedProducts">
+    <a routerLink="/product/{{item.productId}}">
+      <img [ngSrc]="'/api/images/' + item.productId + '/main-image'" class="center" alt="item" width="100" height="100">
+      <p class="destacados">{{item.productName}} <span class="badge text-bg-warning">{{item.productPrice}}€</span></p>
+    </a>
+  </div>
+</div>
