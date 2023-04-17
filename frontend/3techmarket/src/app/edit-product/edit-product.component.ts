@@ -58,7 +58,7 @@ export class EditProductComponent implements OnInit{
 
   editProduct(productId:string ,productName:string,description:string,productPrice:string,productStock:string,tags:string,mainImage:File | undefined,images:File[] | undefined){
     this.productService.editProductService(productId,productName,description,productPrice,productStock,tags,mainImage,images).subscribe((response:any)=>{
-      this.route.navigate(['/dashboard']);
+      this.route.navigate(['/']);
     })
 
   }

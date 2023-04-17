@@ -120,8 +120,49 @@ public class ProductRestController {
     @ApiResponse(responseCode = "200", description = "Product updated")
     @ApiResponse(responseCode = "404", description = "Product not found")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestParam("productName") String productName, @RequestParam("description")  String description,@RequestParam("productPrice") String productPrice, @RequestParam("productStock") String productstock, @RequestParam("tags") String tags, @RequestParam("mainImage") MultipartFile mainImage,@RequestParam("images") MultipartFile[] images) throws Exception {
+        Product product = productService.getProductById(id);
+        System.out.println(productName);
+        System.out.println(description);
+        System.out.println(productPrice);
+        System.out.println(productstock);
+        System.out.println(tags);
+        System.out.println(mainImage.getOriginalFilename());
+        for (MultipartFile img : images) {
+            System.out.println(img.getOriginalFilename());
+        }
 
-        return ResponseEntity.ok(null);
+
+        if (productName != null) {
+            product.setProductName(productName);
+        }
+        if (description != null) {
+            product.setDescription(description);
+        }
+        if (productPrice != null) {
+            product.setProductPrice(Double.parseDouble(productPrice));
+        }
+        if (productstock != null) {
+            product.setProductStock(Integer.parseInt(productstock));
+        }
+        if (tags != null) {
+            product.setTags(Arrays.asList(tags));
+        }
+        Image newImage = new Image();
+        newImage.setFileName(mainImage.getOriginalFilename());
+        newImage.setImageBlob(new SerialBlob(mainImage.getBytes()));
+        imageService.saveImage(newImage);
+        product.setMainImage(newImage);
+        product.getImages().clear();
+        for (MultipartFile img : images) {
+            Image newImage2 = new Image();
+            newImage2.setFileName(img.getOriginalFilename());
+            newImage2.setImageBlob(new SerialBlob(img.getBytes()));
+            imageService.saveImage(newImage2);
+            product.getImages().add(newImage2);
+        }
+
+
+        return ResponseEntity.ok(product);
     }
 
     @GetMapping("/price-history/{id}")
