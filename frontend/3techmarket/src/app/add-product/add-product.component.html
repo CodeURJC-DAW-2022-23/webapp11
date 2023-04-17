@@ -1,10 +1,12 @@
 <div class="container-md">
-  <form #addproduct="ngForm" (ngSubmit)="addProduct(productName,description,price,amount,tags)">
+  <form #addproduct="ngForm" (ngSubmit)="addProduct(productName,description,price,amount,tags,image,images)">
     <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="productName" name="productName" placeholder="Product Name" [(ngModel)]="productName"></div>
     <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="description" name="description" placeholder="Description "[(ngModel)]="description"></div>
     <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="price" name="price" placeholder="Price" [(ngModel)]="price"></div>
     <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="amount" name="amount" placeholder="Amount" [(ngModel)]="amount"></div>
     <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="tags" name="tags" placeholder="Tags" [(ngModel)]="tags"></div>
+    <div class="col-md-12"><label class="labels"></label><input type="file" class="form-control" id="image" name="image" placeholder="Image" (change)="onImageUpload($event)"></div>
+    <div class="col-md-12"><label class="labels"></label><input type="file" class="form-control" id="images" name="images" placeholder="Images" multiple (change)="onImagesUpload($event)"></div>
   <br>
     <button class="btn btn-primary" type="submit">Add Product</button>
 
