@@ -18,7 +18,11 @@ import {PricehistoryComponent} from "../pricehistory/pricehistory.component";
 import {WishlistComponent} from "../wishlist/wishlist.component";
 import { CheckoutComponent } from "../checkout/checkout.component";
 import {AddProductComponent} from "../add-product/add-product.component";
+
 import {EditProductComponent} from "../edit-product/edit-product.component";
+
+import {ProductComponent} from "../product/product.component";
+
 
 const routes: Routes = [
   { path: 'search/:product', component: ProductSearchComponent },
@@ -40,7 +44,11 @@ const routes: Routes = [
   {path: 'wishlist',component: WishlistComponent},
   {path: 'checkout',component: CheckoutComponent},
   {path: 'addProduct',component: AddProductComponent},
-  {path: 'editProduct/:id',component: EditProductComponent}
+
+  {path: 'editProduct/:id',component: EditProductComponent},
+
+  {path:'product/:id', component: ProductComponent}
+
 ];
 
 export const routing = RouterModule.forRoot(routes);
