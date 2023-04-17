@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { ProductService } from "../services/product.service";
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-cart',
@@ -73,4 +74,6 @@ export class CartComponent implements OnInit {
     });
 
   }
+
+    protected readonly environment = environment;
 }
