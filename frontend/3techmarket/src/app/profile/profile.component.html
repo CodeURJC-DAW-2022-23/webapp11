@@ -7,7 +7,7 @@
         </div>
         <div *ngIf="haspfp">
           <!--Reload the image if it is updated-->
-          <img class="rounded-circle mt-5" width="150" [src]="'api/images/' + data.profilePicture.imageId" alt="Profile Picture">
+          <img [ngSrc]="environment.apiUrl + '/images/' + data.profilePicture.imageId" class="rounded-circle mt-5" width="150" height="150" alt="Profile Picture">
         </div>
         <div *ngIf="!haspfp">
           <div *ngIf="!loading">

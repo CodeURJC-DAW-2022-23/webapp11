@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
 import {FooterComponent} from "./footer/footer.component";
 import {HeaderComponent} from "./header/header.component";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
 import {ProductService} from "./services/product.service";
 import { ProductSearchComponent } from './productsearch/productsearch.component';
@@ -73,7 +74,11 @@ import { ProductComponent } from './product/product.component';
     HighchartsChartModule
   ],
   providers: [
-    ProductService
+    ProductService,
+    {
+      provide: 'API_BASE_URL',
+      useValue: environment.apiUrl + environment.apiPrefix
+    },
   ],
   bootstrap: [AppComponent]
 })

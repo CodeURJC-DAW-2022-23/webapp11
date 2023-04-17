@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-product-search',
@@ -49,4 +50,6 @@ export class ProductSearchComponent implements OnInit {
         this.loadingMore = false;
       });
   }
+
+  protected readonly environment = environment;
 }

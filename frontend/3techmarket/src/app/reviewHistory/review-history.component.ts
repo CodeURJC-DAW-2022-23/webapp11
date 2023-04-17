@@ -4,6 +4,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import {AuthService} from "../services/auth.service";
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import {environment} from "../../environments/environment";
 
 
 @Component({
@@ -74,5 +75,5 @@ export class ReviewHistoryComponent implements OnInit {
   }
 
 
-
+  protected readonly environment = environment;
 }

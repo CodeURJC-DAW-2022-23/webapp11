@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ProductService } from '../services/product.service';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-dashboard',
@@ -53,4 +54,5 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  protected readonly environment = environment;
 }

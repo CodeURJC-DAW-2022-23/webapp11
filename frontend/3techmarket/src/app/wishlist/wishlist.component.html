@@ -4,7 +4,7 @@
 <div class="container-md" id="items">
     <div class="row item" *ngFor="let item of items">
       <div class="col-md-4">
-        <img [ngSrc]="'/api/images/' + item.productId + '/main-image'" class="center" alt="item" width="200" height="200">
+        <img [ngSrc]="environment.apiUrl + '/images/' + item.productId + '/main-image'" class="center" alt="item" width="200" height="200">
       </div>
       <div class="col-md-4">
         <a routerLink="/product/{{item.productId}}"><h3>{{item.productName}}</h3></a>

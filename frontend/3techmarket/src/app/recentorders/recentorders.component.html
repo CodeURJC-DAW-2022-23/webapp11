@@ -6,7 +6,7 @@
   </div>
   <div *ngFor="let purchase of purchases" class="row purchasedetails">
     <div class="col-md-4"> <!--Thumbnail-->
-      <img [ngSrc]="'api/images/' + purchase.product.productId + '/main-image'" alt="thumbnail" width="200" height="200">
+      <img [ngSrc]="environment.apiUrl + '/images/' + purchase.product.productId + '/main-image'" alt="thumbnail" width="200" height="200">
     </div>
     <div class="col-md-2">
       <h3>{{purchase.product.productName}}</h3>
