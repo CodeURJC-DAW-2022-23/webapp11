@@ -20,6 +20,8 @@ export class AddProductComponent implements OnInit{
   amount:string = "";
   tags:string = "";
   loading:boolean = true;
+  image: File | undefined;
+  images: File[] | undefined= [];
 
   constructor(private http:HttpClient, private router:Router,private authService:AuthService,
               private productService: ProductService) { }
@@ -35,11 +37,20 @@ export class AddProductComponent implements OnInit{
 
     });
   }
-  addProduct(productName:string,description:string,price:string,amount:string,tags:string){
-      this.productService.addNewProduct(productName,description,price,amount,tags).subscribe((response:any)=>{
+  addProduct(productName:string,description:string,price:string,amount:string,tags:string,image:File | undefined,images:File[] | undefined){
+      this.productService.addNewProduct(productName,description,price,amount,tags,image,images).subscribe((response:any)=>{
         this.router.navigate(['/dashboard']);
       });
 
+  }
+
+  onImageUpload(event: any) {
+    this.image= event.target.files[0];
+
+  }
+
+  onImagesUpload(event: any) {
+    this.images= event.target.files;
 
   }
 
