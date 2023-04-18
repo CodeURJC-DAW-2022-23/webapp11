@@ -3,6 +3,7 @@ package com.techmarket.app.controller.RestControllers;
 import com.techmarket.app.model.Image;
 import com.techmarket.app.model.Review;
 import com.techmarket.app.model.User;
+import com.techmarket.app.service.ImageService;
 import com.techmarket.app.service.ProductService;
 import com.techmarket.app.service.ReviewService;
 import com.techmarket.app.service.UserService;
@@ -15,8 +16,12 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +32,8 @@ public class ReviewRestController {
     private ReviewService ReviewService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ImageService imageService;
 
     @Autowired
     private UserService userService;
@@ -55,17 +62,25 @@ public class ReviewRestController {
     @Operation(summary = "Create a review", description = "Create a review", tags = {"reviews"})
     @ApiResponse(responseCode = "200", description = "Review created")
     @ApiResponse(responseCode = "404", description = "Product not found")
-    public ResponseEntity<Object> createReview(@PathVariable Long productId, @RequestBody Review review, HttpServletRequest request) {
+    public ResponseEntity<Object> createReview(@PathVariable Long productId, @RequestParam("rating") int rating, @RequestParam("reviewTitle") String reviewTitle, @RequestParam("reviewText") String reviewText, @RequestParam("images") MultipartFile[] images, HttpServletRequest request) throws IOException, SQLException {
         User user = userService.getCurrentUser(request);
         if (user.getPurchasedProducts().contains(productService.getProductById(productId)) && !productService.getProductById(productId).getReviews().contains(user)) {
-            Review newReview = ReviewService.createReview(review);
-            newReview.setUser(user);
+            Review newReview = new Review();
+            newReview.setRating(rating);
+            newReview.setReviewTitle(reviewTitle);
+            newReview.setReviewText(reviewText);
             newReview.setProduct(productService.getProductById(productId));
+            newReview.setUser(user);
+            ArrayList<Image> imgList = new ArrayList<>();
+            for (MultipartFile img : images) {
+                Image newImage = new Image();
+                newImage.setFileName(img.getOriginalFilename());
+                newImage.setImageBlob(new SerialBlob(img.getBytes()));
+                imageService.saveImage(newImage);
+                imgList.add(newImage);
+            }
+            newReview.setImages(imgList);
             ReviewService.saveReview(newReview);
-            productService.getProductById(productId).getReviews().add(newReview);
-            productService.saveProduct(productService.getProductById(productId));
-            user.getReviews().add(newReview.getProduct());
-            userService.saveUser(user);
             // Return the location of the new resource on the response header
             return ResponseEntity.ok().header("Location", "/api/reviews/get/" + newReview.getReviewId()).body(newReview);
         }

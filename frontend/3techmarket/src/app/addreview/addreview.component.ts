@@ -43,9 +43,14 @@ export class AddreviewComponent implements OnInit{
     });
   }
 
-  addreview(rating: number, reviewText: string, images: File[], reviewTitle: string) {
+  addreview(rating: number, reviewText: string, images:File[] | undefined, reviewTitle: string) {
     this.reviewService.addReview(rating,reviewText,images,reviewTitle,this.id).subscribe((response:any)=>{
       this.router.navigate(["/"]);
     });
   }
+
+  onImagesUpload(event: any) {
+    this.images = event.target.files;
+  }
+
 }

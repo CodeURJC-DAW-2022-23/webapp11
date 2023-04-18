@@ -30,14 +30,16 @@ export class ReviewsService {
     return this.http.get(url, { responseType: 'text' });
   }
 
-  addReview(rating: number, reviewText: string, images: File[], reviewTitle: string, productId: string){
+  addReview(rating: number, reviewText: string, images: File[] | undefined, reviewTitle: string, productId: string){
     const url = `${this.baseUrl}/create/${productId}`;
     const formData = new FormData();
     formData.append('rating', String(rating));
     formData.append('reviewText', reviewText);
     formData.append('reviewTitle', reviewTitle);
-    for (const image of images) {
-      formData.append('images', image);
+    if (images !== undefined) {
+      for (const image of images) {
+        formData.append('images', image);
+      }
     }
     return this.http.post(url, formData);
   }
