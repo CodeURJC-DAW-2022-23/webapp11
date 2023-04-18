@@ -57,7 +57,6 @@ export class ReviewHistoryComponent implements OnInit {
             .subscribe((response: any) => {
               this.pfps.push(response);
 
-
             });
         });
 
