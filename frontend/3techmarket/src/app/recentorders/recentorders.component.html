@@ -25,7 +25,7 @@
         <button type="button" class="btn btn-outline-secondary btn-lg mt-2" disabled>This order has been cancelled</button>
       </div>
       <ng-template #notCancelled>
-        <button type="button" [routerLink]="'/product/' + purchase.product.productId + '/review'" class="btn btn-outline-success btn-lg mt-1">Leave a review</button> <!--Review button, I don't know if it will work given that the id is different from the one on the Purchase model-->
+        <button type="button" [routerLink]="'/addreview/' + purchase.product.productId" class="btn btn-outline-success btn-lg mt-1">Leave a review</button> <!--Review button, I don't know if it will work given that the id is different from the one on the Purchase model-->
         <br>
         <button type="button" [routerLink]="'/messages'" class="btn btn-outline-primary btn-lg mt-2">Contact support</button>
         <br>

@@ -29,4 +29,9 @@ export class ReviewsService {
     const url = `${this.baseUrl}/${reviewId}/user/pfp`;
     return this.http.get(url, { responseType: 'text' });
   }
+
+  addReview(rating: number, reviewText: string, images: File[], reviewTitle: string, productId: string){
+    const url = `${this.baseUrl}/create/${productId}`;
+    return this.http.post(url,{reviewTitle,rating,reviewText,images});
+  }
 }

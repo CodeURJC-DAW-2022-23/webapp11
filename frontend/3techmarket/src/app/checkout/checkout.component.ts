@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { ProductService} from "../services/product.service";
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-checkout',
@@ -54,4 +55,5 @@ export class CheckoutComponent {
     });
   }
 
+  protected readonly environment = environment;
 }

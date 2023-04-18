@@ -2,7 +2,7 @@
   <ng-container *ngFor="let item of items">
     <div class="col-md-2">
       <a [routerLink]="['/product', item.productId]">
-        <img [ngSrc]="'/images/' + item.productId + '/main-image'" alt="itemimage" width="120" height="120">
+        <img [ngSrc]="environment.apiUrl + '/images/' + item.productId + '/main-image'" alt="itemimage" width="120" height="120">
         <p class="name">{{item.productName}}</p>
         <p>{{item.productPrice}} $ </p>
       </a>

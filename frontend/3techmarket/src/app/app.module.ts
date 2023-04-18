@@ -34,6 +34,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductComponent } from './product/product.component';
+import { AddreviewComponent } from './addreview/addreview.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { ProductComponent } from './product/product.component';
     EditProductComponent,
     CheckoutComponent,
     ProductComponent,
+    AddreviewComponent,
   ],
   imports: [
     BrowserModule,
