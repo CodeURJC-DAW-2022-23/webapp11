@@ -32,8 +32,8 @@
           </div>
           <div class="product-purchase">
             <div class="product-btn-group">
-              <button *ngIf="addingToCartItemId !== data.productId" class="button add-cart" (click)="addToCart(data.productId)")>Add to cart</button>
-              <button *ngIf="addingToWishlistItemId !== data.productId" class="button star" (click)="addToWishlist(data.productId)"> Save</button>
+              <button  class="button add-cart" (click)="addToCart(data.productId)">Add to cart</button>
+              <button class="button star" (click)="addToWishlist(data.productId)"> Save</button>
             </div>
           </div>
 
@@ -82,10 +82,10 @@
                         </div>
                       </div>
                       <div class="row">
-                       <!-- <div *ngFor="let image of reviews" class="image-slider">
-                          <img [ngSrc]="environment.apiUrl + '/images/' + image.imageId" ] alt="" width="200px">
+                       <div *ngFor="let image of reviews" class="image-slider">
+                          <img [src]="environment.apiUrl + '/images/' + image.imageId" alt="" width="200px">
                         </div>
-                      </div>-->
+                      </div>
                     </div>
                   </div>
 
