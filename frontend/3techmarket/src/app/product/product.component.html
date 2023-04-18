@@ -32,8 +32,8 @@
           </div>
           <div class="product-purchase">
             <div class="product-btn-group">
-              <button *ngIf="addingToCartItemId !== data.productId" class="button add-cart" (click)="addToCart(data.productId)">Add to cart</button>
-              <button *ngIf="addingToWishlistItemId !== data.productId" class="button star" (click)="addToWishlist(data.productId)"> Save</button>
+              <button  class="button add-cart" (click)="addToCart(data.productId)">Add to cart</button>
+              <button class="button star" (click)="addToWishlist(data.productId)"> Save</button>
             </div>
           </div>
 
