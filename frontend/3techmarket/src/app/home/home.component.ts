@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import {ProductService} from "../services/product.service";
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-home',
@@ -70,5 +71,7 @@ export class HomeComponent implements OnInit {
     )
 
   }
+
+    protected readonly environment = environment;
 }
 
