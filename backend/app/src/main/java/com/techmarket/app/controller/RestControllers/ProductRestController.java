@@ -83,6 +83,7 @@ public class ProductRestController {
         newProduct.setTags(Arrays.asList(tags));
         newProduct.setReviews(new ArrayList<>());
         newProduct.setReviews(new ArrayList<>());
+        newProduct.getProductPrices().add(Double.parseDouble(price));
         Image mainImage = new Image();
         mainImage.setFileName(image.getOriginalFilename());
         mainImage.setImageBlob(new SerialBlob(image.getBytes()));
@@ -140,6 +141,7 @@ public class ProductRestController {
         }
         if (productPrice != null) {
             product.setProductPrice(Double.parseDouble(productPrice));
+            product.getProductPrices().add(Double.parseDouble(productPrice));
         }
         if (productstock != null) {
             product.setProductStock(Integer.parseInt(productstock));
@@ -147,6 +149,7 @@ public class ProductRestController {
         if (tags != null) {
             product.setTags(Arrays.asList(tags));
         }
+
         Image newImage = new Image();
         newImage.setFileName(mainImage.getOriginalFilename());
         newImage.setImageBlob(new SerialBlob(mainImage.getBytes()));
@@ -157,8 +160,9 @@ public class ProductRestController {
             Image newImage2 = new Image();
             newImage2.setFileName(img.getOriginalFilename());
             newImage2.setImageBlob(new SerialBlob(img.getBytes()));
-            imageService.saveImage(newImage2);
             product.getImages().add(newImage2);
+            imageService.saveImage(newImage2);
+
         }
 
 
