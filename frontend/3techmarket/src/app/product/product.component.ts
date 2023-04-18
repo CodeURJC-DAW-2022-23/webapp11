@@ -5,6 +5,7 @@ import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
 import {AuthService} from "../services/auth.service";
 import {environment} from "../../environments/environment"
+import {ReviewsService} from "../services/reviews.service";
 
 @Component({
   selector: 'app-product',
@@ -18,14 +19,19 @@ export class ProductComponent implements OnInit{
   reviews:any[] = [];
   addingToCartItemId: string = '';
   addingToWishlistItemId: string = '';
+  pfps: any [] = [];
+  emails: string [] = [];
+  reviewImages: any[] = [];
 
-  constructor(private productService: ProductService, private router: Router, private activatedRoute:ActivatedRoute) { }
+  constructor(private productService: ProductService, private router: Router, private activatedRoute:ActivatedRoute, private reviewsService: ReviewsService) { }
 
   ngOnInit(){
     this.productService.getProduct(this.id).subscribe((response: any) => {
       this.data = response;
       this.images = response.images;
       this.reviews = response.reviews;
+      this.reviewImages = response.reviews.images;
+      this.getProductReviews(this.id);
     });
   }
 
@@ -41,6 +47,26 @@ export class ProductComponent implements OnInit{
     this.productService.addToWishlist(id).subscribe((response: any) =>{
       this.addingToWishlistItemId = '';
     });
+  }
+
+  getProductReviews(productId: string) {
+    this.reviewsService.getProductReviews(productId)
+      .subscribe((response: any) => {
+        this.reviews = response;
+        this.reviews.forEach((review: any) => {
+          this.reviewsService.getEmailbyReviewId(review.reviewId)
+            .subscribe((response: any) => {
+              this.emails.push(response);
+            });
+          this.reviewsService.getPfpId(review.reviewId)
+            .subscribe((response: any) => {
+              this.pfps.push(response);
+
+
+            });
+        });
+
+      });
   }
 
 

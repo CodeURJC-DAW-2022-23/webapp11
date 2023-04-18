@@ -32,7 +32,7 @@
           </div>
           <div class="product-purchase">
             <div class="product-btn-group">
-              <button *ngIf="addingToCartItemId !== data.productId" class="button add-cart" (click)="addToCart(data.productId)")>Add to cart</button>
+              <button *ngIf="addingToCartItemId !== data.productId" class="button add-cart" (click)="addToCart(data.productId)">Add to cart</button>
               <button *ngIf="addingToWishlistItemId !== data.productId" class="button star" (click)="addToWishlist(data.productId)"> Save</button>
             </div>
           </div>
@@ -66,14 +66,14 @@
                   </div>
 
                   <h5>Reviews</h5>
-                  <div *ngFor="let review of reviews" class="conteiner-opinion d-flex justify-content-start">
+                  <div *ngFor="let review of reviews; let i = index" class="conteiner-opinion d-flex justify-content-start">
                     <div class="opinion d-flex justify-content-between gap-3">
-                      <img [src]="environment.apiUrl + '/images/' + review.profilePicture.imageId" alt="Profile Picture" width="90px">
+                      <img src="{{environment.apiUrl}}/images/{{pfps[i]}}" alt="review image" height="90px" width="90px" style="border-radius: 50% ">
                       <div class="user-info d-flex justify-content-between gap-5">
-                        <span class="user-name">{{review.email}}</span>
+                        <span class="user-name">{{emails[i]}}</span>
                         <div class="product-rate">
                           <div class="d-flex align-items-center gap-3">
-                            <img src="/5.png" id="starRating" width="130px">
+                            <span >Rate: {{review.rating}}/5</span>
                           </div>
                           <div class="row">
                             <b>{{review.reviewTitle}}</b>
@@ -82,10 +82,10 @@
                         </div>
                       </div>
                       <div class="row">
-                       <!-- <div *ngFor="let image of reviews" class="image-slider">
-                          <img [ngSrc]="environment.apiUrl + '/images/' + image.imageId" ] alt="" width="200px">
+                       <div *ngFor="let image of reviewImages" class="image-slider">
+                          <img [src]="environment.apiUrl + '/images/' + image.imageId" alt="" width="200px">
                         </div>
-                      </div>-->
+                      </div>
                     </div>
                   </div>
 
