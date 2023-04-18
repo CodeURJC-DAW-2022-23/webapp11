@@ -18,18 +18,23 @@
               <h3>{{data.productName}}</h3>
             </div>
             <div class="product-price d-flex justify-content-between">
-              <span class="sale-price">{{data.productPrice}}</span>
+              <span class="sale-price">{{data.productPrice}}€</span>
               <div class="product-rate">
                 <div class="d-flex align-items-center gap-3">
-                  <img src="/product/{{data.productId}}/rate" width="130px">
+                 <!-- <div *ngIf="reviews">
+                    <img src="/product/{{data.productId}}/rate" width="130px">
+                  </div>
+                  <div *ngIf="!reviews">
+                    <img [ngSrc]="" ] width="130px">
+                  </div>-->
                 </div>
               </div>
             </div>
           </div>
           <div class="product-purchase">
             <div class="product-btn-group">
-              <!--<a class="button add-cart" href="/add-to-cart/{{productId}}"><i class='bx bx-cart-download'></i></i> Add to cart</a>
-              <a class="button star" href="/add-to-wishlist/{{productId}}"><i class='bx bxs-star'></i> Save</a>-->
+              <a *ngIf="addingToCartItemId !== data.productId" class="button add-cart" (click)="addToCart(data.productId)")><i class='bx bx-cart-download'></i> Add to cart</a>
+              <a *ngIf="addingToWishlistItemId !== data.productId" class="button star" (click)="addToWishlist(data.productId)"><i class='bx bxs-star'></i> Save</a>
             </div>
           </div>
 
@@ -47,7 +52,7 @@
             <div class="home-delivery d-flex justify-content-between">
               <span> Stock: </span>
               <span *ngIf= "data.productStock" class="stock"> Units available!</span>
-              <span *ngIf != "data.productStock"class="stock"> Out of stock</span>
+              <span *ngIf = "!data.productStock"class="stock"> Out of stock</span>
             </div>
           </div>
 
