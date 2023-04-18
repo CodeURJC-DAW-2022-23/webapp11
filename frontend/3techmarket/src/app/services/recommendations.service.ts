@@ -12,4 +12,8 @@ export class RecommendationService {
     return this.http.get(url)
 
   }
+  getProducts(){
+    const url = '/api/products'
+    return this.http.get(url)
+  }
 }
