@@ -62,6 +62,11 @@ export class ProductService {
     return this.http.post(url, null);
   }
 
+  addToWishlist(productId: string) {
+    const url = `/api/wishlist/addProduct/${productId}`;
+    return this.http.post(url, null);
+  }
+
   addNewProduct(productName:string,description:string,price:string,amount:string,tags:string,image:File | undefined,images:File[] | undefined) {
     const url = `/api/products/add-product`;
     const formData = new FormData();

@@ -16,6 +16,8 @@ export class ProductComponent implements OnInit{
   id:string = this.activatedRoute.snapshot.paramMap.get('id') || '';
   images: any[] = [];
   reviews:any[] = [];
+  addingToCartItemId: string = '';
+  addingToWishlistItemId: string = '';
 
   constructor(private productService: ProductService, private router: Router, private activatedRoute:ActivatedRoute) { }
 
@@ -24,6 +26,20 @@ export class ProductComponent implements OnInit{
       this.data = response;
       this.images = response.images;
       this.reviews = response.reviews;
+    });
+  }
+
+  addToCart(id: string){
+    this.addingToCartItemId = id;
+    this.productService.addToCart(id).subscribe((response: any) => {
+      this.addingToCartItemId = '';
+    });
+  }
+
+  addToWishlist(id: string){
+    this.addingToWishlistItemId = id;
+    this.productService.addToWishlist(id).subscribe((response: any) =>{
+      this.addingToWishlistItemId = '';
     });
   }
 
