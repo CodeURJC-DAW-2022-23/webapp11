@@ -32,8 +32,8 @@
           </div>
           <div class="product-purchase">
             <div class="product-btn-group">
-              <a *ngIf="addingToCartItemId !== data.productId" class="button add-cart" (click)="addToCart(data.productId)")><i class='bx bx-cart-download'></i> Add to cart</a>
-              <a *ngIf="addingToWishlistItemId !== data.productId" class="button star" (click)="addToWishlist(data.productId)"><i class='bx bxs-star'></i> Save</a>
+              <button *ngIf="addingToCartItemId !== data.productId" class="button add-cart" (click)="addToCart(data.productId)")>Add to cart</button>
+              <button *ngIf="addingToWishlistItemId !== data.productId" class="button star" (click)="addToWishlist(data.productId)"> Save</button>
             </div>
           </div>
 
@@ -51,7 +51,7 @@
             <div class="home-delivery d-flex justify-content-between">
               <span> Stock: </span>
               <span *ngIf= "data.productStock > 0" class="stock"> Units available!</span>
-              <span *ngIf = "!data.productStock <= 0"class="stock"> Out of stock</span>
+              <span *ngIf = "data.productStock <= 0"class="stock"> Out of stock</span>
             </div>
           </div>
 
@@ -68,9 +68,9 @@
                   <h5>Reviews</h5>
                   <div *ngFor="let review of reviews" class="conteiner-opinion d-flex justify-content-start">
                     <div class="opinion d-flex justify-content-between gap-3">
-                      <img [ngSrc]="environment.apiUrl + '/images/' + review.userId.profilePicture.imageId" alt="Profile Picture" width="90px">
+                      <img [src]="environment.apiUrl + '/images/' + review.profilePicture.imageId" alt="Profile Picture" width="90px">
                       <div class="user-info d-flex justify-content-between gap-5">
-                        <span class="user-name">{{review.userId.email}}</span>
+                        <span class="user-name">{{review.email}}</span>
                         <div class="product-rate">
                           <div class="d-flex align-items-center gap-3">
                             <img src="/5.png" id="starRating" width="130px">
@@ -82,10 +82,10 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div *ngFor="let image of reviews" class="image-slider">
+                       <!-- <div *ngFor="let image of reviews" class="image-slider">
                           <img [ngSrc]="environment.apiUrl + '/images/' + image.imageId" ] alt="" width="200px">
                         </div>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
 
