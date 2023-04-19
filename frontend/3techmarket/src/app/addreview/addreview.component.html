@@ -61,7 +61,11 @@
       </div>
       <div class="col-md-2"></div>
       <div class="col-md-4">
-        <button type="submit" class="btn btn-success btn-lg mt-1">Upload review!</button>
+        <button *ngIf="!submittingreview" type="submit" (click)="submittingreview = true" class="btn btn-success btn-lg mt-1">Upload review!</button>
+        <button *ngIf="submittingreview" type="button" class="btn btn-success btn-lg mt-1" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Uploading review...
+        </button>
       </div>
       <div class="col-md-2"></div>
     </div>

@@ -25,6 +25,7 @@ export class AddreviewComponent implements OnInit{
   }
 
   protected readonly environment = environment;
+  submittingreview: boolean = false;
 
   ngOnInit(): void {
     this.authService.authdetails().pipe(
