@@ -14,6 +14,7 @@ import {environment} from "../../environments/environment";
 export class HomeComponent implements OnInit {
   recommendedProducts: any[] = [];
   anonymous: boolean = false;
+  loadingrecommendations: boolean = true;
 
   constructor(private recommendations: RecommendationService, private auth: AuthService,
               private productService:ProductService) {
@@ -21,11 +22,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn()
-    if (this.anonymous === false) {
+    if (!this.anonymous) {
       this.getRecommendedProducts()
     } else {
       this.getProducts()
-
     }
   }
 
@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
     )
       .subscribe((response: any) => {
         this.recommendedProducts = response;
+        this.loadingrecommendations = false;
       })
   }
 
@@ -56,22 +57,17 @@ export class HomeComponent implements OnInit {
   getProducts(){
     this.productService.getProducts(0,30).subscribe(
       (response:any) => {
-
         for (let i=0;i<4;i++){
-          let num = Math.floor(Math.random()*30)
-
+          let num = Math.floor(Math.random()*20)
           this.recommendedProducts.push(response.content[num])
-
-
-
         }
-
-
+      this.loadingrecommendations = false;
       }
     )
 
   }
 
     protected readonly environment = environment;
+
 }
 
