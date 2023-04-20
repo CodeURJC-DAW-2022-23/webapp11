@@ -19,6 +19,7 @@ export class AddreviewComponent implements OnInit{
   reviewText: string = '';
   reviewTitle: string = '';
   images: File[] = [];
+  loading: boolean = false;
 
   constructor(private authService:AuthService, private reviewService: ReviewsService,private router: Router,
               private productService:ProductService,  private activatedRoute: ActivatedRoute) {
@@ -34,6 +35,7 @@ export class AddreviewComponent implements OnInit{
         return throwError(error);
       })
     ).subscribe((data) => {
+      this.loading = false
       this.getProduct();
     });
   }
@@ -45,7 +47,8 @@ export class AddreviewComponent implements OnInit{
   }
 
   addreview(rating: number, reviewText: string, images:File[] | undefined, reviewTitle: string) {
-    this.reviewService.addReview(rating,reviewText,images,reviewTitle,this.id).subscribe((response:any)=>{
+    this.reviewService.addReview(this.rating,reviewText,images,reviewTitle,this.id).subscribe((response:any)=>{
+      this.loading = true
       this.router.navigate(["/"]);
     });
   }

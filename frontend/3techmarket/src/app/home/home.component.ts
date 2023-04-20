@@ -52,7 +52,6 @@ export class HomeComponent implements OnInit {
       this.anonymous = false
 
     });
-    console.log(this.anonymous)
   }
   getProducts(){
     this.productService.getProducts(0,30).subscribe(
