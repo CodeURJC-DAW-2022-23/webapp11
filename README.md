@@ -868,8 +868,18 @@ Steps to follow:
      ```
    environment.prod.ts sometimes decide to not be taken into account by ng build with the production flag, if that happens, just change your backend server address from here.
 3. Install the dependencies: `npm install`
-4. Run the project: `ng serve` *You have to start the backend server before, else the application will not work properly. Refer to Phase 2 for more information on how to do this.*
+4. Run the project: `ng serve` *You have to start the backend server before, otherwise the application will not work properly. Refer to Phase 2 for more information on how to do this.*
 5. Open your browser and go to `http://localhost:4200/`. You should see the application running.
+
+## Building the SPA
+
+Note you can use the create_image.sh script located under webapp11/docker to create the image, this will build the SPA and copy the files to the backend server, ultimately creating a docker image with the backend and the frontend already built.
+
+If instead you want to build the SPA manually, follow the next steps:
+1. Go to the folder where the Angular project is located: `cd webapp11/frontend/3techmarket`
+2. Build the project: `ng build --configuration production --base-href /new/`
+3. The build files will be located in the `dist` folder.
+4. Copy the contents of the `dist` folder (`3techmarket`) to the `backend/app/src/main/resources/static/new` folder.
 
 ## Deployment
 
