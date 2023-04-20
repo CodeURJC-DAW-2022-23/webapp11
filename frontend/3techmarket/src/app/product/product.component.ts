@@ -21,7 +21,6 @@ export class ProductComponent implements OnInit{
   addingToWishlistItemId: string = '';
   pfps: any [] = [];
   emails: string [] = [];
-  reviewImages: any[] = [];
 
   constructor(private productService: ProductService, private router: Router, private activatedRoute:ActivatedRoute, private reviewsService: ReviewsService) { }
 
@@ -30,8 +29,7 @@ export class ProductComponent implements OnInit{
       this.data = response;
       this.images = response.images;
       this.reviews = response.reviews;
-      this.reviewImages = response.reviews.images;
-      this.getProductReviews(this.id);
+      this.pfps = this.getProfilePictures(this.reviews);
     });
   }
 
@@ -49,26 +47,21 @@ export class ProductComponent implements OnInit{
     });
   }
 
-  getProductReviews(productId: string) {
-    this.reviewsService.getProductReviews(productId)
-      .subscribe((response: any) => {
-        this.reviews = response;
-        this.reviews.forEach((review: any) => {
-          this.reviewsService.getEmailbyReviewId(review.reviewId)
-            .subscribe((response: any) => {
-              this.emails.push(response);
-            });
-          this.reviewsService.getPfpId(review.reviewId)
-            .subscribe((response: any) => {
-              this.pfps.push(response);
-
-
-            });
-        });
-
-      });
-  }
-
-
   protected readonly environment = environment;
+
+  private getProfilePictures(reviews: any[]) {
+    let pfps: any[] = [];
+    for (let review of reviews) {
+      this.reviewsService.getEmailbyReviewId(review.reviewId)
+        .subscribe((response: any) => {
+          this.emails.push(response);
+        });
+      this.reviewsService.getPfpId(review.reviewId)
+        .subscribe((response: any) => {
+          this.pfps.push(response);
+
+        });
+    }
+    return pfps;
+  }
 }

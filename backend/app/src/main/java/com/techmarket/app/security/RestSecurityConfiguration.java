@@ -82,7 +82,7 @@ public class RestSecurityConfiguration extends SecurityConfigurerAdapter<Default
                         .requestMatchers("/api/reviews/delete/**").hasAnyAuthority("ADMIN")
                         .requestMatchers("/api/reviews/get/**").hasAnyAuthority("ADMIN")
                         .requestMatchers("/api/reviews/create/**").hasAnyAuthority("USER","AGENT")
-                        .requestMatchers("/api/reviews/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/api/reviews/**").permitAll()
                         .requestMatchers("/api/user/{id}").hasAnyAuthority("AGENT", "ADMIN", "USER")
                         .requestMatchers("/api/user/hassentmessage").hasAnyAuthority("AGENT")
                         .requestMatchers("/api/user/send-message/agent/**").hasAnyAuthority("AGENT")
