@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   login(email: string, password: string) {
     this.auth.login(email, password).subscribe((response: any) => {
+
       this.redirect();
     }, () => {
       this.toggleError();

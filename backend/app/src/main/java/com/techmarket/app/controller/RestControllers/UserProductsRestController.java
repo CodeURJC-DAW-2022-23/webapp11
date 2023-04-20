@@ -137,6 +137,21 @@ public class UserProductsRestController{
         return ResponseEntity.ok(purchaseHistory);
     }
 
+    @PostMapping("/checkout")
+    @Operation(summary = "Checkout the current user's cart")
+    @ApiResponse(responseCode = "200", description = "User cart checked out")
+    // Take the address from the request body as a string
+    public ResponseEntity<AuthResponse> checkoutCart(@RequestBody String address, HttpServletRequest request) {
+        // Get the current user
+        User user = userService.getCurrentUser(request);
+
+        // Checkout the user's cart
+        userService.checkoutCart(user, address);
+
+        // Return the response
+        return ResponseEntity.ok(new AuthResponse(AuthResponse.Status.SUCCESS, "Cart checked out"));
+    }
+
 
 
 

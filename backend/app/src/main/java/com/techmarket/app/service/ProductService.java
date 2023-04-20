@@ -1,12 +1,17 @@
 package com.techmarket.app.service;
 
 import com.techmarket.app.Repositories.ProductRepository;
+import com.techmarket.app.model.Image;
 import com.techmarket.app.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -14,6 +19,9 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ImageService imageService;
 
     public List<Product> getAll() {
         return productRepository.findAll();
@@ -32,17 +40,7 @@ public class ProductService {
         return product;
     }
 
-    public Product updateProduct(Long id, Product product) {
-        Product updateProduct = productRepository.findByProductId(id);
-        updateProduct.setProductName(product.getProductName());
-        updateProduct.setDescription(product.getDescription());
-        updateProduct.setProductPrice(product.getProductPrice());
-        updateProduct.setMainImage(product.getMainImage());
-        updateProduct.setImages(product.getImages());
-        updateProduct.setTags(product.getTags());
-        productRepository.save(updateProduct);
-        return updateProduct;
-    }
+
 
     public Product getProductById(Long id){
         return productRepository.findByProductId(id);

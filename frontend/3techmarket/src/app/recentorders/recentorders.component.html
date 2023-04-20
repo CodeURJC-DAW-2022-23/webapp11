@@ -6,7 +6,7 @@
   </div>
   <div *ngFor="let purchase of purchases" class="row purchasedetails">
     <div class="col-md-4"> <!--Thumbnail-->
-      <img [src]="'api/images/' + purchase.product.productId + '/main-image'" alt="thumbnail" width="200" height="200">
+      <img [ngSrc]="environment.apiUrl + '/images/' + purchase.product.productId + '/main-image'" alt="thumbnail" width="200" height="200">
     </div>
     <div class="col-md-2">
       <h3>{{purchase.product.productName}}</h3>
@@ -17,14 +17,15 @@
       <h3>Shipping address and payment method</h3>
       <p class="details">Address: <b>{{purchase.address}}</b></p>
       <p class="details">Payment method: <b>{{purchase.paymentMethod}}</b></p>
-      <p class="details"><button type="button" (click)="getPDF(purchase.purchaseId)" class="btn btn-info">Download your invoice (PDF)</button></p>
+      <p *ngIf="!purchase.cancelled" class="details"><button type="button" (click)="getPDF(purchase.purchaseId)" class="btn btn-info">Download your invoice (PDF)</button></p>
+      <p *ngIf="purchase.cancelled" class="details"><button type="button" class="btn btn-info" disabled>PDF invoice not available</button></p>
     </div>
     <div class="col-md-2">
       <div *ngIf="purchase.cancelled; else notCancelled">
         <button type="button" class="btn btn-outline-secondary btn-lg mt-2" disabled>This order has been cancelled</button>
       </div>
       <ng-template #notCancelled>
-        <button type="button" [routerLink]="'/product/' + purchase.product.productId + '/review'" class="btn btn-outline-success btn-lg mt-1">Leave a review</button> <!--Review button, I don't know if it will work given that the id is different from the one on the Purchase model-->
+        <button type="button" [routerLink]="'/addreview/' + purchase.product.productId" class="btn btn-outline-success btn-lg mt-1">Leave a review</button> <!--Review button, I don't know if it will work given that the id is different from the one on the Purchase model-->
         <br>
         <button type="button" [routerLink]="'/messages'" class="btn btn-outline-primary btn-lg mt-2">Contact support</button>
         <br>

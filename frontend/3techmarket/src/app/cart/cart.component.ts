@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
-import { ProductService } from "../services/productsearch.service";
+import { ProductService } from "../services/product.service";
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-cart',
@@ -51,6 +52,7 @@ export class CartComponent implements OnInit {
       for (let item of this.items) {
         this.totalPrice += item.productPrice;
       }
+      parseFloat(this.totalPrice.toFixed(2));
       this.loading = false;
     });
   }
@@ -72,4 +74,6 @@ export class CartComponent implements OnInit {
     });
 
   }
+
+    protected readonly environment = environment;
 }

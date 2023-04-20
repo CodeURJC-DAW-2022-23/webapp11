@@ -58,7 +58,7 @@ public class HomeController {
             List<Product> products = productService.getRandomProducts();
             model.addAttribute("products", products);
         }
-        return "index";
+        return "home";
     }
 
 }

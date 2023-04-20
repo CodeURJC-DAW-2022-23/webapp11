@@ -20,19 +20,43 @@ public class UserProductsService {
     private ProductRepository productRepository;
 
     public Page<Product> getCartProducts(Pageable pageable, User user) {
-        PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
-        List<Product> cartProducts = user.getShoppingCart();
+        List<Product> products = user.getShoppingCart();
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<Product> list;
+        //create a page of products from the cart
+        if (products.size() < startItem) {
+            list = List.of();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, products.size());
+            list = products.subList(startItem, toIndex);
+        }
+
+        return new PageImpl<Product>(list, PageRequest.of(currentPage, pageSize), products.size());
 
 
-        return new PageImpl<>(cartProducts, pageRequest, cartProducts.size());
+
+
+
     }
 
     public Page<Product> getWishlistProducts(Pageable pageable, User user) {
-        PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
-        List<Product> wishlistProducts = user.getWishlist();
+        List<Product> products = user.getWishlist();
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<Product> list;
+        //create a page of products from the cart
+        if (products.size() < startItem) {
+            list = List.of();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, products.size());
+            list = products.subList(startItem, toIndex);
+        }
 
+        return new PageImpl<Product>(list, PageRequest.of(currentPage, pageSize), products.size());
 
-        return new PageImpl<>(wishlistProducts, pageRequest, pageable.getPageSize());
     }
 
 

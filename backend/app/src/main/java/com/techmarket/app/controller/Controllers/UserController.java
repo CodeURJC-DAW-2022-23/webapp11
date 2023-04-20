@@ -78,7 +78,7 @@ public class UserController {
     }
 
     // Sign up a new user
-    @PostMapping("/signup-user")
+    @PostMapping("/signup")
     public String signupuser(@RequestParam String email, @RequestParam String password, @RequestParam String firstName, @RequestParam String lastName) throws MessagingException {
         User user = new User( email,  firstName, lastName);
         user.setEncodedPassword(passwordEncoder.passwordEncoder().encode(password));

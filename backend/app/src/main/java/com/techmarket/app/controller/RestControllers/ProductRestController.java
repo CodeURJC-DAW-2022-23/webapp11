@@ -1,17 +1,27 @@
 package com.techmarket.app.controller.RestControllers;
 
+import com.techmarket.app.model.Image;
 import com.techmarket.app.model.Product;
+import com.techmarket.app.service.ImageService;
 import com.techmarket.app.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
 import java.net.URI;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
@@ -19,6 +29,9 @@ public class ProductRestController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ImageService imageService;
 
     @GetMapping(params = {"page", "size"})
     @Operation(summary = "Get all products")
@@ -59,8 +72,37 @@ public class ProductRestController {
     @ApiResponse(responseCode = "201", description = "Product created")
     @ApiResponse(responseCode = "400", description = "Product not created")
     @ApiResponse(responseCode = "403", description = "User not authorized")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        Product newProduct = productService.createProduct(product);
+    public ResponseEntity<Product> createProduct(@RequestParam("productName") String productName, @RequestParam("description")  String description,@RequestParam("price") String price, @RequestParam("amount") String amount, @RequestParam("tags") String tags, @RequestParam("image") MultipartFile image,@RequestParam("images") MultipartFile[] images) throws IOException, SQLException {
+        Product newProduct = new Product();
+        newProduct.setProductPrices(new ArrayList<>());
+        newProduct.setImages(new ArrayList<>());
+        newProduct.setProductName(productName);
+        newProduct.setDescription(description);
+        newProduct.setProductPrice(Double.parseDouble(price));
+        newProduct.setProductStock(Integer.parseInt(amount));
+        newProduct.setTags(Arrays.asList(tags));
+        newProduct.setReviews(new ArrayList<>());
+        newProduct.setReviews(new ArrayList<>());
+        newProduct.getProductPrices().add(Double.parseDouble(price));
+        Image mainImage = new Image();
+        mainImage.setFileName(image.getOriginalFilename());
+        mainImage.setImageBlob(new SerialBlob(image.getBytes()));
+        imageService.saveImage(mainImage);
+        newProduct.setMainImage(mainImage);
+        //do the same with the images array
+        for (MultipartFile img : images) {
+            Image newImage = new Image();
+            newImage.setFileName(img.getOriginalFilename());
+            newImage.setImageBlob(new SerialBlob(img.getBytes()));
+            imageService.saveImage(newImage);
+            newProduct.getImages().add(newImage);
+        }
+
+        productService.saveProduct(newProduct);
+
+
+
+
         // Return the location of the new product
         return ResponseEntity.created(URI.create("/api/products/" + newProduct.getId())).body(newProduct);
     }
@@ -74,24 +116,80 @@ public class ProductRestController {
         return ResponseEntity.noContent().build();  // return the no content status
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/edit/{id}")
     @Operation(summary = "Update a product by id")
     @ApiResponse(responseCode = "200", description = "Product updated")
     @ApiResponse(responseCode = "404", description = "Product not found")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        Product updatedProduct = productService.updateProduct(id, product);
-        if (updatedProduct == null) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestParam("productName") String productName, @RequestParam("description")  String description,@RequestParam("productPrice") String productPrice, @RequestParam("productStock") String productstock, @RequestParam("tags") String tags, @RequestParam("mainImage") MultipartFile mainImage,@RequestParam("images") MultipartFile[] images) throws Exception {
+        Product product = productService.getProductById(id);
+        System.out.println(productName);
+        System.out.println(description);
+        System.out.println(productPrice);
+        System.out.println(productstock);
+        System.out.println(tags);
+        System.out.println(mainImage.getOriginalFilename());
+        for (MultipartFile img : images) {
+            System.out.println(img.getOriginalFilename());
         }
-        return ResponseEntity.ok(updatedProduct);
+
+
+        if (productName != null) {
+            product.setProductName(productName);
+        }
+        if (description != null) {
+            product.setDescription(description);
+        }
+        if (productPrice != null) {
+            product.setProductPrice(Double.parseDouble(productPrice));
+            product.getProductPrices().add(Double.parseDouble(productPrice));
+        }
+        if (productstock != null) {
+            product.setProductStock(Integer.parseInt(productstock));
+        }
+        if (tags != null) {
+            product.setTags(Arrays.asList(tags));
+        }
+
+        Image newImage = new Image();
+        newImage.setFileName(mainImage.getOriginalFilename());
+        newImage.setImageBlob(new SerialBlob(mainImage.getBytes()));
+        imageService.saveImage(newImage);
+        product.setMainImage(newImage);
+        product.getImages().clear();
+        for (MultipartFile img : images) {
+            Image newImage2 = new Image();
+            newImage2.setFileName(img.getOriginalFilename());
+            newImage2.setImageBlob(new SerialBlob(img.getBytes()));
+            product.getImages().add(newImage2);
+            imageService.saveImage(newImage2);
+
+        }
+
+
+        return ResponseEntity.ok(product);
     }
 
-    @PostMapping("/price-history/{id}")
+    @GetMapping("/price-history/{id}")
     @Operation(summary = "Get a product's price history")
     @ApiResponse(responseCode = "200", description = "Product's price history retrieved")
     @ApiResponse(responseCode = "404", description = "Product not found")
-    public ResponseEntity<?> getProductPriceHistory(@PathVariable Long id) {
+    public ResponseEntity<List<Double>> getProductPriceHistory(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getProductById(id).getProductPrices());
+    }
+
+    @GetMapping("remove-from-stock/{id}")
+    @Operation(summary = "Remove a product from stock")
+    @ApiResponse(responseCode = "200", description = "Product removed from stock")
+    @ApiResponse(responseCode = "404", description = "Product not found")
+    public ResponseEntity<Product> removeFromStock(@PathVariable Long id) {
+        Product product = productService.getProductById(id);
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        }
+        product.setProductStock(0);
+
+        productService.saveProduct(product);
+        return ResponseEntity.ok(product);
     }
 
 }

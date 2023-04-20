@@ -1,0 +1,73 @@
+<h2>Add review</h2>
+<br>
+<div class="container-md">
+  <div class="row purchasedetails">
+    <div class="col-md-2"> <!--Thumbnail added with Mustache-->
+      <img [src]="environment.apiUrl + '/images/' + data.productId + '/main-image'" alt="thumbnail" width="150" height="150">
+    </div>
+    <div class="col-md-10">
+      <h3>{{data.productName}}</h3>
+      <p class="detailsone">{{data.description}}</p>
+      <p class="details">Your email and review content will be visible to anyone browsing the website</p>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <form #addReview="ngForm" (submit)="addreview(rating,reviewText,images,reviewTitle)">
+    <div class="row stars">
+      <div class="col-md-12">
+        <span class="heading">Overall rating</span>
+        <br>
+        <!--Select number of stars-->
+        <div class="rating">
+          <input type="radio" id="star1" name="rating" value="1" [(ngModel)]="rating" /><label for="star1" title="1 stars"  >1</label>
+          <input  type="radio" id="star2" name="rating" value="2" [(ngModel)]="rating"/><label for="star2" title="2 stars" >2</label>
+          <input  type="radio" id="star3" name="rating" value="3" [(ngModel)]="rating"/><label for="star3" title="3 stars" >3</label>
+          <input  type="radio" id="star4" name="rating" value="4" [(ngModel)]="rating"/><label for="star4" title="4 stars" >4</label>
+          <input  type="radio" id="star5" name="rating" value="5" [(ngModel)]="rating"/><label for="star5" title="5 stars">5</label>
+        </div>
+      </div>
+    </div>
+    <div class="row review">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="form-floating">
+          <textarea  class="form-control" placeholder="Review title" id="floatingTextarea" name="reviewTitle" required [(ngModel)]="reviewTitle"></textarea>
+          <label for="floatingTextarea">Review title</label>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row review">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="form-floating">
+          <textarea  class="form-control" placeholder="Leave your comments here" id="floatingTextarea2" name="reviewText" style="height: 100px" required [(ngModel)]="reviewText"></textarea>
+          <label for="floatingTextarea2">Additional comments</label>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row review">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <input type="file" class="form-control" id="floatingInput" name="images" accept="image/*" multiple placeholder="Upload images" (change)="onImagesUpload($event)">
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row review">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <button type="button" routerLink="/" class="btn btn-danger btn-lg mt-2">Cancel</button>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <button *ngIf="!submittingreview" type="submit" class="btn btn-success btn-lg mt-1">Upload review!</button>
+        <button *ngIf="submittingreview" type="button" class="btn btn-success btn-lg mt-1" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Uploading review...
+        </button>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </form>
+</div>
