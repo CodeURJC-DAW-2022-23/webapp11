@@ -3,6 +3,7 @@ import { AuthService } from "../services/auth.service";
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-profile',
@@ -97,5 +98,6 @@ export class ProfileComponent implements OnInit {
       this.authService.savedProfile();
     });
   }
-}
 
+  protected readonly environment = environment;
+}

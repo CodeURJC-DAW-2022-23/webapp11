@@ -44,7 +44,7 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Product> shoppingCart = new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY)
-    List<Product> purchasedProducts = new ArrayList<>();
+    private List<Product> purchasedProducts = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Message> messages = new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -1,0 +1,56 @@
+<h1>Wishlist</h1>
+<br><br>
+
+<div class="container-md" id="items">
+    <div class="row item" *ngFor="let item of items">
+      <div class="col-md-4">
+        <img [ngSrc]="environment.apiUrl + '/images/' + item.productId + '/main-image'" class="center" alt="item" width="200" height="200">
+      </div>
+      <div class="col-md-4">
+        <a routerLink="/product/{{item.productId}}"><h3>{{item.productName}}</h3></a>
+        <p class="description">{{item.description}}</p>
+      </div>
+      <div class="col-md-2">
+        <h3>Price</h3>
+        <p class="price">€{{item.productPrice}}</p>
+      </div>
+      <div class="col-md-2">
+        <button *ngIf="addingToCartItemId !== item.productId" class="btn btn-outline-primary" (click)="addToCart(item.productId)">Add to cart</button>
+        <br><br>
+        <button *ngIf="addingToCartItemId === item.productId" class="btn btn-outline-primary" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Adding...
+        </button>
+        <button *ngIf="deletingItemId !== item.productId" class="btn btn-outline-danger" (click)="removeFromWishlist(item.productId)">Remove</button>
+        <br><br>
+        <button *ngIf="deletingItemId === item.productId" class="btn btn-outline-danger" disabled>
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Removing...
+        </button>
+      </div>
+    </div>
+      <div class="row" *ngIf="total > size*page">
+        <div class="col-md-12">
+          <button class="btn btn-success" *ngIf="!loadingMore" (click)="loadMore()">Load more</button>
+          <button class="btn btn-success" *ngIf="loadingMore" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
+        </div>
+      </div>
+  <div class="col-md-12" *ngIf="items.length === 0">
+    <div *ngIf="loading" class="spinner-border text-success" style="width: 5rem; height: 5rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div *ngIf="!loading">
+      <h2>There are no items in your wihslist, <a routerLink="/">START SHOPPING NOW!</a></h2>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
+

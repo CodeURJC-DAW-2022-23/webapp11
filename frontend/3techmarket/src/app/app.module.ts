@@ -3,11 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
 import {FooterComponent} from "./footer/footer.component";
 import {HeaderComponent} from "./header/header.component";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
-import {ProductService} from "./services/productsearch.service";
+import {ProductService} from "./services/product.service";
 import { ProductSearchComponent } from './productsearch/productsearch.component';
 import {routing} from './routing/routing.component';
 import {NgOptimizedImage} from "@angular/common";
@@ -22,6 +23,19 @@ import { MessagesComponent } from './messages/messages.component';
 import { ChatsComponent } from './chats/chats.component';
 import { RecentordersComponent } from './recentorders/recentorders.component';
 import { CartComponent } from './cart/cart.component';
+import { ReviewHistoryComponent } from './reviewHistory/review-history.component';
+import { RegisterComponent } from './register/register.component';
+import { RecoverpasswordComponent } from './recoverpassword/recoverpassword.component';
+import { CodeComponent } from './code/code.component';
+import { PricehistoryComponent } from './pricehistory/pricehistory.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductComponent } from './product/product.component';
+import { AddreviewComponent } from './addreview/addreview.component';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +52,17 @@ import { CartComponent } from './cart/cart.component';
     ChatsComponent,
     RecentordersComponent,
     CartComponent,
+    ReviewHistoryComponent,
+    RegisterComponent,
+    RecoverpasswordComponent,
+    CodeComponent,
+    PricehistoryComponent,
+    WishlistComponent,
+    AddProductComponent,
+    EditProductComponent,
+    CheckoutComponent,
+    ProductComponent,
+    AddreviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,11 +72,17 @@ import { CartComponent } from './cart/cart.component';
     NgOptimizedImage,
     routing,
     NgbModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    HighchartsChartModule
   ],
   providers: [
-    ProductService
+    ProductService,
+    {
+      provide: 'API_BASE_URL',
+      useValue: environment.apiUrl + environment.apiPrefix
+    },
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

@@ -7,7 +7,7 @@
         </div>
         <div *ngIf="haspfp">
           <!--Reload the image if it is updated-->
-          <img class="rounded-circle mt-5" width="150" [src]="'api/images/' + data.profilePicture.imageId" alt="Profile Picture">
+          <img [ngSrc]="environment.apiUrl + '/images/' + data.profilePicture.imageId" class="rounded-circle mt-5" width="150" height="150" alt="Profile Picture">
         </div>
         <div *ngIf="!haspfp">
           <div *ngIf="!loading">
@@ -42,7 +42,7 @@
             <div class="col-md-6"><label class="labels"></label><input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="data.lastName" placeholder="Last Name" ></div>
           </div>
           <div class="row mt-3" >
-            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="email" name="email" [(ngModel)]="data.email" placeholder="Email" ></div>
+            <div class="col-md-12"><label class="labels"></label><input type="text" class="form-control" id="email" name="email" [(ngModel)]="data.email" placeholder="Email" disabled ></div>
             <div class="col-md-12"><label class="labels"></label><input type="text" id="phoneNumber" name="phoneNumber" class="form-control" [(ngModel)]="data.phoneNumber" placeholder="Phone Number" ></div>
             <div class="col-md-12"><label class="labels"></label><input type="text" id="address" name="address" class="form-control" [(ngModel)]="data.address" placeholder="Address" ></div>
             <div class="col-md-12"><label class="labels"></label><input type="text" id="postcode" name="postcode" class="form-control" [(ngModel)]="data.postcode" placeholder="Postcode" ></div>

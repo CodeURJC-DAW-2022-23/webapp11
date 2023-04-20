@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-recentorders',
@@ -51,4 +52,5 @@ export class RecentordersComponent implements OnInit {
     });
   }
 
+    protected readonly environment = environment;
 }

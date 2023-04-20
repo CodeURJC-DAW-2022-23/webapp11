@@ -38,12 +38,24 @@ DOCKERFILE="Dockerfile"
 
 # The Dockerfile's directory (docker/)
 DOCKERFILE_DIR="docker"
+ANGULAR_DIR="frontend/3techmarket"
 
 # Set the current directory to the root of the project because Docker will set
 # the context to the directory where we run the command
 # shellcheck disable=SC2164
 cd "$(dirname "$0")/.." || exit 1
 
+# Build the Angular project
+cd "${ANGULAR_DIR}" || exit 1
+npm install
+# Base href is set to /new
+ng build --configuration production --base-href /new/
+
+# Go back to the root of the project
+cd ../.. || exit 1
+
+# Copy the result of the build to the Spring Boot project
+cp -r "${ANGULAR_DIR}/dist/3techmarket/." backend/app/src/main/resources/static/new
 
 # Build the image
 docker build -t "${IMAGE_NAME}:${IMAGE_VERSION}" -f "${DOCKERFILE_DIR}/${DOCKERFILE}" .
