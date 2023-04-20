@@ -46,7 +46,7 @@ cd "$(dirname "$0")/.." || exit 1
 
 
 # Build the image
-docker build -t "${IMAGE_NAME}:${IMAGE_VERSION}" -f "${DOCKERFILE_DIR}/${DOCKERFILE}" .
+docker build --platform linux/amd64 -t "${IMAGE_NAME}:${IMAGE_VERSION}" -f "${DOCKERFILE_DIR}/${DOCKERFILE}" .
 
 # Tag the image
 docker tag "${IMAGE_NAME}:${IMAGE_VERSION}" "${IMAGE_NAME}:latest"

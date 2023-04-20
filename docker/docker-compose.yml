@@ -28,5 +28,6 @@ services:
       - MYSQL_USER=ThreeTechRoot
       - MYSQL_PASSWORD=password
       - MYSQLD_ARGS=--default-storage-engine=myisam
+      - MYSQL_LOWER_CASE_TABLE_NAMES=2
     volumes:
         - ./mysql:/var/lib/mysql
