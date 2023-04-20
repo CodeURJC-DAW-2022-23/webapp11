@@ -824,3 +824,155 @@ All members have contributed on this phase of the project, the following table s
 - [ProductRestController](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/ProductRestController.java)
 
 </details>
+
+# Phase 4: SPA and deployment
+
+## Preparing the development environment
+
+<details><summary> <b> Prerequisites </b> </summary>
+
+<details><summary> Install Node.js and npm (npm v9.5.0+) </summary>
+
+- MacOS: `brew install nodejs npm`
+- Debian: `sudo apt install nodejs npm`
+- Arch: `sudo pacman -S nodejs npm`
+- Fedora: `sudo dnf install nodejs npm`
+- Windows: [Download](https://nodejs.org/en/download/)
+- [Other](https://nodejs.org/en/download/package-manager/)
+
+</details>
+
+<details><summary> Install Angular CLI (Angular CLI 15+) </summary>
+
+- `npm install -g @angular/cli`
+
+</details>
+
+*Note we are taking into account you have all the previous requirements (even from older phases) installed and properly configured.*
+
+</details>
+
+Steps to follow:
+
+1. Clone the repository: `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
+2. Go to the folder where the Angular project is located: `cd webapp11/frontend/3techmarket`
+    
+    You need to update the file located under `src/environments/environment.ts` with the correct URL of the backend server, we had lots of problems with this, so we recommend you to change it to localhost, ng build should use environment.prod.ts, but sometimes it doesn't.
+    
+    ```typescript
+    export const environment = {
+     production: false,
+     apiUrl: 'https://localhost:8443/api',
+     apiPrefix: ''
+     };
+     ```
+   environment.prod.ts sometimes decide to not be taken into account by ng build with the production flag, if that happens, just change your backend server address from here.
+3. Install the dependencies: `npm install`
+4. Run the project: `ng serve` *You have to start the backend server before, else the application will not work properly. Refer to Phase 2 for more information on how to do this.*
+5. Open your browser and go to `http://localhost:4200/`. You should see the application running.
+
+## Deployment
+
+<details><summary> <b> Prerequisites </b> </summary>
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Git](https://git-scm.com/downloads)
+
+</details>
+
+Steps to follow:
+
+1. ssh into the server: `ssh -i appWeb-11 vmuser@10.100.139.166`
+2. Clone the repository: `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
+3. Go to the docker folder: `cd webapp11/docker`
+4. Run the docker-compose file: `docker-compose up -d`
+5. Open your browser and go to `https://10.100.139.166:8443/`. You should see the application running.
+6. If you want to stop the application, run: `docker-compose down`
+
+The SPA is accessible through the following URL: `https://10.100.139.166:8443/new`
+
+## Diagrams
+
+Put the new diagram here
+
+## Member contributions
+
+## Contributions
+
+All members have contributed on this phase of the project, the following table shows the contributions of each member:
+
+| Member                                               | Contributions                                                                                                           |
+|------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| [Santiago Arias](https://github.com/4rius)           | Authentication - Profile - Docker script - Product search - Messages - Recent orders - Cart - Environments - Deployment |
+| [Andreas Wolf](https://github.com/Andreas4122002)    | Admin dashboard - Wishlist - Review history - Edit product - Add product                                                |
+| [Ignacio Canículo](https://github.com/nachocaniculo) | Signup - Password recovery - Price history - Environments - Diagrams                                                    |
+| [Inés Alonso](https://github.com/tsukii14)           | Product view                                                                                                            |
+| [Ángel Covarrubias](https://github.com/angelcova)    | Featured products - Add review                                                                                          |
+
+### 5 most important commits
+
+<details><summary> <b> Santiago Arias </b> </summary>
+
+-
+
+</details>
+
+<details><summary> <b> Andreas Wolf </b> </summary>
+
+
+-
+
+
+</details>
+
+<details><summary> <b> Ignacio Canículo </b> </summary>
+
+-
+
+</details>
+
+<details><summary> <b> Inés Alonso </b> </summary>
+
+-
+
+</details>
+
+<details><summary> <b> Ángel Covarrubias </b> </summary>
+
+-
+
+
+</details>
+
+### 5 most edited files
+
+<details><summary> <b> Santiago Arias </b> </summary>
+
+-
+
+</details>
+
+<details><summary> <b> Andreas Wolf </b> </summary>
+
+-
+
+</details>
+
+<details><summary> <b> Ignacio Canículo </b> </summary>
+
+-
+
+</details>
+
+<details><summary> <b> Inés Alonso </b> </summary>
+
+-
+
+</details>
+
+<details><summary> <b> Ángel Covarrubias </b> </summary>
+
+- 
+
+</details>
