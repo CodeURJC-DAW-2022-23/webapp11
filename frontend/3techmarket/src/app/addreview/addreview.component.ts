@@ -47,6 +47,7 @@ export class AddreviewComponent implements OnInit{
   }
 
   addreview(rating: number, reviewText: string, images:File[] | undefined, reviewTitle: string) {
+    this.submittingreview = true;
     this.reviewService.addReview(this.rating,reviewText,images,reviewTitle,this.id).subscribe((response:any)=>{
       this.loading = true
       this.router.navigate(["/"]);
