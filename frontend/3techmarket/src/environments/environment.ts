@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:8443/api', // Explain on the README
+  apiUrl: 'https://10.100.139.166:8443/api', // Explain on the README
   apiPrefix: ''
 };
