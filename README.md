@@ -904,7 +904,7 @@ The SPA is accessible through the following URL: `https://10.100.139.166:8443/ne
 
 ## SPA Diagram
 
-![DAW.jpg](..%2F..%2F..%2F..%2FDownloads%2FDAW.jpg)
+![SPADiagram.jpg](SPADiagram.jpg)
 
 ## Member contributions
 
