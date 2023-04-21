@@ -857,7 +857,7 @@ Steps to follow:
 1. Clone the repository: `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
 2. Go to the folder where the Angular project is located: `cd webapp11/frontend/3techmarket`
     
-    You need to update the file located under `src/environments/environment.ts` with the correct URL of the backend server, we had lots of problems with this, so we recommend you to change it to localhost, ng build should use environment.prod.ts, but sometimes it doesn't.
+    You need to update the file located under `src/environments/environment.ts` with the correct URL of the backend server, the development environment is configured to use the following URL:
     
     ```typescript
     export const environment = {
@@ -866,7 +866,7 @@ Steps to follow:
      apiPrefix: ''
      };
      ```
-   environment.prod.ts sometimes decide to not be taken into account by ng build with the production flag, if that happens, just change your backend server address from here.
+   
 3. Install the dependencies: `npm install`
 4. Run the project: `ng serve` *You have to start the backend server before, otherwise the application will not work properly. Refer to Phase 2 for more information on how to do this.*
 5. Open your browser and go to `http://localhost:4200/`. You should see the application running.
@@ -902,9 +902,9 @@ Steps to follow:
 
 The SPA is accessible through the following URL: `https://10.100.139.166:8443/new`
 
-## Diagrams
+## SPA Diagram
 
-Put the new diagram here
+![DAW.jpg](..%2F..%2F..%2F..%2FDownloads%2FDAW.jpg)
 
 ## Member contributions
 
@@ -924,7 +924,11 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Santiago Arias </b> </summary>
 
--
+- [Routing](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/4530ae67ae65d18a318a921568f8c5342f39ee51)
+- [CORS and login](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/4605d851b98c2d67ea7b234eda00315e30c2bc78)
+- [Home and authentication](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/b7a279ad649a026ca9a063a68bace125b5d1db09)
+- [Messages](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/c22d45738622aca807db176d0b9d5140b24f7226)
+- [Recent orders](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/0ea20722e62e2cf082e8d615c49c8a578437b54e)
 
 </details>
 
@@ -959,7 +963,11 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Santiago Arias </b> </summary>
 
--
+- [profile.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/profile/profile.component.ts)
+- [auth.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/services/auth.service.ts)
+- [header.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/header/header.component.ts)
+- [recentorders.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/recentorders/recentorders.component.ts)
+- [create_image.sh](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/docker/create_image.sh)
 
 </details>
 
