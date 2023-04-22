@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://10.100.139.166:8443/api',
+  // Take the ip from where the app is being served and append the api prefix
+  apiUrl: window.location.origin + '/api',
   apiPrefix: ''
 };
