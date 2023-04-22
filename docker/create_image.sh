@@ -47,9 +47,11 @@ cd "$(dirname "$0")/.." || exit 1
 
 # Build the Angular project
 cd "${ANGULAR_DIR}" || exit 1
-npm install
+# npm install using a docker container
+docker run --rm -v "${PWD}":/app -w /app node:slim npm install
 # Base href is set to /new
-ng build --configuration production --base-href /new/
+# ng build --configuration production --base-href /new/ using a docker container
+docker run --rm -v "${PWD}":/app -w /app node:slim npm run build -- --configuration production --base-href /new/
 
 # Go back to the root of the project
 cd ../.. || exit 1
