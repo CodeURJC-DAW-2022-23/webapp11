@@ -857,7 +857,7 @@ Steps to follow:
 1. Clone the repository: `git clone https://github.com/CodeURJC-DAW-2022-23/webapp11.git`
 2. Go to the folder where the Angular project is located: `cd webapp11/frontend/3techmarket`
     
-    You need to update the file located under `src/environments/environment.ts` with the correct URL of the backend server, the development environment is configured to use the following URL:
+    The file in `src/environments/environment.ts` is configured to take the URL of the backend server if this is the same as the IP where the page is being deployed, if your API is located on another server, you need to change this, the development environment is configured to use the following URL:
     
     ```typescript
     export const environment = {
