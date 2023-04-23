@@ -955,7 +955,11 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Inés Alonso </b> </summary>
 
--
+- [Product view](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/bd10bcc8d00be0cf57c471409c1f52476b794bdc)
+- [Product component + reviews](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/79fc3a0ae4ead4606b2da08d8808c9be1f5b1c50)
+- [Product update](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/9d2aaa7bbcd5814f28cc37597e4ba39a14063c7b)
+- [Product almost done](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/060e4e78882480b8774f9e6b4a3e5ee0c0af07a0)
+- [Reviews update](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/68ea165f9c1f8823d5acd256159cceb53ef3a348)
 
 </details>
 
@@ -1001,7 +1005,11 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Inés Alonso </b> </summary>
 
--
+- [product.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/frontend/3techmarket/src/app/product/product.component.html)
+- [product.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/frontend/3techmarket/src/app/product/product.component.ts)
+- [product.component.css](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/frontend/3techmarket/src/app/product/product.component.css)
+- [product.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/services/product.service.ts)
+- [routing.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/routing/routing.component.ts)
 
 </details>
 
