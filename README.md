@@ -934,15 +934,17 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Andreas Wolf </b> </summary>
 
-
 -
-
 
 </details>
 
 <details><summary> <b> Ignacio Canículo </b> </summary>
 
--
+- [Graph Completely working on the price history page](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/bbad2ff8db386690a97c3a4faba894f69770b1ba)
+- [Deployment fixed](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/cdbbfdc5dc2b1931335cd6e14289bb16d5b39526)
+- [Register fixed](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/e2ec0b6ba9ec746aaeafbe8510b03e7fb86d4bfb)
+- [Change password with code working](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/5007392178cc287556d651f8305bae4865eed4ee)
+- [Recover Password page working](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/218010c168e7a788f55d6c4deb11bcaad04ae9d5)
 
 </details>
 
@@ -979,7 +981,11 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Ignacio Canículo </b> </summary>
 
--
+- [pricehistory.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/pricehistory/pricehistory.component.ts)
+- [code.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/code/code.component.ts)
+- [register.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/register/register.component.ts)
+- [recoverpassword.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/recoverpassword/recoverpassword.component.ts)
+- [RestAuthController.java](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/backend/app/src/main/java/com/techmarket/app/controller/RestControllers/RestAuthController.java)
 
 </details>
 
