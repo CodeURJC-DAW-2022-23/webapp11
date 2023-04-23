@@ -915,7 +915,7 @@ All members have contributed on this phase of the project, the following table s
 | Member                                               | Contributions                                                                                                           |
 |------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | [Santiago Arias](https://github.com/4rius)           | Authentication - Profile - Docker script - Product search - Messages - Recent orders - Cart - Environments - Deployment |
-| [Andreas Wolf](https://github.com/Andreas4122002)    | Admin dashboard - Wishlist - Review history - Edit product - Add product                                                |
+| [Andreas Wolf](https://github.com/Andreas4122002)    | Admin dashboard - Wishlist - Review history - Edit product - Add product - Remove product - Product reviews             |
 | [Ignacio Canículo](https://github.com/nachocaniculo) | Signup - Password recovery - Price history - Environments - Diagrams                                                    |
 | [Inés Alonso](https://github.com/tsukii14)           | Product view                                                                                                            |
 | [Ángel Covarrubias](https://github.com/angelcova)    | Featured products - Add review                                                                                          |
@@ -934,8 +934,12 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Andreas Wolf </b> </summary>
 
+- [Edit product](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/4b6b2b8f25b9145d9e7caad1ab837577c23cc231)
+- [Add product](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/314b6da8eca544a307e60911bee9b13bac56c1dd)
+- [Wishlist](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/314b6da8eca544a307e60911bee9b13bac56c1dd)
+- [Review history](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/9fe216f5d15afef0e107d394f83565435a91b38a)
+- [Dashboard and removal of product](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/0628f568b8ec7308ef75f94ecddf8fa56d2de9f0)
 
--
 
 
 </details>
@@ -973,7 +977,12 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Andreas Wolf </b> </summary>
 
--
+- [dashboard.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/frontend/3techmarket/src/app/dashboard/dashboard.component.ts)
+- [review.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/tree/development/frontend/3techmarket/src/app/services)
+- [review-history.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/tree/development/frontend/3techmarket/src/app/reviewHistory/review-history.component.ts)
+- [wishlist.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/tree/development/frontend/3techmarket/src/app/wishlist/wishlist.component.ts)
+- [add-product.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/development/frontend/3techmarket/src/app/add-product/add-product.component.ts)
+
 
 </details>
 
