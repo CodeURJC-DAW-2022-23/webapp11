@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-chats',
@@ -45,4 +46,6 @@ export class ChatsComponent implements OnInit {
       this.loading = false;
     });
   }
+
+  protected readonly environment = environment;
 }

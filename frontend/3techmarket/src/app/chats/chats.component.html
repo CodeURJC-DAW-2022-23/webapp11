@@ -7,7 +7,7 @@
     <div class="row item" *ngFor="let user of users">
       <div class="col-md-4">
         <!--User profile image-->
-        <img [ngSrc]="'/images/' + user.profilePicture.imageId" alt="User profile image" class="img-fluid" width="150" height="150">
+        <img [ngSrc]="environment.apiUrl + '/images/' + user.profilePicture.imageId" alt="User profile image" class="img-fluid" width="150" height="150">
       </div>
       <div class="col-md-4">
         <!--User name-->
