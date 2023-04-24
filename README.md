@@ -965,7 +965,11 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Ángel Covarrubias </b> </summary>
 
--
+- [Recommendation finished](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/f0ca876d2feddc03b2cbf702ce1dc0df92cbd042)
+- [Add Review](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/8daaa36cc1c00356a9f82ca7aa7a39b31fedfbcc)
+- [Recommendation almost finished](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/def804326ecee749b147d8a68fc67c11b15a38e4)
+- [Add Review finished](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/038d552e14cea619f6e93a8b87958e4d31582046)
+- [Cart and Wishlist loadMore fixed](https://github.com/CodeURJC-DAW-2022-23/webapp11/commit/49fa1ffed7e30a187b3de9650bf475a58175f9d2)
 
 
 </details>
@@ -1015,6 +1019,10 @@ All members have contributed on this phase of the project, the following table s
 
 <details><summary> <b> Ángel Covarrubias </b> </summary>
 
-- 
+- [addReview.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/addreview/addreview.component.ts)
+- [addReview.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/addreview/addreview.component.html)
+- [recommendation.service.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/services/recommendations.service.ts)
+- [home.component.ts](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/home/home.component.ts)
+- [home.component.html](https://github.com/CodeURJC-DAW-2022-23/webapp11/blob/main/frontend/3techmarket/src/app/home/home.component.html)
 
 </details>
