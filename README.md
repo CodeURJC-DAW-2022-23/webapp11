@@ -1,5 +1,9 @@
 <img src="backend/app/src/main/resources/static/logo2.png" alt="3TechMarket Logo" width="200"/>
 
+## [SPA video demo](https://youtu.be/6R4fOxvxqmM)
+
+## Description
+
 Our web app provides a online tech shop for users around the world to be able to buy the latest gear with the best reviews at the best prices. We aim to provide the best buying experience, with nice to have features such as support messages, PDF invoices, email confirmations, stock alerts and much more.
 
 ## **Team**
@@ -890,6 +894,8 @@ If instead you want to build the SPA manually, follow the next steps:
 - [Git](https://git-scm.com/downloads)
 
 </details>
+
+Note: *You need to install Docker, on our machine we installed it using Docker's official documentation ([Docker installation steps for Ubuntu](https://docs.docker.com/engine/install/ubuntu/)), but you can also install it using your distribution's package manager.*
 
 Steps to follow:
 
