@@ -908,6 +908,12 @@ Steps to follow:
 
 The SPA is accessible through the following URL: `https://10.100.139.166:8443/new`
 
+## Sample credentials
+
+- ADMIN: santi.ari.pani+admin@pm.me / 12345678
+- USER: santiaripani@pm.me / 12345678
+- AGENT: santi.ari.pani+agent@pm.me / 12345678
+
 ## SPA Diagram
 
 ![SPADiagram.jpg](SPADiagram.jpg)
